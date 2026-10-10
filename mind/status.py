@@ -12,7 +12,7 @@ import json
 import sys
 from typing import Any, Dict, List, Optional
 
-from .claims import KNOWLEDGE, Check, Compare, Threshold, git
+from .claims import KNOWLEDGE, Check, Compare, Threshold
 from .knowledge import ClaimState, Question
 
 STATE_ORDER = ("BROKEN", "ERROR", "STALE", "HOLDS", "INCONCLUSIVE", "REFUTED", "UNTESTED", "RETIRED")
