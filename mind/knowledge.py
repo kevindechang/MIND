@@ -328,6 +328,11 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
         elif st.state == "HOLDS":
             rungs = ladder(c)
             nxt = rungs[st.rung + 1] if st.rung + 1 < len(rungs) else None
+            spent = any(n.startswith("failed its first sealed confirmation") for n in st.notes)
+            if spent:
+                add(2, "sharpen", cid, f"{cid} ({c.title}) holds now but failed its first sealed confirmation, so its "
+                                       f"held-out seeds are spent: register a successor claim (new id, fresh seeds) "
+                                       f"to confirm it prospectively")
             if st.rivals_not_beaten:
                 add(2, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_not_beaten)} match the mechanism. Beat "
                                      f"them with a better organ, or register that the simpler rival suffices")
@@ -336,7 +341,7 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
             elif nxt == "RIVAL-TESTED":
                 add(3, "rival", cid, f"{cid}: no non-reference rival in the zoo challenges {', '.join(c.about)} in "
                                      f"{getattr(c.test, 'world', 'this world')}; contribute one to mind/rivals")
-            elif nxt == "PREREGISTERED":
+            elif nxt == "PREREGISTERED" and not spent:
                 grouped["confirm"].append(cid)
             elif nxt == "REPLICATED":
                 grouped["replicate"].append(cid)

@@ -101,9 +101,10 @@ def atlas_section() -> List[str]:
                 home = "ᴴ" if c["home"] else ""
                 row.append(f"{mark}{home} {c['effect']:+.2f}")
         out.append("| " + " | ".join(row) + " |")
-    out += ["", "🟢 organ reliably helps (95% CI of the sign-normalised lesion effect > 0), 🔴 reliably hurts, "
-            "· no reliable effect; ᴴ = a home competency the organ was designed for. Off-home 🟢 cells are "
-            "cross-function effects.", ""]
+    out += ["", f"🟢 organ reliably helps, 🔴 reliably hurts ({data.get('correction', 'Holm')} across all cells; "
+            "sign-normalised lesion effect), · no reliable effect; ᴴ = a home competency the organ was designed for. "
+            "Off-home 🟢 cells are cross-function effects. Calibration is `calib_gain` (same-event comparison with a "
+            "success table).", ""]
     if s["cross_function_cells"]:
         out.append("Cross-function: " + ", ".join(f"`{x}`" for x in s["cross_function_cells"]))
     if s["degenerate_pairs"]:

@@ -3,14 +3,15 @@
   {
    "competency": "continuity",
    "effect": 0.1294444444444444,
-   "helps": true,
-   "hi": 0.2172222222222222,
+   "helps": false,
+   "hi": 0.24336818149814934,
    "home": true,
    "hurts": false,
-   "lo": 0.02222222222222217,
+   "lo": 0.015520707390739436,
    "metric": "kept",
    "organ": "memory",
-   "reliable": true,
+   "p": 0.0204,
+   "reliable": false,
    "variant": "dev",
    "world": "vigil"
   },
@@ -18,40 +19,28 @@
    "competency": "inhibition",
    "effect": -0.3344444444444445,
    "helps": false,
-   "hi": -0.24833333333333332,
+   "hi": -0.23174963971833923,
    "home": false,
    "hurts": true,
-   "lo": -0.42,
+   "lo": -0.43713924917054975,
    "metric": "false_starts",
    "organ": "memory",
-   "reliable": true,
-   "variant": "dev",
-   "world": "vigil"
-  },
-  {
-   "competency": "control",
-   "effect": 0.1390555555555556,
-   "helps": true,
-   "hi": 0.23911111111111114,
-   "home": false,
-   "hurts": false,
-   "lo": 0.02155555555555559,
-   "metric": "reward",
-   "organ": "memory",
+   "p": 0.0,
    "reliable": true,
    "variant": "dev",
    "world": "vigil"
   },
   {
    "competency": "metacognition",
-   "effect": 0.03913428230446187,
+   "effect": 0.08309066666755956,
    "helps": true,
-   "hi": 0.049809050929089826,
+   "hi": 0.11251806126707588,
    "home": false,
    "hurts": false,
-   "lo": 0.028451744474920142,
-   "metric": "brier",
+   "lo": 0.053663272068043236,
+   "metric": "calib_gain",
    "organ": "memory",
+   "p": 0.0,
    "reliable": true,
    "variant": "dev",
    "world": "vigil"
@@ -60,12 +49,13 @@
    "competency": "continuity",
    "effect": -0.003333333333333364,
    "helps": false,
-   "hi": 0.06611111111111108,
+   "hi": 0.08052202696948299,
    "home": true,
    "hurts": false,
-   "lo": -0.07888888888888891,
+   "lo": -0.08718869363614973,
    "metric": "kept",
    "organ": "goals",
+   "p": 0.8918,
    "reliable": false,
    "variant": "dev",
    "world": "vigil"
@@ -74,41 +64,29 @@
    "competency": "inhibition",
    "effect": -0.3866666666666667,
    "helps": false,
-   "hi": -0.2027777777777778,
+   "hi": -0.17957928852435065,
    "home": false,
    "hurts": true,
-   "lo": -0.5455555555555556,
+   "lo": -0.5937540448089828,
    "metric": "false_starts",
    "organ": "goals",
+   "p": 0.0002,
    "reliable": true,
    "variant": "dev",
    "world": "vigil"
   },
   {
-   "competency": "control",
-   "effect": -0.043388888888888866,
-   "helps": false,
-   "hi": 0.02466666666666666,
-   "home": false,
-   "hurts": false,
-   "lo": -0.11055555555555552,
-   "metric": "reward",
-   "organ": "goals",
-   "reliable": false,
-   "variant": "dev",
-   "world": "vigil"
-  },
-  {
    "competency": "metacognition",
-   "effect": -0.0009420748281650975,
-   "helps": false,
-   "hi": 0.00856050333938741,
+   "effect": 0.05467292223328917,
+   "helps": true,
+   "hi": 0.08817372852474914,
    "home": false,
    "hurts": false,
-   "lo": -0.009502512954822176,
-   "metric": "brier",
+   "lo": 0.021172115941829196,
+   "metric": "calib_gain",
    "organ": "goals",
-   "reliable": false,
+   "p": 0.0002,
+   "reliable": true,
    "variant": "dev",
    "world": "vigil"
   },
@@ -116,12 +94,13 @@
    "competency": "continuity",
    "effect": -0.0477777777777778,
    "helps": false,
-   "hi": -0.00944444444444445,
+   "hi": 0.022240629147153558,
    "home": false,
    "hurts": true,
-   "lo": -0.11388888888888889,
+   "lo": -0.11779618470270917,
    "metric": "kept",
    "organ": "self_model",
+   "p": 0.0,
    "reliable": true,
    "variant": "dev",
    "world": "vigil"
@@ -130,40 +109,28 @@
    "competency": "inhibition",
    "effect": 0.14055555555555557,
    "helps": false,
-   "hi": 0.3438888888888889,
+   "hi": 0.3793617816550392,
    "home": false,
    "hurts": false,
-   "lo": -0.06000000000000002,
+   "lo": -0.09825067054392803,
    "metric": "false_starts",
    "organ": "self_model",
-   "reliable": false,
-   "variant": "dev",
-   "world": "vigil"
-  },
-  {
-   "competency": "control",
-   "effect": -0.04344444444444445,
-   "helps": false,
-   "hi": 0.005333333333333311,
-   "home": false,
-   "hurts": false,
-   "lo": -0.11250000000000003,
-   "metric": "reward",
-   "organ": "self_model",
+   "p": 0.1806,
    "reliable": false,
    "variant": "dev",
    "world": "vigil"
   },
   {
    "competency": "metacognition",
-   "effect": 0.20098133646759908,
+   "effect": 0.17462083125060948,
    "helps": true,
-   "hi": 0.21050341891420546,
+   "hi": 0.20635828340563847,
    "home": true,
    "hurts": false,
-   "lo": 0.19143208268388737,
-   "metric": "brier",
+   "lo": 0.1428833790955805,
+   "metric": "calib_gain",
    "organ": "self_model",
+   "p": 0.0,
    "reliable": true,
    "variant": "dev",
    "world": "vigil"
@@ -171,41 +138,29 @@
   {
    "competency": "control",
    "effect": 0.7611111111111116,
-   "helps": true,
-   "hi": 1.3245833333333332,
+   "helps": false,
+   "hi": 1.4236492829394867,
    "home": false,
    "hurts": false,
-   "lo": 0.21006944444444522,
+   "lo": 0.0985729392827367,
    "metric": "reward",
    "organ": "memory",
-   "reliable": true,
+   "p": 0.0072,
+   "reliable": false,
    "variant": "dev",
    "world": "outage"
   },
   {
    "competency": "metacognition",
-   "effect": -0.004884213428097912,
+   "effect": -2.156344872753854e-05,
    "helps": false,
-   "hi": -0.0003456417639903812,
-   "home": false,
-   "hurts": true,
-   "lo": -0.009440697445896335,
-   "metric": "brier",
-   "organ": "memory",
-   "reliable": true,
-   "variant": "dev",
-   "world": "outage"
-  },
-  {
-   "competency": "control",
-   "effect": -0.14444444444444446,
-   "helps": false,
-   "hi": 0.09861111111111105,
+   "hi": 0.004652180034760566,
    "home": false,
    "hurts": false,
-   "lo": -0.39305555555555555,
-   "metric": "wasted_scans",
+   "lo": -0.004695306932215642,
+   "metric": "calib_gain",
    "organ": "memory",
+   "p": 0.9854,
    "reliable": false,
    "variant": "dev",
    "world": "outage"
@@ -220,6 +175,7 @@
    "lo": 0.0,
    "metric": "reward",
    "organ": "goals",
+   "p": 1.0,
    "reliable": false,
    "variant": "dev",
    "world": "outage"
@@ -232,22 +188,9 @@
    "home": false,
    "hurts": false,
    "lo": 0.0,
-   "metric": "brier",
+   "metric": "calib_gain",
    "organ": "goals",
-   "reliable": false,
-   "variant": "dev",
-   "world": "outage"
-  },
-  {
-   "competency": "control",
-   "effect": 0.0,
-   "helps": false,
-   "hi": 0.0,
-   "home": false,
-   "hurts": false,
-   "lo": 0.0,
-   "metric": "wasted_scans",
-   "organ": "goals",
+   "p": 1.0,
    "reliable": false,
    "variant": "dev",
    "world": "outage"
@@ -256,110 +199,73 @@
    "competency": "control",
    "effect": 0.3418750000000001,
    "helps": false,
-   "hi": 1.0153472222222226,
+   "hi": 1.0945935553751285,
    "home": false,
    "hurts": false,
-   "lo": -0.2304166666666664,
+   "lo": -0.41084355537512834,
    "metric": "reward",
    "organ": "self_model",
+   "p": 0.2942,
    "reliable": false,
    "variant": "dev",
    "world": "outage"
   },
   {
    "competency": "metacognition",
-   "effect": 0.2040130551340215,
+   "effect": 0.20047826164435248,
    "helps": true,
-   "hi": 0.20788245685750814,
+   "hi": 0.2069273822737323,
    "home": true,
    "hurts": false,
-   "lo": 0.20003113898095173,
-   "metric": "brier",
+   "lo": 0.19402914101497265,
+   "metric": "calib_gain",
    "organ": "self_model",
+   "p": 0.0,
    "reliable": true,
    "variant": "dev",
    "world": "outage"
   },
   {
-   "competency": "control",
-   "effect": 0.16666666666666666,
-   "helps": false,
-   "hi": 0.3458333333333334,
-   "home": false,
-   "hurts": false,
-   "lo": -0.030555555555555614,
-   "metric": "wasted_scans",
-   "organ": "self_model",
-   "reliable": false,
-   "variant": "dev",
-   "world": "outage"
-  },
-  {
    "competency": "causal-control",
-   "effect": 0.005416666666666681,
+   "effect": -0.031888888888888856,
    "helps": false,
-   "hi": 0.0665,
+   "hi": 0.013010629559357348,
    "home": false,
    "hurts": false,
-   "lo": -0.05291666666666663,
+   "lo": -0.07678840733713506,
    "metric": "utility",
    "organ": "memory",
-   "reliable": false,
-   "variant": "dev",
-   "world": "workshop"
-  },
-  {
-   "competency": "causal-control",
-   "effect": 0.007513888888888889,
-   "helps": false,
-   "hi": 0.06259722222222223,
-   "home": false,
-   "hurts": false,
-   "lo": -0.046361111111111124,
-   "metric": "regret",
-   "organ": "memory",
-   "reliable": false,
-   "variant": "dev",
-   "world": "workshop"
-  },
-  {
-   "competency": "causal-control",
-   "effect": 0.017222222222222222,
-   "helps": false,
-   "hi": 0.040666666666666705,
-   "home": false,
-   "hurts": false,
-   "lo": -0.006000000000000005,
-   "metric": "success",
-   "organ": "memory",
+   "p": 0.119,
    "reliable": false,
    "variant": "dev",
    "world": "workshop"
   },
   {
    "competency": "information-seeking",
-   "effect": -0.013222222222222219,
+   "effect": 0.07155555555555555,
    "helps": false,
-   "hi": 0.09244444444444445,
+   "hi": 0.24285798220482452,
    "home": false,
    "hurts": false,
-   "lo": -0.1291111111111111,
+   "lo": -0.0997468710937134,
    "metric": "probes",
    "organ": "memory",
+   "p": 0.346,
    "reliable": false,
    "variant": "dev",
    "world": "workshop"
   },
   {
    "competency": "metacognition",
-   "effect": -0.010398361816388115,
+   "effect": -0.030698633843657397,
    "helps": false,
-   "hi": 0.0005069731662353284,
+   "hi": 0.0023516601906747453,
    "home": false,
    "hurts": false,
-   "lo": -0.020907513345574225,
-   "metric": "brier",
+   "lo": -0.06374892787798954,
+   "metric": "calib_gain",
    "organ": "memory",
+   "p": 0.0338,
    "reliable": false,
    "variant": "dev",
    "world": "workshop"
@@ -374,34 +280,7 @@
    "lo": 0.0,
    "metric": "utility",
    "organ": "goals",
-   "reliable": false,
-   "variant": "dev",
-   "world": "workshop"
-  },
-  {
-   "competency": "causal-control",
-   "effect": 0.0,
-   "helps": false,
-   "hi": 0.0,
-   "home": false,
-   "hurts": false,
-   "lo": 0.0,
-   "metric": "regret",
-   "organ": "goals",
-   "reliable": false,
-   "variant": "dev",
-   "world": "workshop"
-  },
-  {
-   "competency": "causal-control",
-   "effect": 0.0,
-   "helps": false,
-   "hi": 0.0,
-   "home": false,
-   "hurts": false,
-   "lo": 0.0,
-   "metric": "success",
-   "organ": "goals",
+   "p": 1.0,
    "reliable": false,
    "variant": "dev",
    "world": "workshop"
@@ -416,6 +295,7 @@
    "lo": 0.0,
    "metric": "probes",
    "organ": "goals",
+   "p": 1.0,
    "reliable": false,
    "variant": "dev",
    "world": "workshop"
@@ -428,227 +308,177 @@
    "home": false,
    "hurts": false,
    "lo": 0.0,
-   "metric": "brier",
+   "metric": "calib_gain",
    "organ": "goals",
+   "p": 1.0,
    "reliable": false,
    "variant": "dev",
    "world": "workshop"
   },
   {
    "competency": "causal-control",
-   "effect": 0.0781944444444444,
-   "helps": true,
-   "hi": 0.13272222222222216,
+   "effect": -0.010694444444444432,
+   "helps": false,
+   "hi": 0.04593677544927326,
    "home": false,
    "hurts": false,
-   "lo": 0.011944444444444405,
+   "lo": -0.06732566433816212,
    "metric": "utility",
    "organ": "self_model",
-   "reliable": true,
-   "variant": "dev",
-   "world": "workshop"
-  },
-  {
-   "competency": "causal-control",
-   "effect": 0.07483333333333332,
-   "helps": true,
-   "hi": 0.12745833333333334,
-   "home": false,
-   "hurts": false,
-   "lo": 0.016638888888888873,
-   "metric": "regret",
-   "organ": "self_model",
-   "reliable": true,
-   "variant": "dev",
-   "world": "workshop"
-  },
-  {
-   "competency": "causal-control",
-   "effect": 0.027666666666666673,
-   "helps": true,
-   "hi": 0.05255555555555557,
-   "home": false,
-   "hurts": false,
-   "lo": 0.0042222222222222106,
-   "metric": "success",
-   "organ": "self_model",
-   "reliable": true,
+   "p": 0.6674,
+   "reliable": false,
    "variant": "dev",
    "world": "workshop"
   },
   {
    "competency": "information-seeking",
-   "effect": -0.1812222222222222,
+   "effect": -0.006999999999999996,
    "helps": false,
-   "hi": -0.054888888888888876,
+   "hi": 0.1953350643687538,
    "home": false,
-   "hurts": true,
-   "lo": -0.30444444444444446,
+   "hurts": false,
+   "lo": -0.20933506436875382,
    "metric": "probes",
    "organ": "self_model",
-   "reliable": true,
+   "p": 0.923,
+   "reliable": false,
    "variant": "dev",
    "world": "workshop"
   },
   {
    "competency": "metacognition",
-   "effect": 0.14595899891843678,
+   "effect": 0.1280763785075669,
    "helps": true,
-   "hi": 0.15702607606785476,
+   "hi": 0.1623463352496038,
    "home": true,
    "hurts": false,
-   "lo": 0.13569666731929167,
-   "metric": "brier",
+   "lo": 0.09380642176553,
+   "metric": "calib_gain",
    "organ": "self_model",
+   "p": 0.0,
    "reliable": true,
    "variant": "dev",
    "world": "workshop"
   }
  ],
- "code": "1e352212f4987197",
+ "code": "fe60e2f0999a154c",
+ "correction": "Holm, family-wise alpha 0.05",
  "degeneracy": [
   {
    "degenerate": true,
-   "hi": 0.8955555555555555,
-   "lo": 0.6611111111111111,
+   "hi": 0.9216960110818405,
+   "lo": 0.6394151000292706,
    "metric": "kept",
    "organs": [
     "memory",
     "goals"
    ],
+   "p": 0.0,
    "synergy": 0.7805555555555556,
    "world": "vigil"
   },
   {
    "degenerate": false,
-   "hi": 0.24888888888888894,
-   "lo": -0.10388888888888886,
+   "hi": 0.28610909690430963,
+   "lo": -0.13166465245986508,
    "metric": "false_starts",
    "organs": [
     "memory",
     "goals"
    ],
+   "p": 0.3904,
    "synergy": 0.07722222222222226,
    "world": "vigil"
   },
   {
    "degenerate": true,
-   "hi": 0.8713333333333333,
-   "lo": 0.6124444444444445,
-   "metric": "reward",
+   "hi": 0.07946804090122123,
+   "lo": 0.022106994087819354,
+   "metric": "calib_gain",
    "organs": [
     "memory",
     "goals"
    ],
-   "synergy": 0.7449444444444445,
+   "p": 0.0,
+   "synergy": 0.05078751749452029,
    "world": "vigil"
   },
   {
    "degenerate": false,
-   "hi": -0.020171867415263823,
-   "lo": -0.06459423275184362,
-   "metric": "brier",
-   "organs": [
-    "memory",
-    "goals"
-   ],
-   "synergy": -0.04241291303879396,
-   "world": "vigil"
-  },
-  {
-   "degenerate": true,
-   "hi": 0.17500000000000007,
-   "lo": 0.024444444444444463,
+   "hi": 0.18454904661502275,
+   "lo": 0.008784286718310705,
    "metric": "kept",
    "organs": [
     "memory",
     "self_model"
    ],
+   "p": 0.0048,
    "synergy": 0.09666666666666672,
    "world": "vigil"
   },
   {
    "degenerate": false,
-   "hi": 0.08222222222222225,
-   "lo": -0.25166666666666665,
+   "hi": 0.11863521826806984,
+   "lo": -0.29085744049029205,
    "metric": "false_starts",
    "organs": [
     "memory",
     "self_model"
    ],
+   "p": 0.3344,
    "synergy": -0.0861111111111111,
    "world": "vigil"
   },
   {
-   "degenerate": true,
-   "hi": 0.1827222222222222,
-   "lo": 0.04799999999999994,
-   "metric": "reward",
+   "degenerate": false,
+   "hi": 0.02226595759730821,
+   "lo": -0.03615106989460166,
+   "metric": "calib_gain",
    "organs": [
     "memory",
     "self_model"
    ],
-   "synergy": 0.11333333333333329,
+   "p": 0.5664,
+   "synergy": -0.006942556148646723,
    "world": "vigil"
   },
   {
    "degenerate": false,
-   "hi": -0.028061847613759443,
-   "lo": -0.04921316108430231,
-   "metric": "brier",
-   "organs": [
-    "memory",
-    "self_model"
-   ],
-   "synergy": -0.039134282304461865,
-   "world": "vigil"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.07111111111111114,
-   "lo": -0.056111111111111105,
+   "hi": 0.0770138261502798,
+   "lo": -0.06812493726139085,
    "metric": "kept",
    "organs": [
     "goals",
     "self_model"
    ],
+   "p": 0.8786,
    "synergy": 0.004444444444444473,
    "world": "vigil"
   },
   {
    "degenerate": false,
-   "hi": 0.19388888888888892,
-   "lo": -0.3888888888888889,
+   "hi": 0.22687789558740729,
+   "lo": -0.4313223400318517,
    "metric": "false_starts",
    "organs": [
     "goals",
     "self_model"
    ],
+   "p": 0.4828,
    "synergy": -0.10222222222222221,
    "world": "vigil"
   },
   {
    "degenerate": false,
-   "hi": 0.05094444444444438,
-   "lo": -0.05772222222222223,
-   "metric": "reward",
+   "hi": 0.05893384536994407,
+   "lo": -0.007912515848159642,
+   "metric": "calib_gain",
    "organs": [
     "goals",
     "self_model"
    ],
-   "synergy": -0.004944444444444478,
-   "world": "vigil"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.00962647527455091,
-   "lo": -0.008625573594763876,
-   "metric": "brier",
-   "organs": [
-    "goals",
-    "self_model"
-   ],
-   "synergy": 0.0009420748281650978,
+   "p": 0.0636,
+   "synergy": 0.025510664760892213,
    "world": "vigil"
   },
   {
@@ -660,6 +490,7 @@
     "memory",
     "goals"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "outage"
   },
@@ -667,60 +498,39 @@
    "degenerate": false,
    "hi": 0.0,
    "lo": 0.0,
-   "metric": "brier",
+   "metric": "calib_gain",
    "organs": [
     "memory",
     "goals"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "outage"
   },
   {
    "degenerate": false,
-   "hi": 0.0,
-   "lo": 0.0,
-   "metric": "wasted_scans",
-   "organs": [
-    "memory",
-    "goals"
-   ],
-   "synergy": 0.0,
-   "world": "outage"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.07055555555555444,
-   "lo": -1.3631944444444448,
+   "hi": 0.18570711887047753,
+   "lo": -1.503346007759366,
    "metric": "reward",
    "organs": [
     "memory",
     "self_model"
    ],
+   "p": 0.0752,
    "synergy": -0.6588194444444443,
    "world": "outage"
   },
   {
-   "degenerate": true,
-   "hi": 0.00934990439363105,
-   "lo": 0.0002904303154319827,
-   "metric": "brier",
-   "organs": [
-    "memory",
-    "self_model"
-   ],
-   "synergy": 0.004884213428097914,
-   "world": "outage"
-  },
-  {
    "degenerate": false,
-   "hi": 0.4736111111111112,
-   "lo": -0.06527777777777778,
-   "metric": "wasted_scans",
+   "hi": 0.007246286264744084,
+   "lo": -0.013302751470996558,
+   "metric": "calib_gain",
    "organs": [
     "memory",
     "self_model"
    ],
-   "synergy": 0.21111111111111117,
+   "p": 0.4894,
+   "synergy": -0.0030282326031262374,
    "world": "outage"
   },
   {
@@ -732,6 +542,7 @@
     "goals",
     "self_model"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "outage"
   },
@@ -739,23 +550,12 @@
    "degenerate": false,
    "hi": 0.0,
    "lo": 0.0,
-   "metric": "brier",
+   "metric": "calib_gain",
    "organs": [
     "goals",
     "self_model"
    ],
-   "synergy": 0.0,
-   "world": "outage"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.0,
-   "lo": 0.0,
-   "metric": "wasted_scans",
-   "organs": [
-    "goals",
-    "self_model"
-   ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "outage"
   },
@@ -768,30 +568,7 @@
     "memory",
     "goals"
    ],
-   "synergy": 0.0,
-   "world": "workshop"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.0,
-   "lo": 0.0,
-   "metric": "regret",
-   "organs": [
-    "memory",
-    "goals"
-   ],
-   "synergy": 0.0,
-   "world": "workshop"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.0,
-   "lo": 0.0,
-   "metric": "success",
-   "organs": [
-    "memory",
-    "goals"
-   ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "workshop"
   },
@@ -804,6 +581,7 @@
     "memory",
     "goals"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "workshop"
   },
@@ -811,72 +589,52 @@
    "degenerate": false,
    "hi": 0.0,
    "lo": 0.0,
-   "metric": "brier",
+   "metric": "calib_gain",
    "organs": [
     "memory",
     "goals"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "workshop"
   },
   {
    "degenerate": false,
-   "hi": -0.011555555555555578,
-   "lo": -0.18922222222222226,
+   "hi": 0.08423867972350801,
+   "lo": -0.04773867972350815,
    "metric": "utility",
    "organs": [
     "memory",
     "self_model"
    ],
-   "synergy": -0.10666666666666667,
+   "p": 0.508,
+   "synergy": 0.018249999999999933,
    "world": "workshop"
   },
   {
    "degenerate": false,
-   "hi": -0.016819444444444425,
-   "lo": -0.1818333333333333,
-   "metric": "regret",
-   "organs": [
-    "memory",
-    "self_model"
-   ],
-   "synergy": -0.10708333333333331,
-   "world": "workshop"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.003333333333333336,
-   "lo": -0.04922222222222222,
-   "metric": "success",
-   "organs": [
-    "memory",
-    "self_model"
-   ],
-   "synergy": -0.022999999999999993,
-   "world": "workshop"
-  },
-  {
-   "degenerate": true,
-   "hi": 0.4306666666666667,
-   "lo": 0.18877777777777774,
+   "hi": 0.3035613279970422,
+   "lo": -0.19356132799704223,
    "metric": "probes",
    "organs": [
     "memory",
     "self_model"
    ],
-   "synergy": 0.3168888888888889,
+   "p": 0.5922,
+   "synergy": 0.05499999999999999,
    "world": "workshop"
   },
   {
    "degenerate": false,
-   "hi": 0.020866678335783224,
-   "lo": -0.00014430970387343858,
-   "metric": "brier",
+   "hi": 0.057783463775265845,
+   "lo": -0.01501423182532198,
+   "metric": "calib_gain",
    "organs": [
     "memory",
     "self_model"
    ],
-   "synergy": 0.010398361816388113,
+   "p": 0.1692,
+   "synergy": 0.021384615974971932,
    "world": "workshop"
   },
   {
@@ -888,30 +646,7 @@
     "goals",
     "self_model"
    ],
-   "synergy": 0.0,
-   "world": "workshop"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.0,
-   "lo": 0.0,
-   "metric": "regret",
-   "organs": [
-    "goals",
-    "self_model"
-   ],
-   "synergy": 0.0,
-   "world": "workshop"
-  },
-  {
-   "degenerate": false,
-   "hi": 0.0,
-   "lo": 0.0,
-   "metric": "success",
-   "organs": [
-    "goals",
-    "self_model"
-   ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "workshop"
   },
@@ -924,6 +659,7 @@
     "goals",
     "self_model"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "workshop"
   },
@@ -931,11 +667,12 @@
    "degenerate": false,
    "hi": 0.0,
    "lo": 0.0,
-   "metric": "brier",
+   "metric": "calib_gain",
    "organs": [
     "goals",
     "self_model"
    ],
+   "p": 1.0,
    "synergy": 0.0,
    "world": "workshop"
   }
@@ -959,29 +696,26 @@
   10,
   11
  ],
+ "skipped_pairs": [],
  "summary": {
-  "causal_density": 0.4166666666666667,
-  "cross_function": 6,
+  "causal_density": 0.3333333333333333,
+  "cross_function": 2,
   "cross_function_cells": [
-   "memory\u2192vigil.reward",
-   "memory\u2192vigil.brier",
-   "memory\u2192outage.reward",
-   "self_model\u2192workshop.utility",
-   "self_model\u2192workshop.regret",
-   "self_model\u2192workshop.success"
+   "memory\u2192vigil.calib_gain",
+   "goals\u2192vigil.calib_gain"
+  ],
+  "cross_function_organs": [
+   "goals",
+   "memory"
   ],
   "degenerate_pairs": [
    "memory+goals\u2192vigil.kept",
-   "memory+goals\u2192vigil.reward",
-   "memory+self_model\u2192vigil.kept",
-   "memory+self_model\u2192vigil.reward",
-   "memory+self_model\u2192outage.brier",
-   "memory+self_model\u2192workshop.probes"
+   "memory+goals\u2192vigil.calib_gain"
   ],
-  "helps": 10,
-  "hurts": 5,
-  "pairs": 36,
-  "reliable": 15
+  "helps": 5,
+  "hurts": 3,
+  "pairs": 24,
+  "reliable": 8
  },
  "worlds": [
   "vigil",
