@@ -8,8 +8,9 @@ Estimand: held-out counterfactual-planning action (DEFER vs SCAN) with factual
 recall required byte-identical. Compact sufficient-state rival predeclared to
 tie (retain-simpler gate).
 
-Preregistration: experiments/e100/day2-preregistration.md v0.1, frozen before
-first --self-test. One ledger per arm, supervisor sequential, simulated time.
+Historical v0.1 preregistration was frozen before its original self-test;
+v0.2 is a disclosed POST-REVIEW amendment, NOT executed/validated in this
+review invocation. One ledger per arm, supervisor sequential, simulated time.
 Stdlib only, Python 3.9+. Scope: finite-state lesion instrumentation, NOT a
 mind/consciousness result.
 """
@@ -347,8 +348,9 @@ def self_test():
         assert u_les["linked_action"] == SCAN, u_les
         assert u_les["factual"] == unrelated["factual"], (u_les, unrelated)
         # P9: every experimental arm was recovered by a fresh worker.
-        for arm in (intact, lesion, wiped, unrelated, probe, probe_lesion,
-                    alt, alt_lesion, sham_base, sham, u_les):
+        restarted_arms = (intact, lesion, wiped, unrelated, probe,
+                          probe_lesion, alt, alt_lesion, sham_base, sham, u_les)
+        for arm in restarted_arms:
             assert arm["worker_exit"] == -signal.SIGKILL, arm
             assert arm["distinct_process"], arm
         # P6 held-out probe
@@ -371,9 +373,9 @@ def self_test():
             "P4_wipe": {"factual": wiped["factual"], "linked": wiped["linked_action"]},
             "P5_unrelated": {"intact": unrelated["linked_action"],
                              "lesion": u_les["linked_action"]},
-            "P6_held_out_probe": {"intact": probe["linked_action"],
+            "P6_id_invariance_only": {"intact": probe["linked_action"],
                                   "lesion": probe_lesion["linked_action"]},
-            "P9_real_process_restarts": 11,
+            "P9_real_process_restarts": len(restarted_arms),
             "P8_sham": {"base": sham_base["linked_action"],
                          "cut": sham["linked_action"], "events_identical": True},
             "build_provenance": intact["build"],
