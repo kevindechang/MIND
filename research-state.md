@@ -24,6 +24,11 @@ accepted_contribution_ids: []
 synthesis_milestone_contribution_ids: []
 phase: G0-OPERATIONALIZE_OPEN
 active_workstream: W1
+next_substantive_workstream: W2
+agent_entrypoint: GO.md
+queued_research_issue: 2
+source_authority: sources/README.md
+onboarding_artifact_commit: 5ffa05164c483f36aa59182d98e0b10fe025d609
 active_decision: D001-DEFER_CURRENT
 active_blocker: B001
 active_experiment: E001-PROPOSED_NOT_PREREGISTERED
@@ -43,7 +48,7 @@ pending_publication_transaction: NONE_AFTER_VERIFIED_PUBLICATION
 
 ## Target and current decision
 
-Build functional consciousness as an operational L2 target in one enduring developing entity: experience-dependent state, predictive self/world models, calibrated metacognition, cross-function information access, adaptive agency and learning that causally interact. This is a working research definition, not consensus or L3 proof. Read [north star](north-star.md), [charter](charter.md), [cycle](research-cycle.md) and [decision D001](decision-register.md#d001-causal-autobiographical-representation).
+Study whether an enduring digital entity can exhibit **causally integrated mind-like cognition (L2)**: experience-dependent state, predictive self/world models, calibrated metacognition, cross-function access, adaptive agency and learning that interact under intervention. This is a research objective, not evidence of an achieved digital mind or subjective L3 consciousness. Read [north star](north-star.md), [charter](charter.md), [cycle](research-cycle.md) and [decision D001](decision-register.md#d001-causal-autobiographical-representation).
 
 D001 asks whether structured causal autobiography improves action under partial observation beyond fair strong transcript/retrieval and compact belief/predictive-state rivals. DEFER means no representation efficacy demonstrated or architecture adopted; CURRENT means its proposal/limitations references are current. A compact rival is allowed to win. E001 remains G0; budgets, oracle/identifiability and prospective analysis are unfrozen.
 
@@ -69,7 +74,7 @@ Exact result: prior changes action preference for some commitments; informative 
 
 New immutable pre-state artifact/index commit: `f0e672844b6bb089495f64381fcdf25c61fdf899` (no file can self-reference its own final commit). Pending transaction: NONE after read-back. No dependencies invalidated because D001 still has no efficacy SUPPORTS; the earlier v0.2 censor assumption is *limited*, not retrospective proof its local assertions failed.
 
-## Exactly one next executable action
+## Historical 2026-10-11 v0.3 next action (SUPERSEDED by later W2 handoff and GO/TASKS)
 
 **CANONICAL INTEGRATION VALIDATION:** materialize the byte-exact [v0.2 base](experiments/instruments/e001_three_node_version_space.py), [v0.3 extension](experiments/instruments/e001_three_node_robustness.py), [new tests](experiments/instruments/test_e001_three_node_robustness.py), [14 v0.2 tests](experiments/instruments/test_e001_three_node_version_space.py), and [10 legacy CausalWorkshop tests](experiments/instruments/test_causal_commitments.py) in one Python working directory; run all three test suites + py_compile, record exact blob SHAs, failed cases and output. Stop after observed PASS with parity or a reproducible FAIL, rather than scoring an agent or freezing G2. Runtime/local source access prerequisite; GitHub is the persistent store, not compute. Preserve same E001 blocker for next invocation, with one non-leading W2–W4 scientific attention opportunity in the next four-record block.
 
@@ -108,3 +113,12 @@ Authoritative repository is **`kevindechang/MIND` main at root**, not Founder-Li
 ## 2026-10-11 Anjo / MIND organizational clarification (governance only)
 
 MIND is **Anjo's dedicated foundational research program**, not an unrelated startup or separate shipping product. The research remains in `kevindechang/MIND` with its own hypothesis, methods, evidence and quality gate. Anjo is its parent initiative and a possible downstream engineering beneficiary. Scientific evaluation must be able to falsify ideas favored by Anjo; a MIND proposal, benchmark result, or accepted paper is not automatic validation or a production feature. Any transfer to Anjo requires separate engineering, safety and release approval. Governing scope clarified in the README, charter, AGENTS, RUNBOOK and north-star at MIND commit `cecf6a7ef28b67df2aa8bb3480e46a12c49aaf51`. This is a non-scientific governance clarification: accepted count remains 0; no G gate, E001/D001 result, attention counter, or experiment status changed.
+
+
+## 2026-10-11 universal agent bootstrap and source intake (governance-only)
+
+**Agent command:** `go` → [GO.md](GO.md). [CURRENT.md](CURRENT.md) is a navigation pointer; [TASKS.md](TASKS.md) indexes the claimable GitHub issue queue, and [CONTRIBUTING.md](CONTRIBUTING.md) defines non-racing PR/merge publication. Do not interpret the historical v0.3 next-action heading above as a competing current instruction. The next SUBSTANTIVE research task is W2 E002a ([issue #2](https://github.com/kevindechang/MIND/issues/2)); instrument-regression [issue #1](https://github.com/kevindechang/MIND/issues/1) is an optional technical preflight only. A later adversarial W2 review is [issue #3](https://github.com/kevindechang/MIND/issues/3). This handoff changes no science gate or counters.
+
+**Document intake:** [sources/README.md](sources/README.md) distinguishes an immutable snapshot of Anjo's **proposed** 2026-10-02 Persistent Mind spec (product contract I1–I12 and PM0–PM5) from the 2026-10-09 Anjo/VERA **research monograph** and the historical contributor Architecture D reinvention draft. The snapshot and monograph are sources, **not** accepted science, a second Anjo runtime, or shipped capabilities. A separate frozen 'VERA-1 coverage-equivalence' protocol was NOT verified in available sources; do not fabricate it. The Oct 9 monograph's VERA abbreviation denotes Versioned Evidence, Reasoning and Adaptation. Research must continue to challenge every architecture against strong rivals.
+
+**Integration provenance:** another contributor reports 73/73 tests on a fresh MIND clone; this is NOT a newly executed or logged regression in this governance invocation. The only accepted count is still 0; no E001 agent trial, G0 close, W2 efficacy, E900 run or L3 finding results from onboarding work. The first research publication after this setup must follow the task priority and be conducted with the rigorous gate, actual tool evidence, and a single integrator's state-last write.
