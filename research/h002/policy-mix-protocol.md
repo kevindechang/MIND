@@ -1,0 +1,17 @@
+# H002-S2: prospective scan-frequency stress test (exploratory, fixed-policy)
+Status: PROTOCOL_FROZEN_BEFORE_SCORING. This is an extension of the existing H002 shadow probe, NOT a MIND Claim, held-out confirmation, or full organism trial.
+
+## Source and question
+Base MIND main `0debeeaad96f362a23c06961253d02fd8379675f`. Verify exact Git blobs before execution: `mind/organs/self_model.py` 41b60a96fced7d4910c163042e09ac42371521be, `mind/worlds/outage.py` 138d00dad2f55d06a600f8e1f6bfeed962d5c556, `mind/worlds/base.py` 6fa9fb8b0f83cb40f61fd36fabb36b5ceed8b67d. Use prior H002 compact Filter and SuccessTable; these consume identical public streams. MIND `mind check` and K01/K02/K06/K07 remain unexecuted. 
+
+Primary question: Does the previously observed compact-filter Brier advantage depend on the independent controller's scan frequency (the amount of direct capability feedback)? This probes the fragility of H002's 60% scan policy; no trained action policy is involved.
+
+## Frozen design
+For each variant `dev` and `silent`, run 32 independent world seeds 40000..40031, 120 episodes x 25 ticks per seed. Fixed independent policy RNG `random.Random(f'policy|{variant}|{seed}')` supplies one uniform draw per tick. Scan probability in {0.05, 0.15, 0.35, 0.60, 0.90}; wait probability always 0.05, manual otherwise. Same world seed and RNG draw index across policies (paired worlds and nested scan events). Persist self-model and compact state across episodes as the world state itself persists. Do not inspect hidden `world.up` or private `step.info`.
+
+Arms: original SelfModel S with full public perception view, original action-only SuccessTable T, compact filter F (public scan outcome + approximate 4% transition + public alerts), alert-blind F0, reversed-alert sham FS. Forecast *before* the action outcome; update after; feed model its prior action outcome on the next tick or at terminal. Report scan-only Brier over last 60 episodes, averaged per seed, and all-outcome Brier as secondary. Score no wait outcomes. Each arm receives same observation, action, outcome; no future leakage.
+
+## Hypotheses, falsifiers, controls
+Directional prediction (not a preregistered MIND claim): F should retain a lower late-scan Brier than S at scan fractions 0.35, 0.60 and 0.90; at 0.05/0.15 it may tie or lose. This is falsified if F-S is positive at any high-scan rate. Treat a reversal or tie as valuable. For each rate/variant report F-S, T-S, F0-S, FS-S paired 95% percentile bootstrap (10,000 draws; fixed bootstrap seed 72017), min/max paired deltas, scan counts, and run time. No cherry-picking; full 5x2 grid. Check silent F=F0=FS exact for all ticks, alert sham separation in dev, source blob identity, reproducibility of deterministic reruns. An alert-dependent effect should disappear in silent. A no-scan policy is not scored because scan-only Brier would be undefined.
+
+Interpretation: Fixed-policy shadow comparisons do not challenge literal C017/C018 on organism action streams and do not prove L2. The compact rival's 4% transition prior is an engineered inductive bias, not a learned mechanism. SELF-REVIEW_ONLY; NOT_READY_FOR_PRODUCT_TRANSFER. Do not change accepted scientific standing, main or STATUS.md. If cannot integrate or publish, report blocked. One next executable action after this stress test: execute the shadow rival on actual organism streams in a byte-exact full checkout, then register a successor claim.
