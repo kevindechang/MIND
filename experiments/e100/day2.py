@@ -15,7 +15,10 @@ mind/consciousness result.
 """
 import argparse
 import json
+import os
+import signal
 import sqlite3
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -154,38 +157,126 @@ def compact_rival(db, qc=None):
     return {"action": SCAN}
 
 
-def run_arm(tmpdir, name, *, setup_kwargs=None, blank=False):
-    path = Path(tmpdir) / f"{name}.sqlite3"
-    db = connect(path)
+def report(db):
+    """Read only the restarted worker's own durable ledger, no setup data."""
+    def measured(fn):
+        statements = []
+        db.set_trace_callback(statements.append)
+        try:
+            answer = fn(db)
+        finally:
+            db.set_trace_callback(None)
+        return answer, sum(sql.lstrip().upper().startswith("SELECT")
+                           for sql in statements)
+
+    f, nf = measured(factual)
+    p, np = measured(linked_planner)
+    c, nc = measured(compact_rival)
+    e, l = counts(db)
+    return {"factual": f, "linked_action": p["action"],
+            "compact_action": c["action"], "events": e, "links": l,
+            "selects": {"factual": nf, "linked": np, "compact": nc}}
+
+
+def worker(ledger):
+    db = connect(ledger)
     try:
-        build = {"compiled_from_events_and_links": False, "compilation_selects": 0,
-                 "cut": "blank"}
-        if not blank:
-            build = setup(db, **(setup_kwargs or {}))
-
-        # Count actual SQLite statements rather than manually maintained
-        # counters. This is query provenance, NOT matched CPU/compute budgets.
-        def measured(fn):
-            statements = []
-            db.set_trace_callback(statements.append)
+        for line in sys.stdin:
             try:
-                answer = fn(db)
-            finally:
-                db.set_trace_callback(None)
-            selects = sum(sql.lstrip().upper().startswith("SELECT")
-                          for sql in statements)
-            return answer, selects
-
-        f, nf = measured(factual)
-        p, np = measured(linked_planner)
-        c, nc = measured(compact_rival)
-        e, l = counts(db)
-        return {"arm": name, "factual": f, "linked_action": p["action"],
-                "compact_action": c["action"], "events": e, "links": l,
-                "build": build,
-                "selects": {"factual": nf, "linked": np, "compact": nc}}
+                cmd = json.loads(line)
+                if cmd == {"op": "seed_blank"}:
+                    result = {"status": "COMMITTED",
+                              "build": {"compiled_from_events_and_links": False,
+                                        "compilation_selects": 0, "cut": "blank"}}
+                elif isinstance(cmd, dict) and set(cmd) == {"op", "setup_kwargs"} and cmd["op"] == "seed":
+                    if not isinstance(cmd["setup_kwargs"], dict):
+                        raise ValueError("setup_kwargs must be a dict")
+                    build = setup(db, **cmd["setup_kwargs"])
+                    result = {"status": "COMMITTED", "build": build}
+                elif cmd == {"op": "report"}:
+                    result = report(db)
+                else:
+                    raise ValueError("unsupported worker operation")
+                print(json.dumps(result, sort_keys=True), flush=True)
+            except (ValueError, TypeError, KeyError, sqlite3.Error) as exc:
+                print(json.dumps({"error": str(exc)}), flush=True)
     finally:
         db.close()
+
+
+def spawn(ledger):
+    return subprocess.Popen([sys.executable, "-u", str(Path(__file__).resolve()),
+                             "--worker", "--ledger", str(ledger)],
+                            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE, text=True, bufsize=1)
+
+
+def ask(process, message):
+    if process.stdin is None or process.stdout is None:
+        raise RuntimeError("worker IPC not available")
+    process.stdin.write(json.dumps(message) + "\n")
+    process.stdin.flush()
+    line = process.stdout.readline()
+    if not line:
+        raise RuntimeError("worker returned no response")
+    answer = json.loads(line)
+    if "error" in answer:
+        raise RuntimeError(str(answer))
+    return answer
+
+
+def stop_worker(process, kill):
+    try:
+        if kill:
+            os.kill(process.pid, signal.SIGKILL)
+        elif process.stdin is not None:
+            process.stdin.close()
+        code = process.wait(timeout=5)
+        if kill and code != -signal.SIGKILL:
+            raise AssertionError("worker did not exit via SIGKILL: " + str(code))
+        if not kill and code != 0:
+            raise AssertionError("recovered worker exit code: " + str(code))
+        return code
+    finally:
+        if process.poll() is None:
+            process.kill()
+            process.wait(timeout=5)
+        if process.stdin and not process.stdin.closed:
+            process.stdin.close()
+        if process.stdout:
+            process.stdout.close()
+        if process.stderr:
+            process.stderr.close()
+
+
+def run_arm(tmpdir, name, *, setup_kwargs=None, blank=False):
+    """Run seed and readback in distinct processes; only ledger path persists."""
+    if os.name != "posix" or not hasattr(signal, "SIGKILL"):
+        raise RuntimeError("real POSIX SIGKILL required")
+    path = Path(tmpdir) / (name + ".sqlite3")
+    first = spawn(path)
+    try:
+        if blank:
+            ack = ask(first, {"op": "seed_blank"})
+        else:
+            ack = ask(first, {"op": "seed", "setup_kwargs": setup_kwargs or {}})
+        if ack["status"] != "COMMITTED":
+            raise AssertionError(ack)
+        first_pid = first.pid
+    finally:
+        exit_code = stop_worker(first, kill=True)
+    second = spawn(path)
+    try:
+        if second.pid == first_pid:
+            raise AssertionError("worker PID did not change")
+        observed = ask(second, {"op": "report"})
+        second_pid = second.pid
+    finally:
+        stop_worker(second, kill=False)
+    observed.update({"arm": name, "build": ack["build"],
+                     "worker_exit": exit_code,
+                     "distinct_process": second_pid != first_pid})
+    return observed
 
 
 def self_test():
@@ -223,6 +314,10 @@ def self_test():
         assert sham["factual"] == sham_base["factual"]
         assert sham["linked_action"] == sham_base["linked_action"] == DEFER
         assert sham["links"] == sham_base["links"] - 1
+        for arm in (intact, lesion, wiped, unrelated, probe, probe_lesion,
+                    alt, alt_lesion, sham_base, sham, u_les):
+            assert arm["worker_exit"] == -signal.SIGKILL, arm
+            assert arm["distinct_process"], arm
         # P1
         assert intact["linked_action"] == DEFER, intact
         assert len(intact["factual"]) == 3, intact
@@ -266,6 +361,7 @@ def self_test():
                              "lesion": u_les["linked_action"]},
             "P6_held_out_probe": {"intact": probe["linked_action"],
                                   "lesion": probe_lesion["linked_action"]},
+            "P9_real_process_restarts": 11,
             "P8_sham": {"base": sham_base["linked_action"],
                          "cut": sham["linked_action"], "events_identical": True},
             "build_provenance": intact["build"],
@@ -279,6 +375,13 @@ def self_test():
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--self-test", action="store_true", required=True)
-    ap.parse_args()
-    raise SystemExit(self_test())
+    ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--worker", action="store_true")
+    ap.add_argument("--ledger", type=Path)
+    args = ap.parse_args()
+    if args.worker and args.ledger is not None and not args.self_test:
+        worker(args.ledger)
+    elif args.self_test and not args.worker and args.ledger is None:
+        raise SystemExit(self_test())
+    else:
+        ap.error("specify --self-test, or --worker --ledger PATH")
