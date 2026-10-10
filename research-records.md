@@ -45,3 +45,8 @@ Read live main first. Commit artifacts/index/decisions before state; state then 
 ## 2026-10-11 agent onboarding and source hierarchy (non-scientific governance)
 
 `GO.md`, `TASKS.md`, `CURRENT.md`, `CONTRIBUTING.md` and `sources/README.md` establish a shared agent interface and source-provenance policy. Anjo's proposed Oct 2 product spec and the Oct 9 VERA research monograph were ingested as immutable source snapshots. This does not create a work record eligible for substantive scientific allocation or a SCIENTIFIC_ACCEPTED contribution. Prior experimental metrics, W1 allocation count 4 and accepted count 0 remain unchanged. See live `research-state.md` for the canonical next action.
+
+
+## 2026-10-11 E100 Day 0 executable checkpoint (W2 substrate; NOT accepted science)
+
+[E100 local observation](runs/2026-10-11-E100-day0-local-checkpoint.md): local Python 3.13.5 real SIGKILL (-9), fresh-process ledger-only action `inspect_signal`, wiped-ledger `NO_ACTION`, alternate-ledger `record_measurement`, 1 dedicated subprocess unittest PASS. Worker source/test Git blob hashes documented. This is a **local, deterministic finite-state instrument check**, no model trial, no independent reviewer, no integration proof, and not evidence of achieved functional consciousness. Prior 73/73 externally reported integrated tests were not rerun. **Accepted contributions stay 0, E001 G0 OPEN, D001 DEFER/CURRENT, E900 NOT STARTED.** The next eligible W2 substantive lesion study requires stronger mechanism distinction and preregistered action change. The checkpoint and priority-setting are not counted as SCIENTIFIC_ACCEPTED or gate advancement.

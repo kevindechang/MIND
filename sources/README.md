@@ -19,3 +19,8 @@
 **Permitted source uses:** compare hypotheses, cite dated constraints, design falsifiers. **Not permitted:** treating draft author's preferred solution as observed efficacy; copying private production data into MIND; asserting shipped Anjo behavior from proposed specifications; conflating source count with full-paper review. The R001 "must-not-import-as-facts" filter is mandatory.
 
 **Version hygiene:** embedded snapshots are immutable evidence as of the stated versions. Corrections to their *interpretation* belong in analysis/reviews, not silent edits of the source copies. Track newer canonical Anjo revisions by their exact commit, source path and status. Keep conclusions source-labeled and contradictable.
+
+
+## Revised VERA coverage-equivalence source — unresolved, do not counterfeit
+
+A review requests the *revised VERA study in Anjo's repository*, with specific coverage-equivalence rules, instead of the earlier Oct 9 monograph. As of inspection of `kevindechang/anjo` main `a8fa29aea4359e027b346aea9cb55e5da7775b20`, the complete tree (2,084 entries) has no path matching `VERA` or `coverage-equivalence`; repository content search did not return a verifiable revised protocol. **Status: SOURCE_NOT_LOCATED / DO_NOT_PIN_A_GUESS.** The archived monograph remains the earlier source; do not call it the revised protocol or invent effect thresholds. When the actual file is available, copy it byte-for-byte, record source commit/path/blob SHA, inspect revised coverage-equivalence rules and update the hierarchy. No changes to Anjo production.

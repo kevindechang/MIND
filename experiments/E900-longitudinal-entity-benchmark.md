@@ -1,6 +1,6 @@
 # E900 — Longitudinal integrated digital entity benchmark
 
-**Status:** PROPOSED / NOT PREREGISTERED / NOT IMPLEMENTED / NOT EXECUTED.
+**Status:** PROPOSED / NOT PREREGISTERED / NOT IMPLEMENTED / NOT EXECUTED. **Dependency: perform E100 Lesion Week first.** E100 Day 0 only establishes a minimal finite-state durable-state circuit, not a 90-day entity or acceptance of E900.
 **Purpose:** Test whether one digital entity exhibits robust mind-like causal organization over time. Passing is *not* evidence that phenomenal consciousness has been proven.
 **Owner streams:** W1/W2 (mechanisms), W3/W4 (interpretation and governance).
 
