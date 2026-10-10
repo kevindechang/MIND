@@ -1,6 +1,8 @@
 # MIND — Anjo's Foundational Digital-Mind Research
 
-**Status:** exploratory research. Zero prospectively accepted scientific contributions, E001 G0 open, no scored agent trials; no claim of an achieved digital mind or phenomenal consciousness.
+**Target: functional consciousness. Status: NOT ACHIEVED.** MIND is an ambitious scientific experiment in an enduring, causally integrated digital mind; it has **0 accepted scientific contributions** and **no implemented integrated mind**. The new E100 Day 0 finite-state restart circuit has locally passed a real process-death check; it does not establish functional consciousness, consciousness experience, or Anjo product readiness.
+
+**Do the experiment:** [E100 Lesion Week](experiments/E100-lesion-week.md) starts with a real `SIGKILL` and ledger-only fresh-process restart, then cut one functional organ at a time. This executable seven-lesion pilot precedes any E900 90-day benchmark. Day 0 observed locally; Days 1–7 NOT RUN.
 
 **For any repository-aware agent told only “go”: read [GO.md](GO.md) first.** It provides deterministic startup, task claiming and publication steps. [CURRENT.md](CURRENT.md) is a navigation page, [TASKS.md](TASKS.md) indexes live GitHub issues, and [CONTRIBUTING.md](CONTRIBUTING.md) governs parallel submissions.
 
@@ -44,7 +46,7 @@ E001/D001 remains the first experimental priority. After three substantive uncha
 - `architecture.md` — evolving *hypothetical* system, not a consciousness claim.
 - `candidates/A1-unified-cognitive-runtime.md` — ambitious, **unselected** alternative architecture derived from the R002 contributor mandate.
 - `reviews/2026-10-10-R002-ambitious-agent-mind-extraction.md` — provenance, proposed high-ambition mechanisms, candidate experiment mappings and scientific cautions.
-- `experiments/` — proposed or preregistered protocols and, eventually, results; E001 is the mechanism-level starting experiment, E002/E003 are proposed endogenous cognition/efference and procedural-learning tests, and E900 is the proposed longitudinal integrated-entity benchmark.
+- `experiments/` — **E100 is the immediate executable Lesion Week**; proposed or preregistered protocols and, eventually, results; E001 remains an open methodological experiment, E002/E003 are proposed endogenous cognition/efference and procedural-learning tests, and E900 is the proposed longitudinal integrated-entity benchmark.
 - `runs/` — append-only chronological decisions and status.
 - `templates/` — one-iteration format.
 

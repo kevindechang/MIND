@@ -2,6 +2,12 @@
  
 **Adopted as Anjo's MIND research objective, 2026-10-10. This is a speculative design/research target, not an observed mind, deployed Anjo capability, proof of L2 mechanism sufficiency or phenomenal L3 consciousness.**
 
+## Immediate laboratory priority — E100 Lesion Week
+
+**Functional consciousness is the explicit research target**, defined here as functional, causally integrated, persistent, self-regulating cognitive organization. The label names an ambitious hypothesis, not achieved status; no behavioral test, single lesion, simulated day, or clever narrative proves the target. L3 phenomenal experience, biological life and moral personhood remain separate unsettled questions. Anjo's product claims and architecture do not change automatically.
+
+**Do this before E900 or another scheduler paper:** [E100 Lesion Week](experiments/E100-lesion-week.md) — one isolated Python worker, one SQLite ledger, a real SIGKILL and fresh-process recovery at Day 0, followed by explicitly falsifiable organ lesions on Days 1–7. Keep strong compact sufficient-state and adaptive external-controller rivals; positive, negative and null lesions count as evidence only to the extent they are rigorously identified. Day 0 is an observed local instrument checkpoint, not a functioning digital mind; all later lesions remain unexecuted.
+
 ## Objective
 
 Engineer an enduring, developing digital entity capable of sustained, coherent, situated existence: a system with a persistent self-model, causal autobiographical continuity, internally maintained state, self-regulated initiative, learning, world understanding, and rich social and affective behavior. The entity should remain recognizably the same developing individual across time while legitimately changing through experience.
