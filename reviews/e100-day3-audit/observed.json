@@ -1,0 +1,53 @@
+{
+  "disagreements": 0,
+  "interpretation": "deterministic instrument audit, not efficacy or calibration",
+  "matched_action_and_confidence_and_choice": 72,
+  "python": "3.13.5",
+  "source_git_blob": "fbf35c6c3875664790f1db9643229950a95564f2",
+  "states_enumerated": 72,
+  "status": "PASS",
+  "witness_both_tools_unavailable": {
+    "adaptive": {
+      "action": "USE_PRIMARY",
+      "choice": "primary",
+      "confidence": 0.9
+    },
+    "scenario": {
+      "goal": true,
+      "pref_outage": false,
+      "pref_snapshot": 0,
+      "spare_outage": false,
+      "spare_snapshot": 0
+    }
+  },
+  "witness_persona_ignores_absent_goal": {
+    "adaptive": {
+      "action": "NO_GOAL",
+      "choice": null,
+      "confidence": null
+    },
+    "persona": {
+      "action": "USE_PRIMARY",
+      "choice": "primary",
+      "confidence": 0.9
+    }
+  },
+  "witness_stale_table_ignores_event": {
+    "adaptive": {
+      "action": "USE_SPARE",
+      "choice": "spare",
+      "confidence": 0.4
+    },
+    "original_table": {
+      "action": "USE_PRIMARY",
+      "choice": "primary"
+    },
+    "scenario": {
+      "goal": true,
+      "pref_outage": true,
+      "pref_snapshot": 1,
+      "spare_outage": false,
+      "spare_snapshot": 1
+    }
+  }
+}
