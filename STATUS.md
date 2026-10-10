@@ -2,7 +2,7 @@
 
 > **Generated** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. Do not edit by hand; if it conflicts in a merge, regenerate it.
 
-Code fingerprint `ea099bc8a43b5614` · git `6bbcb29 + uncommitted changes` · generated 2026-10-10 23:02 UTC
+Code fingerprint `ea099bc8a43b5614` · git `429313e + uncommitted changes` · generated 2026-10-10 23:17 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 

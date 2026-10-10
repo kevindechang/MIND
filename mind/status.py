@@ -157,6 +157,11 @@ def render(states: Dict[str, ClaimState], questions: Dict[str, Question], items:
             if state == "HOLDS":
                 extra = " (" + ", ".join(f"{lv} {n}" for lv, n in sorted(levels.items())) + ")"
             out.append(f"| {STATE_MARK[state]} {state} | {counts[state]}{extra} |")
+    suspended = sorted(cid for cid, st in states.items() if st.suspended)
+    if suspended:
+        out += ["", f"**CURRENT_CODE_UNVERIFIED:** {len(suspended)} claim(s) ({', '.join(suspended)}) rest on "
+                "evidence recorded under other result code. Their RIVAL-TESTED-or-higher standing is suspended "
+                "until it is re-recorded (see the frontier)."]
     out += ["", "Evidence ladder (computed, never asserted): PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED "
             "(effects only) → PREREGISTERED (commit-sealed held-out seeds) → REPLICATED (second contributor "
             "and environment). See [docs/CLAIMS.md](docs/CLAIMS.md).", "",
@@ -176,7 +181,7 @@ def render(states: Dict[str, ClaimState], questions: Dict[str, Question], items:
         prem = ", ".join(c.depends_on) or "–"
         notes = ("<br/>_" + "; ".join(n for n in st.notes if not n.startswith("unsealed")) + "_") if any(
             not n.startswith("unsealed") for n in st.notes) else ""
-        level = st.level if st.state == "HOLDS" else "–"
+        level = (st.level + (f" ({st.suspended} suspended)" if st.suspended else "")) if st.state == "HOLDS" else "–"
         seeds = seeds_text(st)
         out.append(f"| [{cid}]({c.path}) | **{c.title}**{notes} | {c.kind} · {c.scope} | "
                    f"{STATE_MARK[st.state]} {st.state} | {level} | {estimate_text(st)}"

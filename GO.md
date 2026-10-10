@@ -51,6 +51,10 @@ python -m mind doctor
 python -m mind status --write              # regenerate STATUS.md (never edit it by hand)
 ```
 
+If you changed result code (anything in `RESULT_CODE`, listed in `mind/runner.py`), re-record before you hand off:
+`python -m mind check --record` and `python -m mind check --heldout --record`. Otherwise every claim's standing above
+ROBUST is suspended (`CURRENT_CODE_UNVERIFIED`).
+
 Commit code, claims, records and STATUS.md, then open a PR. The description is the `mind check` output for your claims
 plus one paragraph on what changed in the knowledge. No integrator needs to serialise anything. If STATUS.md
 conflicts, regenerate it.

@@ -29,7 +29,10 @@ before, and everything that comes after is evaluated against it. Workflow: [GO.m
 Claims, records, organs, worlds and questions are one file each, so parallel PRs rarely touch the same file. The
 only shared files are the small registries (`mind/*/__init__.py`) and `STATUS.md`. If `STATUS.md` conflicts,
 regenerate it with `python -m mind status --write`. A PR is mergeable when `python -m mind check`,
-`python -m unittest discover -s tests` and `python -m mind doctor` all pass on the merged tree.
+`python -m unittest discover -s tests` and `python -m mind doctor` all pass on the merged tree. A PR that changes
+result code must also carry records re-recorded on that code, or STATUS shows `CURRENT_CODE_UNVERIFIED`. If two
+merged PRs both changed result code, the merged tree needs one more re-record, and the frontier's first item will say
+so.
 
 **Merge with a merge commit, never squash or rebase.** Held-out seeds derive from the commit that registered each
 prediction, and squashing or rebasing rewrites those commits. The doctor rejects held-out records whose seal is no

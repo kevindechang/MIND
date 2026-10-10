@@ -11,7 +11,7 @@ import unittest
 
 from mind import stats
 from mind.claims import Check, Claim, Compare, Evaluation, heldout_seeds, load_claims, rival_panel, seal_commit
-from mind.knowledge import assess, frontier
+from mind.knowledge import _first_heldout, assess, frontier
 
 CLAIM_SRC = textwrap.dedent('''\
     """{doc}"""
@@ -84,7 +84,7 @@ class StatesAndLadder(unittest.TestCase):
         self.assertEqual(assess({"C1": c}, [])["C1"].state, "UNTESTED")
         st = assess({"C1": c}, [record([ev(c)])])["C1"]
         self.assertEqual((st.state, st.level), ("HOLDS", "ROBUST"))
-        st = assess({"C1": c}, [record([ev(c, rivals=BEATEN)])])["C1"]
+        st = assess({"C1": c}, [record([ev(c, rivals=BEATEN)])], code="c")["C1"]
         self.assertEqual(st.level, "RIVAL-TESTED")
 
     def test_rival_not_beaten_caps_the_ladder_and_is_reported(self):
@@ -97,18 +97,18 @@ class StatesAndLadder(unittest.TestCase):
     def test_preregistered_needs_matching_seal_and_replicated_needs_two_contributors(self):
         c = make()
         recs = [record([ev(c, rivals=BEATEN, seeds="heldout:abc")])]
-        self.assertEqual(assess({"C1": c}, recs, seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
-        self.assertEqual(assess({"C1": c}, recs, seals={"C1": "zzz"})["C1"].level, "RIVAL-TESTED")
+        self.assertEqual(assess({"C1": c}, recs, code="c", seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
+        self.assertEqual(assess({"C1": c}, recs, code="c", seals={"C1": "zzz"})["C1"].level, "RIVAL-TESTED")
         recs.append(record([ev(c, rivals=BEATEN, seeds="heldout:abc")], by="bob", env="e2",
                            at="2026-02-01T00:00:00Z"))
-        self.assertEqual(assess({"C1": c}, recs, seals={"C1": "abc"})["C1"].level, "REPLICATED")
+        self.assertEqual(assess({"C1": c}, recs, code="c", seals={"C1": "abc"})["C1"].level, "REPLICATED")
         same_person = recs[:1] + [record([ev(c, rivals=BEATEN)], by="alice", env="e2", at="2026-03-01T00:00:00Z")]
-        self.assertEqual(assess({"C1": c}, same_person, seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
+        self.assertEqual(assess({"C1": c}, same_person, code="c", seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
 
     def test_side_effect_claims_skip_the_rival_rung(self):
         c = make(about=())
         self.assertNotIn("RIVAL-TESTED", c.ladder)
-        st = assess({"C1": c}, [record([ev(c, seeds="heldout:s")])], seals={"C1": "s"})["C1"]
+        st = assess({"C1": c}, [record([ev(c, seeds="heldout:s")])], code="c", seals={"C1": "s"})["C1"]
         self.assertEqual(st.level, "PREREGISTERED")
 
     def test_broken_versus_refuted(self):
@@ -160,7 +160,7 @@ class StatesAndLadder(unittest.TestCase):
         c = make()
         old = [record([ev(c, rivals=BEATEN)], at="2026-01-01T00:00:00Z"),
                record([ev(c, seeds="heldout:s", rivals=BEATEN)], at="2026-01-02T00:00:00Z")]
-        self.assertEqual(assess({"C1": c}, old, seals={"C1": "s"})["C1"].level, "PREREGISTERED")
+        self.assertEqual(assess({"C1": c}, old, code="c", seals={"C1": "s"})["C1"].level, "PREREGISTERED")
         tied = panel()
         tied["window8"] = {"reference": False, "result": "NOT_BEATEN"}
         newer = record([ev(c, rivals=tied)], at="2026-02-01T00:00:00Z")
@@ -176,6 +176,34 @@ class StatesAndLadder(unittest.TestCase):
         self.assertEqual((st.state, st.level, st.rivals_unrun), ("HOLDS", "ROBUST", ["window8lin"]))
         self.assertTrue(any(i["kind"] == "rival" and "window8lin" in i["action"]
                             for i in frontier({"C1": st}, {})))
+
+    def test_stale_result_code_suspends_current_standing_until_re_recorded(self):
+        # owner decision on PR #17: evidence recorded under other result code cannot carry RIVAL-TESTED or above
+        c = make()
+        old = [record([ev(c, rivals=BEATEN)], at="2026-01-01T00:00:00Z", code="old"),
+               record([ev(c, seeds="heldout:s", rivals=BEATEN)], at="2026-01-02T00:00:00Z", code="old")]
+        self.assertEqual(assess({"C1": c}, old, code="old", seals={"C1": "s"})["C1"].level, "PREREGISTERED")
+        st = assess({"C1": c}, old, code="new", seals={"C1": "s"})["C1"]   # code changed, nothing re-run
+        self.assertEqual((st.state, st.level, st.suspended), ("HOLDS", "ROBUST", "PREREGISTERED"))
+        self.assertTrue(any(n.startswith("CURRENT_CODE_UNVERIFIED") for n in st.notes))
+        self.assertTrue(any(i["kind"] == "refresh" and i["priority"] == "1" and "CURRENT_CODE_UNVERIFIED" in i["action"]
+                            for i in frontier({"C1": st}, {})))
+        live = {"C1": ev(c, rivals=BEATEN)}                                 # an unrecorded run restores nothing
+        self.assertEqual(assess({"C1": c}, old, live, code="new", seals={"C1": "s"})["C1"].level, "ROBUST")
+        dev_only = old + [record([ev(c, rivals=BEATEN)], at="2026-03-01T00:00:00Z", code="new")]
+        self.assertEqual(assess({"C1": c}, dev_only, code="new", seals={"C1": "s"})["C1"].level, "ROBUST")
+        tied = panel()
+        tied["window4"] = {"reference": False, "result": "NOT_BEATEN"}
+        unbeaten = dev_only + [record([ev(c, seeds="heldout:s", rivals=tied)], at="2026-03-02T00:00:00Z", code="new")]
+        self.assertEqual(assess({"C1": c}, unbeaten, code="new", seals={"C1": "s"})["C1"].level, "ROBUST")
+        failed = dev_only + [record([ev(c, "FAILS", robust=False, seeds="heldout:s")], at="2026-03-02T00:00:00Z",
+                                    code="new")]
+        self.assertNotEqual(assess({"C1": c}, failed, code="new", seals={"C1": "s"})["C1"].state, "HOLDS")
+        both = dev_only + [record([ev(c, seeds="heldout:s", rivals=BEATEN)], at="2026-03-02T00:00:00Z", code="new")]
+        st = assess({"C1": c}, both, code="new", seals={"C1": "s"})["C1"]
+        self.assertEqual((st.level, st.suspended), ("PREREGISTERED", None))
+        # the confirmation behind it is still the first sealed run, not the re-run of exposed seeds
+        self.assertEqual(_first_heldout(st.evidence, "s")["_at"], "2026-01-02T00:00:00Z")
 
     def test_amended_prediction_starts_over(self):
         old, new = make(margin=0.1), make(margin=0.3)

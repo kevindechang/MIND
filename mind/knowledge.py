@@ -94,6 +94,7 @@ class ClaimState:
     rivals_unrun: List[str] = field(default_factory=list)
     notes: List[str] = field(default_factory=list)
     current_code: bool = False
+    suspended: Optional[str] = None   # the level its evidence earned, while CURRENT_CODE_UNVERIFIED caps it
 
 
 def ladder(claim: Claim) -> tuple:
@@ -191,7 +192,12 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
         if evidence:
             latest, heads = _decisive(evidence)
             st.latest = latest
-            st.current_code = all(e["_code"] == code for e in heads)
+            # current standing needs RECORDED evidence from the current result code on every seed set;
+            # a live run can revoke standing (a regression) but never restore it
+            recorded: Dict[str, Dict[str, Any]] = {}
+            for e in sorted((e for e in evidence if e["_record"] and _strength(e) >= 1), key=lambda e: e["_at"]):
+                recorded[_seed_set(e)] = e
+            st.current_code = bool(recorded) and all(e["_code"] == code for e in recorded.values())
             v = latest["verdict"]
             if len({e["verdict"] for e in heads}) > 1:
                 st.notes.append("mixed evidence: " + ", ".join(
@@ -218,6 +224,16 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
             st.state = "RETIRED"
             st.notes.append(f"retired: {claim.retired}")
         st.rung = _rung(claim, evidence, seal, heads) if st.state == "HOLDS" else 0
+        robust = ladder(claim).index("ROBUST")
+        if st.rung > robust and not st.current_code:
+            # Evidence from other result code says nothing certain about this code: RIVAL-TESTED and
+            # above are suspended until re-recorded. The original sealed confirmation stays historical
+            # fact; re-running exposed held-out seeds never counts as a new one (`_first_heldout`).
+            st.suspended = ladder(claim)[st.rung]
+            st.rung = robust
+            st.notes.append(f"CURRENT_CODE_UNVERIFIED: its {st.suspended} standing rests on evidence recorded "
+                            f"under other result code, so it is suspended at ROBUST until `python -m mind check "
+                            f"--record` and `--heldout --record` re-record it on the current code")
         st.level = ladder(claim)[st.rung]
         first = _first_heldout(evidence, seal)
         if first is not None and not _confirmed(claim, first):
@@ -390,7 +406,9 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
                 add(2, "sharpen", cid, f"{cid} ({c.title}) holds now but failed its first sealed confirmation, so its "
                                        f"held-out seeds are spent: register a successor claim (new id, fresh seeds) "
                                        f"to confirm it prospectively")
-            if st.rivals_not_beaten or st.rivals_unrun:
+            if st.suspended:
+                pass   # re-recording comes first: see the refresh item
+            elif st.rivals_not_beaten or st.rivals_unrun:
                 if st.rivals_not_beaten:
                     add(2, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_not_beaten)} match the mechanism. "
                                          f"Beat them with a better organ, or register that the simpler rival suffices")
@@ -407,7 +425,7 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
                 grouped["confirm"].append(cid)
             elif nxt == "REPLICATED":
                 grouped["replicate"].append(cid)
-            if not st.current_code and st.latest and st.latest.get("_record"):
+            if st.suspended or (not st.current_code and st.latest and st.latest.get("_record")):
                 grouped["refresh"].append(cid)
     asked = {st.claim.question for st in states.values() if st.claim.question}
     for qid, q in sorted(questions.items()):
@@ -418,9 +436,12 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
         elif q.next:
             add(4, "question", qid, f"{qid} — {q.title} {q.next}")
     if grouped["refresh"]:
-        add(4, "refresh", "+".join(grouped["refresh"]),
-            f"evidence for {', '.join(grouped['refresh'])} predates the current code; re-run `python -m mind check "
-            f"--record`, and `--heldout --record` for claims with sealed seeds")
+        suspended = [cid for cid in grouped["refresh"] if states[cid].suspended]
+        add(1 if suspended else 4, "refresh", "+".join(grouped["refresh"]),
+            f"CURRENT_CODE_UNVERIFIED: evidence for {', '.join(grouped['refresh'])} predates the current result "
+            f"code" + (f", so the RIVAL-TESTED-or-higher standing of {', '.join(suspended)} is suspended"
+                       if suspended else "") +
+            "; re-run `python -m mind check --record`, and `--heldout --record` for claims with sealed seeds")
     if grouped["confirm"]:
         add(4, "confirm", "+".join(grouped["confirm"]),
             f"{', '.join(grouped['confirm'])}: commit, then confirm on sealed seeds with "

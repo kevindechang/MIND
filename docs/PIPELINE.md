@@ -94,6 +94,8 @@ current prediction (searched by claim id, so renames do not move it). The rules 
   id and new commit give it new seeds.
 * **Every seed set's latest run counts, and the most conservative decides**, so re-running dev seeds can never
   overwrite a failed confirmation, and an old held-out success can never mask a new dev regression.
+* **Standing is current or suspended.** Evidence recorded under other result code cannot carry RIVAL-TESTED or above.
+  Such claims show `CURRENT_CODE_UNVERIFIED` until they are re-recorded on the current code.
 * **Merge with merge commits.** Squash or rebase merges rewrite the sealing commits. The doctor detects held-out
   records whose seal has vanished from history.
 

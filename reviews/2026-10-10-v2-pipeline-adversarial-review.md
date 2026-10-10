@@ -68,3 +68,12 @@ findings. Each was reproduced before it was fixed.
 
 Changing the kernel changed the code fingerprint, so every claim was re-recorded on the new code (dev and held-out).
 The first held-out records still decide preregistration.
+
+**Owner decision (review of `429313e`).** Evidence recorded under other result code must not carry *current*
+RIVAL-TESTED or higher standing. False positives from comment- or docstring-only edits are acceptable for now; a
+semantic fingerprint can come later. Implemented as follows:
+- Standing above ROBUST needs recorded evidence from the current fingerprint on every seed set. Otherwise it is
+  suspended and marked `CURRENT_CODE_UNVERIFIED` in STATUS, with a priority-1 refresh item on the frontier.
+- The original sealed confirmation stays historical fact.
+- Standing returns only when re-recorded runs hold and beat today's panel.
+- The regression test is `test_stale_result_code_suspends_current_standing_until_re_recorded`.

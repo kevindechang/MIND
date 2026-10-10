@@ -112,6 +112,17 @@ PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED → PREREGISTERED → REPLICAT
   * Re-running the claim earns it back. The frontier asks for that re-run.
 * **PREREGISTERED** needs the *first* recorded evaluation on the sealed held-out seeds of the current prediction to
   be a robust pass (with a clean rival panel when one applies). Deterministic checks without seeds skip this rung.
+* **Current standing.** RIVAL-TESTED and above need *recorded* evidence from the current result code on every seed
+  set.
+  * The code fingerprint covers every file in `RESULT_CODE` (`mind/runner.py`), comments and docstrings included;
+    Markdown never counts.
+  * After any change to that code, those levels are suspended until `mind check --record` and `--heldout --record`
+    re-record the claim. STATUS marks the claim `CURRENT_CODE_UNVERIFIED`, and a priority-1 refresh item appears on
+    the frontier.
+  * Standing returns only if the new runs hold and beat the panel. An unrecorded run can revoke standing but never
+    restore it.
+  * The original sealed confirmation stays historical fact. Re-running exposed held-out seeds never counts as a new
+    preregistration.
 * **REPLICATED** needs robust passing records from at least two distinct contributors **and** two distinct
   environments.
 
