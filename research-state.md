@@ -1,7 +1,11 @@
 # Canonical Digital Mind research state (schema 2)
 
-repository: kevindechang/Founder-Library
-path: digital-mind/
+repository: kevindechang/MIND
+path: ./
+migration_source_repository: kevindechang/Founder-Library
+migration_source_commit: 33f05852d5da4c382ac7b039070986d8d14d1579
+migration_import_commit: 359494b920941ba752a45f3efb1caf27a2ea94fe
+governance_artifact_commit: f86906f81ecbd1cfd686ac4ccfca36515577139d
 date: 2026-10-11
 latest_verified_iteration: 004
 latest_work_record: IV-D001-2026-10-11-004
@@ -18,7 +22,7 @@ active_workstream: W1
 active_decision: D001-DEFER_CURRENT
 active_blocker: B001
 active_experiment: E001-PROPOSED_NOT_PREREGISTERED
-next_step_readiness: G0_V03_ROBUSTNESS_COMPANION_LOCAL_CHECKED_CANONICAL_INTEGRATION_AND_G2_ELEMENTS_PENDING
+next_step_readiness: W2_ATTENTION_DUE_CANONICAL_INTEGRATION_NOT_RERUN_G0_G2_OPEN
 scored_agent_execution_readiness: BLOCKED_ON_G0_G2_AND_VERIFIED_EXECUTION_CAPABILITY
 architecture: A0-PROPOSED
 competing_architecture: A1-CANDIDATE_UNSELECTED
@@ -29,6 +33,7 @@ claim_ladder: L1_BEHAVIORAL_L2_CAUSAL_L3_UNRESOLVED
 stale_pivotal_dependencies: NONE_REGISTERED_D001_HAS_NO_EFFICACY_SUPPORT
 reassessment_queue: W2_004_MAJOR_REVISION_REQUIRED_BEFORE_CITING_AS_MECHANISM_SUPPORT
 artifact_commit: c4469c5f2db37f16b6f89e6a7231ecb5d5b70252
+artifact_commit_repository: kevindechang/Founder-Library
 pending_publication_transaction: NONE_AFTER_VERIFIED_PUBLICATION
 
 ## Target and current decision
@@ -79,3 +84,14 @@ The [compounding design](docs/research-program/2026-10-10-compounding-research-s
 ## 2026-10-11 v0.4 handoff
 
 IV-D001-2026-10-11-004: EXPLORATORY_CHECKPOINT, SHORT_RUN; eight DAGs/seven reachability classes; adaptive B2-B1 synthetic gain 7/120. Byte-exact v0.4 source/test 12 PASS; 128 direct parity PASS; canonical 14+20+10 NOT rerun. D001 DEFER/CURRENT, G0 OPEN, accepted 0, SELF-REVIEW_ONLY. Artifact c4469c5f2db37f16b6f89e6a7231ecb5d5b70252. Next: exact canonical v0.2+v0.3+v0.4+legacy integration (14+20+12+10), W2–W4 attention due.
+
+
+## 2026-10-11 MIND migration and failure-corrected handoff (governance; not science)
+
+Authoritative repository is **`kevindechang/MIND` main at root**, not Founder-Library/digital-mind/. [MIGRATION.md](MIGRATION.md) documents 87 Git-blob-identical source files at immutable Founder-Library commit `33f05852d5da4c382ac7b039070986d8d14d1579`, imported as MIND `359494b920941ba752a45f3efb1caf27a2ea94fe`. Governance/runbook/tooling correction is MIND `f86906f81ecbd1cfd686ac4ccfca36515577139d`. Historic work SHA and artifact_commit above reference **Founder-Library**, not commits in MIND. This state-last governance handoff is NOT a new experiment, substantive attention record or accepted contribution; current scientific verdict/counters unchanged.
+
+**Failures to correct:** four consecutive W1 instrument checkpoints, no exact full-suite integration of v0.2/v0.3/v0.4+legacy, no LLM agent trials, no frozen G2, repeated SHORT_RUN without guaranteed deep effort, and SELF-REVIEW_ONLY. The v0.4 addendum's richer path-blocking intervention is a proposed new probe alphabet, *not* retroactive confirmation that graphs are distinguishable under the old alphabet. Historical tests were observed in prior runs only; the migration did not execute any Python suite.
+
+**Effective runbook:** [RUNBOOK.md](RUNBOOK.md) and [AGENTS.md](AGENTS.md). When byte-exact code can run, execute `python scripts/verify_instruments.py` to discover and check all suites (required 14+20+12+10 plus W2 and switchboard), log exact output and provenance; if local checkout is unavailable, clearly mark NOT_EXECUTED. No new calibration-only experiment should be treated as resolving E001 G0. The NEXT substantive attention record must be a **non-W1** scientific contribution, preferably W2/E002a learned maintenance policy vs strong learned external value-of-computation scheduler, equal information and budgets, preregistration-ready test/falsifier/held-out design, actual negative controls and E900 mapping. G0/G2 unchanged, D001 remains DEFER/CURRENT, accepted 0, E900 not started, L3 unresolved. Do not mark six analytic lenses as six independent reviewers.
+
+**Exactly one next scientific action:** advance W2/E002a's identification and fair learned-controller-vs-external-scheduler preregistration by building one versioned, falsifiable multistep protocol with explicit public/private observations, expected outcomes under null and rival, budget equality, genuine restart handling, held-out worlds, leakage/ablation checks and predeclared measurement/decision rules; instrument regression preflight only if executable in an exact checkout. STOP on a reviewable preregistration-ready protocol (still NOT FROZEN) or a specific counterexample showing the comparison cannot identify its proposed mechanism; persist evidence without promoting any science gate.
