@@ -1,6 +1,6 @@
-# MIND — Hourly Scientific Sprint Runbook (2026-10-11)
+# MIND — Scientific Sprint Runbook (2026-10-11; all agents)
 
-**Parent program:** Anjo. **Research arm:** MIND; scientifically independent evaluation, no automatic production adoption. **Canonical home:** `kevindechang/MIND` main, repository root. **Executor:** one ChatGPT scheduled task using available tools. **Persistence:** GitHub only. **No** GitHub Actions, paid inference, unattended agents, duplicate schedules or promised runtime. Read AGENTS, research-cycle, research-state, records, decision/asset registers, gate and active dossier each invocation. Inspect live HEAD and recover unfinished transactions before new work.
+**Command entry:** [GO.md](GO.md) is canonical for any `go` agent, including the hourly scheduled invocation. Follow [TASKS.md](TASKS.md) and issue/PR claims, not old hardcoded tasks. **Parent program:** Anjo. **Research arm:** MIND; scientifically independent evaluation, no automatic production adoption. **Canonical home:** `kevindechang/MIND` main, repository root. **Executor:** one ChatGPT scheduled task using available tools. **Persistence:** GitHub only. **No** GitHub Actions, paid inference, unattended agents, duplicate schedules or promised runtime. Read AGENTS, research-cycle, research-state, records, decision/asset registers, gate and active dossier each invocation. Inspect live HEAD and recover unfinished transactions before new work.
 
 ## Last-run failure analysis
 
@@ -23,3 +23,8 @@
 **5 — Persist one cumulative delta.** Attach exact source versions, inspected sections/negative sources, executable code or derivations, observed commands/results, rejected claims, comparator and falsifier, decision status, regression result, next blocker and exactly one next executable action. Commit intellectual artifacts and indexes first, research-state last, read back. If no substantive change or no write, issue a SHORT_RUN/NOT_COMMITTED handoff without incrementing accepted or attention counters. Do not create six essays or repeatedly rework the same oracle.
 
 **6 — User-facing report:** identify this as Anjo / MIND research and include evidence-bounded Anjo architecture implications (including negative/null implications and NOT_READY_FOR_TRANSFER when applicable), without product or sentience claims. Report scope/gate, actual checked suites with counts, observed model trials (or NONE), non-leading stream contribution, strongest rival, new falsifier or failure, review mode, accepted count, duration provenance, artifact/state SHAs, one next action. A completed Git transaction does not equal completed scientific research.
+
+
+## Executor-neutral control (2026-10-11)
+
+The hourly task is one executor, not the arbiter of research tasks. A Claude/Cursor/Copilot/ChatGPT agent given `go` must follow [GO.md](GO.md) and [CONTRIBUTING.md](CONTRIBUTING.md), inspect live issue claims and PRs, and create a narrow artifact on a nonconflicting branch. The scientific state and work index are serialized by one designated integrator after merge; no agent gets to overwrite main with a stale cached state. Historical external reviewer report of 73/73 integrated tests is a **reported observation in that environment**, not a currently committed MIND regression artifact or proof of agent competence. Never tell a user tests were rerun unless they actually were in the invoked session.

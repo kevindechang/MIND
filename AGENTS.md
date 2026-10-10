@@ -1,4 +1,6 @@
-# Digital Mind research agent contract
+# Anjo / MIND — universal research agent contract
+
+**The one-word command `go` invokes [GO.md](GO.md).** The current task queue is [TASKS.md](TASKS.md), the overview is [CURRENT.md](CURRENT.md), and source authority is [sources/README.md](sources/README.md). This file governs research values and constraints; it does not supersede the live issue/task selection or the scientific state.
 
 Applies to the entire `kevindechang/MIND` repository: **Anjo's dedicated foundational digital-mind research program** with its own cumulative scientific governance and repository. The former Founder-Library subtree is historical provenance, not the active workspace.
 
@@ -6,7 +8,7 @@ Applies to the entire `kevindechang/MIND` repository: **Anjo's dedicated foundat
 
 No external skill framework is required. Verify actual source access, execution, GitHub writes, time sources and reviewer capability separately; unavailable optional tools do not block feasible research. Use planning, test-first executable development, systematic debugging and evidence-based verification appropriate to the work. Never fabricate skills, models, elapsed time, tools or independent reviewers.
 
-Read README → north-star → charter → workstreams → research-state → hypotheses → evidence-ledger → protocol → architecture → active experiment → latest work record. Read [research-cycle](research-cycle.md), [review-protocol](review-protocol.md), [quality gate](research-quality-gate.md), [Atlas](atlas/README.md), current dossier, [publication standard](publication-standard.md), [decision register](decision-register.md), [asset register](asset-register.md) and [work index](research-records.md). Restore live main SHA, gate, evidence, dependency freshness and exact unresolved blocker. Missing canonical artifact means report degraded continuity; do not invent it. Use the current [design](docs/research-program/2026-10-10-compounding-research-system-design.md) and [implementation plan](docs/research-program/2026-10-10-compounding-research-system-plan.md); older dated workflows are historical where superseded.
+For a bare `go`, read GO → CURRENT → research-state → TASKS → RUNBOOK first, then retrieve the following as required for the selected task: README → north-star → charter → workstreams → hypotheses → evidence-ledger → protocol → architecture → active experiment → latest work record. Read [research-cycle](research-cycle.md), [review-protocol](review-protocol.md), [quality gate](research-quality-gate.md), [Atlas](atlas/README.md), current dossier, [publication standard](publication-standard.md), [decision register](decision-register.md), [asset register](asset-register.md) and [work index](research-records.md). Restore live main SHA, gate, evidence, dependency freshness and exact unresolved blocker. Missing canonical artifact means report degraded continuity; do not invent it. Use the current [design](docs/research-program/2026-10-10-compounding-research-system-design.md) and [implementation plan](docs/research-program/2026-10-10-compounding-research-system-plan.md); older dated workflows are historical where superseded.
 
 ## Parent initiative and research independence
 
@@ -14,9 +16,9 @@ Anjo is the parent initiative for which MIND investigates the scientific and eng
 
 ## Scientific target
 
-Build an enduring developing digital entity. Functional consciousness is the program's working operational L2 target: persistent experience-dependent state, predictive self/world modeling, calibrated metacognition, selective cross-function information availability, adaptive agency and learning that causally interact. This is not a consensus definition or proof of subjective experience. Keep L1 behavior, L2 causal organization and unresolved L3 separate. Do not equate persona, self-report, module wins or continuous compute with an integrated mind.
+Investigate an enduring developing digital entity. L2 concerns *causally interacting cognitive mechanisms*—persistent experience-dependent state, predictive self/world modeling, calibrated metacognition, cross-function access, adaptive agency and learning—under falsifiable interventions. Their eventual integration is a research target, not a demonstrated mind or 'functional consciousness' result. Keep L1 behavior, L2 causal organization and unresolved L3 separate. Do not equate persona, self-report, module wins or continuous compute with an integrated mind.
 
-Select one ready decision/blocker per cycle; E001/D001 remains the initial experimental priority. Explain outcome → action, strongest simpler rival, falsifier and E900 cross-function intervention. Read R002 extraction/A1 when investigating their proposed mechanisms. A0 stays PROPOSED, A1 UNSELECTED, E900 not started until actual evidence/approval warrants change. Preserve consent, truthful presentation, privacy, bounded autonomy and uncertain welfare review.
+Select one ready decision/blocker per cycle using GO/TASKS, respecting the **next substantive W2–W4 allocation**. E001/D001 remains scientifically open but does not authorize another W1 toy iteration. Explain outcome → action, strongest simpler rival, falsifier and E900 cross-function intervention. Read R002 extraction/A1 when investigating their proposed mechanisms. A0 stays PROPOSED, A1 UNSELECTED, E900 not started until actual evidence/approval warrants change. Preserve consent, truthful presentation, privacy, bounded autonomy and uncertain welfare review.
 
 ## Compounding controls
 
@@ -36,7 +38,7 @@ Dossiers and experimental reports carry science; runs carry transactions. Update
 
 ## Persistence and reporting
 
-Canonical store: `kevindechang/MIND` main at the repository root. Read [MIGRATION.md](MIGRATION.md) for the immutable source snapshot and historical SHA references. Never publish new active research into Founder-Library; proposal branches, when used, must belong to MIND. Read current contents/SHA before writes, reconcile conflicts, never force-push or overwrite unrelated files. Append unique work IDs; artifacts/index first, research-state LAST referencing artifact commit. Read back publication. A file cannot cite its own final hash; report externally/later. Resume interrupted transactions once; don't rerun or double-count.
+Canonical store: `kevindechang/MIND` main at the repository root. Parallel contributors should use issue-scoped branches and PRs, *not* directly race to write main; only the designated integrator may serialize the research-record/index then state-last update. See CONTRIBUTING and GO. Read [MIGRATION.md](MIGRATION.md) for the immutable source snapshot and historical SHA references. Never publish new active research into Founder-Library; proposal branches, when used, must belong to MIND. Read current contents/SHA before writes, reconcile conflicts, never force-push or overwrite unrelated files. Append unique work IDs; artifacts/index first, research-state LAST referencing artifact commit. Read back publication. A file cannot cite its own final hash; report externally/later. Resume interrupted transactions once; don't rerun or double-count.
 
 If write access fails: NOT_COMMITTED plus complete delta; no canonical count changes. Report decision, gate/blocker, sources/depth, actual tests, falsifier, review mode, publication verdict, asset/decision delta, stale dependencies, commit or failure and exactly one next executable action with tools/inputs/stop condition.
 

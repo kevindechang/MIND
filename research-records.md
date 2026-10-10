@@ -1,6 +1,8 @@
 # Research work and acceptance index
 
-**Repository migration note (2026-10-11):** Historical commit SHAs in records below are commits of `kevindechang/Founder-Library`, *not* the new MIND commit graph. [MIGRATION.md](MIGRATION.md) records the byte-identical source snapshot. This governance relocation creates no new substantive scientific attention or accepted science.\n\n**Adoption baseline:** `4ec49fa45878ec33a4a07658fc418f535a5ee86f` on main before this governance change. Historical source versions below refer to that immutable repository snapshot; later amendments must cite their own version. This index does not certify the original claims.
+**Repository migration note (2026-10-11):** Historical commit SHAs in records below are commits of `kevindechang/Founder-Library`, *not* the new MIND commit graph. [MIGRATION.md](MIGRATION.md) records the byte-identical source snapshot. This governance relocation creates no new substantive scientific attention or accepted science.
+
+**Adoption baseline:** `4ec49fa45878ec33a4a07658fc418f535a5ee86f` on main before this governance change. Historical source versions below refer to that immutable repository snapshot; later amendments must cite their own version. This index does not certify the original claims.
 
 Kinds: GOVERNANCE_CHANGE / EXPLORATORY_CHECKPOINT / RESEARCH_NOTE / INSTRUMENT_VALIDATION / AGENT_COMPARISON / SYNTHESIS. Scientific verdicts remain EXPLORATORY_CHECKPOINT / RESEARCH_NOTE / SCIENTIFIC_ACCEPTED / MAJOR_REVISION_REQUIRED; UNKNOWN means historical acceptance not established, NOT_APPLICABLE means governance. Kind and verdict are separate.
 
@@ -38,3 +40,8 @@ Deep synthesis is due after each eight new distinct valid accepted contributions
 ## Persistence and interruption
 
 Read live main first. Commit artifacts/index/decisions before state; state then cites the immutable artifact commit. Read back final publication SHA externally or in a subsequent audit: no file can cite its own final commit hash. If interrupted, compare record IDs and artifacts to state, reconcile and finalize the pending handoff once; do not rerun or double-count. Normal Git fast-forward rejection or API SHA conflict requires rereading/reconciliation, never force-pushing.
+
+
+## 2026-10-11 agent onboarding and source hierarchy (non-scientific governance)
+
+`GO.md`, `TASKS.md`, `CURRENT.md`, `CONTRIBUTING.md` and `sources/README.md` establish a shared agent interface and source-provenance policy. Anjo's proposed Oct 2 product spec and the Oct 9 VERA research monograph were ingested as immutable source snapshots. This does not create a work record eligible for substantive scientific allocation or a SCIENTIFIC_ACCEPTED contribution. Prior experimental metrics, W1 allocation count 4 and accepted count 0 remain unchanged. See live `research-state.md` for the canonical next action.

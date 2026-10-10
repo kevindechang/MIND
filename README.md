@@ -1,6 +1,8 @@
-# MIND — Anjo's Digital Mind Research Program
+# MIND — Anjo's Foundational Digital-Mind Research
 
-**Status:** research program initialized 2026-10-10; no digital consciousness claim or successful experimental outcome.
+**Status:** exploratory research. Zero prospectively accepted scientific contributions, E001 G0 open, no scored agent trials; no claim of an achieved digital mind or phenomenal consciousness.
+
+**For any repository-aware agent told only “go”: read [GO.md](GO.md) first.** It provides deterministic startup, task claiming and publication steps. [CURRENT.md](CURRENT.md) is a navigation page, [TASKS.md](TASKS.md) indexes live GitHub issues, and [CONTRIBUTING.md](CONTRIBUTING.md) governs parallel submissions.
 
 **MIND is the foundational digital-mind and consciousness research program under Anjo.** Anjo is the parent initiative and potential engineering beneficiary; MIND is its dedicated scientific research repository, not an unrelated startup, separate product, or proof of capabilities already shipped in Anjo. Its hypotheses and findings must be evaluated on scientific merit—even when they challenge Anjo's existing design. MIND is maintained separately from Anjo's production code and release decisions.
 
@@ -18,14 +20,14 @@ We evaluate three distinct levels: **L1 mind-like interaction**, **L2 causal cog
 
 ## Canonical research workflow
 
-The [current research cycle](research-cycle.md) implements **restore → decision → discriminating test → review → result → reusable delta → next action**. Research is tool-neutral: verify indispensable capabilities for the selected task, disclose unavailable tools, and do feasible scoped work. Research questions use the strongest simpler rival and causal intervention, not a source-count or time goal.
+The [canonical Anjo and VERA source hierarchy](sources/README.md) separates proposed product requirements from research proposals and historical contributor drafts. The [current research cycle](research-cycle.md) implements **restore → decision → discriminating test → review → result → reusable delta → next action**. Research is tool-neutral: verify indispensable capabilities for the selected task, disclose unavailable tools, and do feasible scoped work. Research questions use the strongest simpler rival and causal intervention, not a source-count or time goal.
 
 - [Decision register](decision-register.md): what evidence changes which architectural choice, prerequisites and downstream reassessment.
 - [Reusable assets](asset-register.md): verified instruments, protocols and analysis with version/assumption limits.
 - [Work and acceptance index](research-records.md): separate stored work, attention allocation and accepted science. Legacy 004 is historical persistence; its verdict remains MAJOR_REVISION_REQUIRED.
 - [Canonical state](research-state.md): compact current decision, readiness and one executable handoff, written last.
 
-The sponsor's primary goal is functional consciousness, operationalized within L2 through persistent experience-dependent state, predictive self/world models, calibrated metacognition, selective cross-function information availability, adaptive agency and learning that causally interact. This working target is not a consensus definition and never proves L3. [The design](docs/research-program/2026-10-10-compounding-research-system-design.md) and [plan](docs/research-program/2026-10-10-compounding-research-system-plan.md) define the adopted governance refinement.
+MIND's L2 engineering target is **experimentally testable causal cognitive organization**: experience-dependent state, predictive self/world models, calibrated metacognition, selective cross-function access, adaptive agency and learning that interact. These are candidate mechanisms for a digital mind, not evidence of consciousness; L3 phenomenal experience remains unsettled. [The design](docs/research-program/2026-10-10-compounding-research-system-design.md) and [plan](docs/research-program/2026-10-10-compounding-research-system-plan.md) define the adopted governance refinement.
 
 E001/D001 remains the first experimental priority. After three substantive unchanged attempts, reassess the test or dependencies. Allocation uses completed substantive records; synthesis follows eight new valid accepted contributions or major evidence/invalidation. Dossier length, tests or successful storage alone do not constitute accepted science.
 

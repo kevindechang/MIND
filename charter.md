@@ -2,6 +2,8 @@
 
 **Date:** 2026-10-10. **State:** REVISED v0.2 (strategic north star; no experimental gate advanced). **Parent initiative:** Anjo. **Research unit:** MIND (dedicated repository and experimental program). **Boundary:** scientifically autonomous in its methods and conclusions; independent of shipped product claims.
 
+**Agents:** A bare `go` starts at [GO.md](GO.md); scientific authority resides in [research-state.md](research-state.md), while [sources/README.md](sources/README.md) separates Anjo product specifications from research proposals and contributor drafts.
+
 ## Relationship to Anjo
 
 MIND exists under Anjo to investigate how an enduring, developing digital intelligence could be engineered and evaluated, including functional mind-like cognition and competing philosophical/scientific approaches to consciousness. Anjo is the organizational/product context; MIND is its long-horizon research arm, not a separate commercial product. Findings may inform Anjo's future architecture and evaluations, but must withstand strong rivals, falsification and safety checks. There is no automatic promotion from a MIND hypothesis, toy benchmark, or scientific finding into deployed Anjo features. Conversely, product deadlines or branding must not determine the scientific verdict. Production integration requires a separate, explicitly approved engineering decision.
@@ -73,4 +75,4 @@ The overarching program has no scientifically credible fixed completion date. No
 
 ## Functional-consciousness working target
 
-The sponsor prioritizes functional consciousness within L2: persistent experience-dependent state, predictive self/world modeling, calibrated metacognition, selective cross-function information availability, adaptive agency and learning that demonstrably interact. This operational target is not a consensus definition or proof of phenomenal L3. Use [decision memory](decision-register.md) and cross-function interventions in the [traceability matrix](atlas/traceability-matrix.md) to turn component results into falsifiable integration proposals. No architectural selection follows from adopting this research definition.
+Anjo sponsors a rigorous L2 study of **causally integrated mind-like cognitive organization**: persistent experience-dependent state, predictive self/world models, calibrated metacognition, cross-function access, adaptive agency and learning that measurably interact. This is a hypothesis and engineering target, not a validated 'functional consciousness' achievement or any proof of phenomenal L3. Use [decision memory](decision-register.md) and cross-function interventions in the [traceability matrix](atlas/traceability-matrix.md) to turn component results into falsifiable integration proposals. No architectural selection follows from adopting this research definition.

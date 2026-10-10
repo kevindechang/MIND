@@ -1,6 +1,6 @@
 # North star — An enduring digital entity (v1.0 proposed)
  
-**Adopted as Anjo's MIND research objective, 2026-10-10. MIND is Anjo's foundational research arm; this is a design target, not an implemented entity, deployed Anjo capability or consciousness claim.**
+**Adopted as Anjo's MIND research objective, 2026-10-10. This is a speculative design/research target, not an observed mind, deployed Anjo capability, proof of L2 mechanism sufficiency or phenomenal L3 consciousness.**
 
 ## Objective
 

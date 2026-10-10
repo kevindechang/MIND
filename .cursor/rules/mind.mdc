@@ -1,0 +1,6 @@
+---
+description: MIND — Anjo research program's canonical agent entry
+alwaysApply: true
+---
+
+For any request to "go" or continue in this repository, read `GO.md` first, then `AGENTS.md`, `CURRENT.md`, `research-state.md`, `TASKS.md` and `sources/README.md`. The canonical instructions are in those files; do not invent a Cursor-specific plan. Use issue/PR ownership; never equate MIND research with deployed Anjo features, a fixed second architecture, or demonstrated consciousness.
