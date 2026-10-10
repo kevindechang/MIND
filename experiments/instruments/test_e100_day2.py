@@ -70,6 +70,57 @@ class Day2LinkTests(unittest.TestCase):
             self.assertEqual(b["linked_action"], m.SCAN)
             self.assertEqual(a["factual"], b["factual"])
 
+    def test_real_sigkill_and_ledger_only_restart(self):
+        m = _load()
+        with tempfile.TemporaryDirectory() as td:
+            for name, links in (("intact", True), ("cut", False)):
+                result = m.run_arm(td, name, setup_kwargs={"include_links": links})
+                self.assertEqual(result["worker_exit"], -9)
+                self.assertTrue(result["distinct_process"])
+                self.assertEqual(result["events"], 3)
+
+    def test_sham_cuts_irrelevant_edge_only(self):
+        m = _load()
+        with tempfile.TemporaryDirectory() as td:
+            control = m.run_arm(td, "sham_before", setup_kwargs={
+                "include_links": True, "unrelated_link": True})
+            sham = m.run_arm(td, "sham_after", setup_kwargs={
+                "include_links": True, "unrelated_link": True, "sham_cut": True})
+            self.assertEqual(control["factual"], sham["factual"])
+            self.assertEqual(control["linked_action"], sham["linked_action"])
+            self.assertEqual(control["linked_action"], m.DEFER)
+            self.assertEqual(control["links"] - sham["links"], 1)
+
+    def test_compact_derived_from_same_initial_evidence(self):
+        m = _load()
+        with tempfile.TemporaryDirectory() as td:
+            cut = m.run_arm(td, "cut", setup_kwargs={"include_links": False})
+            control = m.run_arm(td, "unrelated", setup_kwargs={
+                "include_links": False, "link_outage": False,
+                "outage_resource": "greenhouse_light"})
+            self.assertTrue(cut["build"]["compiled_from_events_and_links"])
+            self.assertEqual(cut["build"]["compilation_selects"], 2)
+            self.assertEqual(cut["compact_action"], m.DEFER)
+            self.assertEqual(control["compact_action"], m.SCAN)
+            self.assertEqual(cut["selects"]["compact"], 2)
+            self.assertEqual(cut["selects"]["linked"], 2)
+
+    def test_structural_holdout_and_heldout_action_score(self):
+        m = _load()
+        with tempfile.TemporaryDirectory() as td:
+            kwargs = {"goal_id": "goal-010", "incident_id": "incident-010",
+                      "outage_resource": "array_power_b", "extra_hop": True}
+            intact = m.run_arm(td, "novel_intact", setup_kwargs={
+                **kwargs, "include_links": True})
+            cut = m.run_arm(td, "novel_cut", setup_kwargs={
+                **kwargs, "include_links": False})
+            self.assertEqual(intact["links"], 3)
+            self.assertEqual(cut["links"], 0)
+            self.assertEqual(intact["factual"], cut["factual"])
+            self.assertEqual(intact["heldout_action_score"]["linked"], 1)
+            self.assertEqual(cut["heldout_action_score"]["linked"], 0)
+            self.assertEqual(cut["heldout_action_score"]["compact"], 1)
+
     def test_unknown_goal_without_links_scans(self):
         m = _load()
         with tempfile.TemporaryDirectory() as td:
