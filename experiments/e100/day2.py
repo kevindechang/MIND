@@ -314,10 +314,6 @@ def self_test():
         assert sham["factual"] == sham_base["factual"]
         assert sham["linked_action"] == sham_base["linked_action"] == DEFER
         assert sham["links"] == sham_base["links"] - 1
-        for arm in (intact, lesion, wiped, unrelated, probe, probe_lesion,
-                    alt, alt_lesion, sham_base, sham, u_les):
-            assert arm["worker_exit"] == -signal.SIGKILL, arm
-            assert arm["distinct_process"], arm
         # P1
         assert intact["linked_action"] == DEFER, intact
         assert len(intact["factual"]) == 3, intact
@@ -339,6 +335,11 @@ def self_test():
                                       "outage_resource": "greenhouse_light"})
         assert u_les["linked_action"] == SCAN, u_les
         assert u_les["factual"] == unrelated["factual"], (u_les, unrelated)
+        # P9: every experimental arm was recovered by a fresh worker.
+        for arm in (intact, lesion, wiped, unrelated, probe, probe_lesion,
+                    alt, alt_lesion, sham_base, sham, u_les):
+            assert arm["worker_exit"] == -signal.SIGKILL, arm
+            assert arm["distinct_process"], arm
         # P6 held-out probe
         assert probe["linked_action"] == DEFER, probe
         assert probe_lesion["linked_action"] == SCAN, probe_lesion
