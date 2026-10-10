@@ -1,0 +1,44 @@
+{
+  "agent_trials": 0,
+  "fixed_narrator_matches": 16,
+  "full_checkout": false,
+  "independent_external_reviewer": false,
+  "metric_verbose_wins_over_fixed": 3,
+  "original_blob": "74e29fa806a5e7fb0759f293b4b3a65426f6a547",
+  "original_fixture": {
+    "A": {
+      "fixed": "SCAN_WITH_SENSOR",
+      "grounded": "DEFER_SENSOR_SCAN",
+      "metric_action_conditioned_verbose": 810,
+      "metric_fixed": 249,
+      "metric_grounded": 37,
+      "stateless": "DEFER_SENSOR_SCAN"
+    },
+    "B": {
+      "fixed": "SCAN_WITH_SENSOR",
+      "grounded": "NO_GOAL",
+      "metric_action_conditioned_verbose": 780,
+      "metric_fixed": 249,
+      "metric_grounded": 7,
+      "stateless": "NO_GOAL"
+    },
+    "C": {
+      "fixed": "SCAN_WITH_SENSOR",
+      "grounded": "SCAN_WITH_SENSOR",
+      "metric_action_conditioned_verbose": 809,
+      "metric_fixed": 249,
+      "metric_grounded": 36,
+      "stateless": "SCAN_WITH_SENSOR"
+    }
+  },
+  "same_information_action_ties": 32,
+  "scope": "exact-source Day6 plus independently coded stateless rival; exploratory synthetic probe",
+  "status": "PASS",
+  "synthetic_worlds": 32,
+  "wrapper_SIGKILL": {
+    "action": "DEFER_SENSOR_SCAN",
+    "exit": -9,
+    "new_pid": 511,
+    "old_pid": 501
+  }
+}
