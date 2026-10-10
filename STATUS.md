@@ -1,8 +1,8 @@
-# MIND — live knowledge status
+# MIND — computed knowledge snapshot
 
-> **Generated** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. Do not edit by hand; if it conflicts in a merge, regenerate it.
+> **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Code fingerprint `ea099bc8a43b5614` · git `429313e + uncommitted changes` · generated 2026-10-10 23:17 UTC
+Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:17 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
