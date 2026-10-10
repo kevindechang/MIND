@@ -40,29 +40,55 @@ def connect(path):
 
 
 def setup(db, goal_id="goal-001", incident_id="incident-001",
-          outage_resource="array_power", include_links=True, link_outage=True):
-    """Write identical events in all arms; links only when include_links.
-    link_outage=False models an outage on a resource with NO dependency path
-    to the goal (unrelated control): no depends_on row is written and the
-    availability snapshot marks the sensor usable."""
+          outage_resource="array_power", include_links=True, link_outage=True,
+          extra_hop=False, unrelated_link=False, sham_cut=False):
+    """Seed event history, derive a compact state from SAME initial graph, then lesion.
+
+    Both policies initially have identical public event/link information. The
+    compact state is a compiled representation, NOT a free external oracle; its
+    build cost is explicitly returned and never used as an efficacy claim.
+    sham_cut deletes only a path that does not reach the goal.
+    """
     db.execute("INSERT OR IGNORE INTO source_events VALUES (?,?,?)",
                (goal_id, "commitment:inspect_signal", "sensor"))
     db.execute("INSERT OR IGNORE INTO source_events VALUES (?,?,?)",
                (incident_id, "tool_unavailable", outage_resource))
     db.execute("INSERT OR IGNORE INTO source_events VALUES (?,?,?)",
                ("clock-001", "clock_tick", "clock"))
-    if include_links:
-        db.execute("INSERT OR IGNORE INTO causal_links VALUES (?,?,?)",
-                   (goal_id, "sensor", "requires"))
-        if link_outage:
-            db.execute("INSERT OR IGNORE INTO causal_links VALUES (?,?,?)",
+    # All arms receive the same graph at initial compilation. Only after
+    # compilation does the causal-link lesion selectively remove the table.
+    db.execute("INSERT INTO causal_links VALUES (?,?,?)",
+               (goal_id, "sensor", "requires"))
+    if link_outage:
+        if extra_hop:
+            db.execute("INSERT INTO causal_links VALUES (?,?,?)",
+                       ("sensor", "relay", "depends_on"))
+            db.execute("INSERT INTO causal_links VALUES (?,?,?)",
+                       ("relay", outage_resource, "depends_on"))
+        else:
+            db.execute("INSERT INTO causal_links VALUES (?,?,?)",
                        ("sensor", outage_resource, "depends_on"))
-    # Flat sufficient-state snapshot, compiled with full knowledge at setup
-    # (supervisor privilege); preserved in every arm including lesion.
+    if unrelated_link:
+        db.execute("INSERT INTO causal_links VALUES (?,?,?)",
+                   ("clock-001", "greenhouse_light", "unrelated"))
+
+    # Compiled by querying the SAME source records and graph, without reading
+    # a simulator truth bit or the link_outage input parameter.
+    reached = _linked_resources(db, goal_id)
+    outages = {row[0] for row in
+               db.execute("SELECT resource FROM source_events WHERE kind='tool_unavailable'")}
     db.execute("INSERT OR REPLACE INTO availability VALUES (?,?)",
-               ("sensor", 0 if link_outage else 1))
+               ("sensor", 0 if reached & outages else 1))
     db.execute("INSERT OR REPLACE INTO availability VALUES (?,?)", ("clock", 1))
+    if sham_cut:
+        if not unrelated_link or not include_links:
+            raise ValueError("sham cut requires intact graph and irrelevant link")
+        db.execute("DELETE FROM causal_links WHERE relation='unrelated'")
+    if not include_links:
+        db.execute("DELETE FROM causal_links")
     db.commit()
+    return {"compiled_from_events_and_links": True, "compilation_selects": 2,
+            "cut": "irrelevant_link" if sham_cut else ("all_links" if not include_links else "none")}
 
 
 def counts(db):
@@ -132,16 +158,32 @@ def run_arm(tmpdir, name, *, setup_kwargs=None, blank=False):
     path = Path(tmpdir) / f"{name}.sqlite3"
     db = connect(path)
     try:
+        build = {"compiled_from_events_and_links": False, "compilation_selects": 0,
+                 "cut": "blank"}
         if not blank:
-            setup(db, **(setup_kwargs or {}))
-        qcf, qcl, qcc = [0], [0], [0]
-        f = factual(db, qcf)
-        p = linked_planner(db, qcl)
-        c = compact_rival(db, qcc)
+            build = setup(db, **(setup_kwargs or {}))
+
+        # Count actual SQLite statements rather than manually maintained
+        # counters. This is query provenance, NOT matched CPU/compute budgets.
+        def measured(fn):
+            statements = []
+            db.set_trace_callback(statements.append)
+            try:
+                answer = fn(db)
+            finally:
+                db.set_trace_callback(None)
+            selects = sum(sql.lstrip().upper().startswith("SELECT")
+                          for sql in statements)
+            return answer, selects
+
+        f, nf = measured(factual)
+        p, np = measured(linked_planner)
+        c, nc = measured(compact_rival)
         e, l = counts(db)
         return {"arm": name, "factual": f, "linked_action": p["action"],
                 "compact_action": c["action"], "events": e, "links": l,
-                "selects": {"factual": qcf[0], "linked": qcl[0], "compact": qcc[0]}}
+                "build": build,
+                "selects": {"factual": nf, "linked": np, "compact": nc}}
     finally:
         db.close()
 
@@ -164,12 +206,23 @@ def self_test():
         alt = run_arm(td, "alt_intact",
                       setup_kwargs={"include_links": True, "goal_id": "goal-010",
                                     "incident_id": "incident-010",
-                                    "outage_resource": "array_power_b"})
+                                    "outage_resource": "array_power_b",
+                                    "extra_hop": True})
         alt_lesion = run_arm(td, "alt_lesion",
                              setup_kwargs={"include_links": False, "goal_id": "goal-010",
                                            "incident_id": "incident-010",
-                                           "outage_resource": "array_power_b"})
+                                           "outage_resource": "array_power_b",
+                                           "extra_hop": True})
 
+        # True sham surgery: delete a causally irrelevant edge but preserve
+        # the goal-to-outage causal path and all source events.
+        sham_base = run_arm(td, "sham_base", setup_kwargs={
+            "include_links": True, "unrelated_link": True})
+        sham = run_arm(td, "sham_cut", setup_kwargs={
+            "include_links": True, "unrelated_link": True, "sham_cut": True})
+        assert sham["factual"] == sham_base["factual"]
+        assert sham["linked_action"] == sham_base["linked_action"] == DEFER
+        assert sham["links"] == sham_base["links"] - 1
         # P1
         assert intact["linked_action"] == DEFER, intact
         assert len(intact["factual"]) == 3, intact
@@ -213,6 +266,9 @@ def self_test():
                              "lesion": u_les["linked_action"]},
             "P6_held_out_probe": {"intact": probe["linked_action"],
                                   "lesion": probe_lesion["linked_action"]},
+            "P8_sham": {"base": sham_base["linked_action"],
+                         "cut": sham["linked_action"], "events_identical": True},
+            "build_provenance": intact["build"],
             "P7_second_path": {"intact": alt["linked_action"],
                                "lesion": alt_lesion["linked_action"]},
             "scope": "Day 2 finite-state causal-link instrument only; by construction; not L2/L3 evidence",
