@@ -1,0 +1,50 @@
+# Independent referee report — E100 Day 2 audit
+
+Date: 2026-10-11 Asia/Taipei. Reviewer: `/root/scientific_review`, a distinct internal subagent invocation dispatched by the executor. Mode: **INDEPENDENT_SUBAGENT_VERIFIED** for the bounded audit below; this is not external peer review. Reviewed contribution **E100-D2-AUDIT-2026-10-11-001**. No canonical state, decision, asset or acceptance count was changed by this reviewer.
+
+**Verdict: retain as RESEARCH_NOTE; the one minor wording correction is resolved.** Instrument execution is supported; efficacy/architecture identification remains **OPEN / DEFER**. This review does not promote SCIENTIFIC_ACCEPTED, G0/G1/G2, L2 or L3, and does not start E900.
+
+## Evidence and reproduction
+
+Read AGENTS.md, research-quality-gate.md and review-protocol.md; the full audit, source memo, probe plan/block/output/metadata; the pinned Day 2 implementation, dedicated tests and preregistration/amendment; suite logs and D001. Working-tree staged/unstaged diffs contain no runtime changes. The target checkout is clean at `a0be278445c4119ac038204ea710bdd5af5bdd00`; source SHA256 is `0fe96c98b53435d9da514b4203010c04f96f02e5a73f9514b464913715711a63`.
+
+Independently extracted and executed the Python block in `reviews/e100-day2-independent-audit/probes.md` with Python 3.9.6 via `subprocess.run([sys.executable, '-c', code], capture_output=True, text=True, timeout=30)`. Result: exit 0, empty stderr, parsed JSON **exactly equal** to retained `probes.stdout.json`. This rerun includes both real SIGKILL/restart collision arms and the two SQLite boundary probes. Reviewed rather than reran the full suites: retained logs show 11 dedicated, 86 integrated target and 75 baseline tests passing; these are executor-observed results, not fresh referee suite reproductions. Runtime trees remain unchanged from the stated baseline/target.
+
+The checkpoint commit `30aa31d4ef079e71e19f8722f7e90aef1bea7eba` contains the prospective probe plan. Its timestamp (19:26:22 UTC) precedes the five-suite metadata start (19:26:42 UTC). The [probe provenance note](e100-day2-independent-audit/probe-execution-provenance.md) separately records actual extraction/invocation and explicitly marks original probe timestamps UNKNOWN; the suite interval must not be used as a probe interval. My rerun corroborates the executable block/output, not the original invocation's clock time. Original results were public; this is not blinded novelty or an efficacy preregistration. The provenance note also attributes corroborating executions to a distinct Python reviewer; those are reviewer-reported, not additional executions by me.
+
+## Scientific assessment
+
+- **Collision — OBSERVED + conditional THEORETICAL:** exact E equality with different G and opposite reader outputs is reproduced. Setup injects G separately; no single-valued map `G=g(E)` covers the pair. Under a balanced prior, an E-only binary-action policy has fixture-label accuracy 1/2, including randomized policies. The derivation is sound with its no-correlated-side-channel assumption. `arm`, graph counts, availability and setup flags must remain excluded from the alleged E-only interface. Those fields exist elsewhere in the fixture, so the bound is not a claim about every possible consumer of `report()`.
+- **Strongest objection:** expected actions are supervisor labels derived from `link_outage`, not independently realized utility. Accordingly, this is an information-boundary counterexample against fixture labels, not evidence that one physical action is truly better. The report explicitly conditions the bound on the fixture rule and requires a future independent transition/reward endpoint. Without that condition, the stronger claim would fail.
+- **Lesion scope:** the linked route loses G while C retains its prelesion consequences. This supports implementation dependence and an alternate surviving route. Both representations did receive the same initial E/G; it would be incorrect to call their initial information unfair. The report correctly objects to online/lifecycle and equal-informational-lesion interpretations instead.
+- **Stale compact state — OBSERVED:** the new public outage is persisted, both policies read the same event table, and only the linked reader responds. This identifies absent refresh in this snapshot implementation. It is beyond the frozen one-step domain and does not refute a general compact rival.
+- **Adversarial rival:** I additionally checked a graph-free quotient retaining the fixed goal's reachable-resource set `{sensor, array_power}` and intersecting it with public outage resources. After deleting G it DEFERs for the original outage, SCANs after removing outage rows, and DEFERs after a new outage. This is a diagnostic construction, not a scored trial or measured cost advantage. It demonstrates why the refresh result cannot establish graph necessity. New goals, dependency corrections and changing mechanisms require additional state/update assumptions.
+- **Edge labels — OBSERVED:** `_linked_resources` selects only effect/cause, so repointing an `unrelated` edge changes reachability and action. The original sham is still valid by unreachable topology. Typed-edge semantics are not enforced; this is a disclosed out-of-seed-domain robustness result, not a failed registered sham prediction.
+- **Lifecycle parity/preregistration:** SQL-count parity does not cover traversal, preprocessing, storage, update, reconstruction or learning. The audit makes no claim that those are matched. The next design leaves effect margin, sample/precision plan, utility/cost conversion and held-out distribution unfrozen; it is therefore a proposal, not trial-ready registration. The adaptive compact rival, public dependency stream and separate cache/access/information lesions are appropriate prerequisites.
+
+This has substantive **bounded methodological value**: a reproduced constructive failure of the admissible-history premise changes the next experiment's observation interface. It is more concrete than merely assuming identical algorithms and deriving equality. However, the 1/2 argument is elementary, labels are synthetic, and no learned mechanism or comparative utility was tested. It should not be counted as accepted theoretical or empirical science on this packet. The report's RESEARCH_NOTE ruling is proportionate.
+
+## Source fidelity and correction
+
+Independently inspected relevant primary full-text passages: [Littman et al.](https://proceedings.neurips.cc/paper/2001/file/1e4d36177d71bbb3558e43af9577d70e-Paper.pdf), definitions/update/Theorem 1 and learning caveat; [Schölkopf et al. v1](https://arxiv.org/pdf/2102.11107v1), sparse-shift hypothesis and OOD scope; [Geiger et al.](https://papers.nips.cc/paper_files/paper/2021/file/4f5c422f4d49a5a807eda27434231040-Paper.pdf), full-domain interchange criterion and impactful subset analysis; [Otchy et al. author PDF](https://olveczkylab.oeb.harvard.edu/resource/olveczkynature2015pdf), recovery/discussion and relevant methods. These checks support the memo's principal limitations and transfer cautions. They are targeted fidelity checks, not an independent exhaustive paper review or reanalysis. The Nature publication page was inaccessible through this review's browsing tool; its correction-record detail was not independently verified here.
+
+**[LOW / MINOR, RESOLVED] Narrow a universal causal-computation claim.** The initial draft said “No finite-state closure calculation identifies structural causal counterfactuals from a learned causal model.” Finite deterministic causal models can legitimately compute intervention consequences with closure under explicit structural semantics; the present code supplies no such learned-model validation. The executor changed this to “This closure calculation does not establish that it identifies structural causal counterfactuals from a learned causal model”; I read back the correction. No unresolved issue remains, and the reproduced results/decision are unchanged.
+
+## Gate, dependencies and next check
+
+Gate **PASS for truthful bounded research-note publication; OPEN for scientific acceptance and architecture efficacy**. Decision **DEFER**; confidence **HIGH** for code/probe claims and scope, **MEDIUM** for wider source synthesis because only relevant passages were independently checked. D001 remains DEFER/CURRENT: it has no pivotal efficacy support to invalidate and no adopted downstream decisions. Source-event preservation alone must not be used as a prerequisite for full observation parity. Exact-version Day 2 reuse is admissible as a fixed-domain restart/lesion instrument; changed interfaces, typed semantics and online updates need revalidation.
+
+L1 consequence: demonstrated fixture route dependence. L2/L3: none. E900 cross-function memory/planning/calibration coupling remains proposed and separately authorized; no Anjo product transfer follows. Kind/verdict: **RESEARCH_NOTE / RESEARCH_NOTE**, contribution ID retained once, zero accepted contribution promotion.
+
+Exactly one next executable check: serialize a shared public dependency-observation history `H_full=(E,D)` for paired topologies and unexpected outages; provide identical bytes to linked and refreshed compact/transcript readers, verify their usable interfaces, and score only independently specified world outcomes after registering lifecycle budgets and analysis. Stop before efficacy scoring if relevant D is private or resource/observation parity is undefined. A distinguishing E-only field would falsify the collision premise; matching held-out world utility at a frozen margin and equal/lower lifecycle cost would disconfirm incremental graph need on that declared domain.
+
+## Review Summary
+
+| Severity | Count | Status |
+|----------|-------|--------|
+| CRITICAL | 0 | pass |
+| HIGH | 0 | pass |
+| MEDIUM | 0 | info |
+| LOW | 1 | resolved |
+
+Verdict: **APPROVE bounded RESEARCH_NOTE; DEFER scientific acceptance and gate advancement.** No unresolved CRITICAL/HIGH issue.

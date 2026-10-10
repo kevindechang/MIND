@@ -1,0 +1,71 @@
+{
+  "start_utc": "2026-10-10T19:26:42.798610+00:00",
+  "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+  "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "commands": [
+    {
+      "label": "pr7-syntax",
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "py_compile",
+        "experiments/e100/day2.py",
+        "experiments/instruments/test_e100_day2.py"
+      ],
+      "cwd": "/private/tmp/MIND-pr7-validation",
+      "returncode": 0
+    },
+    {
+      "label": "pr7-self-test",
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "experiments/e100/day2.py",
+        "--self-test"
+      ],
+      "cwd": "/private/tmp/MIND-pr7-validation",
+      "returncode": 0
+    },
+    {
+      "label": "pr7-dedicated",
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "experiments/instruments",
+        "-p",
+        "test_e100_day2.py",
+        "-v"
+      ],
+      "cwd": "/private/tmp/MIND-pr7-validation",
+      "returncode": 0
+    },
+    {
+      "label": "pr7-integrated",
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "scripts/verify_instruments.py"
+      ],
+      "cwd": "/private/tmp/MIND-pr7-validation",
+      "returncode": 0
+    },
+    {
+      "label": "main-integrated",
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "scripts/verify_instruments.py"
+      ],
+      "cwd": "/Users/k/dev/MIND",
+      "returncode": 0
+    }
+  ],
+  "pr_head": "a0be278445c4119ac038204ea710bdd5af5bdd00",
+  "target_files": {
+    "experiments/e100/day2.py": "0fe96c98b53435d9da514b4203010c04f96f02e5a73f9514b464913715711a63",
+    "experiments/instruments/test_e100_day2.py": "a512b8ff09b8528c2dd5472cf3c24034c0eea36682623401ce293f95c05c6bb8",
+    "experiments/e100/day2-preregistration.md": "f8a4e9eaaf74ae0b500370b3ee14d430e42c111fd915911a7c9b91bce824570c"
+  },
+  "finish_utc": "2026-10-10T19:26:48.294683+00:00"
+}

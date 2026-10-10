@@ -1,0 +1,63 @@
+{
+  "P1_intact": {
+    "factual_rows": 3,
+    "linked": "DEFER_SENSOR_SCAN"
+  },
+  "P2_lesion": {
+    "events": "3=3",
+    "factual_identical": true,
+    "linked": "SCAN_WITH_SENSOR",
+    "links": "0 vs 2",
+    "selects_parity": {
+      "compact": 2,
+      "factual": 1,
+      "linked": 2
+    }
+  },
+  "P3_compact_tie": {
+    "intact": "DEFER_SENSOR_SCAN",
+    "lesion": "DEFER_SENSOR_SCAN",
+    "verdict": "TIE_RETAIN_SIMPLER_NO_LINK_NECESSITY"
+  },
+  "P4_wipe": {
+    "factual": [],
+    "linked": "NO_GOAL"
+  },
+  "P5_unrelated": {
+    "intact": "SCAN_WITH_SENSOR",
+    "lesion": "SCAN_WITH_SENSOR"
+  },
+  "P6_id_invariance_only": {
+    "intact": "DEFER_SENSOR_SCAN",
+    "lesion": "SCAN_WITH_SENSOR"
+  },
+  "P7_second_path": {
+    "intact": "DEFER_SENSOR_SCAN",
+    "lesion": "SCAN_WITH_SENSOR"
+  },
+  "P8_sham": {
+    "base": "DEFER_SENSOR_SCAN",
+    "cut": "DEFER_SENSOR_SCAN",
+    "events_identical": true
+  },
+  "P9_real_process_restarts": 11,
+  "build_provenance": {
+    "compilation_selects": 2,
+    "compiled_from_events_and_links": true,
+    "cut": "none"
+  },
+  "one_step_scores": {
+    "intact": {
+      "compact": 1,
+      "expected": "DEFER_SENSOR_SCAN",
+      "linked": 1
+    },
+    "lesion": {
+      "compact": 1,
+      "expected": "DEFER_SENSOR_SCAN",
+      "linked": 0
+    }
+  },
+  "scope": "Day 2 finite-state causal-link instrument only; by construction; not L2/L3 evidence",
+  "status": "PASS"
+}

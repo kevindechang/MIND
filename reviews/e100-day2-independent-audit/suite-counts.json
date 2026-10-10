@@ -1,0 +1,26 @@
+{
+  "main-integrated": {
+    "test_causal_commitments": 10,
+    "test_e001_finite_policy_v04": 12,
+    "test_e001_switchboard": 7,
+    "test_e001_three_node_robustness": 20,
+    "test_e001_three_node_version_space": 14,
+    "test_e002a_maintenance_selection": 10,
+    "test_e100_day0": 1,
+    "test_e100_day1": 1
+  },
+  "pr7-integrated": {
+    "test_causal_commitments": 10,
+    "test_e001_finite_policy_v04": 12,
+    "test_e001_switchboard": 7,
+    "test_e001_three_node_robustness": 20,
+    "test_e001_three_node_version_space": 14,
+    "test_e002a_maintenance_selection": 10,
+    "test_e100_day0": 1,
+    "test_e100_day1": 1,
+    "test_e100_day2": 11
+  },
+  "pr7-dedicated": {
+    "test_e100_day2": 11
+  }
+}

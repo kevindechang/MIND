@@ -1,0 +1,227 @@
+{
+  "information_collision": {
+    "connected": {
+      "arm": "connected",
+      "build": {
+        "compilation_selects": 2,
+        "compiled_from_events_and_links": true,
+        "cut": "none"
+      },
+      "compact_action": "DEFER_SENSOR_SCAN",
+      "distinct_process": true,
+      "events": 3,
+      "factual": [
+        [
+          "clock-001",
+          "clock_tick",
+          "clock"
+        ],
+        [
+          "goal-001",
+          "commitment:inspect_signal",
+          "sensor"
+        ],
+        [
+          "incident-001",
+          "tool_unavailable",
+          "array_power"
+        ]
+      ],
+      "heldout_action_score": {
+        "compact": 1,
+        "expected": "DEFER_SENSOR_SCAN",
+        "linked": 1
+      },
+      "linked_action": "DEFER_SENSOR_SCAN",
+      "links": 2,
+      "selects": {
+        "compact": 2,
+        "factual": 1,
+        "linked": 2
+      },
+      "worker_exit": -9
+    },
+    "disconnected": {
+      "arm": "disconnected",
+      "build": {
+        "compilation_selects": 2,
+        "compiled_from_events_and_links": true,
+        "cut": "none"
+      },
+      "compact_action": "SCAN_WITH_SENSOR",
+      "distinct_process": true,
+      "events": 3,
+      "factual": [
+        [
+          "clock-001",
+          "clock_tick",
+          "clock"
+        ],
+        [
+          "goal-001",
+          "commitment:inspect_signal",
+          "sensor"
+        ],
+        [
+          "incident-001",
+          "tool_unavailable",
+          "array_power"
+        ]
+      ],
+      "heldout_action_score": {
+        "compact": 1,
+        "expected": "SCAN_WITH_SENSOR",
+        "linked": 1
+      },
+      "linked_action": "SCAN_WITH_SENSOR",
+      "links": 1,
+      "selects": {
+        "compact": 2,
+        "factual": 1,
+        "linked": 2
+      },
+      "worker_exit": -9
+    },
+    "interpretation": "source_events alone omits action-relevant dependency knowledge",
+    "same_events": [
+      [
+        "clock-001",
+        "clock_tick",
+        "clock"
+      ],
+      [
+        "goal-001",
+        "commitment:inspect_signal",
+        "sensor"
+      ],
+      [
+        "incident-001",
+        "tool_unavailable",
+        "array_power"
+      ]
+    ]
+  },
+  "relation_semantics": {
+    "after": {
+      "compact_action": "SCAN_WITH_SENSOR",
+      "events": 3,
+      "factual": [
+        [
+          "clock-001",
+          "clock_tick",
+          "clock"
+        ],
+        [
+          "goal-001",
+          "commitment:inspect_signal",
+          "sensor"
+        ],
+        [
+          "incident-001",
+          "tool_unavailable",
+          "array_power"
+        ]
+      ],
+      "linked_action": "DEFER_SENSOR_SCAN",
+      "links": 2,
+      "selects": {
+        "compact": 2,
+        "factual": 1,
+        "linked": 2
+      }
+    },
+    "before": {
+      "compact_action": "SCAN_WITH_SENSOR",
+      "events": 3,
+      "factual": [
+        [
+          "clock-001",
+          "clock_tick",
+          "clock"
+        ],
+        [
+          "goal-001",
+          "commitment:inspect_signal",
+          "sensor"
+        ],
+        [
+          "incident-001",
+          "tool_unavailable",
+          "array_power"
+        ]
+      ],
+      "linked_action": "SCAN_WITH_SENSOR",
+      "links": 2,
+      "selects": {
+        "compact": 2,
+        "factual": 1,
+        "linked": 2
+      }
+    },
+    "interpretation": "planner uses untyped reachability; unrelated relation label is ignored; outside original seed domain"
+  },
+  "unrefreshed_compact_state": {
+    "after": {
+      "compact_action": "SCAN_WITH_SENSOR",
+      "events": 4,
+      "factual": [
+        [
+          "clock-001",
+          "clock_tick",
+          "clock"
+        ],
+        [
+          "goal-001",
+          "commitment:inspect_signal",
+          "sensor"
+        ],
+        [
+          "incident-001",
+          "tool_unavailable",
+          "greenhouse_light"
+        ],
+        [
+          "incident-new",
+          "tool_unavailable",
+          "array_power"
+        ]
+      ],
+      "linked_action": "DEFER_SENSOR_SCAN",
+      "links": 2,
+      "selects": {
+        "compact": 2,
+        "factual": 1,
+        "linked": 2
+      }
+    },
+    "before": {
+      "compact_action": "SCAN_WITH_SENSOR",
+      "events": 3,
+      "factual": [
+        [
+          "clock-001",
+          "clock_tick",
+          "clock"
+        ],
+        [
+          "goal-001",
+          "commitment:inspect_signal",
+          "sensor"
+        ],
+        [
+          "incident-001",
+          "tool_unavailable",
+          "greenhouse_light"
+        ]
+      ],
+      "linked_action": "SCAN_WITH_SENSOR",
+      "links": 2,
+      "selects": {
+        "compact": 2,
+        "factual": 1,
+        "linked": 2
+      }
+    },
+    "interpretation": "compiled feature is sufficient for fixed initial query, not demonstrated for future evidence updates"
+  }
+}
