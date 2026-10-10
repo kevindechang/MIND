@@ -1,0 +1,26 @@
+# E100 Cross-day v0.2: dynamic causal-status state (PRE-EXECUTION PROTOCOL)
+
+Work ID: E100-XDAY-2026-10-11-002; extends PR #16 issue #1. Status: PROPOSED/FROZEN BEFORE SCORING. The date is nominal, exact publication SHA follows GitHub readback. No agent trial or consciousness inference.
+
+## Question and estimand
+Under identical public observations of graph dependencies and resource outage/restoration, do exact graph recalculation, eagerly maintained predictive status, and lazily maintained predictive status choose the same prospective actions? What are their total measured primitive operation costs, segregating initialization, event updates, and decision queries, when query/update frequency changes? Define disagreement rate = # mismatched actions / # queries. Define deterministic algorithmic cost as adjacency inspections + status checks + cache invalidation/recomputation bookkeeping; do not use SQL SELECT counts as a proxy for CPU. This is a fixed-program, not learned-controller trial. Byte-encoded state sizes are exploratory descriptions, not comparable hardware memory benchmarks.
+
+## Public/private interface
+At t=0 all controllers receive identical (G,R) bipartite dependency edges and resource statuses. Public events carry event_id, type (`tool_unavailable`, `tool_restored`, `link_added`, `link_removed`, `query`), goal/resource fields and timestamp/sequence; secret generator seed is NEVER passed to a reader. Link mutations and status restoration are explicit and never inferred from privileged world truth. All controllers run in one Python interpreter for controlled cost-calibration; NO worker SIGKILL is promised in this protocol, which does not replace Day2's process-restart experiment.
+
+## Arms
+A: online direct graph reader with latest resource statuses, computes one goal closure on every query.
+B: eagerly maintained compact predictive vector of blocked flags, fully recomputed after edge updates and updated after status updates, with explicit initialization and update cost.
+C: lazy invalidated predictive cache storing the public graph, cleared on updates, computing closure only for first post-update query to a goal. Receives identical information and commits identical resource/graph updates.
+Reference: separate brute-force replay of the complete public event stream (stateless fresh recomputation), with a deliberately different implementation from the three arms; run after generation only to score actions. A deliberately stale never-refresh baseline is a NEGATIVE CONTROL and must make at least one error in a constructed restoration case; never compare it as a fair active rival.
+
+## Predeclared populations and predictions
+Four strata: query probability 0.2 or 0.8 crossed with edge density 0.1 or 0.4; 32 independent seeds per stratum (seed=10,000 + index), 180 post-initial events each, 8 goals and 10 resources. Each non-query event: status update 0.70, graph edge flip 0.30. Status update resource and new outage/restored value chosen from seed; graph edge flip goal/resource uniform; queries goal uniform. Query type may repeat. Scored behavior is after each prefix. Also 6 fixed controls: restoration reversal, unrelated status change, edge cut, irrelevant edge sham, no commitment/unknown goal, duplicated status idempotence. No early stopping for promising results. If any correctly implemented arm differs from the independent oracle, integrity FAIL; do not claim mechanism benefit.
+
+Expected qualitative outcomes: 0 errors for all three active arms; Graph has higher query effort on query-heavy workload, eager pays extra update overhead (especially edge changes), lazy may amortize repeated queries, but a crossover is NOT GUARANTEED. Record all costs per stratum, not cherry-picked seeds. A tie or rival advantage is valid. Recompute all initial states and charge their cost. Never assert learned or autobiographical representation is necessary from costs of deterministic algorithms.
+
+## Assumptions, falsifiers, analysis
+Bipartite graph only, no hidden nodes, deterministic and completely delivered events, fixed evaluation policy. This explicitly excludes E001 non-ignorable censoring and unknown causal structure. Serial execution, Python stdlib, no model API/GitHub Actions. Exhaustive per-episode correctness comparison against oracle, plus distribution (mean/min/max) of deterministic operation counts. CPU nanos are optional diagnostics, not primary estimand because noise/order effects are uncontrolled. If compact rivals have different access to G, query or event logs, stop; event info parity failure invalidates comparison. If action mismatch occurs, investigate from minimal counterexample and publish failures. State no statistical generalization beyond defined generator and policies.
+
+## Review and decision boundary
+SELF-REVIEW_ONLY unless separate reviewer actually invoked. MIND quality gate prevents SCIENTIFIC_ACCEPTED or G0 gate progress from a simple deterministic comparison. No Anjo production transfer. E900 NOT STARTED. One next action after this attempt: independent checkout reviewer runs the original #7/#12 modules with an explicit event translator and true process-restart cost tracing, checks whether the dynamic comparator remains valid on allowed histories.
