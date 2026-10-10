@@ -48,3 +48,27 @@ Single-edge SPA lesion in a zero-redundancy toy works by construction (Fakhar & 
 - Implementation: `experiments/e100/day2.py`; tests `experiments/instruments/test_e100_day2.py`.
 - Commands: `python experiments/e100/day2.py --self-test`; `python -m unittest discover -s experiments/instruments -p test_e100_day2.py -v`.
 - Frozen: 2026-10-11, before first `--self-test`. Review: SELF-REVIEW_ONLY.
+
+
+## 8. Post-v0.1 review amendment v0.2 — not a retrospective preregistration
+
+**Provenance:** This section was written AFTER the initial v0.1 test results and after PR #7's Review-plugin audit (review 5480430690). The original P1–P7 remain historical, not silently revised. All v0.2 code/test changes are **NOT_EXECUTED in the reviewing ChatGPT invocation** because an authenticated, byte-exact checkout of the private repository was unavailable in its local Python container. The v0.1 worker's reported 82/82 tests do not verify v0.2.
+
+### Changes to be tested prospectively
+
+- **Fresh process:** Each arm now seeds an isolated SQLite ledger in a worker, receives a commit acknowledgement, kills that process with real POSIX SIGKILL (expect -9), then starts a new worker with only the ledger path. The new worker receives only `{"op":"report"}`; no pre-intervention history or scenario is passed at readback. Every arm must show distinct PIDs.
+- **Rival provenance:** Both arms first store identical causal dependencies. A compiled availability state is computed from the same persisted event/edge information **before** the lesion and preserved in both arms. The graph-dependent reader accesses the remaining graph; the compact reader accesses the compiled state. Compilation currently requires two SELECT statements plus graph traversal and writes, and cost parity is **NOT ESTABLISHED**. This represents an admissible offline sufficient-state upper bound, not an online compute-matched rival or evidence of representational necessity.
+- **True sham cut:** Insert an irrelevant clock-to-light edge; remove only that edge for sham while preserving goal-to-outage dependency. Expected planned action in both intact-sham and cut-sham is DEFER; complete source-event recall identical; edge counts differ by exactly one.
+- **Actual query trace:** Use SQLite's statement trace during reporting to count executed SELECTs. This is measured SQL count, **not** matched CPU time, training cost, serialized bytes, update latency, or memory budget.
+- **Structural variation:** The P7 alternate path now includes an extra relay node on the dependency chain; this tests simple graph-closure structural variation. P6 remains **ID invariance only** and must not be described as a generalization result. The eventual held-out causal-world trial is still unexecuted.
+- **Supervisor-only score:** The separate test supervisor scores a single future one-step action as 1 when it matches the planted availability world's prescribed action, 0 otherwise. For the outage world the expected action is DEFER, so the lesion is scored 0 and intact/compact are 1. This is a deterministic calibration label, **not** prospective agent efficacy, causal transfer or consciousness.
+
+### v0.2 falsifiers and stop
+
+- F8: In any arm, the seeded worker fails to exit with SIGKILL, recovered PID is not distinct, or the recovered worker needs transcript/scenario in its report request.
+- F9: Sham deletion changes source rows or action, or changes more than one edge.
+- F10: Source-event parity fails, compact-state preprocessing reads injected truth instead of the stored public evidence, or actual traced query counts vary across intact and link-lesion arms without acknowledgment.
+- F11: An extra-hop structural path fails to resolve while intact, or the lesioned policy fails to change its decision; label it as instrument defect, not cognition.
+- F12: Local `python experiments/e100/day2.py --self-test`, `python -m unittest discover -s experiments/instruments -p test_e100_day2.py -v`, and `python scripts/verify_instruments.py` must be run on a clean checkout pinned to the **revised** PR head before any verified result is attributed to v0.2.
+
+**Scientific status remains EXPLORATORY_CHECKPOINT.** The next substantive design must freeze a genuinely separate counterfactual-world distribution, varied interventions, same-information/same-compute compact rivals with state-update costs, and a decision-relevant effectiveness margin. Until then there is no identified special memory architecture, no L2 functional consciousness finding, and no L3 inference.
