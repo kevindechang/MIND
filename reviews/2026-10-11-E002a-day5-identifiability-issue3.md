@@ -66,3 +66,20 @@ Use separate worker processes and isolated ledgers. Keep evaluator world state h
 **Decision:** REVISE / EXPLORATORY_CHECKPOINT, G0 OPEN, scientific accepted contributions **0**, H005/H008 unpromoted, D-W2-IDENTIFICATION OPEN/NEEDS_DISCRIMINATING_TEST. Reuses W2 v0.2 methodological constraints but does not claim a new empirical mechanism or invalidate other lesions without reviewing them. This review should not become a substitute for Day 2's pending reproducibility work. No Anjo architecture selection or production transfer.
 
 **Exactly one next executable action:** Revise PR #10's claim and implement an isolated, independently learned external-scheduler comparator on a prospectively frozen multi-period held-out maintenance test, then reproduce all arms from an exact checkout before claiming matched-compute or learned-policy results. Stop and report **NON_IDENTIFIABLE** if the two policies remain identical by definition; retain the simpler mechanism.
+
+## Execution addendum A1 — exact source-file reproduction, superseding earlier NOT_EXECUTED note for Day 5 only
+
+**Newly OBSERVED in this same invocation after drafting the review:** The local container could not clone GitHub (DNS failure), but the two full text files were retrieved from the GitHub connector, reconstructed on the local filesystem, and **Git blob hashes checked before execution**:
+
+- `experiments/e100/day5.py`: local `git hash-object` = **`222e6a2d9d5e1ad823019b9b62931d16c0497200`**, exactly GitHub PR #10 source blob at head `238c08c267b8506b625b0e45b1660ee6915000f7`.
+- `experiments/instruments/test_e100_day5.py`: local `git hash-object` = **`55aff0286b90091b73da4f63d03d84cbf4cc9a78`**, exactly GitHub PR #10 dedicated test blob.
+- Runtime **Python 3.13.5**, local isolated two-file fixture (NOT an entire MIND checkout).
+- `python -m py_compile .../day5.py .../test_e100_day5.py` → **PASS** (exit 0).
+- `python .../day5.py --self-test` → **PASS**, default internal/external `EXEC_RECALIBRATE`, receipts 7, net estimands 5; cron `EXEC_VACUUM`, net estimand 2.
+- `python -m unittest discover -s .../experiments/instruments -p test_e100_day5.py -v` → **4/4 PASS**, 0 failures (0.624 seconds observed for unittest command; **not** whole research duration).
+- Executed **the exact PR #10 `day5.py`** in an additional small supervisor script (no code modification) with three input work-order tables:
+  - Default: internal/external `EXEC_RECALIBRATE`, estimand 5 each; cron `EXEC_VACUUM`, estimand 2.
+  - Payoff shift: `recalibrate` net 4, `vacuum` net 9; **all three** choose `EXEC_VACUUM`, estimand 7 each. This confirms the review's substantive cron-tie counterexample **in the actual branch code**.
+  - All-negative: internal/external `IDLE`, estimand -1 each (they incur a query); cron `EXEC_VACUUM`, estimand -6. A negative net task can be chosen by the fixed timer while a value-aware selector abstains.
+
+**Supersession:** The earlier statements above that PR code/tests were `NOT_EXECUTED` described the **initial review state**; they no longer apply to these **two byte-exact files and these commands** after addendum A1. Still **NOT_EXECUTED**: full `scripts/verify_instruments.py` on the complete repository, other E100 lesion tests, actual multiple-process isolation, separately trained learned agents, and E900. The independent scientific reviewer condition is still unmet. The observed passing tests do **not** remedy identity-of-policies, sham separation, payoff circularity or false cost-equivalence limitations. **Verdict unchanged: REVISE / EXPLORATORY_CHECKPOINT, accepted 0, no product transfer.**
