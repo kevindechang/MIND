@@ -1,0 +1,110 @@
+{
+  "measurement": "process_time_ns CPU on this host; warmup/order effects possible; no true hardware parity",
+  "status": "PASS",
+  "strata": {
+    "q0.2_d0.1": {
+      "eager": {
+        "median_cpu_ns_per_180_events": 257779,
+        "min_max_cpu_ns": [
+          207739,
+          2137400
+        ],
+        "runs": 160
+      },
+      "graph": {
+        "median_cpu_ns_per_180_events": 50415,
+        "min_max_cpu_ns": [
+          45417,
+          123374
+        ],
+        "runs": 160
+      },
+      "lazy": {
+        "median_cpu_ns_per_180_events": 71286,
+        "min_max_cpu_ns": [
+          65728,
+          2155858
+        ],
+        "runs": 160
+      }
+    },
+    "q0.2_d0.4": {
+      "eager": {
+        "median_cpu_ns_per_180_events": 442548,
+        "min_max_cpu_ns": [
+          308829,
+          1773399
+        ],
+        "runs": 160
+      },
+      "graph": {
+        "median_cpu_ns_per_180_events": 59844,
+        "min_max_cpu_ns": [
+          50896,
+          1020628
+        ],
+        "runs": 160
+      },
+      "lazy": {
+        "median_cpu_ns_per_180_events": 81336,
+        "min_max_cpu_ns": [
+          71937,
+          245585
+        ],
+        "runs": 160
+      }
+    },
+    "q0.8_d0.1": {
+      "eager": {
+        "median_cpu_ns_per_180_events": 83324,
+        "min_max_cpu_ns": [
+          52278,
+          373135
+        ],
+        "runs": 160
+      },
+      "graph": {
+        "median_cpu_ns_per_180_events": 56584,
+        "min_max_cpu_ns": [
+          42723,
+          137264
+        ],
+        "runs": 160
+      },
+      "lazy": {
+        "median_cpu_ns_per_180_events": 65923,
+        "min_max_cpu_ns": [
+          50015,
+          330101
+        ],
+        "runs": 160
+      }
+    },
+    "q0.8_d0.4": {
+      "eager": {
+        "median_cpu_ns_per_180_events": 139472,
+        "min_max_cpu_ns": [
+          86229,
+          418032
+        ],
+        "runs": 160
+      },
+      "graph": {
+        "median_cpu_ns_per_180_events": 87856,
+        "min_max_cpu_ns": [
+          72608,
+          308269
+        ],
+        "runs": 160
+      },
+      "lazy": {
+        "median_cpu_ns_per_180_events": 89553,
+        "min_max_cpu_ns": [
+          74561,
+          182422
+        ],
+        "runs": 160
+      }
+    }
+  }
+}
