@@ -17,7 +17,8 @@ before, and everything that comes after is evaluated against it. Workflow: [GO.m
 
 ## Code rules
 
-* Python standard library only. Must run on Python ≥ 3.9 and in seconds to minutes on a laptop.
+* Python standard library only; no syntax newer than 3.9. Tested on 3.11–3.13, where results are bit-identical
+  across versions. Must run in seconds to minutes on a laptop.
 * Organs and worlds are deterministic given their seeds. No clock, no I/O, no order-dependent iteration of string
   sets (see [docs/SUBSTRATE.md](docs/SUBSTRATE.md)).
 * Never re-implement what exists. Import it, even from `experiments/instruments` (see `mind/legacy.py`).

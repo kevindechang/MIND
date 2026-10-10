@@ -23,7 +23,7 @@ Every contribution is built on top of the previous ones, mechanically:
 The design rationale, and why v1's twenty-file governance never compounded, is in
 [docs/PIPELINE.md](docs/PIPELINE.md).
 
-## Quickstart (Python ≥ 3.9, standard library only)
+## Quickstart (standard library only; tested on Python 3.11, 3.12 and 3.13 with identical results)
 
 ```bash
 python -m mind status                       # computed state of all knowledge + frontier
