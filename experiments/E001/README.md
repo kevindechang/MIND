@@ -1,3 +1,5 @@
+> **v2 note (2026-10-10):** E001's facts are re-executed as claims L04–L07, the three-node world runs as the `workshop` world, and the v0.4 dynamic program is its exact optimum (K04). See [docs/MIGRATION-v2.md](../../docs/MIGRATION-v2.md). This page is historical.
+
 # E001 — Causal Autobiographical Memory: Experiment Record
 
 **Scientific status:** G0 OPEN. E001 **NOT PREREGISTERED**, no scored AI agent trials, no E001 result supporting H001. New file layout is a *documentation index*, not a replacement for any existing experiment, code or version history.

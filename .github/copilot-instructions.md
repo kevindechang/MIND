@@ -1,1 +1,4 @@
-MIND is Anjo's dedicated **scientifically autonomous research** repository. When instructed to "go" or continue, follow `GO.md` and `AGENTS.md`, then live `research-state.md`, `TASKS.md` and `sources/README.md`. Choose an unclaimed issue, use a separate branch/PR, honor scientific gates, and distinguish test integrity from agent efficacy. Do not treat speculative architecture as product law or evidence of consciousness.
+MIND is Anjo's scientifically independent research program toward functional consciousness (not achieved). For "go"
+or "continue", follow `GO.md`; the rules are in `AGENTS.md`; the live state is the generated `STATUS.md`. Extend the
+shared organism (`mind/`) and register results as executable claims (`knowledge/claims/`, see `docs/CLAIMS.md`).
+Never edit a sealed prediction, delete a claim, or hand-edit `STATUS.md`.

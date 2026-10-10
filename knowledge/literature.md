@@ -1,3 +1,5 @@
+> **v2 note:** moved unchanged from `evidence-ledger.md`. Claims and questions cite these IDs as *motivation*; a paper is never a premise for a claim about the organism. Add entries with the depth actually read.
+
 # Evidence and sources
 
 Evidence status below describes provenance, not proof of consciousness. External primary-source links were inspected on 2026-10-10 for metadata and abstract-level conclusions. A full-text critical review is still pending unless noted.

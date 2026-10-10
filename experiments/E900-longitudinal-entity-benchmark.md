@@ -1,3 +1,5 @@
+> **v2 note (2026-10-10):** the integration aim of E900 is pursued through the shared organism, the integration atlas and claim C014. See [docs/MIGRATION-v2.md](../docs/MIGRATION-v2.md). This page is historical.
+
 # E900 — Longitudinal integrated digital entity benchmark
 
 **Status:** PROPOSED / NOT PREREGISTERED / NOT IMPLEMENTED / NOT EXECUTED. **Dependency: perform E100 Lesion Week first.** E100 Day 0 only establishes a minimal finite-state durable-state circuit, not a 90-day entity or acceptance of E900.

@@ -3,4 +3,6 @@ description: MIND — Anjo research program's canonical agent entry
 alwaysApply: true
 ---
 
-For any request to "go" or continue in this repository, read `GO.md` first, then `AGENTS.md`, `CURRENT.md`, `research-state.md`, `TASKS.md` and `sources/README.md`. The canonical instructions are in those files; do not invent a Cursor-specific plan. Use issue/PR ownership; never equate MIND research with deployed Anjo features, a fixed second architecture, or demonstrated consciousness.
+For "go" or "continue", follow `GO.md`. The rules are in `AGENTS.md` and the live state is the generated `STATUS.md`
+(never edit it by hand). Build on the shared organism in `mind/` and register results as claims in `knowledge/claims/`
+(see `docs/CLAIMS.md`). Do not write standalone toy agents. Never claim consciousness or Anjo product readiness.
