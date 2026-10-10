@@ -24,3 +24,8 @@
 ## Revised VERA coverage-equivalence source — unresolved, do not counterfeit
 
 A review requests the *revised VERA study in Anjo's repository*, with specific coverage-equivalence rules, instead of the earlier Oct 9 monograph. As of inspection of `kevindechang/anjo` main `a8fa29aea4359e027b346aea9cb55e5da7775b20`, the complete tree (2,084 entries) has no path matching `VERA` or `coverage-equivalence`; repository content search did not return a verifiable revised protocol. **Status: SOURCE_NOT_LOCATED / DO_NOT_PIN_A_GUESS.** The archived monograph remains the earlier source; do not call it the revised protocol or invent effect thresholds. When the actual file is available, copy it byte-for-byte, record source commit/path/blob SHA, inspect revised coverage-equivalence rules and update the hierarchy. No changes to Anjo production.
+
+
+### Local revised VERA file path identified (not accessible through GitHub main)
+
+The review now identifies the proposed revised study's **local Anjo working-tree path** as `docs/research/2026-10-09-vera-longitudinal-epistemic-reliability.md`. That is a useful, specific retrieval target, **not** a verified committed artifact: `kevindechang/anjo` main at `a8fa29aea4359e027b346aea9cb55e5da7775b20` returns GitHub 404 for this path. No SHA, coverage-equivalence text or protocol was inferred. The owner must commit the file to a readable Git ref or attach its actual bytes before MIND can pin the revised work. Until then the older monograph remains a distinct historical source.

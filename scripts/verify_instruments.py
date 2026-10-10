@@ -22,6 +22,7 @@ REQUIRED_TESTS = {
     "test_e001_switchboard.py",
     "test_e002a_maintenance_selection.py",
     "test_e100_day0.py",
+    "test_e100_day1.py",
 }
 
 
