@@ -9,6 +9,7 @@ priority_day: DAY1_LOCAL_BROADCAST_LESION_PASS_DAY2_NOT_RUN
 e100_artifact_commit: 03fc77c9d1cc4947a6a9ff7fab5d9b53a1a1cc97
 e100_review_mode: SELF-REVIEW_ONLY
 e100_day1_artifact_commit: 7e6f3d9a1d7f028277b48a4d8dab83f2e865d034
+e100_day1_doc_status_commit: 2da38b326c75b0d055bcf5e701709ae480203686
 e100_accepted_science: false
 product_transfer_policy: EVIDENCE_REQUIRED_EXPLICIT_APPROVAL_NO_AUTOMATIC_ADOPTION
 path: ./
