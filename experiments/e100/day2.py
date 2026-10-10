@@ -109,8 +109,8 @@ def factual(db, qc=None):
 
 
 def _linked_resources(db, goal_id, qc=None):
-    """Transitive requires/depends_on closure from a goal. Link SELECT always
-    executes (budget parity) even when the table is empty."""
+    """Transitive closure. Link SELECT executes even for a lesioned table.
+    Equal query counts do not imply matched CPU, preprocessing or memory."""
     if qc is not None:
         qc[0] += 1
     edges = db.execute("SELECT effect,cause FROM causal_links").fetchall()
@@ -128,7 +128,7 @@ def _linked_resources(db, goal_id, qc=None):
 
 
 def linked_planner(db, qc=None):
-    """Counterfactual-capable planner: act on dependency-resolved world."""
+    """Deterministic dependency reader; does not learn or infer interventions."""
     if qc is not None:
         qc[0] += 1  # events SELECT
     events = db.execute("SELECT event_id,kind,resource FROM source_events").fetchall()
@@ -143,7 +143,7 @@ def linked_planner(db, qc=None):
 
 
 def compact_rival(db, qc=None):
-    """Strong minimal rival: flat availability lookup, no link traversal."""
+    """Compiled sufficient-state rival (initial graph read at setup), no link traversal."""
     if qc is not None:
         qc[0] += 1
     events = db.execute("SELECT event_id,kind,resource FROM source_events").fetchall()
@@ -273,9 +273,17 @@ def run_arm(tmpdir, name, *, setup_kwargs=None, blank=False):
         second_pid = second.pid
     finally:
         stop_worker(second, kill=False)
+    # The supervisor alone holds the world truth; it never sends the expected
+    # answer to the recovered worker. One-step deterministic scoring only.
+    kwargs = setup_kwargs or {}
+    target = NO_GOAL if blank else (DEFER if kwargs.get("link_outage", True) else SCAN)
     observed.update({"arm": name, "build": ack["build"],
                      "worker_exit": exit_code,
-                     "distinct_process": second_pid != first_pid})
+                     "distinct_process": second_pid != first_pid,
+                     "heldout_action_score": {
+                         "expected": target,
+                         "linked": int(observed["linked_action"] == target),
+                         "compact": int(observed["compact_action"] == target)}})
     return observed
 
 
@@ -326,6 +334,9 @@ def self_test():
         # P3 rival ties intact on both arms
         assert intact["compact_action"] == DEFER == intact["linked_action"], intact
         assert lesion["compact_action"] == DEFER, lesion
+        assert intact["heldout_action_score"]["linked"] == 1
+        assert lesion["heldout_action_score"]["linked"] == 0
+        assert lesion["heldout_action_score"]["compact"] == 1
         # P4 wipe abolishes DEFER
         assert wiped["factual"] == [] and wiped["linked_action"] == NO_GOAL, wiped
         # P5 unrelated: no spurious change, factual preserved across arms
@@ -366,6 +377,8 @@ def self_test():
             "P8_sham": {"base": sham_base["linked_action"],
                          "cut": sham["linked_action"], "events_identical": True},
             "build_provenance": intact["build"],
+            "one_step_scores": {"intact": intact["heldout_action_score"],
+                                "lesion": lesion["heldout_action_score"]},
             "P7_second_path": {"intact": alt["linked_action"],
                                "lesion": alt_lesion["linked_action"]},
             "scope": "Day 2 finite-state causal-link instrument only; by construction; not L2/L3 evidence",
