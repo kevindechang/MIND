@@ -1,6 +1,10 @@
-# Research charter — Digital Mind
+# Research charter — Anjo / MIND
 
-**Date:** 2026-10-10. **State:** REVISED v0.2 (strategic north star; no experimental gate advanced). **Sponsor/context:** Anjo research, independent of shipped product claims.
+**Date:** 2026-10-10. **State:** REVISED v0.2 (strategic north star; no experimental gate advanced). **Parent initiative:** Anjo. **Research unit:** MIND (dedicated repository and experimental program). **Boundary:** scientifically autonomous in its methods and conclusions; independent of shipped product claims.
+
+## Relationship to Anjo
+
+MIND exists under Anjo to investigate how an enduring, developing digital intelligence could be engineered and evaluated, including functional mind-like cognition and competing philosophical/scientific approaches to consciousness. Anjo is the organizational/product context; MIND is its long-horizon research arm, not a separate commercial product. Findings may inform Anjo's future architecture and evaluations, but must withstand strong rivals, falsification and safety checks. There is no automatic promotion from a MIND hypothesis, toy benchmark, or scientific finding into deployed Anjo features. Conversely, product deadlines or branding must not determine the scientific verdict. Production integration requires a separate, explicitly approved engineering decision.
 
 ## Central question
 

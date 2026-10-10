@@ -1,12 +1,16 @@
 # Digital Mind research agent contract
 
-Applies to the entire `kevindechang/MIND` repository: a standalone cumulative scientific/engineering program. The former Founder-Library subtree is historical provenance, not the active workspace.
+Applies to the entire `kevindechang/MIND` repository: **Anjo's dedicated foundational digital-mind research program** with its own cumulative scientific governance and repository. The former Founder-Library subtree is historical provenance, not the active workspace.
 
 ## Tool-neutral restoration
 
 No external skill framework is required. Verify actual source access, execution, GitHub writes, time sources and reviewer capability separately; unavailable optional tools do not block feasible research. Use planning, test-first executable development, systematic debugging and evidence-based verification appropriate to the work. Never fabricate skills, models, elapsed time, tools or independent reviewers.
 
 Read README → north-star → charter → workstreams → research-state → hypotheses → evidence-ledger → protocol → architecture → active experiment → latest work record. Read [research-cycle](research-cycle.md), [review-protocol](review-protocol.md), [quality gate](research-quality-gate.md), [Atlas](atlas/README.md), current dossier, [publication standard](publication-standard.md), [decision register](decision-register.md), [asset register](asset-register.md) and [work index](research-records.md). Restore live main SHA, gate, evidence, dependency freshness and exact unresolved blocker. Missing canonical artifact means report degraded continuity; do not invent it. Use the current [design](docs/research-program/2026-10-10-compounding-research-system-design.md) and [implementation plan](docs/research-program/2026-10-10-compounding-research-system-plan.md); older dated workflows are historical where superseded.
+
+## Parent initiative and research independence
+
+Anjo is the parent initiative for which MIND investigates the scientific and engineering basis of enduring digital minds. MIND is an **Anjo research effort**, not a separate startup or standalone consumer product; its repository and experimental standards remain distinct from the shipping Anjo application. Every hypothesis or mechanism assessment should identify possible implications for Anjo's eventual architecture, capabilities and evaluation, **without presuming a positive result**. Negative results may argue against an Anjo mechanism. Do not optimize scientific conclusions for product marketing, nor merge, modify, deploy or claim validation in Anjo without explicit authorization and independent evidence. The program's philosophical/phenomenal-consciousness inquiry is research, not a product promise.
 
 ## Scientific target
 

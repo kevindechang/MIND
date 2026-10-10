@@ -1,8 +1,10 @@
-# Digital Mind Research Lab
+# MIND — Anjo's Digital Mind Research Program
 
 **Status:** research program initialized 2026-10-10; no digital consciousness claim or successful experimental outcome.
 
-This is the standalone **MIND** research repository, migrated from the former `kevindechang/Founder-Library/digital-mind/` subtree. Original files were transferred byte-for-byte from source commit `33f05852d5da4c382ac7b039070986d8d14d1579`; see [MIGRATION.md](MIGRATION.md) for provenance. The Founder Library daily feed remains separate. Related software: [Anjo](https://github.com/kevindechang/anjo) and [Affect Kernel](https://github.com/kevindechang/affect-kernel). Neither is evidence of consciousness.
+**MIND is the foundational digital-mind and consciousness research program under Anjo.** Anjo is the parent initiative and potential engineering beneficiary; MIND is its dedicated scientific research repository, not an unrelated startup, separate product, or proof of capabilities already shipped in Anjo. Its hypotheses and findings must be evaluated on scientific merit—even when they challenge Anjo's existing design. MIND is maintained separately from Anjo's production code and release decisions.
+
+This repository was migrated from the former `kevindechang/Founder-Library/digital-mind/` subtree. Original files were transferred byte-for-byte from source commit `33f05852d5da4c382ac7b039070986d8d14d1579`; see [MIGRATION.md](MIGRATION.md) for provenance. The Founder Library daily feed remains separate. Parent initiative and downstream engineering context: [Anjo](https://github.com/kevindechang/anjo); related research/software reference: [Affect Kernel](https://github.com/kevindechang/affect-kernel). Neither project nor MIND's early experiments constitute evidence of consciousness.
 
 ## Mission
 

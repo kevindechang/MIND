@@ -1,6 +1,6 @@
 # MIND — Hourly Scientific Sprint Runbook (2026-10-11)
 
-**Canonical home:** `kevindechang/MIND` main, repository root. **Executor:** one ChatGPT scheduled task using available tools. **Persistence:** GitHub only. **No** GitHub Actions, paid inference, unattended agents, duplicate schedules or promised runtime. Read AGENTS, research-cycle, research-state, records, decision/asset registers, gate and active dossier each invocation. Inspect live HEAD and recover unfinished transactions before new work.
+**Parent program:** Anjo. **Research arm:** MIND; scientifically independent evaluation, no automatic production adoption. **Canonical home:** `kevindechang/MIND` main, repository root. **Executor:** one ChatGPT scheduled task using available tools. **Persistence:** GitHub only. **No** GitHub Actions, paid inference, unattended agents, duplicate schedules or promised runtime. Read AGENTS, research-cycle, research-state, records, decision/asset registers, gate and active dossier each invocation. Inspect live HEAD and recover unfinished transactions before new work.
 
 ## Last-run failure analysis
 
@@ -22,4 +22,4 @@
 
 **5 — Persist one cumulative delta.** Attach exact source versions, inspected sections/negative sources, executable code or derivations, observed commands/results, rejected claims, comparator and falsifier, decision status, regression result, next blocker and exactly one next executable action. Commit intellectual artifacts and indexes first, research-state last, read back. If no substantive change or no write, issue a SHORT_RUN/NOT_COMMITTED handoff without incrementing accepted or attention counters. Do not create six essays or repeatedly rework the same oracle.
 
-**6 — User-facing report:** scope/gate, actual checked suites with counts, observed model trials (or NONE), non-leading stream contribution, strongest rival, new falsifier or failure, review mode, accepted count, duration provenance, artifact/state SHAs, one next action. A completed Git transaction does not equal completed scientific research.
+**6 — User-facing report:** identify this as Anjo / MIND research and include evidence-bounded Anjo architecture implications (including negative/null implications and NOT_READY_FOR_TRANSFER when applicable), without product or sentience claims. Report scope/gate, actual checked suites with counts, observed model trials (or NONE), non-leading stream contribution, strongest rival, new falsifier or failure, review mode, accepted count, duration provenance, artifact/state SHAs, one next action. A completed Git transaction does not equal completed scientific research.
