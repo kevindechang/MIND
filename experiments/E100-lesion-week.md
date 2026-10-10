@@ -16,7 +16,7 @@ Run: \`python experiments/e100/day0.py --self-test\` (POSIX) and \`python -m uni
 
 **Interpretation:** a narrow *durable action-selection circuit* exists and responds to its own ledger. This is intentionally small and almost tautological: it DOES NOT establish coherent autobiographical memory, generalization, self-directed goal formation, neural-style broadcast, consciousness, or L2 system adequacy. Real process death is observed, but a saved task is not equivalent to a sentient individual. Repeat independently on a clean MIND checkout to confirm transport and execution provenance; do not count these unit tests as accepted scientific contributions.
 
-## Days 1–7 — predeclared lesion hypotheses (NOT IMPLEMENTED)
+## Days 1–7 — planned lesions (Day 1 locally instrument-tested; Days 2–7 NOT IMPLEMENTED)
 
 | Day | Intervention vs intact process | Predeclared observable / negative rival |
 |---|---|---|
