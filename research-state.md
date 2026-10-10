@@ -5,6 +5,8 @@ path: ./
 migration_source_repository: kevindechang/Founder-Library
 migration_source_commit: 33f05852d5da4c382ac7b039070986d8d14d1579
 migration_import_commit: 359494b920941ba752a45f3efb1caf27a2ea94fe
+migration_source_retirement_commit: 5d4c21694eadea8bec79fc691ab0612d980e0be3
+migration_manifest_commit: e158ce60d425991300cd65cfb972be9cc2e81ca1
 governance_artifact_commit: f86906f81ecbd1cfd686ac4ccfca36515577139d
 date: 2026-10-11
 latest_verified_iteration: 004
@@ -95,3 +97,6 @@ Authoritative repository is **`kevindechang/MIND` main at root**, not Founder-Li
 **Effective runbook:** [RUNBOOK.md](RUNBOOK.md) and [AGENTS.md](AGENTS.md). When byte-exact code can run, execute `python scripts/verify_instruments.py` to discover and check all suites (required 14+20+12+10 plus W2 and switchboard), log exact output and provenance; if local checkout is unavailable, clearly mark NOT_EXECUTED. No new calibration-only experiment should be treated as resolving E001 G0. The NEXT substantive attention record must be a **non-W1** scientific contribution, preferably W2/E002a learned maintenance policy vs strong learned external value-of-computation scheduler, equal information and budgets, preregistration-ready test/falsifier/held-out design, actual negative controls and E900 mapping. G0/G2 unchanged, D001 remains DEFER/CURRENT, accepted 0, E900 not started, L3 unresolved. Do not mark six analytic lenses as six independent reviewers.
 
 **Exactly one next scientific action:** advance W2/E002a's identification and fair learned-controller-vs-external-scheduler preregistration by building one versioned, falsifiable multistep protocol with explicit public/private observations, expected outcomes under null and rival, budget equality, genuine restart handling, held-out worlds, leakage/ablation checks and predeclared measurement/decision rules; instrument regression preflight only if executable in an exact checkout. STOP on a reviewable preregistration-ready protocol (still NOT FROZEN) or a specific counterexample showing the comparison cannot identify its proposed mechanism; persist evidence without promoting any science gate.
+
+
+**Source retirement verified:** Founder-Library `5d4c21694eadea8bec79fc691ab0612d980e0be3` leaves only AGENTS.md/README.md redirects inside former `digital-mind/`; other Founder-Library files unchanged. Full old blob/history provenance is immutable in source `33f05852d5da4c382ac7b039070986d8d14d1579`. Final MIND migration manifest was committed at `e158ce60d425991300cd65cfb972be9cc2e81ca1`. Governance-only; no experiment/tests rerun for this migration.
