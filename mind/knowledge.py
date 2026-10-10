@@ -24,7 +24,7 @@ from pathlib import Path
 import platform
 from typing import Any, Dict, List, Optional, Sequence
 
-from .claims import KNOWLEDGE, Claim, Evaluation, canonical, git, sha
+from .claims import KNOWLEDGE, SCHEME, Claim, Evaluation, canonical, git, sha
 
 RECORDS_DIR = KNOWLEDGE / "records"
 QUESTIONS_DIR = KNOWLEDGE / "questions"
@@ -55,7 +55,7 @@ def write_record(evaluations: Sequence[Evaluation], mode: str, by: str, code: st
     head = (git("rev-parse", "HEAD") or "").strip() or None
     dirty = bool((git("status", "--porcelain", "--", "mind", "knowledge/claims",
                       "experiments/instruments") or "").strip())
-    payload = {"schema": 1, "recorded_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "by": by,
+    payload = {"schema": SCHEME, "recorded_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "by": by,
                "environment": env, "environment_id": env_id,
                "git": {"head": head, "dirty_sources": dirty}, "code": code, "mode": mode,
                "evaluations": {e.claim: e.to_dict() for e in evaluations}}
@@ -106,13 +106,17 @@ def ladder(claim: Claim) -> tuple:
 
 def _evidence(claim: Claim, records: List[Dict[str, Any]], live: Dict[str, Evaluation],
               code: str, live_mode: str) -> List[Dict[str, Any]]:
-    h = claim.prediction_hash()
+    """Evaluations of THIS prediction. Each record is matched under the hashing scheme it was
+    written with, so records made before a scheme change still count when the prediction
+    itself is unchanged."""
+    hashes = {scheme: claim.prediction_hash(scheme) for scheme in range(1, SCHEME + 1)}
     ev = []
     for rec in records:
         e = rec["evaluations"].get(claim.id)
-        if e and e["prediction_hash"] == h:
+        if e and e["prediction_hash"] == hashes.get(rec.get("schema", 1)):
             ev.append({**e, "_by": rec["by"], "_env": rec["environment_id"], "_code": rec["code"],
-                       "_at": rec["recorded_at"], "_mode": rec["mode"], "_record": rec["_path"]})
+                       "_at": rec["recorded_at"], "_mode": rec["mode"], "_record": rec["_path"],
+                       "_schema": rec.get("schema", 1)})
     if claim.id in live and live[claim.id].prediction_hash == h:
         e = live[claim.id].to_dict()
         ev.append({**e, "_by": "live", "_env": "live", "_code": code, "_at": "9999-live",
@@ -149,9 +153,11 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
             st.latest = latest
             st.current_code = latest["_code"] == code
             v = latest["verdict"]
-            # BROKEN = a regression on IDENTICAL inputs (same seeds). Holding on dev seeds but
-            # failing on sealed held-out seeds is not a regression: the prediction did not generalise.
+            # BROKEN = a regression on IDENTICAL inputs (same seed set: same label AND same hash,
+            # since held-out seeds derive from both). Holding on dev seeds but failing on sealed
+            # held-out seeds is not a regression: the prediction did not generalise.
             held_same = any(e["verdict"] == "HOLDS" and e["seeds"] == latest["seeds"] and _strength(e) >= 1
+                            and e["prediction_hash"] == latest["prediction_hash"]
                             for e in evidence if e is not latest)
             st.state = {"HOLDS": "HOLDS", "INCONCLUSIVE": "INCONCLUSIVE", "ERROR": "ERROR"}.get(
                 v, "BROKEN" if held_same else "REFUTED")
@@ -164,6 +170,14 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
             st.notes.append(f"retired: {claim.retired}")
         st.rung = _rung(claim, evidence, seal) if st.state == "HOLDS" else 0
         st.level = ladder(claim)[st.rung]
+        first = _first_heldout(evidence, seal)
+        if first is not None and not _confirmed(claim, first):
+            st.notes.append(f"failed its first sealed confirmation ({first['_at'][:10]}: {first['verdict']}); "
+                            f"later re-runs cannot earn PREREGISTERED")
+        amended = _amendments(claim, records)
+        if amended:
+            st.notes.append(f"prediction amended: {amended} earlier evaluation(s) of {claim.id} were of a "
+                            f"different prediction")
         if seal is None and claim.path and "PREREGISTERED" in ladder(claim):
             st.notes.append("unsealed: commit the claim file to enable held-out evaluation")
         out[cid] = st
@@ -171,18 +185,44 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
     return out
 
 
+def _needs_rival(claim: Claim) -> bool:
+    # The rival rung applies only to claims asserting a mechanism's superiority (`about`
+    # non-empty); a directional finding such as "memory degrades calibration" has no rival.
+    return claim.kind == "effect" and bool(claim.about)
+
+
+def _first_heldout(evidence: List[Dict[str, Any]], seal: Optional[str]) -> Optional[Dict[str, Any]]:
+    """The first RECORDED evaluation on this claim's sealed seeds. Preregistration is
+    decided by it alone: once held-out seeds have been seen, re-running them (after a code
+    change, say) proves nothing about prediction (v2 review, finding 3)."""
+    if not seal:
+        return None
+    sealed = [e for e in evidence if e["_record"] and e["seeds"] == f"heldout:{seal}"]
+    return min(sealed, key=lambda e: (e["_at"], e["_record"])) if sealed else None
+
+
+def _confirmed(claim: Claim, e: Dict[str, Any]) -> bool:
+    return e["verdict"] == "HOLDS" and e["robust"] and (not _needs_rival(claim) or _rivals_clean(e))
+
+
+def _amendments(claim: Claim, records: List[Dict[str, Any]]) -> int:
+    """Evaluations recorded for this id under a DIFFERENT prediction (same scheme)."""
+    n = 0
+    for rec in records:
+        e = rec["evaluations"].get(claim.id)
+        if e and e["prediction_hash"] != claim.prediction_hash(rec.get("schema", 1)):
+            n += 1
+    return n
+
+
 def _rung(claim: Claim, evidence: List[Dict[str, Any]], seal: Optional[str]) -> int:
     holds = [e for e in evidence if e["verdict"] == "HOLDS"]
     robust = [e for e in holds if e["robust"]]
     met = {"PROPOSED": True, "OBSERVED": bool(holds), "ROBUST": bool(robust)}
-    # The rival rung applies only to claims asserting a mechanism's superiority (`about`
-    # non-empty); a directional finding such as "memory degrades calibration" has no rival.
-    needs_rival = claim.kind == "effect" and bool(claim.about)
+    needs_rival = _needs_rival(claim)
     met["RIVAL-TESTED"] = any(_rivals_clean(e) for e in robust) if needs_rival else bool(robust)
-    sealed = [e for e in robust if seal and e["seeds"] == f"heldout:{seal}"]
-    if needs_rival:
-        sealed = [e for e in sealed if _rivals_clean(e)]
-    met["PREREGISTERED"] = bool(sealed)
+    first = _first_heldout(evidence, seal)
+    met["PREREGISTERED"] = first is not None and _confirmed(claim, first)
     recorded = [e for e in robust if e["_record"]]
     met["REPLICATED"] = (len({e["_by"] for e in recorded}) >= 2
                          and len({e["_env"] for e in recorded}) >= 2)

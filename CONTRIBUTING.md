@@ -30,4 +30,8 @@ only shared files are the small registries (`mind/*/__init__.py`) and `STATUS.md
 regenerate it with `python -m mind status --write`. A PR is mergeable when `python -m mind check`,
 `python -m unittest discover -s tests` and `python -m mind doctor` all pass on the merged tree.
 
+**Merge with a merge commit, never squash or rebase.** Held-out seeds derive from the commit that registered each
+prediction, and squashing or rebasing rewrites those commits. The doctor rejects held-out records whose seal is no
+longer in history.
+
 Approval of a PR is not a scientific verdict. Scientific standing comes only from the computed ladder.

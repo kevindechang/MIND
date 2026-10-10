@@ -31,5 +31,6 @@ CLAIM = Claim(
     extends=("C004", "C009", "C013"),
     test=Check(integration, seeds=12),
     by="pipeline-v2",
+    retired='v2 review (2026-10-10): the test counted organ x metric CELLS while the statement says ORGANS (only 2 organs qualify, so the statement was false); cells included re-labelled home effects, action-mix Brier artifacts and pinned-metric interactions; no multiplicity control. Superseded by C016 (Holm-corrected, distinct organs, curated metrics).',
     created="2026-10-10",
 )

@@ -30,6 +30,7 @@ class Outage(World):
     metrics = {"reward": ("control", "higher"),
                "brier": ("metacognition", "lower"),
                "wasted_scans": ("control", "lower")}
+    atlas_metrics = ("reward", "calib_gain")
     variants = ("dev", "silent", "volatile")
     heldout_variants = ("silent", "volatile")
     default_episodes = 120

@@ -57,6 +57,10 @@ def cmd_check(args) -> int:
         print(f"unknown claim id(s): {', '.join(sorted(missing))}", file=sys.stderr)
         return 2
     mode = "heldout" if args.heldout else "quick" if args.quick else "full"
+    if mode == "heldout" and not args.record:
+        # an unrecorded held-out run burns the sealed seeds without leaving evidence
+        print("held-out runs are always recorded (--record implied)")
+        args.record = True
     if args.record and mode == "quick":
         print("quick runs are drafts and are never recorded; drop --quick", file=sys.stderr)
         return 2
@@ -227,7 +231,7 @@ def main(argv=None) -> int:
     c.add_argument("ids", nargs="*")
     g = c.add_mutually_exclusive_group()
     g.add_argument("--quick", action="store_true", help=f"{QUICK_SEEDS} dev seeds; a draft, never recorded")
-    g.add_argument("--heldout", action="store_true", help="commit-sealed held-out seeds (preregistration)")
+    g.add_argument("--heldout", action="store_true", help="commit-sealed held-out seeds (preregistration; always recorded)")
     c.add_argument("--record", action="store_true", help="write a record under knowledge/records/")
     c.add_argument("--by", default=None, help="contributor label for the record (default: git user.name)")
     c.set_defaults(fn=cmd_check)

@@ -19,5 +19,6 @@ CLAIM = Claim(
     test=Compare(world="outage", a="organism", b="organism -memory", metric="brier",
                  direction=">", margin=0.003, seeds=16, variant="silent"),
     by="pipeline-v2",
+    retired="v2 review (2026-10-10): memory changes the action mix; a context-free table on the same streams shifts as much (+0.011), so this measured behaviour, not 'noisier context'. Inconclusive anyway; no successor yet (open in H007).",
     created="2026-10-10",
 )

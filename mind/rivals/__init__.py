@@ -23,6 +23,23 @@ from ..kernel import Decision
 from ..organs.policy import Policy, QLearner, expand
 
 
+class SuccessTable:
+    """The compact capability forecaster: per-action exponential average of public
+    outcomes. Used by the transcript rivals AND by the runner's shadow scorer
+    (calib_gain), so both are literally the same rule (claim K08)."""
+
+    def __init__(self, rate: float = 0.25, prior: float = 0.5):
+        self.rate, self.prior = rate, prior
+        self.p: Dict[str, float] = {}
+
+    def forecast(self, action: str) -> float:
+        return self.p.get(action, self.prior)
+
+    def update(self, action: str, outcome: int) -> None:
+        old = self.forecast(action)
+        self.p[action] = old + self.rate * (outcome - old)
+
+
 class Agent:
     def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)) -> Decision:
         raise NotImplementedError
@@ -41,14 +58,13 @@ class Transcript(Agent):
         self.k, self.seed, self.pairs, self.t = k, seed, pairs, 0
         self.learner = QLearner(d["alpha"], d["gamma"], d["eps"], d["eps_min"], d["half_life"])
         self.history: deque = deque(maxlen=k)
-        self.table: Dict[str, float] = {}
+        self.table = SuccessTable()
         self.prev_feats = None
         self.prev_action: Optional[str] = None
 
     def _record(self, outcome):
         if self.prev_action is not None and outcome is not None:
-            old = self.table.get(self.prev_action, 0.5)
-            self.table[self.prev_action] = old + 0.25 * (outcome - old)
+            self.table.update(self.prev_action, outcome)
 
     def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)):
         obs = {str(k): str(v) for k, v in obs.items()}
@@ -66,7 +82,7 @@ class Transcript(Agent):
         action = self.learner.choose(feats, tuple(actions), random.Random(f"{self.seed}|{self.t}|policy"))
         self.prev_feats, self.prev_action = feats, action
         self.t += 1
-        return Decision(action, round(self.table.get(action, 0.5), 6), ())
+        return Decision(action, self.table.forecast(action), ())
 
     def end_episode(self, reward=0.0, outcome=None):
         if self.prev_feats is not None:

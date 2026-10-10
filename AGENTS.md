@@ -19,14 +19,16 @@ default). Anjo's product invariants (`sources/anjo/`) are product requirements, 
 * **Predictions are sealed by git.** Never edit a committed prediction to fit results. Register a successor claim.
 * **Claims are retired, never deleted.** Negative and inconclusive results stay visible.
 * **STATUS.md is generated.** Never edit it by hand.
-* **New organs must replay.** If K01/K02 break, your organ keeps hidden state. Fix the organ, not the claim.
+* **New organs must replay.** If K01, K06 or K07 break, your organ keeps hidden or order-dependent state. Fix the
+  organ, not the claim.
 
 ## What is on you
 
 1. **Never fabricate.** No invented runs, records, numbers, reviewers, durations or sources. Records are written
    only by `python -m mind check --record`. If you could not execute something, say NOT_EXECUTED.
 2. **Record what happened.** Commit every held-out record you produce, *especially* failing ones. Deleting an
-   unwanted record before committing is the one cheat the machinery cannot see.
+   unwanted record before committing it, and **grinding** (previewing candidate commit hashes to pick favourable
+   held-out seeds), are the cheats the machinery cannot see. Both are fraud.
 3. **Independence is real or absent.** Replication means a different contributor in a different environment. A
    second prompt to the same model in the same session is self-review and must be labelled as such.
 4. **Strong rivals, honest margins.** Choose margins for scientific relevance, not to fit dev data. A compact rival

@@ -18,7 +18,9 @@ Lesions are declarative modifiers on one shared organism, never bespoke toys:
     +X              add an optional organ
     cut:X>Y         contents from X still compete for the workspace but are not
                     delivered to Y (Y may be '*')
-    freeze:X        X keeps its state but stops updating it
+    freeze:X        X keeps its state (episodic state included) but stops updating it;
+                    from birth this equals ablation for memory/goals, so freezing
+                    is meaningful mid-life: @E:freeze:X
     shuffle:X       X's proposals are replaced by its own proposals from a
                     random earlier tick (sham with matched statistics)
     capacity=N|inf  workspace size; inf = flat, no bottleneck
@@ -351,8 +353,9 @@ class Organism:
             for when, modifier in self.cfg.schedule:
                 if when == self.episode:
                     self._apply_modifier(modifier)
-            for organ in self.organs.values():
-                organ.reset_episode()
+            for name, organ in self.organs.items():
+                if name not in self.cfg.frozen:   # a frozen organ keeps ALL its state, episodic too
+                    organ.reset_episode()
         sense = Sense(self.t, obs, float(reward), outcome, boundary, actions)
         proposals: List[Content] = []
         for name in self.order:
@@ -402,7 +405,9 @@ class Organism:
     # ---- persistence ----------------------------------------------------------
     @classmethod
     def restore(cls, ledger: Ledger) -> "Organism":
-        """Rebuild from the ledger alone, verifying every logged decision."""
+        """Rebuild from the ledger alone: verify the hash chain, then re-derive and
+        verify every logged decision."""
+        ledger.verify()
         events = list(ledger)
         if not events or events[0].kind != "genesis":
             raise ReplayDivergence("ledger has no genesis event")

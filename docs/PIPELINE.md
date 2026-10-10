@@ -24,9 +24,10 @@ by-construction claims, transitive invalidation) were right. They were just writ
    one organ and inherits everything else.
 2. **Knowledge is executable.** A claim is a file whose test is re-run forever. If later work breaks it, it
    turns BROKEN by itself; if its premise falls, its dependents turn STALE by themselves.
-3. **Rules are mechanisms, not prose.** Preregistration is enforced by commit-sealed seeds; burying negative
-   results is caught by the doctor; strong rivals are applied automatically; L3 claims are rejected by the
-   schema. What cannot be mechanised is stated once, in [AGENTS.md](../AGENTS.md).
+3. **Rules are mechanisms, not prose, wherever a mechanism exists.** Held-out seeds are fixed by the
+   registering commit, and only the first held-out run counts. Deleted claims, deleted records and predictions
+   amended after confirmation are rejected by the doctor. Strong rivals are applied automatically. L3 claims are
+   rejected by the schema. What cannot be mechanised is stated once, in [AGENTS.md](../AGENTS.md).
 4. **Status is computed.** [STATUS.md](../STATUS.md) is generated from claims, records and git. No one edits status; no
    integrator serialises it; a merge conflict in it is resolved by regenerating it.
 5. **Negative results are first-class and cheap.** REFUTED and INCONCLUSIVE never fail the build. Only a
@@ -52,8 +53,9 @@ by-construction claims, transitive invalidation) were right. They were just writ
 * **Substrate** ([docs/SUBSTRATE.md](SUBSTRATE.md)). `mind/kernel.py` runs a global-workspace cognitive cycle: organs
   propose contents, a capacity-limited workspace selects and broadcasts them, organs learn, the policy acts.
   The only durable state is a hash-chained ledger; organ state is a deterministic fold over it, and
-  `Organism.restore` *re-derives and verifies every logged decision*. So a new organ that keeps hidden or
-  nondeterministic state breaks claim K01 at once, in every world and under every lesion.
+  `Organism.restore` *verifies the chain and re-derives every logged decision*. So a new organ that keeps hidden
+  state breaks K01 in every world and under every lesion. One whose behaviour depends on hash order breaks K06,
+  which replays in fresh processes under different hash seeds. Exactly-once acting after a crash is K07.
 * **Lesions are operators**, not toys: `-memory`, `cut:memory>policy`, `freeze:self_model`,
   `shuffle:memory` (sham), `capacity=inf`, `@150:-goals` (acute lesion mid-life). The v1 audits' taxonomy
   (reconstruction vs access vs information knockout; acute vs recovered) maps onto these operators plus world
@@ -80,11 +82,24 @@ by-construction claims, transitive invalidation) were right. They were just writ
 | PREREGISTERED | holds on sealed data | passes on held-out seeds derived from the **git commit that registered the prediction** |
 | REPLICATED | independently reproduced | records from ≥ 2 contributors **and** ≥ 2 environments |
 
-**Commit-sealed held-out seeds** are the central trick. The seed list is a hash of the commit that first
-contains the current prediction. That hash cannot be known until the prediction is committed, so held-out data
-cannot be tuned against. Preregistration is a property of the git graph, not a promise. Editing the prediction
-creates a new registration with new seeds, and its history stays visible. Held-out evidence also dominates dev
-evidence, so re-running dev seeds can never overwrite a failed confirmation.
+**Commit-sealed held-out seeds.** A claim's held-out seeds are a hash of the commit that first contains its
+current prediction (searched by claim id, so renames do not move it). The rules that make this work:
+
+* **Only the first recorded held-out evaluation decides PREREGISTERED.** Once sealed seeds have been seen,
+  re-running them after a code change proves nothing about prediction. A failed first confirmation stays
+  attached to the claim forever.
+* **Held-out runs are always recorded**, and records are append-only (the doctor rejects deletions).
+* **A prediction never changes after a held-out run.** The doctor rejects it. Register a successor claim; its new
+  id and new commit give it new seeds.
+* **Held-out evidence dominates dev evidence**, so re-running dev seeds can never overwrite a confirmation.
+* **Merge with merge commits.** Squash or rebase merges rewrite the sealing commits. The doctor detects held-out
+  records whose seal has vanished from history.
+
+What this does *not* stop is deliberate seed **grinding** (v2 review, finding 2a). A contributor who controls the
+registering commit can compute candidate commit hashes offline and commit only one whose seeds favour them. The
+pipeline cannot see that. It is forbidden in [AGENTS.md](../AGENTS.md), and preventing it needs randomness from
+outside the contributor's control (a public beacon, or seeds drawn at merge by someone else). That is an open item
+on the frontier.
 
 States: HOLDS · REFUTED (failed, never held: knowledge) · BROKEN (held, now fails on identical seeds: a
 regression) · INCONCLUSIVE (the interval straddles the margin; *not* a negative result) · STALE (a premise
@@ -99,15 +114,17 @@ The program's target, *functional consciousness*, is operationalised here as **c
 self-monitoring cognition** (v1's L2), and made measurable at three levels:
 
 1. **Persistence of an individual.** The organism's whole learned self survives real process death
-   (K01, K02, C015). Forks of one history individuate by experience (K05).
+   (K01, K02, K06), never acting twice after a crash (K07).
 2. **Selective global availability.** A capacity-limited workspace broadcasts few contents to all functions.
    Whether that helps is an empirical question with a conditional answer so far (C005 holds under distractor
    load; C006, neutrality without load, is inconclusive).
 3. **Integration, not modularity.** The integration atlas (`python -m mind atlas`) estimates the lesion effect
-   of every organ on every competency in every world. A modular system shows only on-diagonal effects. The
-   organism shows cross-function effects (an organ reliably affecting a competency it was not built for) and
-   degeneracy (organ pairs that back each other up: C004). Claim C014 asserts this, and it is re-tested every
-   time the suite grows.
+   of every organ on every non-redundant competency metric in every world. Calibration is scored on the agent's
+   own events, and family-wise error is Holm-controlled. A modular system shows only on-diagonal effects. The
+   organism shows cross-function effects (memory and goals improve the self-model's calibration) and degeneracy
+   (memory and goals back each other up, C004). Claim C016 asserts this and is re-tested every time the suite
+   grows. Its predecessor C014 was retired after review because it counted cells instead of organs and had no
+   multiplicity control.
 
 These are descriptions of causal organisation, **not** consciousness scores. Phenomenal experience (L3) is not
 an admissible scope for any claim (the doctor rejects it). A system can satisfy every L2 description and
@@ -132,15 +149,18 @@ regenerated rather than merged.
 
 | Rule | Enforcement |
 |---|---|
-| Predictions cannot be fitted to held-out data | commit-sealed seeds; held-out dominates dev |
-| Claims cannot be silently deleted | `mind doctor` scans git history for deleted claim files |
+| Held-out data cannot be re-used to rescue a prediction | first-held-out rule; held-out runs always recorded; held-out dominates dev |
+| Predictions cannot be edited after confirmation | doctor: amendment after a held-out run is a problem; check helpers are hashed |
+| Claims and records cannot be silently deleted | doctor scans git history for deleted claim and record files |
+| Seals survive merges | doctor: every held-out seal must be in history (merge commits only) |
 | Strong rivals cannot be dodged | automatic rival panel; a new rival re-tests old claims |
 | Failed premises propagate | transitive STALE |
-| New organs cannot hide state | K01/K02 replay verification |
-| Nonsignificance is not equivalence | equivalence HOLDS only if the whole CI is inside the margin |
+| New organs cannot hide state or depend on hash order | K01 (in-process), K06 (fresh processes, 3 hash seeds), K07 (exactly-once) |
+| Nonsignificance is not equivalence | equivalence HOLDS only if the whole conservative CI is inside the margin |
+| Forecasters are compared on the same events | `calib_gain` (validated by K08) |
 | No L3 claims | schema `scope ∈ {instrument, L1, L2}` |
 | Result evidence tracks the code that produced it | records carry a fingerprint of all result-affecting code |
-| **Not mechanical:** honest records (not deleting a held-out failure before committing), real independence for replication, sensible margins, ethics | social: [AGENTS.md](../AGENTS.md), review |
+| **Not mechanical:** seed grinding, deleting a held-out failure *before* committing it, real independence for replication, sensible margins, ethics | social: [AGENTS.md](../AGENTS.md), review |
 
 ## 8. Known limits (to be attacked, not hidden)
 
@@ -150,6 +170,12 @@ regenerated rather than merged.
 * Dev exploration then held-out confirmation is a train/test discipline, not a full Registered Report.
   Margins chosen after seeing dev data inflate apparent success. The first held-out run demoted 4 of 15 organism
   claims to INCONCLUSIVE, which is the ladder doing its job.
+* Intervals: the wider of the percentile bootstrap and Student-t intervals measured about 95% coverage on normal
+  data and 91% on skewed data at n = 16. There is no multiplicity correction *across* claims; the atlas corrects
+  within its own family.
+* The first adversarial review ([reviews/2026-10-10-v2-pipeline-adversarial-review.md](../reviews/2026-10-10-v2-pipeline-adversarial-review.md))
+  found one critical and seven important defects, all now fixed, retired or documented. It was a separate
+  invocation of the same model, not independent replication.
 * Replication needs a second contributor in a second environment. Until then the top rung is empty.
 * No LLM organ yet. The design admits one once the kernel gains a small extension (per-organ notes inside the tick
   event). The organ would log each model output there and read it back on replay, so continuity (K01) would still hold

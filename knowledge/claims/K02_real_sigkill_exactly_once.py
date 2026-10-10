@@ -1,9 +1,10 @@
-"""Real SIGKILL, including mid-request: exactly-once acting and a byte-identical life.
+"""Real SIGKILL after replies and before commit: a fresh process continues the same life.
 
-A worker process is killed with SIGKILL both after a reply and while a request is
-in flight; a fresh PID restores from the SQLite ledger alone and the supervisor
-blindly resends. Anjo invariant I7 (a retried event never duplicates a committed
-change) holds by construction of `Organism.step_at`; this claim checks it physically.
+A worker process is killed with SIGKILL after a reply and right after a request is
+sent; a fresh PID restores from the SQLite ledger alone and the supervisor resends.
+The v2 review found the in-flight kill always lands BEFORE the commit (0/18), so this
+claim never exercises duplicate suppression: exactly-once (Anjo invariant I7) is
+tested by K07, which kills after the commit is durable.
 """
 from mind.claims import Check, Claim
 
@@ -36,10 +37,10 @@ def sigkill(ctx):
 
 CLAIM = Claim(
     id="K02",
-    title="Real SIGKILL mid-request: exactly-once action, byte-identical life",
-    statement="Killing the organism's process with SIGKILL after replies and during in-flight requests, then "
-              "restarting from the SQLite ledger alone, reproduces the uninterrupted action trace and ledger "
-              "head exactly, with no action committed twice.",
+    title="Real SIGKILL after replies and before commit: a byte-identical life in a fresh process",
+    statement="Killing the organism's process with SIGKILL after replies and right after sending a request "
+              "(before it commits), then restarting from the SQLite ledger alone, reproduces the uninterrupted "
+              "action trace and ledger head exactly.",
     kind="invariant",
     scope="instrument",
     test=Check(sigkill, seeds=3),

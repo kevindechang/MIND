@@ -54,5 +54,6 @@ CLAIM = Claim(
     extends=("L02",),
     test=Check(persistence, seeds=12),
     by="pipeline-v2",
+    retired='v2 review (2026-10-10): true by construction given K01 (a restored organism IS the trained organism); it demonstrates the pipeline, not a finding about cognition. Retired without successor.',
     created="2026-10-10",
 )

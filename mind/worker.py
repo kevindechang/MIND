@@ -41,13 +41,16 @@ def serve(ledger_path: Path, config: str, seed: int) -> None:
             if msg["op"] == "step":
                 if set(msg) != {"op", "t", "obs", "r", "o", "b", "a"}:
                     raise ValueError("a step may carry only the current observation")
+                before = len(ledger)
                 d = org.step_at(msg["t"], msg["obs"], msg["r"], msg["o"], msg["b"], msg["a"])
-                reply = {"t": msg["t"], "act": d.action, "conf": d.confidence}
+                # 'replayed' is MEASURED: the answer came from the ledger iff nothing was appended
+                reply = {"t": msg["t"], "act": d.action, "conf": d.confidence, "replayed": len(ledger) == before}
             elif msg["op"] == "end":
+                before = len(ledger)
                 if ended_at != msg["t"]:          # idempotent: never end the same episode twice
                     org.end_episode(msg["r"], msg["o"])
                     ended_at = msg["t"]
-                reply = {"ok": True}
+                reply = {"ok": True, "replayed": len(ledger) == before}
             elif msg["op"] == "head":
                 reply = {"head": ledger.head, "events": len(ledger), "pid": os.getpid()}
             else:
@@ -90,25 +93,57 @@ class WorkerProcess:
         self.proc.stderr.close()
 
 
+def _last_event(path: Path):
+    """(kind, payload) of the newest COMMITTED ledger event, read by the supervisor."""
+    import sqlite3
+    db = sqlite3.connect(f"file:{path}?mode=ro", uri=True, timeout=5)
+    try:
+        row = db.execute("SELECT kind, payload FROM events ORDER BY seq DESC LIMIT 1").fetchone()
+    finally:
+        db.close()
+    return (row[0], json.loads(row[1])) if row else (None, None)
+
+
+def _wait_committed(path: Path, kind: str, t: int, timeout: float = 10.0) -> None:
+    import time
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        k, payload = _last_event(path)
+        if k == kind and payload.get("t") == t:
+            return
+        time.sleep(0.001)
+    raise RuntimeError(f"{kind} for t={t} was never committed")
+
+
 def supervised_run(config: str, world: str, seed: int, episodes: int, variant: str = "dev",
                    kill_after: Sequence[int] = (), kill_during: Sequence[int] = (),
+                   kill_committed: Sequence[int] = (), kill_end_committed: Sequence[int] = (),
                    workdir: Path = None) -> Dict:
-    """Run a lifetime in a worker process, SIGKILLing it after the reply to the
-    ticks in `kill_after` and in the middle of the requests in `kill_during`
-    (before the reply is read). Returns the action trace and death evidence."""
+    """Run a lifetime in a worker process and SIGKILL it at chosen moments:
+
+      kill_after          ticks: after the reply has been read
+      kill_during         ticks: right after sending the request (usually before it commits)
+      kill_committed      ticks: after the tick is durably COMMITTED but before the reply
+                          is read, so the resend must be answered from the ledger
+      kill_end_committed  episode indices: after the episode's end event is committed
+
+    Returns the action trace, the deaths, and how many resends were answered as
+    replays (the exactly-once path)."""
     if os.name != "posix" or not hasattr(signal, "SIGKILL"):
         return {"status": "NOT_EXECUTED", "reason": "POSIX SIGKILL required"}
     own_dir = workdir is None
     tmp = tempfile.TemporaryDirectory(prefix="mind-death-") if own_dir else None
     path = Path(tmp.name if own_dir else workdir) / "ledger.sqlite3"
     after, during = set(kill_after), set(kill_during)
+    committed, end_committed = set(kill_committed), set(kill_end_committed)
+    replays = {"step": 0, "end": 0}
     deaths: List[Dict] = []
     worker = WorkerProcess(path, config, seed)
     env = make_world(world, seed, variant)
     trace: List[str] = []
     tick = 0
     try:
-        for _ in range(episodes):
+        for episode in range(episodes):
             obs = env.reset()
             reward, outcome, boundary = 0.0, None, True
             while True:
@@ -120,7 +155,15 @@ def supervised_run(config: str, world: str, seed: int, episodes: int, variant: s
                     pid = worker.proc.pid
                     deaths.append({"tick": tick, "mode": "during", "exit": worker.kill(), "pid": pid})
                     worker = WorkerProcess(path, config, seed)
+                if tick in committed:
+                    committed.discard(tick)
+                    worker.send(msg)
+                    _wait_committed(path, "tick", tick)   # durably committed, reply never read
+                    pid = worker.proc.pid
+                    deaths.append({"tick": tick, "mode": "committed", "exit": worker.kill(), "pid": pid})
+                    worker = WorkerProcess(path, config, seed)
                 reply = worker.ask(msg)           # resend: exactly-once via the ledger
+                replays["step"] += bool(reply.get("replayed"))
                 trace.append(reply["act"])
                 if tick in after:
                     after.discard(tick)
@@ -130,7 +173,15 @@ def supervised_run(config: str, world: str, seed: int, episodes: int, variant: s
                 s = env.step(reply["act"])
                 tick += 1
                 if s.done:
-                    worker.ask({"op": "end", "t": tick, "r": s.reward, "o": s.outcome})
+                    end = {"op": "end", "t": tick, "r": s.reward, "o": s.outcome}
+                    if episode in end_committed:
+                        end_committed.discard(episode)
+                        worker.send(end)
+                        _wait_committed(path, "end", tick)
+                        pid = worker.proc.pid
+                        deaths.append({"tick": tick, "mode": "end-committed", "exit": worker.kill(), "pid": pid})
+                        worker = WorkerProcess(path, config, seed)
+                    replays["end"] += bool(worker.ask(end).get("replayed"))
                     break
                 obs, reward, outcome, boundary = s.obs, s.reward, s.outcome, False
         head = worker.ask({"op": "head"})
@@ -142,7 +193,7 @@ def supervised_run(config: str, world: str, seed: int, episodes: int, variant: s
         if tmp is not None:
             tmp.cleanup()
     return {"status": "RUN", "trace": trace, "deaths": deaths, "head": head["head"],
-            "final_pid": head["pid"], "events": head["events"]}
+            "final_pid": head["pid"], "events": head["events"], "replays": replays}
 
 
 if __name__ == "__main__":

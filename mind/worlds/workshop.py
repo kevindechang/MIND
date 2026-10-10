@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from fractions import Fraction
 from functools import lru_cache
+import random
 from typing import Dict, Tuple
 
 from ..legacy import instrument
@@ -72,16 +73,24 @@ class Workshop(World):
                "success": ("causal-control", "higher"),
                "probes": ("information-seeking", "higher"),
                "brier": ("metacognition", "lower")}
+    atlas_metrics = ("utility", "probes", "calib_gain")
     variants = ("dev", "skewed", "censored")
     heldout_variants = ("skewed", "censored")
     default_episodes = 1500
 
+    def _stream(self, *parts) -> random.Random:
+        # Per-episode streams: what the world draws never depends on how the agent acted
+        # earlier, so paired arms see the same episodes (v2 review: probes used to shift them).
+        return random.Random("|".join(["world", self.name, self.variant, str(self.seed)] + [str(p) for p in parts]))
+
     def reset(self):
         s = _SETTINGS[self.variant]
         prior = _PRIORS[s["prior"]]
-        self.graph = self.rng.choices(range(8), weights=[float(p) for p in prior])[0]
-        goals = sorted(self.rng.sample((0, 1, 2), 2))
-        self.commitments = tuple((g, self.rng.randint(0, 1), PENALTY) for g in goals)
+        self.episode = getattr(self, "episode", -1) + 1
+        rng = self._stream("ep", self.episode)
+        self.graph = rng.choices(range(8), weights=[float(p) for p in prior])[0]
+        goals = sorted(rng.sample((0, 1, 2), 2))
+        self.commitments = tuple((g, rng.randint(0, 1), PENALTY) for g in goals)
         self.t = 0
         self.probes_left = 2
         self.result = None
@@ -122,7 +131,8 @@ class Workshop(World):
             self.probes_left -= 1
             self.probes += 1
             reward = -float(COST)
-            censored = self.rng.random() < float(_SETTINGS[self.variant]["censor"])
+            coin = self._stream("ep", self.episode, "t", self.t, "probe", node).random()
+            censored = coin < float(_SETTINGS[self.variant]["censor"])
             label = "censored" if censored else affected_label(V04.reach(GRAPHS[self.graph], node))
             self.result = (f"fx{node}", label)
         self.utility += reward

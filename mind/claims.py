@@ -15,6 +15,7 @@ Seeds
 """
 from __future__ import annotations
 
+import ast
 from dataclasses import asdict, dataclass, field, replace
 import hashlib
 import importlib.util
@@ -34,6 +35,9 @@ ROOT = Path(__file__).resolve().parents[1]
 KNOWLEDGE = ROOT / "knowledge"
 CLAIMS_DIR = KNOWLEDGE / "claims"
 
+# Prediction-hash scheme. 1: test spec only (records written before the v2 review);
+# 2: Check claims also hash their file's code. Records store the scheme they were made under.
+SCHEME = 2
 KINDS = ("effect", "equivalence", "threshold", "invariant", "fact")
 # Empirical claims live at the instrument, behavioural (L1) or causal-organisation (L2)
 # level. L3 (phenomenal experience) is deliberately NOT an admissible scope.
@@ -45,7 +49,10 @@ LADDER = {
     "invariant": ("PROPOSED", "OBSERVED", "ROBUST", "PREREGISTERED", "REPLICATED"),
     "fact": ("PROPOSED", "OBSERVED", "ROBUST", "REPLICATED"),
 }
-GENERIC_METRICS = {"reward": ("control", "higher"), "brier": ("metacognition", "lower")}
+GENERIC_METRICS = {"reward": ("control", "higher"), "brier": ("metacognition", "lower"),
+                   # same-event-stream calibration (v2 review, finding 7): a per-action success table
+                   # scored on the agent's OWN actions and outcomes, and its gap to the agent's forecasts
+                   "brier_table": ("metacognition", "lower"), "calib_gain": ("metacognition", "higher")}
 
 
 def sha(text: str, n: int = 16) -> str:
@@ -120,12 +127,17 @@ class Claim:
     rationale: str = ""
     retired: Optional[str] = None       # reason, if withdrawn (never delete a claim)
     path: str = ""
+    module_hash: str = ""               # hash of the claim file's code minus prose (set by the loader)
 
-    def prediction(self) -> Dict[str, Any]:
-        return {"id": self.id, "kind": self.kind, "scope": self.scope, "test": self.test.spec()}
+    def prediction(self, scheme: int = SCHEME) -> Dict[str, Any]:
+        p = {"id": self.id, "kind": self.kind, "scope": self.scope, "test": self.test.spec()}
+        if scheme >= 2 and isinstance(self.test, Check):
+            # helpers and constants a check relies on are part of what is predicted (v2 review, finding 4)
+            p["module"] = self.module_hash
+        return p
 
-    def prediction_hash(self) -> str:
-        return sha(canonical(self.prediction()))
+    def prediction_hash(self, scheme: int = SCHEME) -> str:
+        return sha(canonical(self.prediction(scheme)))
 
     @property
     def ladder(self) -> Tuple[str, ...]:
@@ -137,6 +149,23 @@ class Claim:
 
 # ----------------------------------------------------------------------------- loading
 
+def code_without_prose(text: str) -> str:
+    """The claim file's source minus its module docstring, its `CLAIM = Claim(...)`
+    block (prose and declarative spec, hashed separately) and blank lines. Raw text,
+    so the hash does not depend on the Python version."""
+    tree = ast.parse(text)
+    drop = set()
+    body = tree.body
+    if body and isinstance(body[0], ast.Expr) and isinstance(getattr(body[0], "value", None), ast.Constant) \
+            and isinstance(body[0].value.value, str):
+        drop.update(range(body[0].lineno, body[0].end_lineno + 1))
+    for node in body:
+        if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "CLAIM" for t in node.targets):
+            drop.update(range(node.lineno, node.end_lineno + 1))
+    lines = [line.rstrip() for i, line in enumerate(text.splitlines(), 1) if i not in drop]
+    return "\n".join(line for line in lines if line.strip())
+
+
 def _exec_claim(text: str, filename: str) -> Claim:
     # Register the source so inspect.getsource works for Check functions,
     # including historical versions read out of git.
@@ -146,7 +175,7 @@ def _exec_claim(text: str, filename: str) -> Claim:
     claim = namespace.get("CLAIM")
     if not isinstance(claim, Claim):
         raise ValueError(f"{filename}: no CLAIM = Claim(...) defined")
-    return claim
+    return replace(claim, module_hash=sha(code_without_prose(text)))
 
 
 def load_claims(directory: Path = CLAIMS_DIR, root: Path = ROOT) -> Dict[str, Claim]:
@@ -173,21 +202,30 @@ def git(*args: str, root: Path = ROOT) -> Optional[str]:
 
 
 def seal_commit(claim: Claim, root: Path = ROOT) -> Optional[str]:
-    """Earliest commit whose version of the claim file carries the CURRENT prediction."""
-    log = git("log", "--format=%H", "--reverse", "--", claim.path, root=root)
+    """Earliest commit containing a file for this claim id that carries the CURRENT
+    prediction. Searched by id (file names must start with '<id>_'), so renaming a
+    claim file does not move its seal or re-roll its held-out seeds."""
+    folder = str(Path(claim.path).parent) if claim.path else "knowledge/claims"
+    log = git("log", "--format=%x01%H", "--name-only", "--",
+              f":(glob){folder}/{claim.id}_*.py", root=root)
     if not log:
         return None
     target = claim.prediction_hash()
-    for commit in log.split():
-        text = git("show", f"{commit}:{claim.path}", root=root)
-        if text is None:
-            continue
-        try:
-            old = _exec_claim(text, f"<git {commit[:12]}:{claim.path}>")
-        except Exception:
-            continue
-        if old.prediction_hash() == target:
-            return commit
+    entries = []
+    for block in log.split("\x01")[1:]:
+        lines = [x for x in block.splitlines() if x.strip()]
+        entries.append((lines[0], lines[1:]))
+    for commit, paths in reversed(entries):          # oldest first
+        for path in paths:
+            text = git("show", f"{commit}:{path}", root=root)
+            if text is None:
+                continue
+            try:
+                old = _exec_claim(text, f"<git {commit[:12]}:{path}>")
+            except Exception:
+                continue
+            if old.id == claim.id and old.prediction_hash() == target:
+                return commit
     return None
 
 
@@ -295,8 +333,9 @@ def evaluate(claim: Claim, lab: Any, mode: str = "full", seal: Optional[str] = N
                 # beating a standing rival head-on is itself a rival test
                 sign = 1.0 if metric_orientation(test.world, test.metric) == "higher" else -1.0
                 lo, hi = sorted((sign * ev.estimate["lo"], sign * ev.estimate["hi"]))
+                # a claim can hold because the RIVAL is better; only a reliable advantage beats it
                 ev.rivals[direct.name] = {"reference": direct.reference, "advantage": sign * ev.estimate["diff"],
-                                          "lo": lo, "hi": hi, "result": "BEATEN"}
+                                          "lo": lo, "hi": hi, "result": "BEATEN" if lo > 0 else "NOT_BEATEN"}
             if mode != "quick" and ev.verdict == stats.HOLDS:
                 better = metric_orientation(test.world, test.metric)
                 for rival in rival_panel(claim):

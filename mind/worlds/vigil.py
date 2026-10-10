@@ -28,6 +28,7 @@ class Vigil(World):
                "false_starts": ("inhibition", "lower"),
                "reward": ("control", "higher"),
                "brier": ("metacognition", "lower")}
+    atlas_metrics = ("kept", "false_starts", "calib_gain")
     variants = ("dev", "long", "crowded")
     heldout_variants = ("long", "crowded")
     default_episodes = 300

@@ -14,7 +14,7 @@ from pathlib import Path
 import re
 from typing import Dict, List, Set, Tuple
 
-from .claims import CLAIMS_DIR, KINDS, ROOT, SCOPES, Check, Compare, Threshold, git, load_claims
+from .claims import CLAIMS_DIR, GENERIC_METRICS, KINDS, ROOT, SCOPES, Check, Compare, Threshold, git, load_claims
 from .knowledge import load_questions, load_records
 
 PINNED = {
@@ -86,7 +86,7 @@ def doctor() -> Tuple[List[str], List[str]]:
                 if t.variant not in world.variants:
                     raise ValueError(f"unknown variant {t.variant!r}")
                 base = t.metric.split("@")[0]
-                if base not in world.metrics and base not in ("reward", "brier"):
+                if base not in world.metrics and base not in GENERIC_METRICS:
                     raise ValueError(f"{t.world} has no metric {base!r}")
                 for arm in ([t.a, t.b] if isinstance(t, Compare) else [t.arm]):
                     _check_arm(arm)
@@ -126,11 +126,29 @@ def doctor() -> Tuple[List[str], List[str]]:
         if line.endswith(".py") and stem not in present_ids:
             problems.append(f"claim file {line} was deleted from history; restore it with retired='reason'")
 
-    # records reference real claims
+    # records are append-only evidence: never deleted
+    gone = git("log", "--diff-filter=D", "--name-only", "--format=", "--", "knowledge/records") or ""
+    for line in sorted(set(gone.split())):
+        problems.append(f"record {line} was deleted from history; evidence is append-only, restore it")
+
+    # records reference real claims; predictions are never changed after a held-out evaluation;
+    # every held-out seal is still in history (squash/rebase would silently re-roll seeds)
+    head_ok = git("rev-parse", "HEAD") is not None
     for rec in load_records():
-        for cid in rec["evaluations"]:
+        schema = rec.get("schema", 1)
+        for cid, e in rec["evaluations"].items():
             if cid not in claims:
                 warnings.append(f"{rec['_path']}: evaluation for unknown claim {cid}")
+                continue
+            heldout = str(e.get("seeds", "")).startswith("heldout:")
+            if heldout and e["prediction_hash"] != claims[cid].prediction_hash(schema):
+                problems.append(f"{cid}: prediction changed after a held-out evaluation ({rec['_path']}); "
+                                f"restore it and register a successor claim instead")
+            if heldout and head_ok:
+                seal = e["seeds"].split(":", 1)[1]
+                if git("merge-base", "--is-ancestor", seal, "HEAD") is None:
+                    problems.append(f"{cid}: held-out seal {seal[:12]} in {rec['_path']} is not in this history "
+                                    f"(squash/rebase merge?); merge with merge commits so seals survive")
 
     # registries
     for name, cls in WORLDS.items():

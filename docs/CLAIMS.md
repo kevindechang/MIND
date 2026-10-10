@@ -35,22 +35,33 @@ CLAIM = Claim(
 * `Check(fn, seeds=0)`: custom logic. `fn(ctx)` returns `{"verdict": "HOLDS"|"FAILS"|"INCONCLUSIVE",
   "robust": bool, "summary": str, ...}`. `ctx.lab` runs lifetimes (cached, parallel), `ctx.seeds` holds dev or sealed
   held-out seeds, and `ctx.mode` is the run mode. The function's **source** is part of the prediction hash. Use it for
-  exact facts (e.g. the ported v1 results L04–L07), invariants (K01–K05) and composite estimands (the C004
-  degeneracy interaction, the C014 atlas).
+  exact facts (e.g. the ported v1 results L04–L07), invariants (K01–K08) and composite estimands (the C004
+  degeneracy interaction, the C016 atlas). Since scheme 2 the **whole claim file's code** (helpers, constants,
+  imports, but not its docstring or the `CLAIM = ...` block) is part of the prediction. Editing a helper is
+  editing the prediction.
 
 Arms are organism configurations (`organism -memory cut:goals>policy`, see [SUBSTRATE.md](SUBSTRATE.md)) or
 `rival:<name>`.
 
 ## The prediction lock and the seal
 
-`prediction = {id, kind, scope, test spec}` and `prediction_hash = sha256(canonical(prediction))[:16]`. Title,
-statement, rationale and lineage are prose and may be improved at any time without consequence.
+`prediction = {id, kind, scope, test spec}`, plus, for `Check` claims, the hash of the file's code without its
+docstring and `CLAIM` block (scheme 2). `prediction_hash = sha256(canonical(prediction))[:16]`. Title, statement,
+rationale, lineage and `retired` are prose and may be improved at any time without consequence. Records store the
+scheme they were made under, so records from before a scheme change still match an unchanged prediction.
 
-The **seal** is the earliest commit whose version of the file carries the current prediction hash.
-**Held-out seeds** are `sample(range(10_000, 10_000_000), n)` drawn from a hash of `seal | id | prediction_hash`. You
-cannot know them before committing the prediction, so you cannot tune on them. If you change the prediction, you
-create a new registration with a new seal and new seeds. That is allowed and its history stays visible, but never do it
-to rescue a failed confirmation. Register a successor claim instead.
+The **seal** is the earliest commit containing a file for this claim id (searched by id, so renames do not move
+it) that carries the current prediction hash. **Held-out seeds** are `sample(range(10_000, 10_000_000), n)` drawn
+from a hash of `seal | id | prediction_hash`. They are fixed by the registering commit. Rules:
+
+* **Only the first recorded held-out evaluation decides PREREGISTERED.** A failure stays attached to the claim; later
+  re-runs update its state but never its preregistration.
+* **Never change a prediction after a held-out run.** The doctor rejects it. Register a successor claim with a new
+  id; its new commit gives it new seeds.
+* **Merge with merge commits.** Squash or rebase merges rewrite sealing commits, and the doctor rejects held-out
+  records whose seal has left history.
+* **Do not grind.** You *can* compute a commit's hash before creating it, and so preview its seeds. Choosing a
+  commit for its seeds is fraud that the tool cannot detect (see [AGENTS.md](../AGENTS.md)).
 
 ## Running
 
@@ -58,7 +69,7 @@ to rescue a failed confirmation. Register a successor claim instead.
 python -m mind check                  # every claim at full strength on dev seeds (exit 1 only on BROKEN/ERROR)
 python -m mind check C005 --quick     # 4 dev seeds, a draft, never recorded
 python -m mind check C005 --record    # full strength; writes knowledge/records/<time>-<env>-full.json
-python -m mind check C005 --heldout --record   # sealed seeds; requires the claim to be committed
+python -m mind check C005 --heldout           # sealed seeds; requires the claim to be committed; always recorded
 python -m mind status --write         # regenerate STATUS.md
 ```
 
@@ -91,8 +102,8 @@ PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED → PREREGISTERED → REPLICAT
   Every rival in the zoo that challenges one of those mechanisms in that world is run on the same seeds, and the claim's
   arm `a` must beat each reliably. Reference rivals (privileged oracles) are reported as a ceiling but not required.
   Beating a rival directly as arm `b` counts.
-* **PREREGISTERED** needs a robust pass on the sealed held-out seeds of the current prediction (and a clean rival
-  panel when one applies). Deterministic checks without seeds skip this rung.
+* **PREREGISTERED** needs the *first* recorded evaluation on the sealed held-out seeds of the current prediction to
+  be a robust pass (with a clean rival panel when one applies). Deterministic checks without seeds skip this rung.
 * **REPLICATED** needs robust passing records from at least two distinct contributors **and** two distinct
   environments.
 
@@ -107,14 +118,18 @@ error (Anjo invariant I5: no self-evidence).
 
 Claim ids are unique and match file names. Kinds and scopes are valid (no L3). Premises exist and are acyclic.
 Lineage points to a claim or a real path. Every test names a real world, variant, metric and arm. Equivalence claims
-use `~`. **No claim file has ever been deleted from git history.** Pinned Anjo sources are byte-unchanged. Links in the
-living docs resolve.
+use `~`. **No claim file and no record file has ever been deleted from git history. No prediction has changed
+after a held-out evaluation. Every held-out seal is still in history.** Pinned Anjo sources are byte-unchanged.
+Links in the living docs resolve.
 
 ## Good claims
 
 * State the strongest simple rival in the docstring and make sure the zoo contains it.
 * Put the margin where it matters scientifically, not where your dev data happens to land. The first held-out run
   demoted 4 of 15 organism claims whose margins were too close to their dev estimates.
-* Prefer a pair of conditional claims (C005 with C006, C007 with C008) to one universal claim: necessity is a property of
+* Prefer a pair of conditional claims (C002 with C003, C005 with C006) to one universal claim: necessity is a property of
   a mechanism in a world.
+* Compare forecasters on the **same events** (`calib_gain`), never two agents' Brier scores on their own action
+  streams: behaviour then masquerades as calibration (C007/C008 were retired for exactly this).
+* Count what the statement says. C014 said "organs" and counted cells (retired).
 * A refuted or inconclusive claim that teaches something is a contribution. A claim that cannot fail is not.

@@ -19,5 +19,6 @@ CLAIM = Claim(
     test=Compare(world="outage", a="organism", b="rival:reactive", metric="brier",
                  direction="~", margin=0.02, seeds=16, variant="silent"),
     by="pipeline-v2",
+    retired="v2 review (2026-10-10): the apparent tie was an action-mix artifact (the organism scans more). On the same events the self-model is BETTER than the table even without announcements; the claim's interpretation is reversed. Superseded by C018.",
     created="2026-10-10",
 )

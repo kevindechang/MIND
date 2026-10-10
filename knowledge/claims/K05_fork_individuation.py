@@ -64,6 +64,7 @@ CLAIM = Claim(
     depends_on=("K01",),
     extends=("L02",),
     by="pipeline-v2",
+    retired='v2 review (2026-10-10): divergence after different experience is by construction (different data, different weights) and twin identity is already covered by K01. Retired without successor.',
     created="2026-10-10",
     rationale="E100 Day 7 asked for this; v1's version injected the divergence by hand (PR #12).",
 )

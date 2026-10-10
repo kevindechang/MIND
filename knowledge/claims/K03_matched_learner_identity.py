@@ -3,7 +3,11 @@
 Every organism-vs-transcript comparison in this repository assumes the rivals use
 the same learner, exploration and credit assignment as the organism, so that a
 difference can only come from representation (workspace, memory, goals, self-model).
-This claim checks that assumption action for action in every world.
+This claim checks that assumption action for action in every world's dev variant,
+for the k=1 transcript. Scope (v2 review): it certifies the shared learner, RNG
+streams and episode handling, not the window rivals' longer histories and not
+forecasters (the success-table forecaster is checked separately: rival:reactive's
+calib_gain is exactly 0 by construction, see tests).
 """
 from mind.claims import Check, Claim
 

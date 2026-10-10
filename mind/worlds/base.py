@@ -31,6 +31,10 @@ class World:
     actions: Tuple[str, ...] = ("wait",)
     # metric -> (competency it measures, "higher" or "lower" is better)
     metrics: Dict[str, Tuple[str, str]] = {}
+    # Non-redundant metrics for the integration atlas: one per competency, no metric that is
+    # a re-labelling of another (vigil.reward ~ kept, workshop.regret ~ utility), and
+    # same-stream calibration instead of raw Brier (v2 review, findings 1 and 7).
+    atlas_metrics: Tuple[str, ...] = ()
     variants: Tuple[str, ...] = ("dev",)
     heldout_variants: Tuple[str, ...] = ()
     default_episodes = 200

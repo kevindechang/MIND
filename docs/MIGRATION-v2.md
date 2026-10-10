@@ -27,16 +27,16 @@ relies on was **re-executed** as a claim and earned its level on its own.
 
 | v1 | v2 |
 |---|---|
-| E100 Day 0 restart circuit | [L02](../knowledge/claims/L02_e100_day0_restart_circuit.py) re-runs it unchanged; generalised to the whole learning organism by [K01](../knowledge/claims/K01_continuity_replay.py) (any death, any lesion), [K02](../knowledge/claims/K02_real_sigkill_exactly_once.py) (real SIGKILL mid-request, exactly-once) and [C015](../knowledge/claims/C015_persistence_carries_competence.py) (what persists is a learned individual) |
+| E100 Day 0 restart circuit | [L02](../knowledge/claims/L02_e100_day0_restart_circuit.py) re-runs it unchanged; generalised to the whole learning organism by [K01](../knowledge/claims/K01_continuity_replay.py) (any death, any lesion), [K02](../knowledge/claims/K02_real_sigkill_exactly_once.py) (real SIGKILL), [K06](../knowledge/claims/K06_cross_process_replay.py) (fresh processes, any hash seed) and [K07](../knowledge/claims/K07_exactly_once_after_commit.py) (exactly-once after a durable commit) |
 | Day 1 broadcast lesion | [L03](../knowledge/claims/L03_e100_day1_routing_lesion.py) re-runs it; the lesion is now the kernel operator `cut:X>Y`; the broadcast question became [C005](../knowledge/claims/C005_bottleneck_helps_under_distractors.py) / [C006](../knowledge/claims/C006_bottleneck_neutral_without_distractors.py) |
 | Day 2 causal links | the `workshop` world plus the H001 frontier item (a causal organ, then `-causal` with memory intact) |
-| Day 3 self-model | the `outage` world; [C007](../knowledge/claims/C007_self_model_beats_success_table.py) / [C008](../knowledge/claims/C008_self_model_ties_table_when_silent.py) (learned self-model scored by Brier against the success-table rival) |
+| Day 3 self-model | the `outage` world; [C017](../knowledge/claims/C017_self_model_beats_table_same_events.py) / [C018](../knowledge/claims/C018_self_model_beats_table_when_silent.py) (learned self-model vs the success-table rule, scored on the same events; first-round C007/C008 retired after review) |
 | Day 4 goals / initiative | the `vigil` world; [C001](../knowledge/claims/C001_commitment_needs_memory_or_goals.py)–[C004](../knowledge/claims/C004_memory_goals_degeneracy.py) (necessity is context-dependent; memory and goals are degenerate) |
 | Day 5 maintenance | [H008](../knowledge/questions/H008.md) next step: maintenance organ vs learned external scheduler |
 | Day 6 liar twin | open: an introspection-validity probe (does the organism's report of its intentions predict its action?) |
-| Day 7 ledger fork | [K05](../knowledge/claims/K05_fork_individuation.py) |
+| Day 7 ledger fork | the kernel's `Ledger.fork()`; claim K05 was retired after review (divergence by construction) |
 | E001 v0.1–v0.4 | facts [L04](../knowledge/claims/L04_e001_reachability_quotient.py)–[L07](../knowledge/claims/L07_e001_prior_flips_plan.py) re-executed by the original instruments; the v0.4 DP is the workshop's exact optimum and `rival:bayes` ([K04](../knowledge/claims/K04_workshop_matches_legacy_optimum.py)); [C011](../knowledge/claims/C011_no_causal_advantage_in_workshop.py)/[C012](../knowledge/claims/C012_organism_far_from_bayes_optimum.py) measure the organism against it |
-| E002 / E003 / E900 | questions H005, H008, H010, H011, H012; E900's integration aim is the atlas and [C014](../knowledge/claims/C014_integrated_not_modular.py) |
+| E002 / E003 / E900 | questions H005, H008, H010, H011, H012; E900's integration aim is the atlas and [C016](../knowledge/claims/C016_integration_holm_corrected.py) |
 
 ## The open PRs (#7–#16) and issues (#1–#3)
 
@@ -46,14 +46,14 @@ Their *findings* are worth keeping, and v2 keeps them:
 | PR / issue | Finding | v2 |
 |---|---|---|
 | #7 Day 2 | the lesion removed a cached answer; the "rival" was that cache | superseded: the workshop world, plus a causal organ on the H001 frontier |
-| #8 Day 3 | confidence was a constant (0.9/0.4) | superseded: C007/C008, a learned self-model scored by Brier |
+| #8 Day 3 | confidence was a constant (0.9/0.4) | superseded: C017/C018, a learned self-model scored by Brier on the same events |
 | #9 Day 4 | the rival was AST-identical to the mechanism | superseded: C001–C004 on a learning organism |
 | #10 Day 5 | the "null" was an identity; the cron loss was planted | H008 next step |
 | #11 Day 6 | narration wins a constructed preference metric | open: an introspection-validity probe |
-| #12 Day 7 | divergence was injected by the supervisor | superseded: K05 (divergence from experience, twins identical) |
+| #12 Day 7 | divergence was injected by the supervisor | superseded by `Ledger.fork()` on the shared organism (the fork claim K05 was itself retired as by-construction) |
 | #13 Day 5 review | payoff-shift and all-negative counterexamples; learned scheduler as rival | carried into H008 |
 | #14 Day 2 audit | equal events ≠ equal information; reconstruction/access/knockout lesions; acute vs recovered | lesion operators and `@E:` scheduled lesions ([SUBSTRATE.md](SUBSTRATE.md)); H012 |
-| #15 Day 3 audit | an event-aware table ties the self-model (72/72) | reproduced in learning form: C008 (ties when silent), C007 (wins only when events carry information) |
+| #15 Day 3 audit | an event-aware table ties the self-model (72/72) | tested in learning form: on the same events the learned self-model BEATS the table with and without announcements (C017, C018); the first-round reading (C008, "ties when silent") was an action-mix artifact |
 | #16 cross-day contract | the days contradict each other on one ledger | resolved by construction: one organism, one vocabulary, one ledger |
 | #1 regression suite | — | L01 plus `python -m mind check` |
 | #2 E100 queue | — | replaced by the computed frontier |
@@ -65,3 +65,11 @@ Suggested owner action after reviewing v2: close #7–#16 and #1–#3 with a lin
 
 The owner's existing hourly research task reads GO.md first. The new GO.md works for any agent with a checkout and
 Python. An agent without code execution can still add questions, literature, or claims that show as UNTESTED.
+
+## Adversarial review of v2
+
+Before publication, a separately invoked reviewer attacked the v2 pipeline itself and found 1 critical and 7
+important defects. They were fixed, the affected claims were retired with stated reasons and successors were
+registered. Every claim was re-confirmed on held-out seeds afterwards. See
+[reviews/2026-10-10-v2-pipeline-adversarial-review.md](../reviews/2026-10-10-v2-pipeline-adversarial-review.md).
+

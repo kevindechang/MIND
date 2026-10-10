@@ -20,5 +20,6 @@ CLAIM = Claim(
     test=Compare(world="outage", a="organism", b="rival:reactive", metric="brier",
                  direction="<", margin=0.01, seeds=16),
     by="pipeline-v2",
+    retired='v2 review (2026-10-10): the test compares Brier scores of two agents on their OWN action streams, which confounds calibration with behaviour (13-22% of the gap was action mix). Its conclusion survives on a common stream; superseded by C017, which compares both forecasters on the same events.',
     created="2026-10-10",
 )

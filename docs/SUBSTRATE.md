@@ -50,7 +50,7 @@ Events are `genesis {config, seed, kernel}`, `tick {t, obs, r, o, b, a, ws, act,
 `lesion {t, modifier}`. Each event's hash is `sha256(prev_hash | kind | canonical_json(payload))`, and the head hash is
 the life's identity. `MemoryLedger` (fast sweeps) and `SqliteLedger` (real process death; append acknowledged
 only after COMMIT) hash identically. `fork()` copies a history; continuing two forks with different experience
-gives two individuals (K05).
+gives two individuals.
 
 `Organism.restore(ledger)` replays every event through the same code path and checks each re-derived broadcast,
 action and confidence against the log. `step_at(t, ...)` is idempotent, so a resent tick returns its logged decision
@@ -65,7 +65,7 @@ and never acts twice (Anjo invariant I7).
 | `-X` | ablate organ X (no proposals, learning or state) | information + mechanism knockout |
 | `+X` | add an optional organ | — |
 | `cut:X>Y`, `cut:X>*` | X's contents still occupy workspace slots but are not delivered to Y | Day 1 broadcast cut (access lesion) |
-| `freeze:X` | X keeps its state, stops updating | Day 3 "fixed persona" |
+| `freeze:X` | X keeps all its state (episodic too), stops updating; from birth this equals ablation for memory and goals, so use `@E:freeze:X` | Day 3 "fixed persona" |
 | `shuffle:X` | X's bids replaced by its own bids from a random earlier tick | sham with matched statistics |
 | `capacity=N` / `capacity=inf` | workspace size | H003 |
 | `X.param=value` | organ parameter, e.g. `memory.capacity=10` | — |
@@ -79,7 +79,9 @@ Information knockout (removing the evidence itself) is done with world variants,
 Protocol: `reset() → obs`, `legal() → actions`, `step(action) → Step(obs, reward, outcome, done, info)`,
 `summary() → per-episode metrics`. `info` is private to the scorer and never reaches an agent. `metrics` maps each
 metric to `(competency, higher|lower)`. That is how the atlas knows which competency a metric measures and which
-direction is better. Every world needs at least one held-out variant.
+direction is better. `atlas_metrics` lists one non-redundant metric per competency for the atlas. Every world needs
+at least one held-out variant. **What the world draws must not depend on the agent's actions** (use per-episode random
+streams), or paired arms see different episodes (a test enforces this).
 
 | World | Generalises | Variants (*held-out) |
 |---|---|---|
@@ -87,8 +89,15 @@ direction is better. Every world needs at least one held-out variant.
 | `outage` | Day 1 routing, Day 3 self-model: a hidden Markov tool, sometimes announced | dev, silent*, volatile* |
 | `workshop` | E001: probe a hidden 3-node DAG, then keep commitments; exact optimum = legacy v0.4 DP | dev, skewed*, censored* |
 
-Generic metrics for every world: `reward` (per episode) and `brier` (confidence vs public outcome). The runner
-reports each metric over the late half of a life (`m`), all of it (`m@all`) and the first quarter (`m@early`).
+Generic metrics for every world:
+* `reward`: per episode.
+* `brier`: the agent's confidence vs the public outcome.
+* `brier_table`: a per-action success table (`rivals.SuccessTable`, the transcript rivals' rule) scored on the
+  agent's *own* events.
+* `calib_gain = brier_table − brier`: calibration compared on the same events. Claim K08 checks it is exactly zero
+  for the table itself.
+
+The runner reports each metric over the late half of a life (`m`), all of it (`m@all`) and the first quarter (`m@early`).
 
 ## Rivals (`mind/rivals/__init__.py`)
 
@@ -112,5 +121,10 @@ content-addressed cache (`.mind-cache/`, keyed by the fingerprint of all result-
 ## Real process death (`mind/worker.py`)
 
 `python -m mind.worker --ledger PATH` serves JSON-line requests that may carry only the current observation.
-`supervised_run(...)` SIGKILLs the worker after replies (`kill_after`) and during in-flight requests
-(`kill_during`) and checks the life is byte-identical to an uninterrupted one (K02).
+Each reply says whether it was `replayed`, i.e. answered from the ledger with nothing appended (measured, not
+inferred). `supervised_run(...)` SIGKILLs the worker:
+
+* after replies (`kill_after`);
+* right after sending a request (`kill_during`, which in practice lands before the commit; K02);
+* after a tick (`kill_committed`) or an episode end (`kill_end_committed`) is durably committed but before its reply
+  is read. Here the resend must be answered from the ledger (K07, exactly-once).

@@ -73,10 +73,16 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
     rows: List[Dict[str, float]] = []
     actions: List[str] = []
     tick = 0
+    # Shadow forecaster scored on the agent's OWN events: a per-action success table
+    # (the transcript rivals' rule). Forecasters must be compared on a common event
+    # stream; comparing each agent on its own action mix confounds calibration with
+    # behaviour (v2 review, finding 7). calib_gain = brier_table - brier.
+    from .rivals import SuccessTable
+    table = SuccessTable()
     for _ in range(episodes):
         obs = env.reset()
         reward, outcome, boundary = 0.0, None, True
-        total, sq, n_fc = 0.0, 0.0, 0
+        total, sq, sqt, n_fc = 0.0, 0.0, 0.0, 0
         while True:
             d = agent.step(obs, reward, outcome, boundary, env.legal())
             if trace:
@@ -86,6 +92,8 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
             if s.outcome is not None:
                 conf = 0.5 if d.confidence is None else d.confidence
                 sq += (conf - s.outcome) ** 2
+                sqt += (table.forecast(d.action) - s.outcome) ** 2
+                table.update(d.action, s.outcome)
                 n_fc += 1
             if kills and tick == kills[0]:
                 kills.pop(0)
@@ -97,7 +105,7 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
             obs, reward, outcome, boundary = s.obs, s.reward, s.outcome, False
         row = env.summary()
         row["reward"] = total
-        row["_sq"], row["_n"] = sq, float(n_fc)
+        row["_sq"], row["_sqt"], row["_n"] = sq, sqt, float(n_fc)
         rows.append(row)
     result = {"arm": arm, "world": world, "variant": variant, "seed": seed, "episodes": episodes,
               "metrics": aggregate(rows)}
@@ -118,6 +126,8 @@ def aggregate(rows: List[Dict[str, float]]) -> Dict[str, float]:
             out[k + suffix] = sum(r[k] for r in part) / len(part)
         count = sum(r["_n"] for r in part)
         out["brier" + suffix] = sum(r["_sq"] for r in part) / count if count else 0.25
+        out["brier_table" + suffix] = sum(r["_sqt"] for r in part) / count if count else 0.25
+        out["calib_gain" + suffix] = out["brier_table" + suffix] - out["brier" + suffix]
     return out
 
 

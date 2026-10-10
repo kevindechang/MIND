@@ -1,4 +1,4 @@
-"""In the E001 workshop, the organism's memory and workspace confer no advantage over a reactive learner.
+"""In the E001 workshop, the whole organism (workspace, memory, goals, self-model) is no better than a reactive learner.
 
 The plain organism and the reactive rival learn equally well (and equally badly)
 to act on hidden causal structure. Whatever H001's 'causal memory' is, the
@@ -8,7 +8,7 @@ from mind.claims import Claim, Compare
 
 CLAIM = Claim(
     id="C011",
-    title="Generic memory gives no advantage at causal probing",
+    title="The organism gives no advantage over a reactive learner at causal probing",
     statement="In workshop/dev, the organism's mean utility equals the reactive rival's within ±0.1.",
     kind="equivalence",
     scope="L2",

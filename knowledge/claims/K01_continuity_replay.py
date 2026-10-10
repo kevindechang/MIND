@@ -1,9 +1,10 @@
 """Continuity invariant: death at random ticks + ledger-only rebirth = the same life, byte for byte.
 
-This is the guard that makes the whole pipeline compound safely. Any future organ
-that keeps state outside the event-sourced fold (hidden caches, wall-clock,
-set-iteration order, unlogged randomness) breaks this claim immediately, in
-every world and under every lesion type.
+This guards the event-sourcing discipline in every world and under every lesion
+type: an organ that keeps state outside the fold (hidden caches, wall-clock,
+unlogged randomness) breaks it. It replays IN-PROCESS, so it cannot see
+hash-randomisation (set-order) or other process-global hazards; K06 replays in
+fresh processes under different PYTHONHASHSEEDs for that (v2 review, finding 6).
 """
 from mind.claims import Check, Claim
 
