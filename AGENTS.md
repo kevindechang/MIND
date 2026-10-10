@@ -1,6 +1,6 @@
 # Digital Mind research agent contract
 
-Applies only to `digital-mind/**`: a cumulative science/engineering program, not the parent four-pick Founder Library feed.
+Applies to the entire `kevindechang/MIND` repository: a standalone cumulative scientific/engineering program. The former Founder-Library subtree is historical provenance, not the active workspace.
 
 ## Tool-neutral restoration
 
@@ -32,8 +32,15 @@ Dossiers and experimental reports carry science; runs carry transactions. Update
 
 ## Persistence and reporting
 
-Canonical store: `kevindechang/Founder-Library` main under `digital-mind/`; proposed governance can be prepared on a review branch. Read current contents/SHA before writes, reconcile conflicts, never force-push or overwrite unrelated files. Append unique work IDs; artifacts/index first, research-state LAST referencing artifact commit. Read back publication. A file cannot cite its own final hash; report externally/later. Resume interrupted transactions once; don't rerun or double-count.
+Canonical store: `kevindechang/MIND` main at the repository root. Read [MIGRATION.md](MIGRATION.md) for the immutable source snapshot and historical SHA references. Never publish new active research into Founder-Library; proposal branches, when used, must belong to MIND. Read current contents/SHA before writes, reconcile conflicts, never force-push or overwrite unrelated files. Append unique work IDs; artifacts/index first, research-state LAST referencing artifact commit. Read back publication. A file cannot cite its own final hash; report externally/later. Resume interrupted transactions once; don't rerun or double-count.
 
 If write access fails: NOT_COMMITTED plus complete delta; no canonical count changes. Report decision, gate/blocker, sources/depth, actual tests, falsifier, review mode, publication verdict, asset/decision delta, stale dependencies, commit or failure and exactly one next executable action with tools/inputs/stop condition.
 
-ChatGPT remains executor, GitHub remains memory. No new GitHub Actions, external API jobs, paid/background runner, scheduler edit or production Anjo change is authorized by this workflow. Hourly triggers and forty-minute targets are best effort, not continuous cognition or guaranteed runtime/tool access.
+ChatGPT remains executor, GitHub remains memory. No new GitHub Actions, external API jobs, paid/background runner or production Anjo change is authorized by this workflow. Only the user's existing hourly ChatGPT research task is authorized to run against MIND; never create a second recurring task. Hourly triggers and forty-minute targets are best effort, not continuous cognition or guaranteed runtime/tool access.
+
+
+## Failure-corrected execution contract (2026-10-11)
+
+Read [RUNBOOK.md](RUNBOOK.md) first for the live order of operations. Four consecutive W1 instrument checkpoints did not close E001 G0 or produce an agent comparison. The next **substantive attention opportunity is W2, W3 or W4**, preferably the ready W2 endogenous-maintenance methodological reassessment, with an explicit E900 link. Before claiming v0.2–v0.4 integration, execute `python scripts/verify_instruments.py` on a **byte-exact checkout**; report every suite and provenance, not a reconstructed fixture or reported historical PASS. If this environment cannot execute an exact checkout, record the integration blocker and use available time on a distinct, falsifiable non-W1 dependency; do not fabricate tests or add another v0.x wrapper to avoid the blocker.
+
+Every run requires a precommitted (or clearly checkpointed) question → discriminating rival → intervention → observable → null/alternative decision map. Prefer a runnable, held-out, budget-matched experimental design over endless simulator calibration. Treat model/runtime/time access as capability checks, not assumptions. With no independent invocation, record SELF-REVIEW_ONLY. Never promote G0/G1/G2, accepted contributions, or L2/L3 claims on tests that only exercise self-authored oracles. Keep historical original-commit references attributed to Founder-Library.

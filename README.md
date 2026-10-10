@@ -2,7 +2,7 @@
 
 **Status:** research program initialized 2026-10-10; no digital consciousness claim or successful experimental outcome.
 
-This is an independent, cumulative R&D program housed in Founder Library. The existing four-pick founder curation feed is unchanged. Related software: [Anjo](https://github.com/kevindechang/anjo) and [Affect Kernel](https://github.com/kevindechang/affect-kernel). Neither is evidence of consciousness.
+This is the standalone **MIND** research repository, migrated from the former `kevindechang/Founder-Library/digital-mind/` subtree. Original files were transferred byte-for-byte from source commit `33f05852d5da4c382ac7b039070986d8d14d1579`; see [MIGRATION.md](MIGRATION.md) for provenance. The Founder Library daily feed remains separate. Related software: [Anjo](https://github.com/kevindechang/anjo) and [Affect Kernel](https://github.com/kevindechang/affect-kernel). Neither is evidence of consciousness.
 
 ## Mission
 
@@ -64,3 +64,10 @@ The program now has long-form, cumulative research publications. The short `runs
 - [Publication architecture spec](docs/research-program/living-research-design.md).
 
 The new publication structure is governance; it does not change the canonical scientific iteration, create a trained digital mind or guarantee 40-minute scheduled runs.
+
+
+## Current execution contract (2026-10-11)
+
+Start with [AGENTS.md](AGENTS.md), [RUNBOOK.md](RUNBOOK.md), [research-state.md](research-state.md) and the live scientific gate. The hourly ChatGPT task is an invocation mechanism, **not** a guarantee of 40 minutes of compute, independent subagents, a live entity, or experimental acceptance. Verify actual runs and report SHORT_RUN or duration UNKNOWN honestly.
+
+From a byte-exact local checkout, run `python scripts/verify_instruments.py`: this dynamically discovers all current instrument tests, checks required suites are present, syntax-checks Python instruments, and reports hashes and actual PASS/FAIL. The repository does not schedule CI or bill for GitHub Actions. The outstanding experiment is fair, preregistered *mechanism-versus-strong-rival* evaluation under matched information and computation budgets; simulator checks are not that experiment. W2–W4 attention is due next after four W1 instrument checkpoints.

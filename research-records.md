@@ -1,6 +1,6 @@
 # Research work and acceptance index
 
-**Adoption baseline:** `4ec49fa45878ec33a4a07658fc418f535a5ee86f` on main before this governance change. Historical source versions below refer to that immutable repository snapshot; later amendments must cite their own version. This index does not certify the original claims.
+**Repository migration note (2026-10-11):** Historical commit SHAs in records below are commits of `kevindechang/Founder-Library`, *not* the new MIND commit graph. [MIGRATION.md](MIGRATION.md) records the byte-identical source snapshot. This governance relocation creates no new substantive scientific attention or accepted science.\n\n**Adoption baseline:** `4ec49fa45878ec33a4a07658fc418f535a5ee86f` on main before this governance change. Historical source versions below refer to that immutable repository snapshot; later amendments must cite their own version. This index does not certify the original claims.
 
 Kinds: GOVERNANCE_CHANGE / EXPLORATORY_CHECKPOINT / RESEARCH_NOTE / INSTRUMENT_VALIDATION / AGENT_COMPARISON / SYNTHESIS. Scientific verdicts remain EXPLORATORY_CHECKPOINT / RESEARCH_NOTE / SCIENTIFIC_ACCEPTED / MAJOR_REVISION_REQUIRED; UNKNOWN means historical acceptance not established, NOT_APPLICABLE means governance. Kind and verdict are separate.
 

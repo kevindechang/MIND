@@ -1,0 +1,25 @@
+# MIND — Hourly Scientific Sprint Runbook (2026-10-11)
+
+**Canonical home:** `kevindechang/MIND` main, repository root. **Executor:** one ChatGPT scheduled task using available tools. **Persistence:** GitHub only. **No** GitHub Actions, paid inference, unattended agents, duplicate schedules or promised runtime. Read AGENTS, research-cycle, research-state, records, decision/asset registers, gate and active dossier each invocation. Inspect live HEAD and recover unfinished transactions before new work.
+
+## Last-run failure analysis
+
+- E001 v0.1–v0.4 created increasingly credible *synthetic instruments*, but four consecutive W1 checkpoints left G0 OPEN, accepted contributions at 0, model comparisons at 0. Standalone v0.4 12 tests and 128 parity checks were observed; earlier 14+20+10 suites were **not** rerun in that invocation. v0.3 tests used a reconstructed local fixture. Do not infer full regression coverage.
+- Six lenses were one-model self-review, not independent research agents; 40-minute active-work target was not achieved/verified. Later v0.4 addenda (mutation, prior/censor sensitivity, cognitive-learning literature, path-blocking counterexample) did not create new accepted contributions or freeze the experiment.
+- Next opportunity must give real attention to W2–W4. W2/E002a has a methodological reassessment and learned value-of-computation competitor, and is not validated by the old one-slot toy.
+
+## Ordered procedure (work until real available runtime ends)
+
+**0 — Restore & capability test.** Verify HEAD, previous work ID, active blocker, missing source dependencies, external reviewer availability, clock, Python execution and GitHub write permissions. Do not conflate source commit history with new MIND commits. If data or tools are missing, name what cannot be done; choose a ready scientific task still feasible.
+
+**1 — Regression integrity checkpoint, only when a byte-exact checkout can run.** Execute `python scripts/verify_instruments.py` once on current HEAD. It checks all discovered tests and py_compile, including required E001 v0.2 (14), E001 v0.3 (20), E001 v0.4 (12), legacy commitments (10), W2 maintenance (10) and the switchboard suite (count determined by execution). Do not hardcode a claimed grand total or report historical outcomes as rerun. Record Python version, actual command/output, file hashes, any regressions, and whether real environment checkout was used. If impossible, record NOT_EXECUTED, *not* an inferred PASS.
+
+**2 — Mandatory non-leading-stream focus this run.** Prefer W2/E002a endogenous maintenance vs a learned *external* metareasoning controller with matched inputs, budgets, persistent state and restarts. Use `dossiers/W2-endogenous-maintenance/methodological-reassessment.md` and related primary methods. Specify falsifiable difference beyond scheduling labels; where equal policies predict equality, record that as a non-identifiability limit rather than inventing a performance advantage. W3/W4 allowed only when a stronger ready falsifier exists. State an E900 cross-function implication, but do not claim E900 has started.
+
+**3 — Deliver the discriminating asset.** Prefer a preregistration-ready finite multistep environment with exact public/private observation interfaces, an explicit estimand (realized net utility minus compute cost), strong adaptive learned rival, comparator parity, held-out families, paired seeds, process restart, negative control, data leakage tests and analysis/stop rules. Run small deterministic instrument checks only to calibrate validity. Predeclare scored arms and split before model trials; do not score unavailable models or treat self-authored synthetic improvement as L2.
+
+**4 — Adversarial review & decision.** Challenge identifiability, posterior misspecification, data censorship, underpowered comparisons, privileged signals, baseline quality, confounding by orchestration and cost. Mark SELF-REVIEW_ONLY unless there is a genuinely distinct reviewer invocation. Apply the published research quality gate; neither content volume nor test count proves a scientific mechanism.
+
+**5 — Persist one cumulative delta.** Attach exact source versions, inspected sections/negative sources, executable code or derivations, observed commands/results, rejected claims, comparator and falsifier, decision status, regression result, next blocker and exactly one next executable action. Commit intellectual artifacts and indexes first, research-state last, read back. If no substantive change or no write, issue a SHORT_RUN/NOT_COMMITTED handoff without incrementing accepted or attention counters. Do not create six essays or repeatedly rework the same oracle.
+
+**6 — User-facing report:** scope/gate, actual checked suites with counts, observed model trials (or NONE), non-leading stream contribution, strongest rival, new falsifier or failure, review mode, accepted count, duration provenance, artifact/state SHAs, one next action. A completed Git transaction does not equal completed scientific research.
