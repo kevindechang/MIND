@@ -1,6 +1,9 @@
 # Canonical Digital Mind research state (schema 2)
 
 repository: kevindechang/MIND
+parent_initiative: Anjo
+research_program: MIND — foundational digital-mind and consciousness research
+product_transfer_policy: EVIDENCE_REQUIRED_EXPLICIT_APPROVAL_NO_AUTOMATIC_ADOPTION
 path: ./
 migration_source_repository: kevindechang/Founder-Library
 migration_source_commit: 33f05852d5da4c382ac7b039070986d8d14d1579
@@ -100,3 +103,8 @@ Authoritative repository is **`kevindechang/MIND` main at root**, not Founder-Li
 
 
 **Source retirement verified:** Founder-Library `5d4c21694eadea8bec79fc691ab0612d980e0be3` leaves only AGENTS.md/README.md redirects inside former `digital-mind/`; other Founder-Library files unchanged. Full old blob/history provenance is immutable in source `33f05852d5da4c382ac7b039070986d8d14d1579`. Final MIND migration manifest was committed at `e158ce60d425991300cd65cfb972be9cc2e81ca1`. Governance-only; no experiment/tests rerun for this migration.
+
+
+## 2026-10-11 Anjo / MIND organizational clarification (governance only)
+
+MIND is **Anjo's dedicated foundational research program**, not an unrelated startup or separate shipping product. The research remains in `kevindechang/MIND` with its own hypothesis, methods, evidence and quality gate. Anjo is its parent initiative and a possible downstream engineering beneficiary. Scientific evaluation must be able to falsify ideas favored by Anjo; a MIND proposal, benchmark result, or accepted paper is not automatic validation or a production feature. Any transfer to Anjo requires separate engineering, safety and release approval. Governing scope clarified in the README, charter, AGENTS, RUNBOOK and north-star at MIND commit `cecf6a7ef28b67df2aa8bb3480e46a12c49aaf51`. This is a non-scientific governance clarification: accepted count remains 0; no G gate, E001/D001 result, attention counter, or experiment status changed.
