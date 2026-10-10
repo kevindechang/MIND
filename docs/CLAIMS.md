@@ -74,7 +74,9 @@ python -m mind status --write         # regenerate STATUS.md
 ```
 
 Records are append-only, one file per run, and carry the contributor (`--by`), an environment fingerprint, the git
-HEAD, and the fingerprint of all result-affecting code. Commit them with your contribution.
+HEAD, and the fingerprint of all result-affecting code. Commit them with your contribution. The doctor compares every
+committed record byte for byte with the blob that added it. Deleting one, or editing it in a later commit, a merge or
+the working tree, is a problem it reports.
 
 ## States
 
@@ -104,6 +106,10 @@ PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED → PREREGISTERED → REPLICAT
   Every rival in the zoo that challenges one of those mechanisms in that world is run on the same seeds, and the claim's
   arm `a` must beat each reliably. Reference rivals (privileged oracles) are reported as a ceiling but not required.
   Beating a rival directly as arm `b` counts.
+  * The rung is judged on the *latest* run on every seed set, against *today's* zoo.
+  * A newer run that does not beat a rival revokes it, and so does a rival added since the latest run. The ladder is
+    cumulative, so everything above the rung is revoked too.
+  * Re-running the claim earns it back. The frontier asks for that re-run.
 * **PREREGISTERED** needs the *first* recorded evaluation on the sealed held-out seeds of the current prediction to
   be a robust pass (with a clean rival panel when one applies). Deterministic checks without seeds skip this rung.
 * **REPLICATED** needs robust passing records from at least two distinct contributors **and** two distinct

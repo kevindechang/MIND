@@ -18,6 +18,8 @@ default). Anjo's product invariants (`sources/anjo/`) are product requirements, 
   re-implements an agent, a ledger or a world. Extend `mind/` instead.
 * **Predictions are sealed by git.** Never edit a committed prediction to fit results. Register a successor claim.
 * **Claims are retired, never deleted.** Negative and inconclusive results stay visible.
+* **Records are never edited or deleted.** The doctor checks each committed record against the blob that added it.
+* **A lesion that would do nothing is an error.** A misspelled target or parameter is rejected; fix the config.
 * **STATUS.md is generated.** Never edit it by hand.
 * **New organs must replay.** If K01, K06 or K07 break, your organ keeps hidden or order-dependent state. Fix the
   organ, not the claim.

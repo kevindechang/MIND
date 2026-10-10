@@ -1,6 +1,7 @@
 """Repository integrity: mechanical enforcement of the program's epistemic rules.
 
   * claims are never deleted, only retired (negative results cannot be buried)
+  * records are never deleted or edited (each stays byte-identical to the blob that added it)
   * L3 / phenomenal-experience claims are not an admissible empirical scope
   * premises exist and form no cycle (no circular self-justification, Anjo I5)
   * every test names a real world, variant, metric and arm
@@ -27,6 +28,40 @@ LINK = re.compile(r"\]\(([^)]+)\)")
 
 def _blob(content: bytes) -> str:
     return hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content).hexdigest()
+
+
+def record_integrity() -> List[str]:
+    """Every record ever committed must still exist, byte-identical to the blob that added it.
+
+    Checking only for deletions is not enough: an edited verdict in a later commit (a merge
+    included) or in the working tree would be trusted as the original result, and could turn a
+    failed first held-out confirmation into PREREGISTERED."""
+    log = git("log", "--no-renames", "--diff-filter=A", "--format=@%H", "--name-only", "--", "knowledge/records")
+    if not log:
+        return []   # not a git checkout, or no committed records yet
+    added: Dict[str, str] = {}
+    commit = ""
+    for line in log.splitlines():
+        line = line.strip()
+        if line.startswith("@"):
+            commit = line[1:]
+        elif line:
+            added[line] = commit   # git log runs newest first, so the oldest addition wins
+    original: Dict[str, str] = {}
+    for c in sorted(set(added.values())):
+        for row in (git("ls-tree", "-r", c, "--", "knowledge/records") or "").splitlines():
+            meta, _, path = row.partition("\t")
+            if added.get(path) == c:
+                original[path] = meta.split()[2]
+    problems = [f"record {p} was deleted; evidence is append-only, restore it with "
+                f"`git checkout {added[p][:12]} -- {p}`" for p in sorted(added) if not (ROOT / p).is_file()]
+    present = sorted(p for p in added if (ROOT / p).is_file())
+    current = (git("hash-object", "--", *present) or "").split() if present else []
+    for p, blob in zip(present, current):
+        if blob != original.get(p):
+            problems.append(f"record {p} differs from the version committed in {added[p][:12]}: records are never "
+                            f"edited; restore it with `git checkout {added[p][:12]} -- {p}`")
+    return problems
 
 
 def _check_arm(arm: str) -> None:
@@ -126,10 +161,8 @@ def doctor() -> Tuple[List[str], List[str]]:
         if line.endswith(".py") and stem not in present_ids:
             problems.append(f"claim file {line} was deleted from history; restore it with retired='reason'")
 
-    # records are append-only evidence: never deleted
-    gone = git("log", "--diff-filter=D", "--name-only", "--format=", "--", "knowledge/records") or ""
-    for line in sorted(set(gone.split())):
-        problems.append(f"record {line} was deleted from history; evidence is append-only, restore it")
+    # records are append-only evidence: never deleted, never edited
+    problems += record_integrity()
 
     # records reference real claims; predictions are never changed after a held-out evaluation;
     # every held-out seal is still in history (squash/rebase would silently re-roll seeds)

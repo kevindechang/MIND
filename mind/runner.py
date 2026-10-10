@@ -68,6 +68,9 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
     agent = make_agent(arm, world, variant, seed, ledger)
     if kill_at and not isinstance(agent, Organism):
         raise ValueError(f"{arm} is not an organism: only organisms can die and be reborn from a ledger")
+    late = [when for when, _ in agent.cfg.schedule if when >= episodes] if isinstance(agent, Organism) else []
+    if late:
+        raise ValueError(f"{arm}: a lesion scheduled at episode {late[0]} never happens in a {episodes}-episode life")
     env = make_world(world, seed, variant)
     kills = sorted(set(kill_at))
     rows: List[Dict[str, float]] = []

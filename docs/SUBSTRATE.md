@@ -41,7 +41,8 @@ If you break this, K01 and K02 fail with a `ReplayDivergence` naming the tick.
 
 **Adding an organ.** Write `mind/organs/<name>.py`, register it in `ORGANS` in `mind/organs/__init__.py` (add it to
 `DEFAULT_ORGANS` only if every organism should have it; otherwise experiments enable it with `+name`), declare its
-`home` competencies, then run `python -m mind check` and `python -m mind atlas`. Every existing claim and the atlas
+`home` competencies and every parameter it reads in `defaults` (with the allowed values of string parameters in
+`choices`, so the parser can reject a mistyped one), then run `python -m mind check` and `python -m mind atlas`. Every existing claim and the atlas
 re-evaluate against the new organism automatically.
 
 ## The ledger (`mind/ledger.py`)
@@ -73,6 +74,16 @@ and never acts twice (Anjo invariant I7).
 
 Information knockout (removing the evidence itself) is done with world variants, for example
 `outage/silent` removes announcements.
+
+**A lesion that would do nothing is an error.** The parser rejects:
+* an unknown or absent target (`cut:memory>polciy`, `freeze:memroy`, `-memory freeze:memory`);
+* `+X` for an organ already present;
+* an unknown parameter or a value of the wrong type (`memory.capcity=10`, `memory.capacity=6.5`,
+  `perception.salience=novelt`).
+
+Scheduled lesions are checked against the organs alive at their episode, and the runner rejects one scheduled after
+the life ends. Organ parameters are fixed when an organ is built, so `@E:X.param=v` (or `lesion("X.param=v")`) is
+rejected. Set parameters in the config instead; they also apply to an organ added later with `@E:+X`.
 
 ## Worlds (`mind/worlds/`)
 

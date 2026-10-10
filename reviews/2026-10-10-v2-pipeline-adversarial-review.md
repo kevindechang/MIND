@@ -54,3 +54,17 @@ head. It is self-review, like the rest of this page.
 | # | Defect | Evidence | Status |
 |---|---|---|---|
 | p1 | `mind check` without `--record` (including `--quick`) crashed with a `NameError` in `knowledge._evidence`, introduced by the scheme-aware matching fix for finding 3. Behind the crash was a real flaw: because held-out evidence outranked dev evidence, a recorded held-out success masked any live dev regression, so `mind check` could never report BROKEN for a preregistered claim. The same rule reported C013 as HOLDS, although on the current code its dev run is INCONCLUSIVE and only a re-run of its spent held-out seeds holds. | traceback; a test run on the old rule with only the crash fixed reports HOLDS for a live regression | **Fixed:** each seed set speaks through its latest run, and the most conservative decides; disagreements are noted as *mixed evidence*. Tests cover masking, mixed evidence and quick drafts. C013 is now INCONCLUSIVE, and the frontier asks for a sharper successor. No result code changed, so no evaluation was re-run or re-recorded. |
+
+## Addendum 2: the owner's review of PR #17
+
+The repository owner reviewed `e65f57b` on GitHub by source inspection (a comment review) and raised three P1
+findings. Each was reproduced before it was fixed.
+
+| # | Finding | Reproduction | Status |
+|---|---|---|---|
+| o1 | Records were protected against deletion only. An edited verdict in a later commit or in the working tree was trusted as the original result. | A committed flip of C006's first held-out verdict (INCONCLUSIVE to HOLDS) passed `mind doctor`. | **Fixed:** the doctor compares every committed record byte for byte with the blob that added it, which covers later commits, merges and the working tree, and it reports deletions. Test: `tests/test_pr17_review.py`. |
+| o2 | The lesion parser accepted modifiers that do nothing: misspelled `cut`/`freeze`/`shuffle` targets and unknown organ parameters. | `organism cut:memory>polciy`, `organism freeze:memroy` and `organism memory.capcity=10` all parsed. Three more no-ops turned up alongside: `@E:X.param=v` never reached the already-built organ, `@3:-policy` parsed, and a lesion scheduled after the life ended never fired. | **Fixed:** all of these are now errors (see SUBSTRATE.md). Valid configs behave exactly as before: on the new code, every claim reproduces its earlier verdict and estimate in 728 fresh simulations. |
+| o3 | RIVAL-TESTED came from any historical evaluation, so an old BEATEN panel outlived a newer NOT_BEATEN. | Two robust HOLDS records, the newer one with a rival NOT_BEATEN, still gave RIVAL-TESTED. | **Fixed:** the rung needs the latest run on every seed set to beat every rival in today's zoo. A newer failure, or a rival added since, revokes the rung and everything above it until a re-run earns it back. Tests: `tests/test_claims.py`. |
+
+Changing the kernel changed the code fingerprint, so every claim was re-recorded on the new code (dev and held-out).
+The first held-out records still decide preregistration.

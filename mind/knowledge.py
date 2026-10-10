@@ -24,7 +24,7 @@ from pathlib import Path
 import platform
 from typing import Any, Dict, List, Optional, Sequence
 
-from .claims import KNOWLEDGE, SCHEME, Claim, Evaluation, canonical, git, sha
+from .claims import KNOWLEDGE, SCHEME, Claim, Compare, Evaluation, canonical, git, sha
 
 RECORDS_DIR = KNOWLEDGE / "records"
 QUESTIONS_DIR = KNOWLEDGE / "questions"
@@ -91,6 +91,7 @@ class ClaimState:
     latest: Optional[Dict[str, Any]] = None
     evidence: List[Dict[str, Any]] = field(default_factory=list)
     rivals_not_beaten: List[str] = field(default_factory=list)
+    rivals_unrun: List[str] = field(default_factory=list)
     notes: List[str] = field(default_factory=list)
     current_code: bool = False
 
@@ -164,6 +165,17 @@ def _rivals_clean(e: Dict[str, Any]) -> bool:
     return bool(contenders) and all(r["result"] == "BEATEN" for r in contenders)
 
 
+def _contenders(claim: Claim) -> set:
+    """The non-reference rivals that challenge this claim in today's zoo: its rival panel, plus a
+    rival its own test names. A current evaluation must have run, and beaten, every one."""
+    from .claims import _direct_rival, rival_panel
+    names = {r.name for r in rival_panel(claim) if not r.reference}
+    direct = _direct_rival(claim.test.b) if isinstance(claim.test, Compare) else None
+    if direct is not None and not direct.reference:
+        names.add(direct.name)
+    return names
+
+
 def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
            live: Optional[Dict[str, Evaluation]] = None, code: str = "",
            seals: Optional[Dict[str, Optional[str]]] = None,
@@ -175,6 +187,7 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
         evidence = _evidence(claim, records, live, code, live_mode)
         seal = seals.get(cid)
         st = ClaimState(claim, "UNTESTED", 0, ladder(claim)[0], seal, evidence=evidence)
+        heads: List[Dict[str, Any]] = []
         if evidence:
             latest, heads = _decisive(evidence)
             st.latest = latest
@@ -193,12 +206,18 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
                 v, "BROKEN" if held_same else "REFUTED")
             if v == "FAILS" and not held_same and any(e["verdict"] == "HOLDS" for e in evidence):
                 st.notes.append("held on dev seeds but failed on sealed held-out seeds: did not generalise")
-            st.rivals_not_beaten = sorted(n for n, r in latest.get("rivals", {}).items()
-                                          if not r["reference"] and r["result"] != "BEATEN")
+            # rival standing comes from the latest run on every seed set, against today's zoo
+            st.rivals_not_beaten = sorted({n for e in heads for n, r in e.get("rivals", {}).items()
+                                           if not r["reference"] and r["result"] != "BEATEN"})
+            if v == "HOLDS" and _needs_rival(claim):
+                st.rivals_unrun = sorted({n for e in heads for n in _contenders(claim) - set(e.get("rivals", {}))})
+                if st.rivals_unrun:
+                    st.notes.append(f"rival(s) {', '.join(st.rivals_unrun)} not yet run against its latest "
+                                    f"evaluation: RIVAL-TESTED and above wait for a re-run")
         if claim.retired:
             st.state = "RETIRED"
             st.notes.append(f"retired: {claim.retired}")
-        st.rung = _rung(claim, evidence, seal) if st.state == "HOLDS" else 0
+        st.rung = _rung(claim, evidence, seal, heads) if st.state == "HOLDS" else 0
         st.level = ladder(claim)[st.rung]
         first = _first_heldout(evidence, seal)
         if first is not None and not _confirmed(claim, first):
@@ -245,12 +264,20 @@ def _amendments(claim: Claim, records: List[Dict[str, Any]]) -> int:
     return n
 
 
-def _rung(claim: Claim, evidence: List[Dict[str, Any]], seal: Optional[str]) -> int:
+def _rung(claim: Claim, evidence: List[Dict[str, Any]], seal: Optional[str],
+          heads: Sequence[Dict[str, Any]] = ()) -> int:
     holds = [e for e in evidence if e["verdict"] == "HOLDS"]
     robust = [e for e in holds if e["robust"]]
     met = {"PROPOSED": True, "OBSERVED": bool(holds), "ROBUST": bool(robust)}
-    needs_rival = _needs_rival(claim)
-    met["RIVAL-TESTED"] = any(_rivals_clean(e) for e in robust) if needs_rival else bool(robust)
+    if _needs_rival(claim):
+        # Not "beat its rivals once": the latest run on every seed set must have beaten every rival
+        # in today's zoo. A newer NOT_BEATEN, or a rival added since, revokes the rung (and, the
+        # ladder being cumulative, everything above it) until a re-run earns it back.
+        contenders = _contenders(claim)
+        met["RIVAL-TESTED"] = bool(heads) and all(
+            e["robust"] and _rivals_clean(e) and contenders <= set(e.get("rivals", {})) for e in heads)
+    else:
+        met["RIVAL-TESTED"] = bool(robust)
     first = _first_heldout(evidence, seal)
     met["PREREGISTERED"] = first is not None and _confirmed(claim, first)
     recorded = [e for e in robust if e["_record"]]
@@ -363,9 +390,14 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
                 add(2, "sharpen", cid, f"{cid} ({c.title}) holds now but failed its first sealed confirmation, so its "
                                        f"held-out seeds are spent: register a successor claim (new id, fresh seeds) "
                                        f"to confirm it prospectively")
-            if st.rivals_not_beaten:
-                add(2, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_not_beaten)} match the mechanism. Beat "
-                                     f"them with a better organ, or register that the simpler rival suffices")
+            if st.rivals_not_beaten or st.rivals_unrun:
+                if st.rivals_not_beaten:
+                    add(2, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_not_beaten)} match the mechanism. "
+                                         f"Beat them with a better organ, or register that the simpler rival suffices")
+                if st.rivals_unrun:
+                    add(2, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_unrun)} joined the zoo after its latest "
+                                         f"evaluation; re-run `python -m mind check {cid} --record` and `--heldout "
+                                         f"--record` to test it against them")
             elif nxt == "ROBUST":
                 add(4, "promote", cid, f"{cid}: run at full strength `python -m mind check {cid} --record`")
             elif nxt == "RIVAL-TESTED":

@@ -78,7 +78,7 @@ by-construction claims, transitive invalidation) were right. They were just writ
 | PROPOSED | registered, untested | the file exists |
 | OBSERVED | holds once | any passing evaluation |
 | ROBUST | holds at declared strength | ≥ declared seeds; the CI clears the margin (exhaustive for exact checks) |
-| RIVAL-TESTED | beats every standing rival | automatic rival panel, only for claims asserting mechanism superiority |
+| RIVAL-TESTED | beats every standing rival | the latest run on every seed set beat every rival in today's zoo (automatic panel, only for claims asserting mechanism superiority) |
 | PREREGISTERED | holds on sealed data | passes on held-out seeds derived from the **git commit that registered the prediction** |
 | REPLICATED | independently reproduced | records from ≥ 2 contributors **and** ≥ 2 environments |
 
@@ -88,7 +88,8 @@ current prediction (searched by claim id, so renames do not move it). The rules 
 * **Only the first recorded held-out evaluation decides PREREGISTERED.** Once sealed seeds have been seen,
   re-running them after a code change proves nothing about prediction. A failed first confirmation stays
   attached to the claim forever.
-* **Held-out runs are always recorded**, and records are append-only (the doctor rejects deletions).
+* **Held-out runs are always recorded**, and records are append-only: the doctor rejects any record that was deleted
+  or no longer matches, byte for byte, the blob that added it.
 * **A prediction never changes after a held-out run.** The doctor rejects it. Register a successor claim; its new
   id and new commit give it new seeds.
 * **Every seed set's latest run counts, and the most conservative decides**, so re-running dev seeds can never

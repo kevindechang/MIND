@@ -19,6 +19,7 @@ class Perception(Organ):
     name = "perception"
     home = ("sensing",)
     defaults = {"salience": "surprisal", "novel": 1.0, "stale": 0.35}
+    choices = {"salience": ("surprisal", "novelty")}
 
     def __init__(self, params):
         super().__init__(params)

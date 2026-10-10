@@ -97,7 +97,8 @@ class Organ:
 
     name = "organ"
     home: Tuple[str, ...] = ()        # competencies this organ was designed for (atlas)
-    defaults: Dict[str, Any] = {}
+    defaults: Dict[str, Any] = {}     # every parameter the organ reads, with its default
+    choices: Dict[str, Tuple[str, ...]] = {}   # allowed values of string parameters
 
     def __init__(self, params: Dict[str, Any]):
         self.p = dict(self.defaults)
@@ -168,7 +169,6 @@ class Config:
                 when, _, inner = mod[1:].partition(":")
                 if not when.isdigit() or not inner:
                     raise ValueError(f"bad scheduled lesion {mod!r}; use @EPISODE:modifier")
-                Config._apply_to(inner, organs, cfg, cuts, frozen, shuffled, params, dry=True)
                 schedule.append((int(when), inner))
                 continue
             Config._apply_to(mod, organs, cfg, cuts, frozen, shuffled, params)
@@ -177,6 +177,17 @@ class Config:
                 raise ValueError(f"unknown organ {name!r}")
         if "policy" not in organs:
             raise ValueError("the policy organ cannot be ablated (nothing would act)")
+        # A lesion that cannot take effect is an error, never a silent no-op. Replay the schedule
+        # now, in the order a life applies it, against the organs present at that time.
+        later, ever = (list(organs), dict(cfg), list(cuts), list(frozen), list(shuffled), list(params)), set(organs)
+        for _, inner in sorted(schedule):
+            Config._apply_to(inner, *later, living=True)
+            if "policy" not in later[0]:
+                raise ValueError("the policy organ cannot be ablated (nothing would act)")
+            ever.update(later[0])
+        for organ, key, _ in params:
+            if organ not in ever:
+                raise ValueError(f"parameter {organ}.{key} is set for an organ this organism never has")
         canonical = " ".join(["organism"] + mods)
         return Config(tuple(organs), cfg["capacity"], cfg["beta"], cfg["explore"],
                       tuple(sorted(cuts)), tuple(sorted(frozen)), tuple(sorted(shuffled)),
@@ -186,10 +197,10 @@ class Config:
     @staticmethod
     def _apply_to(mod: str, organs: List[str], cfg: Dict[str, Any], cuts: List[Tuple[str, str]],
                   frozen: List[str], shuffled: List[str], params: List[Tuple[str, str, Any]],
-                  dry: bool = False) -> None:
+                  living: bool = False) -> None:
+        """Apply one modifier, refusing any that would do nothing. `living`: the organism
+        already exists (a scheduled or direct lesion), so its organs are already built."""
         from .organs import ORGANS
-        if dry:  # validate syntax only
-            organs, cfg, cuts, frozen, shuffled, params = list(organs), dict(cfg), [], [], [], []
         if mod.startswith("-"):
             if mod[1:] not in organs:
                 raise ValueError(f"cannot ablate absent organ {mod[1:]!r}")
@@ -197,17 +208,21 @@ class Config:
         elif mod.startswith("+"):
             if mod[1:] not in ORGANS:
                 raise ValueError(f"unknown organ {mod[1:]!r}")
-            if mod[1:] not in organs:
-                organs.append(mod[1:])
+            if mod[1:] in organs:
+                raise ValueError(f"organ {mod[1:]!r} is already present")
+            organs.append(mod[1:])
         elif mod.startswith("cut:"):
             src, _, dst = mod[4:].partition(">")
             if not src or not dst:
                 raise ValueError(f"bad cut {mod!r}; use cut:SRC>DST")
+            _present(src, organs, mod)
+            if dst != "*":
+                _present(dst, organs, mod)
             cuts.append((src, dst))
         elif mod.startswith("freeze:"):
-            frozen.append(mod[7:])
+            frozen.append(_present(mod[7:], organs, mod))
         elif mod.startswith("shuffle:"):
-            shuffled.append(mod[8:])
+            shuffled.append(_present(mod[8:], organs, mod))
         elif mod.startswith("capacity="):
             value = mod[9:]
             cfg["capacity"] = None if value == "inf" else int(value)
@@ -218,11 +233,42 @@ class Config:
         elif mod.startswith("explore="):
             cfg["explore"] = float(mod[8:])
         elif "." in mod and "=" in mod:
+            if living:
+                raise ValueError(f"{mod!r}: organ parameters are fixed when an organ is built, so a lesion "
+                                 f"cannot change them; set them in the config (they also apply to organs "
+                                 f"added later with @E:+X)")
             target, _, value = mod.partition("=")
             organ, _, key = target.partition(".")
-            params.append((organ, key, _parse_value(value)))
+            params.append((organ, key, _check_param(organ, key, _parse_value(value))))
         else:
             raise ValueError(f"unknown modifier {mod!r}")
+
+
+def _present(name: str, organs: Sequence[str], mod: str) -> str:
+    if name not in organs:
+        from .organs import ORGANS
+        kind = "absent organ" if name in ORGANS else "unknown organ"
+        raise ValueError(f"{mod!r} targets {kind} {name!r}, so it would do nothing")
+    return name
+
+
+def _check_param(organ: str, key: str, value: Any) -> Any:
+    from .organs import ORGANS
+    if organ not in ORGANS:
+        raise ValueError(f"unknown organ {organ!r} in parameter {organ}.{key}")
+    cls = ORGANS[organ]
+    if key not in cls.defaults:
+        raise ValueError(f"{organ} has no parameter {key!r}; it has {', '.join(sorted(cls.defaults))}")
+    default = cls.defaults[key]
+    if isinstance(default, str):
+        value = str(value)
+        if key in cls.choices and value not in cls.choices[key]:
+            raise ValueError(f"{organ}.{key} must be one of {', '.join(cls.choices[key])}, not {value!r}")
+    elif isinstance(default, int) and not isinstance(value, int):
+        raise ValueError(f"{organ}.{key} takes an integer, not {value!r}")
+    elif isinstance(default, float) and not isinstance(value, (int, float)):
+        raise ValueError(f"{organ}.{key} takes a number, not {value!r}")
+    return value
 
 
 # --------------------------------------------------------------------------- organism
@@ -276,7 +322,7 @@ class Organism:
         cfg = {"capacity": self.cfg.capacity, "beta": self.cfg.beta, "explore": self.cfg.explore}
         cuts, frozen = list(self.cfg.cuts), list(self.cfg.frozen)
         shuffled, params = list(self.cfg.shuffled), list(self.cfg.params)
-        Config._apply_to(modifier, organs, cfg, cuts, frozen, shuffled, params)
+        Config._apply_to(modifier, organs, cfg, cuts, frozen, shuffled, params, living=True)
         if "policy" not in organs:
             raise ValueError("the policy organ cannot be ablated")
         from .organs import ORGANS

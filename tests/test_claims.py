@@ -10,8 +10,8 @@ import textwrap
 import unittest
 
 from mind import stats
-from mind.claims import Check, Claim, Compare, Evaluation, heldout_seeds, load_claims, seal_commit
-from mind.knowledge import assess
+from mind.claims import Check, Claim, Compare, Evaluation, heldout_seeds, load_claims, rival_panel, seal_commit
+from mind.knowledge import assess, frontier
 
 CLAIM_SRC = textwrap.dedent('''\
     """{doc}"""
@@ -37,7 +37,13 @@ def ev(claim, verdict="HOLDS", robust=True, seeds="dev", rivals=None):
     return Evaluation(claim.id, claim.prediction_hash(), verdict, robust, seeds, {}, rivals or {})
 
 
-BEATEN = {"window4": {"reference": False, "result": "BEATEN"}, "bayes": {"reference": True, "result": "NOT_BEATEN"}}
+def panel(result="BEATEN", drop=()):
+    """A rival panel for make()'s claim as today's zoo defines it (references never count)."""
+    return {r.name: {"reference": r.reference, "result": "NOT_BEATEN" if r.reference else result}
+            for r in rival_panel(make()) if r.name not in drop}
+
+
+BEATEN = panel()
 
 
 class PredictionLock(unittest.TestCase):
@@ -148,6 +154,28 @@ class StatesAndLadder(unittest.TestCase):
         st = assess({"C1": c}, [record([ev(c)])], draft, code="c", live_mode="quick")["C1"]
         self.assertEqual(st.state, "HOLDS")
         self.assertEqual(assess({"C1": c}, [], draft, code="c", live_mode="quick")["C1"].state, "INCONCLUSIVE")
+
+    def test_a_newer_unbeaten_rival_revokes_rival_tested(self):
+        # owner review of PR #17: an old BEATEN panel must not keep the rung once a newer run is not BEATEN
+        c = make()
+        old = [record([ev(c, rivals=BEATEN)], at="2026-01-01T00:00:00Z"),
+               record([ev(c, seeds="heldout:s", rivals=BEATEN)], at="2026-01-02T00:00:00Z")]
+        self.assertEqual(assess({"C1": c}, old, seals={"C1": "s"})["C1"].level, "PREREGISTERED")
+        tied = panel()
+        tied["window8"] = {"reference": False, "result": "NOT_BEATEN"}
+        newer = record([ev(c, rivals=tied)], at="2026-02-01T00:00:00Z")
+        st = assess({"C1": c}, old + [newer], seals={"C1": "s"})["C1"]
+        self.assertEqual((st.state, st.level, st.rivals_not_beaten), ("HOLDS", "ROBUST", ["window8"]))
+
+    def test_a_rival_added_since_the_latest_run_suspends_rival_tested(self):
+        c = make()
+        older_zoo = panel(drop=("window8lin",))
+        recs = [record([ev(c, rivals=older_zoo)], at="2026-01-01T00:00:00Z"),
+                record([ev(c, seeds="heldout:s", rivals=older_zoo)], at="2026-01-02T00:00:00Z")]
+        st = assess({"C1": c}, recs, seals={"C1": "s"})["C1"]
+        self.assertEqual((st.state, st.level, st.rivals_unrun), ("HOLDS", "ROBUST", ["window8lin"]))
+        self.assertTrue(any(i["kind"] == "rival" and "window8lin" in i["action"]
+                            for i in frontier({"C1": st}, {})))
 
     def test_amended_prediction_starts_over(self):
         old, new = make(margin=0.1), make(margin=0.3)
