@@ -136,6 +136,8 @@ def registry_section() -> List[str]:
 def render(states: Dict[str, ClaimState], questions: Dict[str, Question], items: List[Dict[str, str]],
            code: str) -> str:
     head = (git("rev-parse", "--short", "HEAD") or "?").strip()
+    if (git("status", "--porcelain", "--", "mind", "knowledge") or "").strip():
+        head += " + uncommitted changes"
     counts = Counter(st.state for st in states.values())
     levels = Counter(st.level for st in states.values() if st.state == "HOLDS")
     out = ["# MIND — live knowledge status", "",

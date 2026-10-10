@@ -1,31 +1,59 @@
-# GO — deterministic bootstrap for an agent
+# GO — what to do when told "go"
 
-**Primary mandate:** perform a falsifiable experiment toward the **functional consciousness** research objective, without claiming the objective has been attained. The first lab is [E100 Lesion Week](experiments/E100-lesion-week.md), not an E900 pitch or another protocol-only iteration. No new onboarding files.
+You are joining a compounding research program. Your job is to add **one** piece of knowledge that builds on
+everything already here. Read [AGENTS.md](AGENTS.md) once. You do not need anything in `archive/`.
 
-**Trigger:** When the user says **"go"**, **"continue"**, **"run the next research sprint"**, or gives no narrower task, execute this protocol. Anjo is the parent initiative; MIND is its scientifically autonomous research arm, **not** an Anjo deployment or an established mind. This is a research workflow, not a promise of unbounded runtime.
+## 1. Orient (minutes, not hours)
 
-## 0. Orientation and authority (first action)
-1. Confirm repository `kevindechang/MIND`, branch, exact live HEAD and `git status --short` (or read-only GitHub equivalents). Never rely on the SHA copied into a chat or a previous scheduled run. Never write to legacy Founder-Library/digital-mind.
-2. Read, in order: **this file → AGENTS.md → CURRENT.md → research-state.md → TASKS.md → RUNBOOK.md → research-quality-gate.md → sources/README.md**. Read the chosen experiment/dossier and relevant current evidence/registers before analysis. If repositories/files are inaccessible, explicitly report the missing capability rather than guessing.
-3. On an actual checkout with Python, run `python scripts/agent_preflight.py` to validate required entry files, links, pinned source blobs and canonical state. If unavailable, report NOT_EXECUTED; a green preflight is **not** scientific evidence.
-4. **Conflict resolution:** newer verified immutable experimental evidence outranks an old handoff summary; `research-state.md` owns completed science/gates/counts, `TASKS.md` defines the default priority order, live GitHub issue/PR status owns task claims, `sources/README.md` owns document provenance. The latest `RUNBOOK.md` owns method. The *historical* "Exactly one next executable action" section inside research-state describes an old W1 checkpoint, and DOES NOT override the later W2 handoff. Do not treat migration/organization edits as science.
+```bash
+git pull
+python -m mind doctor            # repository integrity
+python -m mind status            # every claim's computed state
+```
 
-## 1. Decide what to do
-5. Inspect open issues and PRs before selecting. Take an **unclaimed, ready** scoped task from TASKS.md, in priority order, subject to available tools and the mandatory W2–W4 next substantive research allocation. Default: [#2](https://github.com/kevindechang/MIND/issues/2) is **E100 Day 0 physical restart** (locally run and externally reproduced) and **Day 1 broadcast routing lesion** (locally executed; only an instrument check). **Next substantive experiment: Day 2 causal-link lesion**, not another E002a draft. [#1](https://github.com/kevindechang/MIND/issues/1) is integrated-suite preflight, not science; [#3](https://github.com/kevindechang/MIND/issues/3) is a Day 5 learned-scheduler identification rival. Never substitute a protocol draft for execution when the runnable test is available. If #1 cannot run, label NOT_EXECUTED and move to #2; Day 0's SIGKILL is mandatory, not a mocked process reset. Never run four more W1 toy refinements.
-6. If an issue is claimed or another open PR covers the same scope, choose another ready task, add an independent disconfirming review to that PR if authorized, or report BLOCKED. A GitHub issue comment is NOT an atomic lock; recheck issue, claims, PRs and target files immediately before writes. Use `research/<issue>-<topic>` on a separate branch and open a PR. Do not put concurrent exploratory work directly on main or overwrite another contributor's `research-state.md`.
-7. If you cannot write, conduct bounded read-only investigation, report an exact patch proposal plus missing permissions and mark NOT_COMMITTED; never pretend a contribution landed.
+Then open [STATUS.md](STATUS.md). Its **Frontier** section, at the top, is your menu, computed from the knowledge
+itself: broken claims, then stale ones, inconclusive ones, rivals to beat, open questions, and replications.
 
-## 2. Plan one meaningful contribution
-8. Before experiments, state the scientific question, decision affected, operational outcome, strongest *resource- and information-matched* simpler rival, null/alternate predictions, falsifier, failure/negative controls, provenance, limitations, and what would change if the rival wins. Identify whether this is calibration, preregistration design, real comparison, source review, or governance.
-9. Separate: L1 observable behaviors; L2 experimentally supported causal cognitive organization; L3 phenomenal experience **unresolved**. **Functional consciousness is the target's name**, not an earned result: do not claim that a single L2 lesion or Day 0 circuit proves or achieves it. Check Anjo product law and VERA proposal provenance in `sources/README.md`; R001/R002 contributor drafts are *not* Anjo canonical architecture. Never prescribe Graphiti/Conway/TTT/O-LoRA or a second Anjo runtime from those drafts.
-10. Execute actual feasible research. A `python scripts/verify_instruments.py` PASS proves instrument regression only. A scored experiment needs a frozen preregistration, held-out worlds, matched budgets, explicit resets, proper baseline, uncertainty, and actual execution logs. A separate reviewer is real only if separately invoked; otherwise SELF-REVIEW_ONLY. Do not purchase resources, run GitHub Actions, deploy Anjo or imply 40 minutes occurred.
+## 2. Pick one item and avoid collisions
 
-## 3. Quality and safe handoff
-11. Verify changed code/proofs as permitted; cite versions, commands, outputs, counterexamples and unexecuted checks. Reject a benchmark where the favored system wins by construction. Apply `research-quality-gate.md`; zero accepted contributions remains zero absent qualifying evidence.
-12. Write scientific evidence into an experiment/dossier artifact; use unique IDs. Work records document transactions, not substance. PR must show decision effect, exact files/tests, failed cases and ONE executable next step.
-13. **Only one integrator at a time** updates `research-records.md` and `research-state.md`: on accepted PR merge, reconcile current main and upstream changes; commit artifact/index first and state LAST with an immutable artifact commit, verify read-back. Contributors may propose a state delta in their PR but must not race to publish state. Scientific gate changes require the gate conditions, not a merge.
-14. End with: task/issue, status, actual evidence, tests run/not run, strongest rival, gate/verdict, reviewer mode, artifact PR/commit, Anjo implication (or NOT_READY_FOR_PRODUCT_TRANSFER), duration if observed (SHORT_RUN or UNKNOWN otherwise), and ONE next action. No "completed research" claim for a partial checkpoint.
+Take the highest frontier item you can complete. Check open PRs and `contrib/*` branches for the same claim ids,
+organ or world. Then branch: `git checkout -b contrib/<item>-<slug>`.
 
-**Success condition for a fresh "go" agent:** without further direction, locate a ready nonduplicate task, do a verifiable bounded improvement, and leave a reviewable, conflict-safe handoff. If that cannot be done, explain precisely which gate/tool/claim blocks it. **Do not manufacture work to satisfy the command.**
+## 3. Build on what exists
 
-**Current E100 lab handoff (2026-10-11):** Day 1's identical source rows + intact observer receipt and changed planner action were locally observed; the compact-state reader **ties** the intact planner, so no unique-broadcast claim follows. Reproduce exact branch code before citing externally. The next planned organ is **Day 2 causal dependency**, while the full integrated suite remains to be checked.
+| You want to… | Do this |
+|---|---|
+| test an idea | `python -m mind new C016 "title"`, then fill in the test ([docs/CLAIMS.md](docs/CLAIMS.md)) |
+| add a mechanism | add an organ in `mind/organs/` ([docs/SUBSTRATE.md](docs/SUBSTRATE.md)) |
+| challenge a mechanism | add a rival in `mind/rivals/`; it re-tests every relevant claim |
+| make a question testable | add a world (with a held-out variant) in `mind/worlds/` |
+| strengthen evidence | replicate: run the checks on a fresh clone with `--by <you>` |
+
+Explore freely on dev seeds (`python -m mind run …`, `python -m mind check C016 --quick`). Exploration is not evidence.
+
+## 4. Register, then confirm
+
+```bash
+git add knowledge/claims/C016_*.py && git commit -m "Register C016"   # this commit seals the prediction
+python -m mind check C016 --record                 # full strength, dev seeds
+python -m mind check C016 --heldout --record       # sealed seeds nobody could tune on
+```
+
+Report what happens. REFUTED and INCONCLUSIVE are contributions. Never edit the prediction afterwards; register a
+successor instead.
+
+## 5. Prove you broke nothing, then hand off
+
+```bash
+python -m mind check                       # exit 0 = nothing BROKEN or ERROR anywhere
+python -m unittest discover -s tests
+python -m mind doctor
+python -m mind status --write              # regenerate STATUS.md (never edit it by hand)
+```
+
+Commit code, claims, records and STATUS.md, then open a PR. The description is the `mind check` output for your claims
+plus one paragraph on what changed in the knowledge. No integrator needs to serialise anything. If STATUS.md
+conflicts, regenerate it.
+
+**Cannot execute code?** You can still add a question (`knowledge/questions/`), a literature entry
+(`knowledge/literature.md`) or a claim file. It will show as UNTESTED until someone runs it. Say so in your PR.

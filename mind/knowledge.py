@@ -95,6 +95,15 @@ class ClaimState:
     current_code: bool = False
 
 
+def ladder(claim: Claim) -> tuple:
+    """The evidence rungs that apply to this claim. Deterministic checks (no seeds)
+    have nothing to seal, so they skip PREREGISTERED."""
+    rungs = claim.ladder
+    if not getattr(claim.test, "seeds", 0):
+        rungs = tuple(r for r in rungs if r != "PREREGISTERED")
+    return rungs
+
+
 def _evidence(claim: Claim, records: List[Dict[str, Any]], live: Dict[str, Evaluation],
               code: str, live_mode: str) -> List[Dict[str, Any]]:
     h = claim.prediction_hash()
@@ -134,7 +143,7 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
     for cid, claim in claims.items():
         evidence = _evidence(claim, records, live, code, live_mode)
         seal = seals.get(cid)
-        st = ClaimState(claim, "UNTESTED", 0, claim.ladder[0], seal, evidence=evidence)
+        st = ClaimState(claim, "UNTESTED", 0, ladder(claim)[0], seal, evidence=evidence)
         if evidence:
             latest = max(evidence, key=lambda e: (_strength(e), e["_at"]))
             st.latest = latest
@@ -154,8 +163,8 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
             st.state = "RETIRED"
             st.notes.append(f"retired: {claim.retired}")
         st.rung = _rung(claim, evidence, seal) if st.state == "HOLDS" else 0
-        st.level = claim.ladder[st.rung]
-        if seal is None and claim.path and "PREREGISTERED" in claim.ladder and getattr(claim.test, "seeds", 0):
+        st.level = ladder(claim)[st.rung]
+        if seal is None and claim.path and "PREREGISTERED" in ladder(claim):
             st.notes.append("unsealed: commit the claim file to enable held-out evaluation")
         out[cid] = st
     _propagate_staleness(claims, out)
@@ -178,7 +187,7 @@ def _rung(claim: Claim, evidence: List[Dict[str, Any]], seal: Optional[str]) -> 
     met["REPLICATED"] = (len({e["_by"] for e in recorded}) >= 2
                          and len({e["_env"] for e in recorded}) >= 2)
     rung = 0
-    for i, name in enumerate(claim.ladder):
+    for i, name in enumerate(ladder(claim)):
         if not met[name]:
             break
         rung = i
@@ -248,9 +257,14 @@ def load_questions() -> Dict[str, Question]:
 
 # ----------------------------------------------------------------------------- frontier
 
+KIND_ORDER = ("repair", "rejustify", "sharpen", "rival", "evaluate", "question", "promote", "confirm",
+              "refresh", "replicate")
+
+
 def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> List[Dict[str, str]]:
     """Ranked list of the most valuable next contributions, derived from the knowledge itself."""
     items: List[Dict[str, str]] = []
+    grouped: Dict[str, List[str]] = {"confirm": [], "replicate": [], "refresh": []}
 
     def add(priority: int, kind: str, target: str, action: str) -> None:
         items.append({"priority": str(priority), "kind": kind, "target": target, "action": action})
@@ -258,38 +272,54 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
     for cid, st in sorted(states.items()):
         c = st.claim
         if st.state == "BROKEN":
-            add(0, "repair", cid, f"{cid} held before and fails now: find the change that broke it, fix it or retire the claim with a reason")
+            add(0, "repair", cid, f"{cid} held before and fails now on the same seeds: find the change that broke "
+                                  f"it, fix it, or retire the claim with a reason")
         elif st.state == "ERROR":
             add(0, "repair", cid, f"{cid}'s check crashed: {(st.latest or {}).get('error')}")
         elif st.state == "STALE":
-            add(1, "rejustify", cid, f"{cid} rests on a failed premise ({'; '.join(st.notes)}): re-derive it independently or retire it")
+            add(1, "rejustify", cid, f"{cid} rests on a failed premise ({'; '.join(st.notes)}): re-derive it "
+                                     f"independently or retire it")
         elif st.state == "INCONCLUSIVE":
-            add(2, "sharpen", cid, f"{cid} is inconclusive (interval straddles the margin): more seeds, a sharper world, or a better-posed claim")
+            add(2, "sharpen", cid, f"{cid} ({c.title}) is inconclusive: the interval straddles its margin. Register "
+                                   f"a sharper successor claim (more seeds, a cleaner world) — never edit {cid}'s "
+                                   f"prediction to fit")
         elif st.state == "UNTESTED":
-            add(2, "evaluate", cid, f"run `python -m mind check {cid} --record`")
+            add(2, "evaluate", cid, f"{cid}: run `python -m mind check {cid} --record`")
         elif st.state == "HOLDS":
-            nxt = c.ladder[st.rung + 1] if st.rung + 1 < len(c.ladder) else None
+            rungs = ladder(c)
+            nxt = rungs[st.rung + 1] if st.rung + 1 < len(rungs) else None
             if st.rivals_not_beaten:
-                add(3, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_not_beaten)} match the mechanism. Beat them with a better organ, or record an equivalence claim that the simpler rival suffices")
+                add(2, "rival", cid, f"{cid}: rival(s) {', '.join(st.rivals_not_beaten)} match the mechanism. Beat "
+                                     f"them with a better organ, or register that the simpler rival suffices")
             elif nxt == "ROBUST":
                 add(4, "promote", cid, f"{cid}: run at full strength `python -m mind check {cid} --record`")
             elif nxt == "RIVAL-TESTED":
                 add(3, "rival", cid, f"{cid}: no non-reference rival in the zoo challenges {', '.join(c.about)} in "
                                      f"{getattr(c.test, 'world', 'this world')}; contribute one to mind/rivals")
             elif nxt == "PREREGISTERED":
-                how = "commit the claim, then " if st.seal is None else ""
-                add(4, "confirm", cid, f"{cid}: {how}run `python -m mind check {cid} --heldout --record` on sealed seeds")
+                grouped["confirm"].append(cid)
             elif nxt == "REPLICATED":
-                add(5, "replicate", cid, f"{cid}: independent re-run on a fresh clone: `python -m mind check {cid} --record --by <you>`")
+                grouped["replicate"].append(cid)
             if not st.current_code and st.latest and st.latest.get("_record"):
-                add(4, "refresh", cid, f"{cid}: evidence predates the current code; re-run to keep it current")
+                grouped["refresh"].append(cid)
     asked = {st.claim.question for st in states.values() if st.claim.question}
     for qid, q in sorted(questions.items()):
         if q.status != "open":
             continue
-        if q.next:
-            add(3 if qid in asked else 2, "question", qid, f"{qid} — {q.title}: {q.next}")
-        elif qid not in asked:
-            add(2, "question", qid, f"{qid} — {q.title}: no claim yet; write the first falsifiable claim")
-    items.sort(key=lambda x: (int(x["priority"]), x["kind"], x["target"]))
+        if qid not in asked:
+            add(3, "question", qid, f"{qid} — {q.title} No claim yet. {q.next or 'Write the first falsifiable claim.'}")
+        elif q.next:
+            add(4, "question", qid, f"{qid} — {q.title} {q.next}")
+    if grouped["refresh"]:
+        add(4, "refresh", "+".join(grouped["refresh"]),
+            f"evidence for {', '.join(grouped['refresh'])} predates the current code; re-run `python -m mind check --record`")
+    if grouped["confirm"]:
+        add(4, "confirm", "+".join(grouped["confirm"]),
+            f"{', '.join(grouped['confirm'])}: commit, then confirm on sealed seeds with "
+            f"`python -m mind check --heldout --record`")
+    if grouped["replicate"]:
+        add(5, "replicate", "+".join(grouped["replicate"]),
+            f"{len(grouped['replicate'])} claims await independent replication: on a fresh clone, as a different "
+            f"contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`")
+    items.sort(key=lambda x: (int(x["priority"]), KIND_ORDER.index(x["kind"]), x["target"]))
     return items

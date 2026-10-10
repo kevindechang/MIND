@@ -1,3 +1,5 @@
+> **v2 note (2026-10-10):** the seven toy lesion days are superseded by lesion *operators* on one shared learning organism. Day 0 is re-run as claim L02 and generalised by K01/K02/C015, Day 1 as L03; see [docs/MIGRATION-v2.md](../docs/MIGRATION-v2.md) for every day. This page is historical.
+
 # E100 — Lesion Week: functional-consciousness engineering probe
 
 **Parent:** Anjo / MIND, scientifically independent; **status:** Day 0 real-death circuit reproduced externally; Day 1 BROADCAST LESION LOCALLY EXECUTED (deterministic instrument); Days 2–7 PROPOSED / NOT EXECUTED. **Not** an implemented mind, accepted consciousness indicator, or Anjo product architecture.
