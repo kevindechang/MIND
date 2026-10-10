@@ -1,0 +1,232 @@
+{
+  "accepted_science": 0,
+  "controls": {
+    "causal_edge_cut": "SCAN",
+    "idempotent_outage": "DEFER",
+    "irrelevant_edge_sham": "DEFER",
+    "negative_stale_snapshot": "EXPECTED_MISMATCH",
+    "restoration_reversal": "SCAN",
+    "unknown_goal": "NO_GOAL",
+    "unrelated_restoration": "DEFER"
+  },
+  "not_executed": [
+    "original MIND combined modules",
+    "full repo regression",
+    "learned-agent trials",
+    "SIGKILL process recovery",
+    "hardware cost matching"
+  ],
+  "python_scope": "synthetic_online_fixed_bipartite_public_stream",
+  "review": "SELF_REVIEW_ONLY",
+  "status": "PASS",
+  "strata": {
+    "q0.2_d0.1": {
+      "accuracy_errors": {
+        "eager": 0,
+        "graph": 0,
+        "lazy": 0
+      },
+      "all_episode_stream_sha256": "3700277e8b7d8a021d07d768237f16f53fcbdf4e76e39bed1b3128af0242a254",
+      "cost_by_phase": {
+        "eager": {
+          "initial": 846,
+          "query": 1162,
+          "update": 108468
+        },
+        "graph": {
+          "initial": 282,
+          "query": 4840,
+          "update": 4598
+        },
+        "lazy": {
+          "initial": 282,
+          "query": 5880,
+          "update": 5721
+        }
+      },
+      "event_count_each": 180,
+      "mean_ops": {
+        "eager": 3452.375,
+        "graph": 303.75,
+        "lazy": 371.344
+      },
+      "min_max_ops": {
+        "eager": [
+          2550,
+          4558
+        ],
+        "graph": [
+          247,
+          388
+        ],
+        "lazy": [
+          302,
+          462
+        ]
+      },
+      "n_episodes": 32,
+      "total_ops": {
+        "eager": 110476,
+        "graph": 9720,
+        "lazy": 11883
+      },
+      "total_queries": 1162
+    },
+    "q0.2_d0.4": {
+      "accuracy_errors": {
+        "eager": 0,
+        "graph": 0,
+        "lazy": 0
+      },
+      "all_episode_stream_sha256": "3700277e8b7d8a021d07d768237f16f53fcbdf4e76e39bed1b3128af0242a254",
+      "cost_by_phase": {
+        "eager": {
+          "initial": 3159,
+          "query": 1162,
+          "update": 239810
+        },
+        "graph": {
+          "initial": 1053,
+          "query": 10194,
+          "update": 4598
+        },
+        "lazy": {
+          "initial": 1053,
+          "query": 11122,
+          "update": 5721
+        }
+      },
+      "event_count_each": 180,
+      "mean_ops": {
+        "eager": 7629.094,
+        "graph": 495.156,
+        "lazy": 559.25
+      },
+      "min_max_ops": {
+        "eager": [
+          5153,
+          9546
+        ],
+        "graph": [
+          359,
+          607
+        ],
+        "lazy": [
+          414,
+          674
+        ]
+      },
+      "n_episodes": 32,
+      "total_ops": {
+        "eager": 244131,
+        "graph": 15845,
+        "lazy": 17896
+      },
+      "total_queries": 1162
+    },
+    "q0.8_d0.1": {
+      "accuracy_errors": {
+        "eager": 0,
+        "graph": 0,
+        "lazy": 0
+      },
+      "all_episode_stream_sha256": "c3b1a152853bb29c5a73b4e83d330187a7b48d6e115facd2e9db5bc453b49890",
+      "cost_by_phase": {
+        "eager": {
+          "initial": 846,
+          "query": 4603,
+          "update": 20189
+        },
+        "graph": {
+          "initial": 282,
+          "query": 12846,
+          "update": 1157
+        },
+        "lazy": {
+          "initial": 282,
+          "query": 13241,
+          "update": 4161
+        }
+      },
+      "event_count_each": 180,
+      "mean_ops": {
+        "eager": 801.188,
+        "graph": 446.406,
+        "lazy": 552.625
+      },
+      "min_max_ops": {
+        "eager": [
+          394,
+          1239
+        ],
+        "graph": [
+          176,
+          701
+        ],
+        "lazy": [
+          343,
+          695
+        ]
+      },
+      "n_episodes": 32,
+      "total_ops": {
+        "eager": 25638,
+        "graph": 14285,
+        "lazy": 17684
+      },
+      "total_queries": 4603
+    },
+    "q0.8_d0.4": {
+      "accuracy_errors": {
+        "eager": 0,
+        "graph": 0,
+        "lazy": 0
+      },
+      "all_episode_stream_sha256": "c3b1a152853bb29c5a73b4e83d330187a7b48d6e115facd2e9db5bc453b49890",
+      "cost_by_phase": {
+        "eager": {
+          "initial": 3159,
+          "query": 4603,
+          "update": 57885
+        },
+        "graph": {
+          "initial": 1053,
+          "query": 38502,
+          "update": 1157
+        },
+        "lazy": {
+          "initial": 1053,
+          "query": 30379,
+          "update": 4161
+        }
+      },
+      "event_count_each": 180,
+      "mean_ops": {
+        "eager": 2051.469,
+        "graph": 1272.25,
+        "lazy": 1112.281
+      },
+      "min_max_ops": {
+        "eager": [
+          1034,
+          3498
+        ],
+        "graph": [
+          980,
+          1571
+        ],
+        "lazy": [
+          867,
+          1292
+        ]
+      },
+      "n_episodes": 32,
+      "total_ops": {
+        "eager": 65647,
+        "graph": 40712,
+        "lazy": 35593
+      },
+      "total_queries": 4603
+    }
+  }
+}
