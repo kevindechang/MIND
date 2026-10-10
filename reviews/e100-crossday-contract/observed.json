@@ -1,0 +1,50 @@
+{
+  "compact_reference_equalities": 3110,
+  "crossday_cases": [
+    {
+      "case": "control_no_outage",
+      "day2": "SCAN",
+      "day7": "SCAN",
+      "same": true
+    },
+    {
+      "case": "control_outage",
+      "day2": "DEFER",
+      "day7": "DEFER",
+      "same": true
+    },
+    {
+      "case": "restoration",
+      "day2": "DEFER",
+      "day7": "SCAN",
+      "same": false
+    },
+    {
+      "case": "unrelated_restore",
+      "day2": "DEFER",
+      "day7": "DEFER",
+      "same": true
+    },
+    {
+      "case": "later_outage",
+      "day2": "DEFER",
+      "day7": "DEFER",
+      "same": true
+    },
+    {
+      "case": "upstream_outage",
+      "day2": "DEFER",
+      "day7": "SCAN",
+      "same": false
+    },
+    {
+      "case": "day4_kind",
+      "day2": "NO_GOAL",
+      "day7": "NO_GOAL",
+      "same": true
+    }
+  ],
+  "disagreements": 2,
+  "scope": "transcribed fixed policies, not MIND original-module execution; no lifecycle cost parity",
+  "status": "PASS"
+}
