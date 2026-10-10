@@ -6,7 +6,7 @@ Nothing here is asserted by hand. A claim's state and level are computed from
 contributors never edit the same file.
 
 States
-  HOLDS         latest strongest evaluation holds
+  HOLDS         the latest evaluation on every seed set holds
   REFUTED       fails and has never held (a negative result: knowledge, kept)
   BROKEN        held before, fails now (a regression someone must explain)
   INCONCLUSIVE  the interval straddles the margin (not a negative result!)
@@ -117,7 +117,7 @@ def _evidence(claim: Claim, records: List[Dict[str, Any]], live: Dict[str, Evalu
             ev.append({**e, "_by": rec["by"], "_env": rec["environment_id"], "_code": rec["code"],
                        "_at": rec["recorded_at"], "_mode": rec["mode"], "_record": rec["_path"],
                        "_schema": rec.get("schema", 1)})
-    if claim.id in live and live[claim.id].prediction_hash == h:
+    if claim.id in live and live[claim.id].prediction_hash == hashes[SCHEME]:
         e = live[claim.id].to_dict()
         ev.append({**e, "_by": "live", "_env": "live", "_code": code, "_at": "9999-live",
                    "_mode": live_mode, "_record": None})
@@ -125,11 +125,38 @@ def _evidence(claim: Claim, records: List[Dict[str, Any]], live: Dict[str, Evalu
 
 
 def _strength(e: Dict[str, Any]) -> int:
-    """quick drafts < dev-seed runs < sealed held-out runs. A failed preregistered
-    confirmation can therefore never be overwritten by re-running dev seeds."""
+    """quick drafts < dev-seed runs < sealed held-out runs."""
     if e.get("_mode") == "quick":
         return 0
     return 2 if str(e.get("seeds", "")).startswith("heldout:") else 1
+
+
+_SEVERITY = {"ERROR": 0, "FAILS": 1, "INCONCLUSIVE": 2, "HOLDS": 3}
+
+
+def _seed_set(e: Dict[str, Any]) -> str:
+    # quick drafts run a prefix of the dev seeds under the same label, so they are a set of their own
+    return "quick" if e.get("_mode") == "quick" else str(e["seeds"])
+
+
+def _decisive(evidence: List[Dict[str, Any]]) -> tuple:
+    """The evaluation that decides the state, and the latest evaluation on each seed set.
+
+    Each seed set (dev, the sealed held-out seeds) speaks through its latest run, and the most
+    conservative of those decides. So a failure on any seed set is never hidden by older or
+    stronger success on another: a dev regression in `mind check` is not masked by a held-out
+    record, and re-running dev seeds cannot overwrite a failed sealed confirmation. Quick drafts
+    count only when nothing else exists."""
+    pool = [e for e in evidence if _strength(e) >= 1] or evidence
+    heads: Dict[str, Dict[str, Any]] = {}
+    for e in sorted(pool, key=lambda e: e["_at"]):
+        heads[_seed_set(e)] = e
+    decisive = max(heads.values(), key=lambda e: (-_SEVERITY.get(e["verdict"], 0), _strength(e), e["_at"]))
+    return decisive, [heads[k] for k in sorted(heads)]
+
+
+def _seeds_name(label: str) -> str:
+    return label[:15] if label.startswith("heldout:") else label
 
 
 def _rivals_clean(e: Dict[str, Any]) -> bool:
@@ -149,10 +176,13 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
         seal = seals.get(cid)
         st = ClaimState(claim, "UNTESTED", 0, ladder(claim)[0], seal, evidence=evidence)
         if evidence:
-            latest = max(evidence, key=lambda e: (_strength(e), e["_at"]))
+            latest, heads = _decisive(evidence)
             st.latest = latest
-            st.current_code = latest["_code"] == code
+            st.current_code = all(e["_code"] == code for e in heads)
             v = latest["verdict"]
+            if len({e["verdict"] for e in heads}) > 1:
+                st.notes.append("mixed evidence: " + ", ".join(
+                    f"{e['verdict']} on {_seeds_name(str(e['seeds']))}" for e in heads))
             # BROKEN = a regression on IDENTICAL inputs (same seed set: same label AND same hash,
             # since held-out seeds derive from both). Holding on dev seeds but failing on sealed
             # held-out seeds is not a regression: the prediction did not generalise.
@@ -357,7 +387,8 @@ def frontier(states: Dict[str, ClaimState], questions: Dict[str, Question]) -> L
             add(4, "question", qid, f"{qid} — {q.title} {q.next}")
     if grouped["refresh"]:
         add(4, "refresh", "+".join(grouped["refresh"]),
-            f"evidence for {', '.join(grouped['refresh'])} predates the current code; re-run `python -m mind check --record`")
+            f"evidence for {', '.join(grouped['refresh'])} predates the current code; re-run `python -m mind check "
+            f"--record`, and `--heldout --record` for claims with sealed seeds")
     if grouped["confirm"]:
         add(4, "confirm", "+".join(grouped["confirm"]),
             f"{', '.join(grouped['confirm'])}: commit, then confirm on sealed seeds with "

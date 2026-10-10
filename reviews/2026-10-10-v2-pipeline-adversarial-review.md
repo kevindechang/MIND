@@ -45,3 +45,12 @@ contribution:
 
 The first-held-out rule means the original held-out results still decide preregistration for unchanged predictions.
 Their histories stay visible in STATUS.md.
+
+## Addendum: a defect found after publication
+
+The author found this while closing the superseded PRs, by running the documented `python -m mind check` on the PR
+head. It is self-review, like the rest of this page.
+
+| # | Defect | Evidence | Status |
+|---|---|---|---|
+| p1 | `mind check` without `--record` (including `--quick`) crashed with a `NameError` in `knowledge._evidence`, introduced by the scheme-aware matching fix for finding 3. Behind the crash was a real flaw: because held-out evidence outranked dev evidence, a recorded held-out success masked any live dev regression, so `mind check` could never report BROKEN for a preregistered claim. The same rule reported C013 as HOLDS, although on the current code its dev run is INCONCLUSIVE and only a re-run of its spent held-out seeds holds. | traceback; a test run on the old rule with only the crash fixed reports HOLDS for a live regression | **Fixed:** each seed set speaks through its latest run, and the most conservative decides; disagreements are noted as *mixed evidence*. Tests cover masking, mixed evidence and quick drafts. C013 is now INCONCLUSIVE, and the frontier asks for a sharper successor. No result code changed, so no evaluation was re-run or re-recorded. |

@@ -168,7 +168,7 @@ def render(states: Dict[str, ClaimState], questions: Dict[str, Question], items:
     if len(items) > 20:
         out.append(f"\n…and {len(items) - 20} more: `python -m mind status --frontier`.")
     out += ["", "## Claims", "",
-            "| claim | statement | kind · scope | state | level | evidence (latest strongest) | rivals not beaten | premises |",
+            "| claim | statement | kind · scope | state | level | evidence (decisive run) | rivals not beaten | premises |",
             "|---|---|---|---|---|---|---|---|"]
     for cid, st in sorted(states.items(), key=lambda kv: (STATE_ORDER.index(kv[1].state), kv[0])):
         c = st.claim

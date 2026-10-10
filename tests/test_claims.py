@@ -122,6 +122,33 @@ class StatesAndLadder(unittest.TestCase):
                 record([ev(c)], at="2026-06-01T00:00:00Z")]
         self.assertEqual(assess({"C1": c}, recs, seals={"C1": "s"})["C1"].state, "REFUTED")
 
+    def test_live_regression_is_not_masked_by_a_heldout_record(self):
+        # `mind check` must exit 1 when current code breaks a preregistered claim on its dev seeds
+        c = make()
+        recs = [record([ev(c, rivals=BEATEN)], at="2026-01-01T00:00:00Z"),
+                record([ev(c, seeds="heldout:s", rivals=BEATEN)], at="2026-01-02T00:00:00Z")]
+        live = {"C1": ev(c, "FAILS", robust=False)}
+        st = assess({"C1": c}, recs, live, code="new", seals={"C1": "s"})["C1"]
+        self.assertEqual(st.state, "BROKEN")
+        self.assertFalse(st.current_code)  # the held-out evidence predates the new code
+        st = assess({"C1": c}, recs, {"C1": ev(c, rivals=BEATEN)}, code="c", seals={"C1": "s"})["C1"]
+        self.assertEqual((st.state, st.level, st.current_code), ("HOLDS", "PREREGISTERED", True))
+
+    def test_mixed_evidence_is_not_reported_as_holding(self):
+        c = make()
+        recs = [record([ev(c, "INCONCLUSIVE", robust=False)], at="2026-01-01T00:00:00Z"),
+                record([ev(c, seeds="heldout:s")], at="2026-01-02T00:00:00Z")]
+        st = assess({"C1": c}, recs, seals={"C1": "s"})["C1"]
+        self.assertEqual(st.state, "INCONCLUSIVE")
+        self.assertTrue(any(n.startswith("mixed evidence") for n in st.notes))
+
+    def test_quick_drafts_never_override_full_runs(self):
+        c = make()
+        draft = {"C1": ev(c, "INCONCLUSIVE", robust=False)}
+        st = assess({"C1": c}, [record([ev(c)])], draft, code="c", live_mode="quick")["C1"]
+        self.assertEqual(st.state, "HOLDS")
+        self.assertEqual(assess({"C1": c}, [], draft, code="c", live_mode="quick")["C1"].state, "INCONCLUSIVE")
+
     def test_amended_prediction_starts_over(self):
         old, new = make(margin=0.1), make(margin=0.3)
         st = assess({"C1": new}, [record([ev(old)])])["C1"]

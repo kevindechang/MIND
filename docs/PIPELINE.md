@@ -91,7 +91,8 @@ current prediction (searched by claim id, so renames do not move it). The rules 
 * **Held-out runs are always recorded**, and records are append-only (the doctor rejects deletions).
 * **A prediction never changes after a held-out run.** The doctor rejects it. Register a successor claim; its new
   id and new commit give it new seeds.
-* **Held-out evidence dominates dev evidence**, so re-running dev seeds can never overwrite a confirmation.
+* **Every seed set's latest run counts, and the most conservative decides**, so re-running dev seeds can never
+  overwrite a failed confirmation, and an old held-out success can never mask a new dev regression.
 * **Merge with merge commits.** Squash or rebase merges rewrite the sealing commits. The doctor detects held-out
   records whose seal has vanished from history.
 

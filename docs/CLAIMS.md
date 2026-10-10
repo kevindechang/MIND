@@ -80,7 +80,7 @@ HEAD, and the fingerprint of all result-affecting code. Commit them with your co
 
 | State | Meaning | Build |
 |---|---|---|
-| HOLDS | the latest strongest evaluation holds | ✓ |
+| HOLDS | the latest run on every seed set (dev, sealed held-out) holds | ✓ |
 | REFUTED | fails and has never held on these seeds: a negative result, kept as knowledge | ✓ |
 | INCONCLUSIVE | the interval straddles the margin: needs a sharper successor, not a verdict | ✓ |
 | STALE | holds, but a premise is REFUTED/BROKEN/RETIRED/STALE/ERROR | ✓ |
@@ -89,9 +89,11 @@ HEAD, and the fingerprint of all result-affecting code. Commit them with your co
 | BROKEN | held before and fails now **on the same seeds**: something changed the result | ✗ exit 1 |
 | ERROR | the check crashed | ✗ exit 1 |
 
-"Strongest" means held-out beats dev and dev beats quick. A failed sealed confirmation therefore cannot be
-overwritten by re-running dev seeds. Holding on dev but failing on held-out is REFUTED with the note *did not
-generalise*, not BROKEN.
+Each seed set speaks through its latest run, and the most conservative of those runs decides the state. So a failed
+sealed confirmation cannot be overwritten by re-running dev seeds, and an old held-out success cannot mask a dev
+regression that `mind check` finds in the current code. A claim that holds on one seed set and is inconclusive on
+another is INCONCLUSIVE, noted as *mixed evidence*. Quick drafts count only when nothing else exists. Holding on dev
+but failing on held-out is REFUTED with the note *did not generalise*, not BROKEN.
 
 ## Levels
 
