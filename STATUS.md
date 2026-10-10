@@ -2,7 +2,7 @@
 
 > **Generated** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. Do not edit by hand; if it conflicts in a merge, regenerate it.
 
-Code fingerprint `fe60e2f0999a154c` · git `754c969 + uncommitted changes` · generated 2026-10-10 21:47 UTC
+Code fingerprint `fe60e2f0999a154c` · git `ca29869 + uncommitted changes` · generated 2026-10-10 21:58 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -30,13 +30,14 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 8. **[question]** H010 — Do efference copies improve attribution of self-caused versus external change? No claim yet. Add a `poltergeist` world (external events confounded with the agent's own actions) and an `efference` organ predicting the sensory consequences of its own acts; rival = a generic state estimator with equal information.
 9. **[question]** H011 — Does impasse-triggered procedural learning transfer on the first try after a hard reset? No claim yet. Needs a family of worlds sharing latent failure structure but differing in surface symbols; the organism's tabular policy cannot transfer across symbols, so this question first needs a representation that can.
 10. **[question]** H012 — Does multi-timescale learning improve durable transfer without unacceptable forgetting? No claim yet. Use scheduled lesions (`@E:modifier`) and variant switches mid-life to measure acute deficit, recovery and retention of the earlier competence.
-11. **[question]** P001 — Can held-out seeds come from randomness the registrant does not control? No claim yet. Derive held-out seeds from a public randomness beacon round fixed after the claim is pushed (record the round in the record), or have seeds drawn at merge time by someone other than the registrant; then update `mind/claims.py` and the doctor.
-12. **[question]** H001 — Does causal autobiographical memory improve action beyond compact state? Build a `causal` organ that infers structure from recalled probe results WITHOUT being handed the E001 graph family (that would inject the oracle), then test it in workshop against rival:bayes, rival:window4 and the plain organism. The Day-2 lesion is then `-causal` with memory intact.
-13. **[question]** H002 — Does a predictive self-model improve calibration and adaptation after hidden capability change? Add a capability-shift world where an action's reliability changes abruptly and silently; test whether the self-model's surprise signal speeds re-adaptation (acute vs recovered deficit) against the per-action table rival.
-14. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Map the capacity curve (K = 1..8, inf) across all worlds and variants; find the distractor-load / retention-length boundary where the bottleneck flips from helping to hurting.
-15. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
-16. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
-17. **[replicate]** 24 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
+11. **[question]** H013 — Do the organism's self-reports track the states that actually drive its actions? No claim yet. Add a report probe that states, from the organism's own broadcast (`pending=`, `self:`, `was:`), what it will do next, and score reports only by how well they predict the next action, never by how they read. The rival is a narrator with no access to internal state (v1 PR #11's zero-read narrator, strengthened to read the same transcript). Then use access lesions (`cut:X>policy`), which keep a content reportable but cut it from action, to test whether report validity falls exactly where the causal path is cut.
+12. **[question]** P001 — Can held-out seeds come from randomness the registrant does not control? No claim yet. Derive held-out seeds from a public randomness beacon round fixed after the claim is pushed (record the round in the record), or have seeds drawn at merge time by someone other than the registrant; then update `mind/claims.py` and the doctor.
+13. **[question]** H001 — Does causal autobiographical memory improve action beyond compact state? Build a `causal` organ that infers structure from recalled probe results WITHOUT being handed the E001 graph family (that would inject the oracle), then test it in workshop against rival:bayes, rival:window4 and the plain organism. The Day-2 lesion is then `-causal` with memory intact.
+14. **[question]** H002 — Does a predictive self-model improve calibration and adaptation after hidden capability change? First add v1 PR #15's event-aware rival (the success table, also updated by the public `alert=down`/`alert=up` announcements) as a second same-event scorer, and test whether it closes C017's margin in outage/dev; register the result either way. Then add a capability-shift world where an action's reliability changes abruptly and silently; test whether the self-model's surprise signal speeds re-adaptation (acute vs recovered deficit) against both table rivals.
+15. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Map the capacity curve (K = 1..8, inf) across all worlds and variants; find the distractor-load / retention-length boundary where the bottleneck flips from helping to hurting.
+16. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
+17. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
+18. **[replicate]** 24 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
 
 ## Claims
 
@@ -92,6 +93,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [H010](knowledge/questions/H010.md) Do efference copies improve attribution of self-caused versus external change? | open | — |
 | [H011](knowledge/questions/H011.md) Does impasse-triggered procedural learning transfer on the first try after a hard reset? | open | — |
 | [H012](knowledge/questions/H012.md) Does multi-timescale learning improve durable transfer without unacceptable forgetting? | open | — |
+| [H013](knowledge/questions/H013.md) Do the organism's self-reports track the states that actually drive its actions? | open | — |
 | [P001](knowledge/questions/P001.md) Can held-out seeds come from randomness the registrant does not control? | open | — |
 
 ## Knowledge graph
@@ -112,6 +114,7 @@ graph LR
   H010(["H010"])
   H011(["H011"])
   H012(["H012"])
+  H013(["H013"])
   P001(["P001"])
   C001["C001<br/>PREREGISTERED"]
   style C001 fill:#d4f4dd,stroke:#2e7d32

@@ -43,7 +43,7 @@ Contributors and agents start at [GO.md](GO.md). The rules are in [AGENTS.md](AG
 | `mind/` | the substrate: kernel, ledger, organs, worlds, rivals, runner, claims engine, CLI |
 | `knowledge/claims/` | executable claims (`L*` ported v1 results, `K*` substrate invariants, `C*` organism findings) |
 | `knowledge/records/` | append-only evaluation records (who, where, which code, which seeds) |
-| `knowledge/questions/` | open research questions H001–H012 and their next steps |
+| `knowledge/questions/` | open research questions H001–H013 (plus pipeline question P001) and their next steps |
 | `knowledge/literature.md` | literature ledger (motivation, not evidence) |
 | `docs/` | [PIPELINE](docs/PIPELINE.md) · [SUBSTRATE](docs/SUBSTRATE.md) · [CLAIMS](docs/CLAIMS.md) · [MIGRATION-v2](docs/MIGRATION-v2.md) |
 | `experiments/` | v1 instruments and protocols; still executed by the `L*` claims |
