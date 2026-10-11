@@ -152,6 +152,29 @@ filtered, while behaviour, and so every scored event, stays exactly as lived.
 * Use shadows for any claim that an organ's contents *inform* a consumer (C030, C033, C036). Use lesions and cuts
   for claims about what an organ *does* to behaviour.
 
+## Matched-state report forks (`mind/report.py`)
+
+A lifelong `cut:X>policy` trains the policy without X, so a change in what the organism does mixes the missing
+contents with different weights and a different history. A matched-state fork separates those. Train one organism
+on its normal history. Immediately before the designated tick, `Organism.restore` on forked ledgers rebuilds copies
+from that pre-intervention state. `freeze:policy` on every copy stops the learning update on the intervention tick.
+Cuts are applied to some copies only. Every copy then takes the same observation, reward, outcome, boundary and
+legal actions, at the same `t`, seed and RNG purpose.
+
+The designated tick in vigil is the first exposed bell of the late half: episode index at least half the life,
+`bell=1` in the observation, and an intention token (`pending=` or `was:request=`) in the frozen sham broadcast.
+One tick per lifetime. The predeclared report reads that broadcast only. A second sham fork with no cut must take
+the same action (K11). Cut copies must broadcast the same tags: the cut withholds contents from the policy and
+does not change what is reportable. K11 checks both. C025 asks whether the triple cut (`goals`, `memory`,
+`self_model` into `policy`) changes that tick's action and the report's agreement with it. C026 asks whether that
+triple cut changes the action by more than each single cut of memory or goals, and by more than cutting both while
+leaving the self-model delivered.
+
+`mind/report.py` is not in `RESULT_CODE`. Adding it would change the suite fingerprint, and re-recording every
+claim from an environment other than the historical one would be scored as replication because older records
+already carry two free-text session labels. The claims seal `probe_fingerprint()` instead. Editing the probe
+fails those claims.
+
 ## Real process death (`mind/worker.py`)
 
 `python -m mind.worker --ledger PATH` serves JSON-line requests that may carry only the current observation.
