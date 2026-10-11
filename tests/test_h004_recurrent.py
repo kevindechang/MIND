@@ -64,6 +64,8 @@ class RecurrentTests(unittest.TestCase):
         restored = Organism.restore(ledger)
         self.assertEqual(original.introspect(), restored.introspect())
         self.assertEqual(original.t, restored.t)
+        # The two continuations must not both append to the same ledger.
+        restored.ledger = None
         first = original.step({"bell": "1"}, actions=("wait", "a"))
         second = restored.step({"bell": "1"}, actions=("wait", "a"))
         self.assertEqual(first, second)
