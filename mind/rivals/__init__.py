@@ -92,6 +92,9 @@ class Transcript(Agent):
         self.prev_feats, self.prev_action = None, None
 
 
+from .equality import EqualityTranscript
+
+
 class VigilOracle(Agent):
     """Hand-written perfect pending-queue rule: knows the task semantics."""
 
@@ -230,9 +233,11 @@ RIVALS: Dict[str, Rival] = {r.name: r for r in (
           ("memory", "goals"), factory=lambda w, v, s: Transcript(8, s)),
     Rival("window8lin", "last 8 raw observations, linear (no conjunctions)",
           ("memory", "goals"), factory=lambda w, v, s: Transcript(8, s, pairs=False)),
+    Rival("equality", "same TD learner on the public glyph-equality feature",
+          ("analogy",), factory=lambda w, v, s: EqualityTranscript(s), worlds=("glyph",)),
     Rival("flat", "the organism with an unlimited workspace (no bottleneck)",
           ("workspace",), config="organism capacity=inf"),
     Rival("bayes", "privileged-model Bayes reference (E001 v0.4 DP in workshop)",
           ("memory", "goals", "self_model", "workspace"), reference=True,
-          factory=lambda w, v, s: ORACLES[w](v)),
+          factory=lambda w, v, s: ORACLES[w](v), worlds=tuple(ORACLES)),
 )}
