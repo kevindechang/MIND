@@ -178,9 +178,8 @@ class TestsOfTheTests(unittest.TestCase):
                         return [Content(self.name, "first", keys[0], 2.0)] if keys else []
                 '''))
             init = box / "mind" / "organs" / "__init__.py"
-            init.write_text(init.read_text().replace(
-                "from .goals import Goals", "from .goals import Goals\nfrom .hazard import Hazard").replace(
-                "(Perception, Memory, Goals, SelfModel, Policy)", "(Perception, Memory, Goals, SelfModel, Policy, Hazard)"))
+            # register by appending, not by matching registry text: adding an organ must not break this test
+            init.write_text(init.read_text() + "\nfrom .hazard import Hazard\nORGANS[Hazard.name] = Hazard\n")
             probe = textwrap.dedent('''\
                 import json, os, subprocess, sys
                 from mind.ledger import MemoryLedger
