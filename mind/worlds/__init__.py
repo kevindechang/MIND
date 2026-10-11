@@ -1,9 +1,10 @@
 """World registry. Every agent is evaluated in every world it is pointed at."""
 from .outage import Outage
+from .poltergeist import Poltergeist
 from .vigil import Vigil
 from .workshop import Workshop
 
-WORLDS = {cls.name: cls for cls in (Vigil, Outage, Workshop)}
+WORLDS = {cls.name: cls for cls in (Vigil, Outage, Workshop, Poltergeist)}
 
 
 def make_world(name: str, seed: int, variant: str = "dev"):
