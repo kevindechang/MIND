@@ -1,0 +1,65 @@
+{
+ "by": "Cursor Agent",
+ "code": "179f09d9f91ccd1a",
+ "environment": {
+  "host": "46a4eebd",
+  "implementation": "CPython",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+ },
+ "environment_id": "0c6d1c75c017",
+ "evaluations": {
+  "C019": {
+   "claim": "C019",
+   "error": null,
+   "estimate": {
+    "diff": -0.09041666666666666,
+    "grounded": 0.8141666666666667,
+    "hi": -0.04957056979198556,
+    "lo": -0.13126276354134775,
+    "narrator": 0.9045833333333333,
+    "summary": "bell-tick accuracy grounded 0.814 vs narrator 0.905: -0.090 [-0.131, -0.050] (claim: > 0.1)"
+   },
+   "prediction_hash": "fd3f276e925f849e",
+   "rivals": {},
+   "robust": false,
+   "seconds": 2.551,
+   "seeds": "heldout:7850d6cb5ebd3b583e37541198521ef0b953a048",
+   "verdict": "FAILS"
+  },
+  "C020": {
+   "claim": "C020",
+   "error": null,
+   "estimate": {
+    "cut_accuracy": 0.03916666666666667,
+    "cut_held": 1.0,
+    "cut_reportable": 0.9658333333333333,
+    "cut_reportable_hi": 0.9744236689641455,
+    "cut_reportable_lo": 0.9572429977025212,
+    "intact_accuracy": 0.8033333333333333,
+    "intact_held": 1.0,
+    "intact_reportable": 0.87875,
+    "report_loss": -0.08708333333333333,
+    "report_loss_hi": -0.03813611333427136,
+    "report_loss_lo": -0.1360305533323953,
+    "summary": "accuracy 0.803 \u2192 0.039 (+0.764 [+0.688, +0.840]; claim drop > 0.25); reportable 0.879 \u2192 0.966 (loss -0.087 [-0.136, -0.038], claim loss < 0.15 and cut \u2265 0.5)",
+    "validity_drop": 0.7641666666666667,
+    "validity_hi": 0.8403400502870358,
+    "validity_lo": 0.6879932830462975
+   },
+   "prediction_hash": "eee8f36635b9deb0",
+   "rivals": {},
+   "robust": true,
+   "seconds": 5.194,
+   "seeds": "heldout:7850d6cb5ebd3b583e37541198521ef0b953a048",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "7850d6cb5ebd3b583e37541198521ef0b953a048"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-11T08:09:19Z",
+ "schema": 2
+}
