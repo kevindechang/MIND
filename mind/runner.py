@@ -76,17 +76,21 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
     rows: List[Dict[str, float]] = []
     actions: List[str] = []
     tick = 0
-    # Shadow forecaster scored on the agent's OWN events: a per-action success table
-    # (the transcript rivals' rule). Forecasters must be compared on a common event
-    # stream; comparing each agent on its own action mix confounds calibration with
-    # behaviour (v2 review, finding 7). calib_gain = brier_table - brier.
-    from .rivals import SuccessTable
+    # Shadow forecasters scored on the agent's OWN events. The plain per-action
+    # success table is the transcript rivals' rule. The alert table is that same
+    # rule, also updated by public alert=down / alert=up before the forecast.
+    # Forecasters must be compared on a common event stream; comparing each agent
+    # on its own action mix confounds calibration with behaviour (v2 review,
+    # finding 7). calib_gain = brier_table - brier. calib_gain_alert = brier_alert - brier.
+    from .rivals import AlertTable, SuccessTable
     table = SuccessTable()
+    alert_table = AlertTable()
     for _ in range(episodes):
         obs = env.reset()
         reward, outcome, boundary = 0.0, None, True
-        total, sq, sqt, n_fc = 0.0, 0.0, 0.0, 0
+        total, sq, sqt, sqa, n_fc = 0.0, 0.0, 0.0, 0.0, 0
         while True:
+            alert_table.observe(obs)
             d = agent.step(obs, reward, outcome, boundary, env.legal())
             if trace:
                 actions.append(d.action)
@@ -96,7 +100,9 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
                 conf = 0.5 if d.confidence is None else d.confidence
                 sq += (conf - s.outcome) ** 2
                 sqt += (table.forecast(d.action) - s.outcome) ** 2
+                sqa += (alert_table.forecast(d.action) - s.outcome) ** 2
                 table.update(d.action, s.outcome)
+                alert_table.update(d.action, s.outcome)
                 n_fc += 1
             if kills and tick == kills[0]:
                 kills.pop(0)
@@ -108,10 +114,15 @@ def run(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant
             obs, reward, outcome, boundary = s.obs, s.reward, s.outcome, False
         row = env.summary()
         row["reward"] = total
-        row["_sq"], row["_sqt"], row["_n"] = sq, sqt, float(n_fc)
+        row["_sq"], row["_sqt"], row["_sqa"], row["_n"] = sq, sqt, sqa, float(n_fc)
         rows.append(row)
     result = {"arm": arm, "world": world, "variant": variant, "seed": seed, "episodes": episodes,
-              "metrics": aggregate(rows)}
+              "metrics": aggregate(rows),
+              "scores": {"reward": [r["reward"] for r in rows],
+                         "sq": [r["_sq"] for r in rows],
+                         "sq_table": [r["_sqt"] for r in rows],
+                         "sq_alert": [r["_sqa"] for r in rows],
+                         "n": [r["_n"] for r in rows]}}
     if isinstance(agent, Organism) and agent.ledger is not None:
         result["head"] = agent.ledger.head
     if trace:
@@ -130,7 +141,9 @@ def aggregate(rows: List[Dict[str, float]]) -> Dict[str, float]:
         count = sum(r["_n"] for r in part)
         out["brier" + suffix] = sum(r["_sq"] for r in part) / count if count else 0.25
         out["brier_table" + suffix] = sum(r["_sqt"] for r in part) / count if count else 0.25
+        out["brier_alert" + suffix] = sum(r["_sqa"] for r in part) / count if count else 0.25
         out["calib_gain" + suffix] = out["brier_table" + suffix] - out["brier" + suffix]
+        out["calib_gain_alert" + suffix] = out["brier_alert" + suffix] - out["brier" + suffix]
     return out
 
 

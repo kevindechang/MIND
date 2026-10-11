@@ -40,6 +40,25 @@ class SuccessTable:
         self.p[action] = old + self.rate * (outcome - old)
 
 
+class AlertTable(SuccessTable):
+    """Success table also updated by public ``alert=down`` / ``alert=up``.
+
+    Same rate and prior as SuccessTable, so it has no parameter the plain table
+    lacks. Before a forecast, a public announcement is one extra observation of
+    the scan action: ``alert=down`` is outcome 0 and ``alert=up`` is outcome 1.
+    Worlds that never emit those announcements leave this table identical to
+    SuccessTable. This is v1 PR #15's announcement-reading table, scored on the
+    same events as the agent. It is not a hand-parameterised belief filter.
+    """
+
+    def observe(self, obs) -> None:
+        alert = obs.get("alert") if obs else None
+        if alert == "down":
+            self.update("scan", 0)
+        elif alert == "up":
+            self.update("scan", 1)
+
+
 class Agent:
     def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)) -> Decision:
         raise NotImplementedError
@@ -206,8 +225,40 @@ class WorkshopBayes(Agent):
         return Decision(action, round(float(p_ok), 6), ())
 
 
+class ShiftBayes(Agent):
+    """Privileged myopic policy for outage shift variants: knows the schedule.
+
+    Reference ceiling only. It reads the world's published shift parameters, not
+    the private success bit, and switches from scan to manual when scan's
+    expected reward falls below manual.
+    """
+
+    def __init__(self, variant: str):
+        from ..worlds.outage import MANUAL, SCAN_FAIL, SCAN_OK, _SHIFT
+        self.spec = _SHIFT[variant]
+        self.ok, self.fail, self.manual_pay = SCAN_OK, SCAN_FAIL, MANUAL
+        self.ep = -1
+
+    def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)):
+        if boundary:
+            self.ep += 1
+        p = self.spec["before"] if self.ep < self.spec["at"] else self.spec["after"]
+        scan_value = p * self.ok + (1.0 - p) * self.fail
+        action = "scan" if scan_value > self.manual_pay else "manual"
+        if action not in actions:
+            action = actions[0]
+        return Decision(action, round(p, 6) if action == "scan" else 1.0, ())
+
+
+def _outage_oracle(variant: str) -> Agent:
+    from ..worlds.outage import _SHIFT
+    if variant in _SHIFT:
+        return ShiftBayes(variant)
+    return OutageBayes(variant)
+
+
 ORACLES: Dict[str, Callable[[str], Agent]] = {
-    "vigil": VigilOracle, "outage": OutageBayes, "workshop": WorkshopBayes}
+    "vigil": VigilOracle, "outage": _outage_oracle, "workshop": WorkshopBayes}
 
 
 @dataclass(frozen=True)

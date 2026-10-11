@@ -150,5 +150,6 @@ Links in the living docs resolve.
   a mechanism in a world.
 * Compare forecasters on the **same events** (`calib_gain`), never two agents' Brier scores on their own action
   streams: behaviour then masquerades as calibration (C007/C008 were retired for exactly this).
+  `calib_gain_alert` is the same comparison against the announcement-updated table.
 * Count what the statement says. C014 said "organs" and counted cells (retired).
 * A refuted or inconclusive claim that teaches something is a contribution. A claim that cannot fail is not.
