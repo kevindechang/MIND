@@ -92,6 +92,26 @@ class Transcript(Agent):
         self.prev_feats, self.prev_action = None, None
 
 
+class FeedbackTranscript(Transcript):
+    """Long-window TD rival with access to the SAME public action feedback.
+
+    Recurrence encodes the delivered previous-action outcome into its state,
+    while the original Transcript policy uses it only for TD/table updates.
+    This comparator adds that public pair to policy features, removing a
+    crucial information mismatch. Unlike the bounded recurrent state, it
+    retains a rolling raw history. It is intentionally a strong rival, not
+    parameter-matched, and uses no scorer-private `Step.info`.
+    """
+
+    def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)):
+        augmented = {str(k): str(v) for k, v in obs.items()}
+        if not boundary and self.prev_action is not None and outcome is not None:
+            # The previous action and its public outcome are already known
+            # before making the CURRENT decision. Never read a future outcome.
+            augmented["previous_action_outcome"] = f"{self.prev_action}:{int(outcome)}"
+        return super().step(augmented, reward, outcome, boundary, actions)
+
+
 class VigilOracle(Agent):
     """Hand-written perfect pending-queue rule: knows the task semantics."""
 
@@ -232,6 +252,10 @@ RIVALS: Dict[str, Rival] = {r.name: r for r in (
           ("memory", "goals", "recurrent"), factory=lambda w, v, s: Transcript(16, s)),
     Rival("window32lin", "last 32 raw observations; same TD learner, linear for tractable long context",
           ("memory", "goals", "recurrent"), factory=lambda w, v, s: Transcript(32, s, pairs=False)),
+    Rival("window16fb", "last 16 raw observations PLUS previous action/outcome, full TD conjunctions",
+          ("memory", "goals", "recurrent"), factory=lambda w, v, s: FeedbackTranscript(16, s)),
+    Rival("window32fb_lin", "last 32 raw observations PLUS previous action/outcome, linear TD",
+          ("memory", "goals", "recurrent"), factory=lambda w, v, s: FeedbackTranscript(32, s, pairs=False)),
     Rival("window8lin", "last 8 raw observations, linear (no conjunctions)",
           ("memory", "goals"), factory=lambda w, v, s: Transcript(8, s, pairs=False)),
     Rival("flat", "the organism with an unlimited workspace (no bottleneck)",
