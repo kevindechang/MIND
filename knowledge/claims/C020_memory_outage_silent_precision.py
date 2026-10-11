@@ -31,7 +31,7 @@ CLAIM = Claim(
     test=Compare(world="outage", a="organism", b="organism -memory",
                  metric="reward", direction=">", margin=0.5,
                  seeds=512, episodes=120, variant="silent"),
-    by="ChatGPT (registration only; execution pending)",
+    by="ChatGPT (registration); executed by claude-code (session 01WMmox); see immutable records",
     created="2026-10-11",
     rationale="Resolve C009's wide paired interval without weakening its original effect margin; "
               "report the same-event recency rival panel separately.",
