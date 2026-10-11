@@ -2,7 +2,7 @@
 
 > **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:17 UTC
+Result-code fingerprint `c9bd29d170c9f533` · snapshot generated 2026-10-11 00:49 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -11,7 +11,8 @@ Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:1
 | state | claims |
 |---|---|
 | ✅ HOLDS | 24 (PREREGISTERED 17, ROBUST 7) |
-| ❔ INCONCLUSIVE | 3 |
+| ❔ INCONCLUSIVE | 4 |
+| ❌ REFUTED | 1 |
 | 🗄️ RETIRED | 6 |
 
 Evidence ladder (computed, never asserted): PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED (effects only) → PREREGISTERED (commit-sealed held-out seeds) → REPLICATED (second contributor and environment). See [docs/CLAIMS.md](docs/CLAIMS.md).
@@ -23,7 +24,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 1. **[sharpen]** C006 (Without distractors the bottleneck is neutral) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C006's prediction to fit
 2. **[sharpen]** C009 (Memory improves control of an unreliable tool (off-home effect)) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C009's prediction to fit
 3. **[sharpen]** C013 (Self-knowledge improves causal decisions (cross-function)) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C013's prediction to fit
-4. **[question]** H004 — Does recurrent processing integrate over time better than matched feed-forward access to more context? No claim yet. Add a `recurrent` organ (a small learned state vector updated every tick and broadcast) and compare it with window rivals of equal information in vigil/long and outage/silent.
+4. **[sharpen]** C022 (Recurrent trace improves reward under silent tool outages) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C022's prediction to fit
 5. **[question]** H005 — Do homeostatic drives and active sampling stabilise goal management under changing resources? No claim yet. Add a resource world (energy/attention budget that must be maintained) and a `drive` organ; the rival is reward shaping with the same information.
 6. **[question]** H009 — Does structured affective/social regulation improve consent-respecting coordination? No claim yet. Requires a simulated-social world with consent and correction events; design it with an explicit anti-manipulation metric before any affect organ is added. Ethics review first (see AGENTS.md).
 7. **[question]** H010 — Do efference copies improve attribution of self-caused versus external change? No claim yet. Add a `poltergeist` world (external events confounded with the agent's own actions) and an `efference` organ predicting the sensory consequences of its own acts; rival = a generic state estimator with equal information.
@@ -34,9 +35,10 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 12. **[question]** H001 — Does causal autobiographical memory improve action beyond compact state? Build a `causal` organ that infers structure from recalled probe results WITHOUT being handed the E001 graph family (that would inject the oracle), then test it in workshop against rival:bayes, rival:window4 and the plain organism. The Day-2 lesion is then `-causal` with memory intact.
 13. **[question]** H002 — Does a predictive self-model improve calibration and adaptation after hidden capability change? First add v1 PR #15's event-aware rival (the success table, also updated by the public `alert=down`/`alert=up` announcements) as a second same-event scorer, and test whether it closes C017's margin in outage/dev; register the result either way. Then add a capability-shift world where an action's reliability changes abruptly and silently; test whether the self-model's surprise signal speeds re-adaptation (acute vs recovered deficit) against both table rivals.
 14. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Map the capacity curve (K = 1..8, inf) across all worlds and variants; find the distractor-load / retention-length boundary where the bottleneck flips from helping to hurting.
-15. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
-16. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
-17. **[replicate]** 24 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
+15. **[question]** H004 — Does recurrent processing integrate over time better than matched feed-forward access to more context? [needs-run] Git clone with history + doctor, run H004 replay tests and two-world dev/held-out C021/C022 checks against feedback-matched rivals window16fb/window32fb_lin and lesion controls; commit every record, run both default and optional-organ atlas, refresh all claims, regenerate STATUS, obtain independent review. Keep PR #21 draft; never merge before full evidence.
+16. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
+17. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
+18. **[replicate]** 24 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
 
 ## Claims
 
@@ -67,8 +69,10 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [L06](knowledge/claims/L06_e001_adaptive_probe_gain.py) | **E001: the adaptive second probe is worth exactly 7/120** | fact · instrument | ✅ HOLDS | ROBUST | values: none -7/3, one probe -121/60, two -47/24; adaptive gain 7/120 · dev | n/a | – |
 | [L07](knowledge/claims/L07_e001_prior_flips_plan.py) | **E001: the prior alone flips the optimal plan** | fact · instrument | ✅ HOLDS | ROBUST | prior 9:1 → ((0, 2),), prior 1:9 → ((0,),), maximin → ((0,),) at -41/5 · dev | n/a | – |
 | [C006](knowledge/claims/C006_bottleneck_neutral_without_distractors.py) | **Without distractors the bottleneck is neutral**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | equivalence · L2 | ❔ INCONCLUSIVE | – | Δ -0.031 [-0.184, +0.121] (0.802 vs 0.833, n=16) · held-out | n/a | – |
-| [C009](knowledge/claims/C009_memory_improves_control_off_home.py) | **Memory improves control of an unreliable tool (off-home effect)**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.658 [-0.297, +1.612] (13.862 vs 13.205, n=16) · held-out | window4 | K03 |
+| [C009](knowledge/claims/C009_memory_improves_control_off_home.py) | **Memory improves control of an unreliable tool (off-home effect)**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.658 [-0.297, +1.612] (13.862 vs 13.205, n=16) · held-out | window32fb_lin, window4 | K03 |
 | [C013](knowledge/claims/C013_self_model_aids_causal_control.py) | **Self-knowledge improves causal decisions (cross-function)**<br/>_mixed evidence: INCONCLUSIVE on dev, HOLDS on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.010 [-0.039, +0.059] (-1.657 vs -1.667, n=16) · dev | – | – |
+| [C022](knowledge/claims/C022_recurrent_silent_outage.py) | **Recurrent trace improves reward under silent tool outages**<br/>_failed its first sealed confirmation (2026-10-11: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.487 [-0.252, +1.225] (14.048 vs 13.562, n=16) · held-out | – | – |
+| [C021](knowledge/claims/C021_recurrent_long_gap.py) | **Recurrent trace improves long-gap commitment retention**<br/>_mixed evidence: FAILS on dev, INCONCLUSIVE on heldout:d005669; failed its first sealed confirmation (2026-10-11: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ -0.060 [-0.138, +0.019] (0.461 vs 0.520, n=16) · dev | – | – |
 | [C007](knowledge/claims/C007_self_model_beats_success_table.py) | **The self-model out-calibrates a success table when events are informative**<br/>_retired: v2 review (2026-10-10): the test compares Brier scores of two agents on their OWN action streams, which confounds calibration with behaviour (13-22% of the gap was action mix). Its conclusion survives on a common stream; superseded by C017, which compares both forecasters on the same events._ | effect · L2 | 🗄️ RETIRED | – | Δ -0.021 [-0.027, -0.016] (0.042 vs 0.063, n=16) · held-out | – | K03 |
 | [C008](knowledge/claims/C008_self_model_ties_table_when_silent.py) | **Without announcements, a success table is as calibrated as the self-model**<br/>_retired: v2 review (2026-10-10): the apparent tie was an action-mix artifact (the organism scans more). On the same events the self-model is BETTER than the table even without announcements; the claim's interpretation is reversed. Superseded by C018._ | equivalence · L2 | 🗄️ RETIRED | – | Δ +0.001 [-0.009, +0.012] (0.059 vs 0.059, n=16) · held-out | n/a | K03 |
 | [C010](knowledge/claims/C010_memory_degrades_calibration.py) | **Memory degrades the self-model's calibration (cross-function interference)**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; retired: v2 review (2026-10-10): memory changes the action mix; a context-free table on the same streams shifts as much (+0.011), so this measured behaviour, not 'noisier context'. Inconclusive anyway; no successor yet (open in H007).; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | 🗄️ RETIRED | – | Δ +0.008 [+0.002, +0.014] (0.056 vs 0.048, n=16) · held-out | – | – |
@@ -83,7 +87,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [H001](knowledge/questions/H001.md) Does causal autobiographical memory improve action beyond compact state? | open | C011 ✅, C012 ✅, K04 ✅, L04 ✅, L05 ✅, L06 ✅, L07 ✅ |
 | [H002](knowledge/questions/H002.md) Does a predictive self-model improve calibration and adaptation after hidden capability change? | open | C007 🗄️, C008 🗄️, C017 ✅, C018 ✅ |
 | [H003](knowledge/questions/H003.md) Does a capacity-limited global workspace help, and when does it hurt? | open | C005 ✅, C006 ❔, L03 ✅ |
-| [H004](knowledge/questions/H004.md) Does recurrent processing integrate over time better than matched feed-forward access to more context? | open | — |
+| [H004](knowledge/questions/H004.md) Does recurrent processing integrate over time better than matched feed-forward access to more context? | open | C021 ❌, C022 ❔ |
 | [H005](knowledge/questions/H005.md) Do homeostatic drives and active sampling stabilise goal management under changing resources? | open | — |
 | [H006](knowledge/questions/H006.md) No behavioural benchmark or theory-indicator suffices to establish phenomenal experience | standing-constraint | — |
 | [H007](knowledge/questions/H007.md) Is the organism's causal organisation integrated rather than modular? | open | C002 ✅, C003 ✅, C004 ✅, C009 ❔, C010 🗄️, C013 ❔, C014 🗄️, C016 ✅, K05 🗄️ |
@@ -169,6 +173,12 @@ graph LR
   C018["C018<br/>PREREGISTERED"]
   style C018 fill:#d4f4dd,stroke:#2e7d32
   C018 -.-> H002
+  C021["C021<br/>REFUTED"]
+  style C021 fill:#fde0dc,stroke:#c62828
+  C021 -.-> H004
+  C022["C022<br/>INCONCLUSIVE"]
+  style C022 fill:#e8eaf6,stroke:#3949ab
+  C022 -.-> H004
   K01["K01<br/>PREREGISTERED"]
   style K01 fill:#d4f4dd,stroke:#2e7d32
   K01 -.-> H008
@@ -241,6 +251,8 @@ graph LR
   K08 --> C018
   C008 -.->|extends| C018
   C017 -.->|extends| C018
+  C003 -.->|extends| C021
+  C021 -.->|extends| C022
   L02 -.->|extends| K01
   K01 --> K02
   L02 -.->|extends| K02
@@ -279,6 +291,7 @@ Degenerate pairs: `memory+goals→vigil.kept`, `memory+goals→vigil.calib_gain`
 | `goals` | continuity, initiative | Goals: persistent intentions that keep bidding until they are fulfilled. |
 | `self_model` | metacognition | Self-model: a learned, calibrated forecast of the organism's OWN success. |
 | `policy` | control | Policy: the organism's action learner. It sees ONLY the broadcast. |
+| `recurrent` | continuity, control | Optional, bounded recurrent reservoir over *attended public* evidence. |
 
 ### Worlds
 
@@ -295,6 +308,10 @@ Degenerate pairs: `memory+goals→vigil.kept`, `memory+goals→vigil.calib_gain`
 | `rival:reactive` | memory, goals | must be beaten | same TD learner on the current observation only |
 | `rival:window4` | memory, goals | must be beaten | same TD learner on the last 4 raw observations |
 | `rival:window8` | memory, goals | must be beaten | same TD learner on the last 8 raw observations |
+| `rival:window16` | memory, goals, recurrent | must be beaten | last 16 raw observations; same TD learner including conjunctions |
+| `rival:window32lin` | memory, goals, recurrent | must be beaten | last 32 raw observations; same TD learner, linear for tractable long context |
+| `rival:window16fb` | memory, goals, recurrent | must be beaten | last 16 raw observations PLUS previous action/outcome, full TD conjunctions |
+| `rival:window32fb_lin` | memory, goals, recurrent | must be beaten | last 32 raw observations PLUS previous action/outcome, linear TD |
 | `rival:window8lin` | memory, goals | must be beaten | last 8 raw observations, linear (no conjunctions) |
 | `rival:flat` | workspace | must be beaten | the organism with an unlimited workspace (no bottleneck) |
 | `rival:bayes` | memory, goals, self_model, workspace | ceiling | privileged-model Bayes reference (E001 v0.4 DP in workshop) |
