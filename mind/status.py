@@ -104,7 +104,9 @@ def atlas_section() -> List[str]:
     out += ["", f"🟢 organ reliably helps, 🔴 reliably hurts ({data.get('correction', 'Holm')} across all cells; "
             "sign-normalised lesion effect), · no reliable effect; ᴴ = a home competency the organ was designed for. "
             "Off-home 🟢 cells are cross-function effects. Calibration is `calib_gain` (same-event comparison with a "
-            "success table).", ""]
+            "success table). Each arm is scored on its own events, so a lesion cell is a total effect, not "
+            "information flow: C030 and C031 show the calibration cells are mostly behaviour; C032 tests "
+            "integration at fixed behaviour.", ""]
     if s["cross_function_cells"]:
         out.append("Cross-function: " + ", ".join(f"`{x}`" for x in s["cross_function_cells"]))
     if s["degenerate_pairs"]:

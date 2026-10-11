@@ -124,11 +124,22 @@ self-monitoring cognition** (v1's L2), and made measurable at three levels:
    load; C006, neutrality without load, is inconclusive).
 3. **Integration, not modularity.** The integration atlas (`python -m mind atlas`) estimates the lesion effect
    of every organ on every non-redundant competency metric in every world. Calibration is scored on the agent's
-   own events, and family-wise error is Holm-controlled. A modular system shows only on-diagonal effects. The
-   organism shows cross-function effects (memory and goals improve the self-model's calibration) and degeneracy
+   own events, and family-wise error is Holm-controlled. The organism shows off-home lesion effects and degeneracy
    (memory and goals back each other up, C004). Claim C016 asserts this and is re-tested every time the suite
    grows. Its predecessor C014 was retired after review because it counted cells instead of organs and had no
    multiplicity control.
+
+   **A lesion effect is not information flow.** A lesion changes behaviour, and every arm is scored on its own
+   events. So an off-home cell can arise with no content reaching the consumer. C016's two calibration cells
+   (memory and goals → vigil.calib_gain) are like this. Less than a quarter of either is carried by the organ's
+   contents (C030; memory's contents even make the self-model slightly *worse*), and a self-model cut off from every
+   other organ shows the same kind of cell (C031). So "a modular system shows only on-diagonal effects" is false
+   for metrics scored on behaviour-dependent events. Integration is therefore also measured at **fixed behaviour**,
+   with *shadows* ([SUBSTRATE.md](SUBSTRATE.md#shadows-fixed-behaviour-probes)). These re-run one consumer on the
+   logged stream with an organ's contents removed or shammed, and replay exactly (K09). Measured that way, memory's
+   and goals' contents do inform the self-model (C032). In silent outages one memory content serves two consumers:
+   the policy for control and the self-model for metacognition (C033). Integration also has costs: the self-model's
+   broadcast misleads the policy in vigil (C034).
 
 These are descriptions of causal organisation, **not** consciousness scores. Phenomenal experience (L3) is not
 an admissible scope for any claim (the doctor rejects it). A system can satisfy every L2 description and
@@ -162,6 +173,7 @@ regenerated rather than merged.
 | New organs cannot hide state or depend on hash order | K01 (in-process), K06 (fresh processes, 3 hash seeds), K07 (exactly-once) |
 | Nonsignificance is not equivalence | equivalence HOLDS only if the whole conservative CI is inside the margin |
 | Forecasters are compared on the same events | `calib_gain` (validated by K08) |
+| An organ's informational contribution is measured at fixed behaviour | shadows in `mind/shadow.py` (exact replay checked by K09) |
 | No L3 claims | schema `scope ∈ {instrument, L1, L2}` |
 | Result evidence tracks the code that produced it | records carry a fingerprint of all result-affecting code |
 | **Not mechanical:** seed grinding, deleting a held-out failure *before* committing it, real independence for replication, sensible margins, ethics | social: [AGENTS.md](../AGENTS.md), review |
@@ -180,6 +192,9 @@ regenerated rather than merged.
 * The first adversarial review ([reviews/2026-10-10-v2-pipeline-adversarial-review.md](../reviews/2026-10-10-v2-pipeline-adversarial-review.md))
   found one critical and seven important defects, all now fixed, retired or documented. It was a separate
   invocation of the same model, not independent replication.
+* The atlas's lesion cells are total effects. Cells on behaviour-dependent metrics (calibration above all) mix
+  an organ's information with the event mix its behaviour produces (C030, C031). Shadows cover only the
+  self-model so far; the policy and other consumers have no fixed-behaviour estimand yet.
 * Replication needs a second contributor in a second environment. Until then the top rung is empty.
 * No LLM organ yet. The design admits one once the kernel gains a small extension (per-organ notes inside the tick
   event). The organ would log each model output there and read it back on replay, so continuity (K01) would still hold
