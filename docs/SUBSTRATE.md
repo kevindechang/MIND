@@ -129,6 +129,29 @@ high-impact contribution in this repository.
 seed fixes both the world and the organism; paired arms share seeds. `Lab` runs many lifetimes in parallel with a
 content-addressed cache (`.mind-cache/`, keyed by the fingerprint of all result-affecting code).
 
+## Shadows (fixed-behaviour probes)
+
+`mind/shadow.py`. A lesion answers "what does this organ do to the organism?". Its effect on any metric scored on the organism's
+own events mixes two routes. One is the organ's contents reaching a consumer. The other is the different events the
+changed behaviour produces. A **shadow** answers "what does this consumer get from that organ's contents?". It
+re-runs one consumer's learning on the logged stream (broadcast, action, outcome per tick) with an organ's contents
+filtered, while behaviour, and so every scored event, stays exactly as lived.
+
+* `fixed_behaviour(arm, world, seed, episodes, variant, conditions)` lives one lifetime with a ledger and returns
+  its runner metrics, `exact` (the unfiltered shadow reproduced every logged confidence), the shadow's late Brier
+  and table Brier, and one late Brier per condition. `fixed_behaviour_many(lab, ...)` does many seeds in parallel.
+* Conditions: `{"drop": ("memory",)}` removes memory's contents from the consumer's view. This changes both what
+  the consumer is told and its feature load (the self-model's step is `lr / len(feats)`), so it measures net value.
+  `{"sham": ("memory",)}` permutes content at a fixed load. At every tick memory keeps its presence and its exact
+  number of distinct features, drawn from its own earlier broadcasts in the life (K10 checks this). Real vs sham
+  isolates what the content says; sham vs drop is the value of presence minus the cost of the load. The sham is
+  *not* the kernel's `shuffle:X`, which replays earlier proposals before selection and so changes presence and count.
+* Implemented consumer: the self-model, the only organ with a scored output. The shadow is the real `SelfModel`
+  class with the life's own parameters and its own cuts. It refuses lives with scheduled lesions, a frozen or absent
+  self-model, or no ledger (transcript rivals). K09 checks exact replay in every world and variant.
+* Use shadows for any claim that an organ's contents *inform* a consumer (C030, C033, C036). Use lesions and cuts
+  for claims about what an organ *does* to behaviour.
+
 ## Real process death (`mind/worker.py`)
 
 `python -m mind.worker --ledger PATH` serves JSON-line requests that may carry only the current observation.

@@ -29,8 +29,8 @@ CACHE_DIR = ROOT / ".mind-cache"
 # Files that can change a simulated result or a verdict. Tooling (cli, status,
 # doctor, knowledge) is deliberately excluded: editing it must not make evidence stale.
 RESULT_CODE = ("mind/kernel.py", "mind/ledger.py", "mind/runner.py", "mind/stats.py", "mind/legacy.py",
-               "mind/claims.py", "mind/atlas.py", "mind/worker.py", "mind/organs/*.py", "mind/worlds/*.py",
-               "mind/rivals/*.py", "experiments/instruments/e001_*.py")
+               "mind/claims.py", "mind/atlas.py", "mind/shadow.py", "mind/worker.py", "mind/organs/*.py",
+               "mind/worlds/*.py", "mind/rivals/*.py", "experiments/instruments/e001_*.py")
 
 
 def code_fingerprint() -> str:
