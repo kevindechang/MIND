@@ -131,15 +131,17 @@ self-monitoring cognition** (v1's L2), and made measurable at three levels:
 
    **A lesion effect is not information flow.** A lesion changes behaviour, and every arm is scored on its own
    events. So an off-home cell can arise with no content reaching the consumer. C016's two calibration cells
-   (memory and goals → vigil.calib_gain) are like this. Less than a quarter of either is carried by the organ's
-   contents (C030; memory's contents even make the self-model slightly *worse*), and a self-model cut off from every
-   other organ shows the same kind of cell (C031). So "a modular system shows only on-diagonal effects" is false
+   (memory and goals → vigil.calib_gain) are like this. Less than a quarter of either is the organ's contents reaching
+   the self-model (C030; memory's contents even make it slightly *worse*), and a self-model cut off from every other
+   organ shows the same kind of cell (C031). What the rest of a cell is, the lesion does not say: it is a residual over
+   every other pathway the lesion changes. So "a modular system shows only on-diagonal effects" is false
    for metrics scored on behaviour-dependent events. Integration is therefore also measured at **fixed behaviour**,
    with *shadows* ([SUBSTRATE.md](SUBSTRATE.md#shadows-fixed-behaviour-probes)). These re-run one consumer on the
-   logged stream with an organ's contents removed or shammed, and replay exactly (K09). Measured that way, memory's
-   and goals' contents do inform the self-model (C032). In silent outages one memory content serves two consumers:
-   the policy for control and the self-model for metacognition (C033). Integration also has costs: receiving the
-   self-model's broadcast costs the policy control in vigil (C034), mostly as a carry cost of extra features.
+   logged stream with an organ's contents removed or shammed, and replay exactly (K09). Measured that way, with a sham
+   that holds presence and feature load fixed (K10), memory's and goals' contents do inform the self-model (C036;
+   its predecessor C032 was retired because its sham did not hold them fixed). In silent outages one memory content
+   serves two consumers: the policy for control and the self-model for metacognition (C033). Integration also has
+   costs: receiving the self-model's broadcast costs the policy control in vigil (C034).
 
 These are descriptions of causal organisation, **not** consciousness scores. Phenomenal experience (L3) is not
 an admissible scope for any claim (the doctor rejects it). A system can satisfy every L2 description and
@@ -193,8 +195,8 @@ regenerated rather than merged.
   found one critical and seven important defects, all now fixed, retired or documented. It was a separate
   invocation of the same model, not independent replication.
 * The atlas's lesion cells are total effects. Cells on behaviour-dependent metrics (calibration above all) mix
-  an organ's information with the event mix its behaviour produces (C030, C031). Shadows cover only the
-  self-model so far; the policy and other consumers have no fixed-behaviour estimand yet.
+  an organ's information with everything else the lesion changes (C030, C031). Shadows cover only the
+  self-model so far; the policy and other consumers have no fixed-behaviour estimand yet (issue #31).
 * Replication needs a second contributor in a second environment. Until then the top rung is empty.
 * No LLM organ yet. The design admits one once the kernel gains a small extension (per-organ notes inside the tick
   event). The organ would log each model output there and read it back on replay, so continuity (K01) would still hold

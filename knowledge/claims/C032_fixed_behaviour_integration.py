@@ -66,4 +66,9 @@ CLAIM = Claim(
     created="2026-10-11",
     rationale="Integration operationalised as information transfer to a consumer, measured where behaviour cannot "
               "masquerade as it.",
+    retired="PR #29 review (2026-10-11, P1): its sham replaced the organ's contents with the organ's broadcast from a "
+            "random earlier tick, so the organ's presence and the self-model's feature count (which sets its step, "
+            "lr/len(feats)) changed along with the content: goals' presence changed at about half of vigil's ticks. "
+            "Real minus sham therefore mixed content with presence and feature load. Superseded by C036 (same design, "
+            "load-matched sham, checked by K10). Its records stay as computed.",
 )

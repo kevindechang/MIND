@@ -11,7 +11,10 @@ behaviour.
 
 Dev exploration (32 seeds): control +1.49 [+0.98, +2.00]; metacognition +0.0021
 [+0.0015, +0.0027]. C009 (organism -memory, inconclusive at margin 0.5) tests the whole
-organ; this claim splits its contents between their consumers.
+organ; this claim splits its contents between their consumers. Removing contents from the
+self-model's view also lowers its feature count (its step is lr / len(feats)), so the
+metacognition part is the contents' net value. That removal still hurts means they are
+worth more than their load (no sham is involved here).
 """
 from mind.claims import Check, Claim
 

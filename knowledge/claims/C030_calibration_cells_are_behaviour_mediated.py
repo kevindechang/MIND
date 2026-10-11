@@ -1,4 +1,4 @@
-"""C016's calibration cells are not carried by the lesioned organ's own contents (H007, mediation).
+"""Less than a quarter of each atlas calibration cell is the organ's contents reaching the self-model (H007).
 
 C016's two cross-function cells are memory→vigil.calib_gain and goals→vigil.calib_gain:
 lesioning either organ lowers the self-model's same-event advantage over a success table.
@@ -7,22 +7,32 @@ But calib_gain compares two forecasters on ONE arm's events, and the atlas diffe
 ACROSS arms, i.e. across different event streams (a lesioned organism behaves differently).
 That is the confound that retired C007, C008 and C010, re-entering one level up.
 
-Decomposition. TE = calib_gain(organism) - calib_gain(organism -X), the atlas cell.
-DE = the fixed-behaviour direct effect: on the intact organism's own events, the Brier
-cost of removing X's contents from the self-model's inputs (mind/shadow.py, exact by K09;
-the success table does not change when behaviour is fixed, so DE is in calib_gain units).
-Claim: for both organs TE > 0 and DE < TE/4, i.e. mean(TE - 4*DE) > 0 with its whole CI.
-In mediation terms TE = DE + the indirect effect, which here includes the event mix AND the
-workspace reallocating the organ's freed slots to other contents. Reported, not decided on:
-TE split into the success table's change (it sees no contents at all, so this part is pure
-event mix) and the self-model's change; and DE split into content (real vs sham) and carry.
+TE = calib_gain(organism) - calib_gain(organism -X), the atlas cell. DE = on the intact
+organism's own lives, the Brier cost of removing X's contents from the self-model's inputs
+while everything else (actions, outcomes, the whole workspace stream) stays as lived
+(mind/shadow.py, exact by K09; the success table cannot change then, so DE is in calib_gain
+units). DE is the direct path from X's contents to the self-model, net of the feature load
+they add. Claim: for both organs TE > 0 and DE < TE/4, i.e. mean(TE - 4*DE) > 0 with its
+whole CI.
 
-Dev exploration (32 seeds). Memory: TE +0.088 [+0.072, +0.103], DE -0.007 [-0.008, -0.005].
-At fixed behaviour memory's contents make the self-model WORSE; they do carry information
-(real beats a matched sham by +0.003) but carrying their features costs +0.009. Goals:
-TE +0.057 [+0.039, +0.075], DE +0.006 [+0.004, +0.008], about a tenth. Strongest
-alternative: the informational pathway carries the effect (DE >= TE/4). A modular
-forecaster shows the same kind of cell (C031); the valid integration test is C032.
+What this does NOT show (PR #29 review, P2): TE - DE is a residual over every other pathway
+the lesion changes: workspace selection, the other organs, behaviour and so the event
+stream. It is not an identified indirect effect "via behaviour", and DE < TE/4 does not
+apportion it. One part of it is identified. The success table sees no contents, so its own
+Brier change between the arms (reported as te_table) is due to the event stream alone. In
+dev exploration that is about half of memory's TE and nearly all of goals'.
+
+Dev exploration (32 seeds). Memory: TE +0.088 [+0.072, +0.103], DE -0.007 [-0.008, -0.005]:
+at fixed behaviour memory's contents make the self-model slightly WORSE. Goals: TE +0.057
+[+0.039, +0.075], DE +0.006 [+0.004, +0.008]. Reported, not decided on: DE split with a
+load-matched sham (same presence and number of features, permuted content; K10) into
+content (sham - full: memory +0.003, goals +0.003) and presence-and-load (sham - drop:
+memory +0.010, i.e. carrying memory's features costs more than knowing they are there;
+goals -0.003, i.e. knowing a goal is pending helps more than the feature costs). This
+claim's first two records (2026-10-11T06:51/06:53Z) computed that split with the earlier,
+flawed sham (presence and load not kept); later records use the corrected one. The verdict
+never used the sham. Strongest alternative: DE >= TE/4. A modular forecaster shows the same
+kind of cell (C031); the load-matched integration test is C036.
 """
 from mind.claims import Check, Claim
 
@@ -74,11 +84,13 @@ def mediation(ctx):
 
 CLAIM = Claim(
     id="C030",
-    title="The atlas's calibration cells are not carried by the lesioned organ's contents (mediation)",
+    title="Less than a quarter of each atlas calibration cell is the organ's contents reaching the self-model",
     statement="In vigil/dev, lesioning memory or goals lowers same-event calibration gain (TE > 0, C016's two "
-              "cross-function cells), but for each organ less than a quarter of that effect is informational: at the "
-              "intact organism's own behaviour, removing the organ's broadcast contents from the self-model's inputs "
-              "costs less than TE/4 in Brier score (mean(TE - 4*DE) > 0 with its whole 95% CI).",
+              "cross-function cells), but for each organ the direct path from its broadcast contents to the self-model "
+              "accounts for less than a quarter of that: at the intact organism's own behaviour, removing those "
+              "contents from the self-model's inputs costs less than TE/4 in Brier score (mean(TE - 4*DE) > 0 with "
+              "its whole 95% CI). TE - DE is a residual over every other pathway the lesion changes; the claim does "
+              "not apportion it.",
     kind="effect",
     scope="L2",
     question="H007",
@@ -87,6 +99,6 @@ CLAIM = Claim(
     test=Check(mediation, seeds=32),
     by="claude-code (session 01VdSAnY)",
     created="2026-10-11",
-    rationale="Separates the two routes by which an organ can move a calibration metric: what its contents tell "
-              "the forecaster, and which events its effect on behaviour makes the forecaster face.",
+    rationale="Bounds how much of an atlas calibration cell is one organ's contents reaching the forecaster, "
+              "without pretending to identify the rest.",
 )

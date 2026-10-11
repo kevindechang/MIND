@@ -13,12 +13,15 @@ also occupy workspace slots, and that helps. The margin, 0.03 per episode (about
 the organism's reward), is the smallest cost that matters here. It is not fitted to the
 dev estimate.
 
-Mechanism (exploration after sealing, not part of this claim): the cost is mostly not
-the content. A sham self-model (shuffle:self_model: the same bids from a random earlier
-tick) costs the policy about two thirds as much: cut - sham +0.078 [+0.045, +0.111],
-sham - organism +0.036 [-0.015, +0.092] (32 dev seeds). The cost looks like a carry
-cost of extra features in a normalised linear learner, like the self-model's own carry
-cost for memory's features (C030). See H014.
+Mechanism (exploration after sealing, not part of this claim, and not settled): a sham
+self-model (the kernel's shuffle:self_model, its bids from a random earlier tick) costs the
+policy about two thirds as much as the real contents: cut - sham +0.078 [+0.045, +0.111],
+sham - organism +0.036 [-0.015, +0.092] (32 dev seeds). That suggests a cost of carrying
+extra features, not misinformation, but it does not show it. The kernel's shuffle replays
+earlier proposals before selection, so it changes how many self-model contents reach the
+policy, and when, not only what they say: the PR #29 review's objection (P1) to the
+shadow's first sham applies here too. A policy-side sham at fixed presence and load
+(issue #31) would settle it. See H014.
 """
 from mind.claims import Claim, Compare
 
