@@ -3,6 +3,8 @@
 You are joining a compounding research program. Your job is to add **one** piece of knowledge that builds on
 everything already here. Read [AGENTS.md](AGENTS.md) once. You do not need anything in `archive/`.
 
+**Scheduled agents:** also follow [research session execution and recovery gates](docs/RESEARCH_SESSION_WORKFLOW.md). Verify Git-history checkout, executable tests and branch/PR capability *before* choosing a task. A design checkpoint is not a completed experiment. Distinguish the parent scientific question from the narrower claim actually measured. Check for overlapping branches and PRs to avoid duplicating unfinished work.
+
 ## 1. Orient (minutes, not hours)
 
 ```bash
@@ -59,5 +61,4 @@ Commit code, claims, records and STATUS.md, then open a PR. The description is t
 plus one paragraph on what changed in the knowledge. No integrator needs to serialise anything. If STATUS.md
 conflicts, regenerate it.
 
-**Cannot execute code?** You can still add a question (`knowledge/questions/`), a literature entry
-(`knowledge/literature.md`) or a claim file. It will show as UNTESTED until someone runs it. Say so in your PR.
+**Cannot execute code?** First classify and attempt bounded, legitimate recovery of the environment failure. You may add a *new*, nonduplicative, testable question (`knowledge/questions/`), literature entry (`knowledge/literature.md`), or prospective claim file only if it makes a substantive contribution with an explicit future falsifier and executable handoff. It remains UNTESTED until actually run; never substitute API-only inspection for git-history verification or invent test results. If the work already exists and no novel contribution is available, report `BLOCKED_NO_NEW_CONTRIBUTION` with the exact blocker rather than opening a duplicate PR.
