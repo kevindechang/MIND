@@ -51,6 +51,17 @@ class PoltergeistTests(unittest.TestCase):
                     observed_confounds += (int(actuator_helped) != s.outcome)
         self.assertGreater(observed_confounds, 0)
 
+    def test_wrong_corrections_score_choice_not_slip_luck(self):
+        w = Poltergeist(37)
+        w.reset()
+        w.position = 2
+        w._slips[0] = True
+        wrong = "tap_a" if w.polarity > 0 else "tap_b"
+        before = w.wrong_corrections
+        s = w.step(wrong)
+        self.assertEqual(s.info["actuation"], 0)  # actuator did nothing
+        self.assertEqual(w.wrong_corrections, before + 1)  # still a bad command
+
     def test_heldout_variants_and_metric_contract(self):
         self.assertTrue(set(Poltergeist.heldout_variants).issubset(Poltergeist.variants))
         self.assertIn("reward", Poltergeist.atlas_metrics)
