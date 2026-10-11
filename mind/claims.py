@@ -51,8 +51,11 @@ LADDER = {
 }
 GENERIC_METRICS = {"reward": ("control", "higher"), "brier": ("metacognition", "lower"),
                    # same-event-stream calibration (v2 review, finding 7): a per-action success table
-                   # scored on the agent's OWN actions and outcomes, and its gap to the agent's forecasts
-                   "brier_table": ("metacognition", "lower"), "calib_gain": ("metacognition", "higher")}
+                   # scored on the agent's OWN actions and outcomes, and its gap to the agent's forecasts.
+                   # brier_alert / calib_gain_alert are the same comparison against the announcement-updated
+                   # table (AlertTable): public alert=down / alert=up also update scan.
+                   "brier_table": ("metacognition", "lower"), "calib_gain": ("metacognition", "higher"),
+                   "brier_alert": ("metacognition", "lower"), "calib_gain_alert": ("metacognition", "higher")}
 
 
 def sha(text: str, n: int = 16) -> str:

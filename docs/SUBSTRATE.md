@@ -97,7 +97,7 @@ streams), or paired arms see different episodes (a test enforces this).
 | World | Generalises | Variants (*held-out) |
 |---|---|---|
 | `vigil` | Day 0 persistence, Day 4 initiative: carry a request to an unannounced bell | dev, long*, crowded* |
-| `outage` | Day 1 routing, Day 3 self-model: a hidden Markov tool, sometimes announced | dev, silent*, volatile* |
+| `outage` | Day 1 routing, Day 3 self-model: a hidden Markov tool, sometimes announced. `shift` / `shift_late` replace the Markov sensor with a silent step change in scan reliability | dev, silent*, volatile*, shift, shift_late* |
 | `workshop` | E001: probe a hidden 3-node DAG, then keep commitments; exact optimum = legacy v0.4 DP | dev, skewed*, censored* |
 
 Generic metrics for every world:
@@ -107,6 +107,11 @@ Generic metrics for every world:
   agent's *own* events.
 * `calib_gain = brier_table − brier`: calibration compared on the same events. Claim K08 checks it is exactly zero
   for the table itself.
+* `brier_alert`: the same table, also updated by public `alert=down` / `alert=up` before the forecast
+  (`rivals.AlertTable`). An announcement is one extra scan observation (down → 0, up → 1) at the table's own
+  rate. Where a world emits no such announcement the two tables match exactly.
+* `calib_gain_alert = brier_alert − brier`: the self-model's advantage over that announcement-aware table on the
+  same events.
 
 The runner reports each metric over the late half of a life (`m`), all of it (`m@all`) and the first quarter (`m@early`).
 
