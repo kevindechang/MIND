@@ -1,0 +1,894 @@
+{
+ "by": "researcher-bot",
+ "code": "bd4bb2ddb62e151f",
+ "environment": {
+  "host": "46a4eebd",
+  "implementation": "CPython",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+ },
+ "environment_id": "0c6d1c75c017",
+ "evaluations": {
+  "C001": {
+   "claim": "C001",
+   "error": null,
+   "estimate": {
+    "a": 0.8995833333333333,
+    "b": 0.025,
+    "diff": 0.8745833333333334,
+    "hi": 0.9643800568835765,
+    "lo": 0.7791666666666667,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "9a64e4118aca0932",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.10041666666666668,
+     "hi": -0.007054716745705944,
+     "lo": -0.19583333333333336,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 0.8733333333333333,
+     "hi": 0.963427199992666,
+     "lo": 0.78,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.83375,
+     "hi": 0.9223422534344823,
+     "lo": 0.7451577465655177,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8": {
+     "advantage": 0.6879166666666666,
+     "hi": 0.7786450674489296,
+     "lo": 0.5971882658844037,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.8033333333333333,
+     "hi": 0.8908322536906937,
+     "lo": 0.715834412975973,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.085,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C002": {
+   "claim": "C002",
+   "error": null,
+   "estimate": {
+    "a": 0.9191666666666667,
+    "b": 0.95375,
+    "diff": -0.03458333333333333,
+    "hi": 0.00026932808249263696,
+    "lo": -0.06943599474915929,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "bf74743a105dbcf9",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.014,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C003": {
+   "claim": "C003",
+   "error": null,
+   "estimate": {
+    "a": 0.5375,
+    "b": 0.009166666666666667,
+    "diff": 0.5283333333333333,
+    "hi": 0.6348083273034009,
+    "lo": 0.4218583393632658,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "861ff2976851a6b9",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.46249999999999997,
+     "hi": -0.3574532913839523,
+     "lo": -0.5675467086160476,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 0.5308333333333334,
+     "hi": 0.6365821829792524,
+     "lo": 0.42508448368741436,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.5225,
+     "hi": 0.6246487571739172,
+     "lo": 0.42035124282608266,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8": {
+     "advantage": 0.5275,
+     "hi": 0.6328105601065425,
+     "lo": 0.4221894398934575,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.5304166666666666,
+     "hi": 0.6341104829788138,
+     "lo": 0.4267228503545195,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.086,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C004": {
+   "claim": "C004",
+   "error": null,
+   "estimate": {
+    "hi": 0.8541129179518094,
+    "lo": 0.7458870820481907,
+    "summary": "interaction +0.800 [+0.746, +0.854] (claim: > 0.4)",
+    "synergy": 0.8
+   },
+   "prediction_hash": "78021d0556c54106",
+   "rivals": {},
+   "robust": true,
+   "seconds": 2.567,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C005": {
+   "claim": "C005",
+   "error": null,
+   "estimate": {
+    "a": 0.8691666666666666,
+    "b": 0.7329166666666667,
+    "diff": 0.13625,
+    "hi": 0.1888173663439617,
+    "lo": 0.08368263365603831,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "48b47bbce4ed64c8",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.13083333333333333,
+     "hi": -0.023717555374474814,
+     "lo": -0.23794911129219184,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "flat": {
+     "advantage": 0.13625,
+     "hi": 0.1888173663439617,
+     "lo": 0.08368263365603831,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.028,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C006": {
+   "claim": "C006",
+   "error": null,
+   "estimate": {
+    "a": 0.8020833333333334,
+    "b": 0.8333333333333334,
+    "diff": -0.03125000000000001,
+    "hi": 0.12137372351936099,
+    "lo": -0.183873723519361,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "89b0733446813d7a",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.015,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C009": {
+   "claim": "C009",
+   "error": null,
+   "estimate": {
+    "a": 13.862291666666666,
+    "b": 13.204583333333332,
+    "diff": 0.6577083333333333,
+    "hi": 1.6123428368923274,
+    "lo": -0.2969261702256608,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "8f26be414e4c50cf",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.015,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C011": {
+   "claim": "C011",
+   "error": null,
+   "estimate": {
+    "a": -1.6905416666666666,
+    "b": -1.6554583333333333,
+    "diff": -0.03508333333333333,
+    "hi": -0.007636547543988098,
+    "lo": -0.06253011912267856,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "73249070b56880ed",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.014,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C012": {
+   "claim": "C012",
+   "error": null,
+   "estimate": {
+    "hi": 0.5369498331743628,
+    "lo": 0.4759460001589705,
+    "mean": 0.5064479166666667,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "9a98682a21c03f58",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.014,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C013": {
+   "claim": "C013",
+   "error": null,
+   "estimate": {
+    "a": -1.642,
+    "b": -1.7005833333333333,
+    "diff": 0.058583333333333334,
+    "hi": 0.09384093781199312,
+    "lo": 0.023325728854673544,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "056d06a28e0bb2ce",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.5210416666666666,
+     "hi": -0.49420609851156155,
+     "lo": -0.5478772348217718,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.028,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "C016": {
+   "claim": "C016",
+   "error": null,
+   "estimate": {
+    "causal_density": 0.3333333333333333,
+    "cross_function_cells": [
+     "memory\u2192vigil.calib_gain",
+     "goals\u2192vigil.calib_gain",
+     "memory\u2192outage.reward"
+    ],
+    "cross_function_organs": [
+     "goals",
+     "memory"
+    ],
+    "degenerate": [
+     "memory+goals\u2192vigil.kept",
+     "memory+goals\u2192vigil.calib_gain"
+    ],
+    "summary": "Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33"
+   },
+   "prediction_hash": "6fb6e0cd8a7cb832",
+   "rivals": {},
+   "robust": true,
+   "seconds": 16.337,
+   "seeds": "heldout:754c9692904ad098ec332df24e476f8851ff2993",
+   "verdict": "HOLDS"
+  },
+  "C017": {
+   "claim": "C017",
+   "error": null,
+   "estimate": {
+    "hi": 0.02557753297788668,
+    "lo": 0.017201815491727314,
+    "mean": 0.021389674234806998,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "842d1f99c128fc75",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.015,
+   "seeds": "heldout:754c9692904ad098ec332df24e476f8851ff2993",
+   "verdict": "HOLDS"
+  },
+  "C018": {
+   "claim": "C018",
+   "error": null,
+   "estimate": {
+    "hi": 0.01013503949986627,
+    "lo": 0.005477089927383822,
+    "mean": 0.007806064713625046,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "c67cc2c2b5301fad",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.014,
+   "seeds": "heldout:754c9692904ad098ec332df24e476f8851ff2993",
+   "verdict": "HOLDS"
+  },
+  "C019": {
+   "claim": "C019",
+   "error": null,
+   "estimate": {
+    "a": 0.8936458333333334,
+    "b": 0.9074479166666667,
+    "diff": -0.01380208333333333,
+    "hi": 0.005699107794023578,
+    "lo": -0.03333333333333333,
+    "n": 128,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "46973da0d8c9d44d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.107,
+   "seeds": "heldout:b129e57721d40e4382dc9c3fabfdf1fa7ec6a37b",
+   "verdict": "HOLDS"
+  },
+  "C020": {
+   "claim": "C020",
+   "error": null,
+   "estimate": {
+    "a": 14.082273763020833,
+    "b": 13.051992187499998,
+    "diff": 1.0302815755208337,
+    "hi": 1.1836249980128506,
+    "lo": 0.8769381530288167,
+    "n": 512,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "f0da0baaf04ef190",
+   "rivals": {
+    "bayes": {
+     "advantage": -1.4805891927083334,
+     "hi": -1.391649509629536,
+     "lo": -1.5695288757871309,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 1.0225244140625,
+     "hi": 1.1797281901041667,
+     "lo": 0.8670158077040075,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.06832194010416659,
+     "hi": 0.18184227811115575,
+     "lo": -0.04519839790282257,
+     "reference": false,
+     "result": "NOT_BEATEN"
+    },
+    "window8": {
+     "advantage": 2.3176269531250013,
+     "hi": 2.540187221771748,
+     "lo": 2.094694010416668,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.32532877604166716,
+     "hi": 0.4648535156250006,
+     "lo": 0.18752701642432656,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 2.559,
+   "seeds": "heldout:feda822faecee727b49d0937646d4c67d42af46b",
+   "verdict": "HOLDS"
+  },
+  "C030": {
+   "claim": "C030",
+   "error": null,
+   "estimate": {
+    "goals": {
+     "carry": {
+      "hi": 0.0001926011673562566,
+      "lo": -0.0023211148475989593,
+      "mean": -0.0010642568401213514
+     },
+     "content": {
+      "hi": 0.0031664741866471737,
+      "lo": 0.0017507333445375074,
+      "mean": 0.0024586037655923406
+     },
+     "contrast": {
+      "hi": 0.050662125719878645,
+      "lo": 0.01621874474494645,
+      "mean": 0.033440435232412545
+     },
+     "de": {
+      "hi": 0.005004542476420236,
+      "lo": 0.0020411787350071483,
+      "mean": 0.003522860605713692
+     },
+     "share": 0.07411574672609848,
+     "te": {
+      "hi": 0.0670115837046169,
+      "lo": 0.028052171605917713,
+      "mean": 0.04753187765526731
+     },
+     "te_self": {
+      "hi": 0.00457553680175664,
+      "lo": -0.007419500865337105,
+      "mean": -0.0014219820317902324
+     },
+     "te_table": {
+      "hi": 0.06576769884876553,
+      "lo": 0.03214002052534956,
+      "mean": 0.048953859687057545
+     }
+    },
+    "memory": {
+     "carry": {
+      "hi": 0.010681443494692409,
+      "lo": 0.008322231735359469,
+      "mean": 0.009501837615025939
+     },
+     "content": {
+      "hi": 0.004665128787511506,
+      "lo": 0.002435836978704633,
+      "mean": 0.003546685960845536
+     },
+     "contrast": {
+      "hi": 0.12716481442774688,
+      "lo": 0.07848524940815596,
+      "mean": 0.10282503191795142
+     },
+     "de": {
+      "hi": -0.004263687685557129,
+      "lo": -0.007646615622803676,
+      "mean": -0.005955151654180402
+     },
+     "share": -0.07537744413017965,
+     "te": {
+      "hi": 0.09919783536677024,
+      "lo": 0.0588110152356894,
+      "mean": 0.07900442530122982
+     },
+     "te_self": {
+      "hi": 0.04680708112911394,
+      "lo": 0.02975095949783255,
+      "mean": 0.038279020313473244
+     },
+     "te_table": {
+      "hi": 0.0595310283228002,
+      "lo": 0.02191978165271294,
+      "mean": 0.04072540498775657
+     }
+    },
+    "summary": "memory: TE +0.079 [+0.059,+0.099], DE -0.0060 [-0.0076,-0.0043] (share -8%); goals: TE +0.048 [+0.028,+0.067], DE +0.0035 [+0.0020,+0.0050] (share +7%) \u00b7 claim: TE > 0 and DE < TE/4"
+   },
+   "prediction_hash": "45476e429d8abce5",
+   "rivals": {},
+   "robust": true,
+   "seconds": 7.141,
+   "seeds": "heldout:41888d40f5dd897e9f18d6444360303cded7f8d4",
+   "verdict": "HOLDS"
+  },
+  "C031": {
+   "claim": "C031",
+   "error": null,
+   "estimate": {
+    "a": 0.01614414959893825,
+    "b": 0.008058470525069196,
+    "diff": 0.008085679073869055,
+    "hi": 0.010905802931011843,
+    "lo": 0.005265555216726266,
+    "n": 32,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "8cc967af5b355725",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.028,
+   "seeds": "heldout:41888d40f5dd897e9f18d6444360303cded7f8d4",
+   "verdict": "HOLDS"
+  },
+  "C033": {
+   "claim": "C033",
+   "error": null,
+   "estimate": {
+    "control": {
+     "hi": 1.4101876904733182,
+     "lo": 0.621114392860016,
+     "mean": 1.015651041666667
+    },
+    "metacognition": {
+     "hi": 0.0030145192748938735,
+     "lo": 0.0020027894860292182,
+     "mean": 0.002508654380461546
+    },
+    "summary": "policy loses +1.02 [+0.62,+1.41] reward without memory's contents (claim > 0.5); self-model loses +0.0025 [+0.0020,+0.0030] Brier at fixed behaviour (claim > 0)"
+   },
+   "prediction_hash": "bbacf9fa2ea43ce9",
+   "rivals": {},
+   "robust": true,
+   "seconds": 7.812,
+   "seeds": "heldout:41888d40f5dd897e9f18d6444360303cded7f8d4",
+   "verdict": "HOLDS"
+  },
+  "C034": {
+   "claim": "C034",
+   "error": null,
+   "estimate": {
+    "a": 0.9006666666666666,
+    "b": 0.8173958333333333,
+    "diff": 0.08327083333333331,
+    "hi": 0.1264583333333333,
+    "lo": 0.04566088991734918,
+    "n": 32,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "9fe53c717a27e619",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.028,
+   "seeds": "heldout:41888d40f5dd897e9f18d6444360303cded7f8d4",
+   "verdict": "HOLDS"
+  },
+  "C035": {
+   "claim": "C035",
+   "error": null,
+   "estimate": {
+    "a": -1.6480416666666666,
+    "b": -1.653125,
+    "diff": 0.005083333333333322,
+    "hi": 0.028353495796608133,
+    "lo": -0.01818682912994149,
+    "n": 32,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "4a66a7adc9d8df63",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.028,
+   "seeds": "heldout:41888d40f5dd897e9f18d6444360303cded7f8d4",
+   "verdict": "HOLDS"
+  },
+  "C036": {
+   "claim": "C036",
+   "error": null,
+   "estimate": {
+    "cells": {
+     "goals>outage": {
+      "hi": 0.0,
+      "info": 0.0,
+      "lo": 0.0,
+      "organ": "goals",
+      "p": 1.0,
+      "reliable": false,
+      "world": "outage"
+     },
+     "goals>vigil": {
+      "hi": 0.004404380988037019,
+      "info": 0.0028107372095853497,
+      "lo": 0.0012170934311336809,
+      "organ": "goals",
+      "p": 0.0,
+      "reliable": true,
+      "world": "vigil"
+     },
+     "goals>workshop": {
+      "hi": 0.0,
+      "info": 0.0,
+      "lo": 0.0,
+      "organ": "goals",
+      "p": 1.0,
+      "reliable": false,
+      "world": "workshop"
+     },
+     "memory>outage": {
+      "hi": 0.00500455684483417,
+      "info": 0.003465409677575278,
+      "lo": 0.0019262625103163857,
+      "organ": "memory",
+      "p": 0.0,
+      "reliable": true,
+      "world": "outage"
+     },
+     "memory>vigil": {
+      "hi": 0.005911002931061251,
+      "info": 0.003925512411112048,
+      "lo": 0.001940021891162845,
+      "organ": "memory",
+      "p": 0.0,
+      "reliable": true,
+      "world": "vigil"
+     },
+     "memory>workshop": {
+      "hi": 0.00027582673140837355,
+      "info": -6.772383726641896e-05,
+      "lo": -0.00041127440594121147,
+      "organ": "memory",
+      "p": 0.6772,
+      "reliable": false,
+      "world": "workshop"
+     }
+    },
+    "informs": {
+     "goals": [
+      "vigil"
+     ],
+     "memory": [
+      "outage",
+      "vigil"
+     ]
+    },
+    "summary": "Holm-corrected, load-matched sham, fixed behaviour: memory informs the self-model in ['outage', 'vigil'], goals in ['vigil'] (memory>vigil +0.0039*, goals>vigil +0.0028*, memory>outage +0.0035*, goals>outage +0.0000, memory>workshop -0.0001, goals>workshop +0.0000)"
+   },
+   "prediction_hash": "bfe0b30fc9d6c11e",
+   "rivals": {},
+   "robust": true,
+   "seconds": 7.322,
+   "seeds": "heldout:5b457e1fe7b4f694c714ea6efd841895d4ab26bf",
+   "verdict": "HOLDS"
+  },
+  "C041": {
+   "claim": "C041",
+   "error": null,
+   "estimate": {
+    "hi": 0.010748509491031868,
+    "lo": 0.003909831068075807,
+    "mean": 0.007329170279553838,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "89f44eeb75763ceb",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.014,
+   "seeds": "heldout:4af159ea02e8731a294d23c8c33f05a964d7bdbc",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C042": {
+   "claim": "C042",
+   "error": null,
+   "estimate": {
+    "acute": {
+     "hi": -0.3916745118623941,
+     "lo": -1.4820754881376044,
+     "mean": -0.9368749999999992,
+     "part": "FAILS"
+    },
+    "recovered": {
+     "hi": 0.3155318265373148,
+     "lo": -0.08490682653731474,
+     "mean": 0.11531250000000004,
+     "part": "HOLDS"
+    },
+    "summary": "intact\u2212lesion reward acute -0.937 [-1.482,-0.392] (FAILS, claim > 0.5); recovered +0.115 [-0.085,+0.316] (HOLDS, claim inside \u00b10.5)"
+   },
+   "prediction_hash": "533d55c45c5cdd09",
+   "rivals": {},
+   "robust": false,
+   "seconds": 1.983,
+   "seeds": "heldout:4af159ea02e8731a294d23c8c33f05a964d7bdbc",
+   "verdict": "FAILS"
+  },
+  "C043": {
+   "claim": "C043",
+   "error": null,
+   "estimate": {
+    "acute": -0.014995689216984067,
+    "diff": -0.014931883878072866,
+    "hi": -0.012056621462320727,
+    "lo": -0.017807146293825005,
+    "recovered": -6.380533891120181e-05,
+    "summary": "acute minus recovered same-event advantage -0.0149 [-0.0178,-0.0121] (claim > 0.004); both tables identical (acute advantage -0.0150, recovered -0.0001)"
+   },
+   "prediction_hash": "9219e8775cd043bc",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.987,
+   "seeds": "heldout:4af159ea02e8731a294d23c8c33f05a964d7bdbc",
+   "verdict": "FAILS"
+  },
+  "K01": {
+   "claim": "K01",
+   "error": null,
+   "estimate": {
+    "deaths": 576,
+    "failures": [],
+    "lives": 144,
+    "summary": "144 lives, 576 deaths: 144/144 ledgers byte-identical"
+   },
+   "prediction_hash": "0142477e88cd5c19",
+   "rivals": {},
+   "robust": true,
+   "seconds": 6.031,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "K02": {
+   "claim": "K02",
+   "error": null,
+   "estimate": {
+    "distinct_pids": 45,
+    "failures": [],
+    "sigkills": 36,
+    "summary": "36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical"
+   },
+   "prediction_hash": "d073f4224b18935a",
+   "rivals": {},
+   "robust": true,
+   "seconds": 6.466,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "K03": {
+   "claim": "K03",
+   "error": null,
+   "estimate": {
+    "summary": "24/24 lives action-identical"
+   },
+   "prediction_hash": "923baec591ef3154",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.712,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "K04": {
+   "claim": "K04",
+   "error": null,
+   "estimate": {
+    "summary": "Bayes-agent mean regret vs v0.4 optimum: dev -0.0035 [-0.0144,+0.0074]; skewed +0.0036 [-0.0076,+0.0148]; censored +0.0197 [+0.0032,+0.0363]"
+   },
+   "prediction_hash": "9063dd3d61bd38f2",
+   "rivals": {},
+   "robust": true,
+   "seconds": 1.592,
+   "seeds": "heldout:870e206822ed75aca50e002d39c7dc01ab46dd79",
+   "verdict": "HOLDS"
+  },
+  "K06": {
+   "claim": "K06",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "lives": 108,
+    "summary": "108 lives \u00d7 3 hash seeds in fresh processes: all replays verified, heads identical"
+   },
+   "prediction_hash": "ab490a51fa73205c",
+   "rivals": {},
+   "robust": true,
+   "seconds": 3.977,
+   "seeds": "heldout:754c9692904ad098ec332df24e476f8851ff2993",
+   "verdict": "HOLDS"
+  },
+  "K07": {
+   "claim": "K07",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "replays": {
+     "end": 18,
+     "step": 18
+    },
+    "sigkills": 36,
+    "summary": "36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical"
+   },
+   "prediction_hash": "647f88b2c62f6430",
+   "rivals": {},
+   "robust": true,
+   "seconds": 6.185,
+   "seeds": "heldout:754c9692904ad098ec332df24e476f8851ff2993",
+   "verdict": "HOLDS"
+  },
+  "K08": {
+   "claim": "K08",
+   "error": null,
+   "estimate": {
+    "summary": "rival:reactive calib_gain is exactly 0 in every world, seed and window",
+    "violations": []
+   },
+   "prediction_hash": "cdd2214843c9cec5",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.202,
+   "seeds": "heldout:754c9692904ad098ec332df24e476f8851ff2993",
+   "verdict": "HOLDS"
+  },
+  "K09": {
+   "claim": "K09",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "lives": 352,
+    "summary": "352 lives, every world and variant: 352/352 shadows reproduce every logged confidence, the runner's Brier and table Brier, and the lab's life"
+   },
+   "prediction_hash": "30f1b0b5c2bddd2d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 29.863,
+   "seeds": "heldout:41888d40f5dd897e9f18d6444360303cded7f8d4",
+   "verdict": "HOLDS"
+  },
+  "K10": {
+   "claim": "K10",
+   "error": null,
+   "estimate": {
+    "audits": 88,
+    "early_fallback_ticks": 78,
+    "failures": [],
+    "lives": 44,
+    "summary": "88/88 sham audits (44 lives, every world and variant) keep presence, distinct-feature count and feature load at every tick, change content, and never fall back in the scored half (78 early fallback ticks in all)"
+   },
+   "prediction_hash": "5c47a7b47e989680",
+   "rivals": {},
+   "robust": true,
+   "seconds": 21.357,
+   "seeds": "heldout:5b457e1fe7b4f694c714ea6efd841895d4ab26bf",
+   "verdict": "HOLDS"
+  },
+  "K13": {
+   "claim": "K13",
+   "error": null,
+   "estimate": {
+    "summary": "alert scorer matches the plain table with no announcements, is zero for rival:reactive there, and moves in outage/dev",
+    "violations": []
+   },
+   "prediction_hash": "ac9516b8f3f983e4",
+   "rivals": {},
+   "robust": true,
+   "seconds": 1.515,
+   "seeds": "heldout:4af159ea02e8731a294d23c8c33f05a964d7bdbc",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "45f3fe90981c244eef9486da4e21cac7060eb4dc"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-11T17:58:12Z",
+ "schema": 2
+}
