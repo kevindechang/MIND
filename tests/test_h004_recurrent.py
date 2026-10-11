@@ -1,4 +1,9 @@
 """H004 recurrent organ: causal access, replay and negative controls."""
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
 import unittest
 
 from mind.kernel import Config, Organism
@@ -33,6 +38,56 @@ class RecurrentTests(unittest.TestCase):
         self.assertEqual(agent.organs["recurrent"].introspect()["trace"], [0.0] * 4)
         second = agent.step({}, actions=("wait", "a"))
         self.assertFalse(any(x.startswith("recurrent:") for x in second.broadcast))
+
+    def test_cut_perception_to_recurrence_prevents_evidence_copy(self):
+        agent = Organism("organism +recurrent cut:perception>recurrent capacity=inf explore=0")
+        agent.step({"request": "b"}, boundary=True, actions=("wait", "b"))
+        agent.step({"noise": "1"}, actions=("wait", "b"))
+        self.assertEqual(agent.organs["recurrent"].introspect()["trace"], [0.0] * 4)
+
+    def test_recurrent_exactly_once_retry_does_not_reappend(self):
+        ledger = MemoryLedger()
+        agent = Organism("organism +recurrent", seed=17, ledger=ledger)
+        first = agent.step_at(0, {"request": "a"}, boundary=True, actions=("wait", "a"))
+        first_head = ledger.head
+        restored = Organism.restore(ledger)
+        duplicate = restored.step_at(0, {"request": "a"}, boundary=True, actions=("wait", "a"))
+        self.assertEqual(first, duplicate)
+        self.assertEqual(ledger.head, first_head)
+        self.assertEqual(len(ledger), 2)  # genesis + committed tick
+
+    def test_hashseed_invariant_recurrence_in_new_processes(self):
+        # K06-style check for the OPTIONAL organ: default-organ claims do not
+        # exercise +recurrent, so this explicitly tests cross-process replay.
+        script = """
+import json
+from mind.kernel import Organism
+from mind.ledger import MemoryLedger
+ledger = MemoryLedger()
+agent = Organism("organism +recurrent capacity=4 explore=0.25", seed=83, ledger=ledger)
+actions = []
+for t in range(14):
+    action = agent.step(
+        {"request": "a"} if t == 0 else {"noise": str(t % 2)},
+        outcome=None, boundary=(t == 0),
+        actions=("wait", "a", "b")
+    ).action
+    actions.append(action)
+restored = Organism.restore(ledger)
+print(json.dumps({"head": ledger.head, "actions": actions,
+                  "trace": restored.introspect()["recurrent"]}, sort_keys=True))
+"""
+        root = Path(__file__).resolve().parents[1]
+        outputs = []
+        for seed in ("1", "71", "919"):
+            env = dict(os.environ, PYTHONHASHSEED=seed)
+            completed = subprocess.run(
+                [sys.executable, "-c", script], cwd=root, env=env,
+                text=True, capture_output=True, check=True,
+            )
+            outputs.append(json.loads(completed.stdout))
+        self.assertEqual(outputs[0], outputs[1])
+        self.assertEqual(outputs[0], outputs[2])
 
     def test_frozen_recurrence_never_updates(self):
         agent = Organism("organism +recurrent freeze:recurrent capacity=inf explore=0")
