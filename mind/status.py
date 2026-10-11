@@ -105,8 +105,8 @@ def atlas_section() -> List[str]:
             "sign-normalised lesion effect), · no reliable effect; ᴴ = a home competency the organ was designed for. "
             "Off-home 🟢 cells are cross-function effects. Calibration is `calib_gain` (same-event comparison with a "
             "success table). Each arm is scored on its own events, so a lesion cell is a total effect, not "
-            "information flow: C030 and C031 show the calibration cells are mostly not the organ's contents; C036 "
-            "tests integration at fixed behaviour.", ""]
+            "information flow. Interpret content-mediated effects only using separately specified, "
+            "same-behaviour, sham-controlled interventions; atlas cells alone cannot establish mediation.", ""]
     if s["cross_function_cells"]:
         out.append("Cross-function: " + ", ".join(f"`{x}`" for x in s["cross_function_cells"]))
     if s["degenerate_pairs"]:
