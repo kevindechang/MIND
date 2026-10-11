@@ -12,7 +12,7 @@ import json
 import sys
 from typing import Any, Dict, List, Optional
 
-from .claims import KNOWLEDGE, Check, Compare, Threshold, git
+from .claims import KNOWLEDGE, Check, Compare, Threshold
 from .knowledge import ClaimState, Question
 
 STATE_ORDER = ("BROKEN", "ERROR", "STALE", "HOLDS", "INCONCLUSIVE", "REFUTED", "UNTESTED", "RETIRED")
@@ -136,15 +136,12 @@ def registry_section() -> List[str]:
 
 def render(states: Dict[str, ClaimState], questions: Dict[str, Question], items: List[Dict[str, str]],
            code: str) -> str:
-    head = (git("rev-parse", "--short", "HEAD") or "?").strip()
-    if (git("status", "--porcelain", "--", "mind", "knowledge") or "").strip():
-        head += " + uncommitted changes"
     counts = Counter(st.state for st in states.values())
     levels = Counter(st.level for st in states.values() if st.state == "HOLDS")
-    out = ["# MIND — live knowledge status", "",
-           "> **Generated** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` "
-           "and git history. Do not edit by hand; if it conflicts in a merge, regenerate it.", "",
-           f"Code fingerprint `{code}` · git `{head}` · generated "
+    out = ["# MIND — computed knowledge snapshot", "",
+           "> **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` "
+           "and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.", "",
+           f"Result-code fingerprint `{code}` · snapshot generated "
            f"{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}", "",
            "**Target: functional consciousness — NOT achieved.** Every claim below concerns a small "
            "learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) "
