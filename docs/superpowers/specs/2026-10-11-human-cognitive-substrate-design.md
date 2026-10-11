@@ -154,7 +154,7 @@ On T1, compare -predictive, cut:predictive>policy, shuffle:predictive, and freez
 - Model parameters, optimizer state, stochastic draws and any nondeterministic external outputs must be reconstructible from the ledger or immutable content-addressed model artifact. Replay-after-SIGKILL and exactly-once actions remain strict.
 - Seal claims before held-out; first held-out record remains decisive; do not preview commits for favorable seeds. Commit failures. Distinct contributor and environment required for the REPLICATED rung.
 - Report both *training* and *inference* budgets: parameters, activation/state bytes, optimizer bytes, train FLOPs or counted updates, per-step inference FLOPs, observations accessible, latencies, energy proxy when available, and total wall-clock. Stop comparing architectures as equals if one has much more computation.
-- No undisclosed use of real user data, sensors, contact, credentials, new automations, GitHub Actions or paid inference.
+- **No access to or use of real people's data, accounts, messages, or sensors; no contact with real people; no credentials.** No paid APIs, GitHub Actions, background workers, new recurring schedules, or production Anjo changes without explicit repository-owner approval. These are prohibitions from `AGENTS.md`, not disclosure options. Any proposed welfare-triggering component requires the separate owner sign-off specified there.
 - Avoid physiological claims and artificial suffering. Any proposal introducing pain, valence, deprivation, self-preservation or human attachment optimization triggers the welfare question and explicit owner signoff under AGENTS.md.
 
 ## 8. Staged scientific gates
