@@ -5,9 +5,10 @@ from .goals import Goals
 from .memory import Memory
 from .perception import Perception
 from .policy import Policy
+from .recurrent import Recurrent
 from .self_model import SelfModel
 
-ORGANS = {cls.name: cls for cls in (Perception, Memory, Goals, SelfModel, Policy)}
+ORGANS = {cls.name: cls for cls in (Perception, Memory, Goals, SelfModel, Policy, Recurrent)}
 
 # Fixed order = the order organs propose and learn each tick.
 DEFAULT_ORGANS = ("perception", "memory", "goals", "self_model", "policy")
