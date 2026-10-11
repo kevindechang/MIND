@@ -1,0 +1,95 @@
+{
+ "by": "Cursor Agent",
+ "code": "46a83af89bd79910",
+ "environment": {
+  "host": "46a4eebd",
+  "implementation": "CPython",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+ },
+ "environment_id": "0c6d1c75c017",
+ "evaluations": {
+  "C037": {
+   "claim": "C037",
+   "error": null,
+   "estimate": {
+    "a": 0.632265625,
+    "b": 0.55,
+    "diff": 0.08226562500000001,
+    "hi": 0.09004396789902429,
+    "lo": 0.07448728210097573,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "195d4dceb0a97de4",
+   "rivals": {
+    "moment": {
+     "advantage": 0.08226562500000001,
+     "hi": 0.09004396789902429,
+     "lo": 0.07448728210097573,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.017,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C038": {
+   "claim": "C038",
+   "error": null,
+   "estimate": {
+    "a": 0.5752864583333334,
+    "b": 0.5137239583333334,
+    "diff": 0.0615625,
+    "hi": 0.07050253180012463,
+    "lo": 0.05262246819987537,
+    "n": 48,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "988c68070f655f82",
+   "rivals": {
+    "estimator": {
+     "advantage": 0.0615625,
+     "hi": 0.07050253180012463,
+     "lo": 0.05262246819987537,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "filter": {
+     "advantage": -0.05716145833333333,
+     "hi": -0.05089902816795831,
+     "lo": -0.06342388849870835,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.101,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K12": {
+   "claim": "K12",
+   "error": null,
+   "estimate": {
+    "problems": [],
+    "summary": "dev, gusty and slippy: every act and clipped sensation is consistent with both polarities, with and without a slip, and with both external-presence labels; private cause keys stay out of the observation"
+   },
+   "prediction_hash": "e92b01ad47a9867c",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.001,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "90f2f843872302edb4955d907aa7d8dbf6afb86b"
+ },
+ "mode": "full",
+ "recorded_at": "2026-10-11T16:31:51Z",
+ "schema": 2
+}
