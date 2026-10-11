@@ -210,6 +210,12 @@ ORACLES: Dict[str, Callable[[str], Agent]] = {
     "vigil": VigilOracle, "outage": OutageBayes, "workshop": WorkshopBayes}
 
 
+def _narrator(_world: str, _variant: str, _seed: int) -> Agent:
+    """H013 narrator. Lazy import: mind.report must not import this registry."""
+    from ..report import NarratorAgent
+    return NarratorAgent()  # type: ignore[return-value]
+
+
 @dataclass(frozen=True)
 class Rival:
     name: str
@@ -235,4 +241,11 @@ RIVALS: Dict[str, Rival] = {r.name: r for r in (
     Rival("bayes", "privileged-model Bayes reference (E001 v0.4 DP in workshop)",
           ("memory", "goals", "self_model", "workspace"), reference=True,
           factory=lambda w, v, s: ORACLES[w](v)),
+    # Empty `challenges` on purpose. This reader solves vigil from the public
+    # transcript (it is the privileged queue, not a learned competitor). Putting
+    # it on the memory/goals panel would re-test `kept` against an oracle and
+    # demote claims the zoo already ceilings with `bayes`. C019/C020 score it
+    # as a next-action narrator, which is the comparison it exists for.
+    Rival("narrator", "full public transcript, no internal state (H013): last request, act at the bell",
+          (), factory=_narrator, worlds=("vigil",)),
 )}

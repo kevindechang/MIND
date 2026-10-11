@@ -74,6 +74,8 @@ class KernelTests(unittest.TestCase):
     def test_replay_restores_identical_organism_in_every_world_and_lesion(self):
         for world in WORLDS:
             for config in ("organism", "organism -memory", "organism capacity=inf cut:memory>policy",
+                           "organism cut:memory>policy cut:goals>policy",
+                           "organism cut:goals>policy cut:memory>policy cut:self_model>policy",
                            "organism shuffle:memory freeze:self_model", "organism @3:-goals"):
                 episodes = 12
                 ref = run(config, world, 2, episodes, ledger=MemoryLedger(), trace=True)

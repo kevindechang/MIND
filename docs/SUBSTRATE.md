@@ -118,6 +118,7 @@ The runner reports each metric over the late half of a life (`m`), all of it (`m
 | `window8lin` | as `window8`, without conjunctions | memory, goals |
 | `flat` | the organism with `capacity=inf` | workspace |
 | `bayes` | privileged-model reference: perfect queue (vigil), exact HMM filter (outage), legacy E001 v0.4 DP (workshop) | ceiling only |
+| `narrator` | H013 report rival (`mind/report.py`): the full public transcript and no broadcast or organ state. In vigil it remembers `request` and acts at the bell. Not auto-applied to `kept` claims (it is the privileged queue; `bayes` already ceilings that) | — |
 
 **Adding a rival.** Register a `Rival(name, doc, challenges, factory=... | config=...)`. From then on every claim
 about a mechanism it challenges is re-tested against it, which may demote that claim. Good rivals are the cheapest
