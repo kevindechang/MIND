@@ -234,5 +234,6 @@ RIVALS: Dict[str, Rival] = {r.name: r for r in (
           ("workspace",), config="organism capacity=inf"),
     Rival("bayes", "privileged-model Bayes reference (E001 v0.4 DP in workshop)",
           ("memory", "goals", "self_model", "workspace"), reference=True,
-          factory=lambda w, v, s: ORACLES[w](v)),
+          factory=lambda w, v, s: ORACLES[w](v),
+          worlds=tuple(sorted(ORACLES))),
 )}
