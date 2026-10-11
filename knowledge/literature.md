@@ -36,6 +36,15 @@ Evidence status below describes provenance, not proof of consciousness. External
 
 ## Source handling
 
+| ID | Source | Date/type | Status | Relevance and caution |
+|---|---|---|---|---|
+| S019 | [Duchi, Hazan & Singer, *Adaptive Subgradient Methods for Online Learning and Stochastic Optimization*](https://jmlr.org/papers/v12/duchi11a.html) | 2011, JMLR 12(61):2121–2159 | Primary abstract and full-paper §1.1, equations 1/5 inspected 2026-10-11; paper experiments not reproduced | H014 / C050: diagonal accumulated-gradient scaling is a simple alternative to receiver selection. Convex online-learning results do not establish advantages on MIND's changing event distributions; test directly at fixed behaviour. |
+| S020 | [Freund & Schapire, *A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting*](https://www.schapire.net/papers/FreundSc95.pdf), DOI 10.1006/jcss.1997.1504 | 1997, Journal of Computer and System Sciences 55(1):119–139 | Author manuscript §§2.1/3.1 and Hedge algorithm inspected 2026-10-11; experiments not reproduced | H014 / C051: cumulative prequential Brier loss weights fixed-mask predictors. MIND uses fixed eta=1; no new regret guarantee, efficient sparse selection, or cognitive interpretation follows. Uniform mixture is the equal-expert-count control. |
+| S021 | [Goyal et al., *Coordination Among Neural Modules Through a Shared Global Workspace*](https://arxiv.org/html/2103.01197v2) | ICLR 2022, arXiv:2103.01197v2 | Abstract and §2.1 broadcast/consolidation architecture inspected 2026-10-11; experiments not reproduced | H014: specialists use learned attention when consolidating workspace information. Motivates receiver selection, but MIND's logistic prediction mixture is not this neural architecture. C050's optimizer control may explain gains without learned selection. |
+
+H014 synthesis and experimental decisions: [protocol](../docs/H014-selective-integration-protocol.md).
+These sources motivate alternatives; C050/C051's own results decide between them.
+
 Add one ID per substantive primary source. Record full title, DOI/arXiv, publication date, source type, specific claim, methodological design, limitations, replication status, contradictory sources, hypothesis IDs, and decision impact. Prefer actual tests of competing theories to consensus claims. Distinguish review of abstract from full methods/results. Negative findings and failed replications are first-class evidence.
 
 ## Initial synthesis
