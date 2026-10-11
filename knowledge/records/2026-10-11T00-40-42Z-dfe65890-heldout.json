@@ -1,0 +1,75 @@
+{
+ "by": "claude-code (session 01WMmox)",
+ "code": "ea099bc8a43b5614",
+ "environment": {
+  "host": "5bce98f7",
+  "implementation": "CPython",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+  "python": "3.13.16"
+ },
+ "environment_id": "dfe65890ecfd",
+ "evaluations": {
+  "C020": {
+   "claim": "C020",
+   "error": null,
+   "estimate": {
+    "a": 14.082273763020833,
+    "b": 13.051992187499998,
+    "diff": 1.0302815755208337,
+    "hi": 1.1836249980128506,
+    "lo": 0.8769381530288167,
+    "n": 512,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "f0da0baaf04ef190",
+   "rivals": {
+    "bayes": {
+     "advantage": -1.4805891927083334,
+     "hi": -1.391649509629536,
+     "lo": -1.5695288757871309,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 1.0225244140625,
+     "hi": 1.1797281901041667,
+     "lo": 0.8670158077040075,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.06832194010416659,
+     "hi": 0.18184227811115575,
+     "lo": -0.04519839790282257,
+     "reference": false,
+     "result": "NOT_BEATEN"
+    },
+    "window8": {
+     "advantage": 2.3176269531250013,
+     "hi": 2.540187221771748,
+     "lo": 2.094694010416668,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.32532877604166716,
+     "hi": 0.4648535156250006,
+     "lo": 0.18752701642432656,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 4.462,
+   "seeds": "heldout:feda822faecee727b49d0937646d4c67d42af46b",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "feda822faecee727b49d0937646d4c67d42af46b"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-11T00:40:42Z",
+ "schema": 2
+}
