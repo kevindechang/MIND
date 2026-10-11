@@ -210,6 +210,113 @@ ORACLES: Dict[str, Callable[[str], Agent]] = {
     "vigil": VigilOracle, "outage": OutageBayes, "workshop": WorkshopBayes}
 
 
+class _PolarityBayes(Agent):
+    """Shared privileged model for the poltergeist attribution question.
+
+    Knows the world's parameters. Sees only public observations, its own acts,
+    rewards and outcomes — never `info`. `trace=False` resets the polarity
+    belief every trial (a moment-by-moment judge). `trace=True` keeps it, which
+    is a running prediction of the act's sensory consequence.
+    """
+
+    def __init__(self, variant: str, trace: bool):
+        from ..worlds.poltergeist import observation_model
+        self.lik, self.present = observation_model(variant)
+        self.trace = trace
+        self.belief = 0.5
+        self.motor = 0
+
+    def _reset_belief(self) -> None:
+        self.belief = 0.5
+
+    def _judge(self, sense: int):
+        num = den = 0.0
+        for polarity, mass in ((1, self.belief), (-1, 1.0 - self.belief)):
+            den += mass * self.lik[(polarity, self.motor, sense)]
+            num += mass * self.present[(polarity, self.motor, sense)]
+        p_yes = num / den if den > 0.0 else 0.5
+        if self.trace:
+            pos = self.belief * self.lik[(1, self.motor, sense)]
+            neg = (1.0 - self.belief) * self.lik[(-1, self.motor, sense)]
+            total = pos + neg
+            self.belief = pos / total if total > 0.0 else 0.5
+        return p_yes
+
+    def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)):
+        if boundary:
+            self._reset_belief()
+            self.motor = 0
+        if obs.get("phase") == "act":
+            action = actions[0]
+            self.motor = 1 if action == "push" else -1 if action == "pull" else 0
+            if not self.trace:
+                self._reset_belief()
+            return Decision(action, None, ())
+        p_yes = self._judge(int(obs["sense"]))
+        return Decision("yes" if p_yes >= 0.5 else "no", round(p_yes, 6), ())
+
+
+class Estimator(Agent):
+    """Generic state estimator with the same public stream as the efference organ.
+
+    Features are the current observation, the act just taken, and a short raw
+    history of both, expanded with the same conjunctions as the organism's
+    policy. The learner is the organism's `QLearner` with the policy's default
+    step size, discount and exploration. There is no forward model, no polarity
+    belief, and no import of the world's parameters or private `info`.
+    """
+
+    def __init__(self, seed: int, lags: int = 3):
+        d = Policy.defaults
+        self.seed, self.lags, self.t = seed, lags, 0
+        self.learner = QLearner(d["alpha"], d["gamma"], d["eps"], d["eps_min"], d["half_life"])
+        self.table = SuccessTable()
+        self.history: deque = deque(maxlen=lags)
+        self.motor: Optional[str] = None
+        self.prev_feats = None
+        self.prev_action: Optional[str] = None
+
+    def _features(self, obs):
+        singles = [f"{k}={v}" for k, v in sorted(obs.items())]
+        if self.motor is not None:
+            singles.append("act=" + self.motor)
+        for lag, (past, act) in enumerate(reversed(self.history)):
+            bits = [f"{k}={v}" for k, v in sorted(past.items())]
+            singles.append(f"lag{lag}:" + ",".join(bits) + f",act={act}")
+        return expand(singles, bool(Policy.defaults["pairs"]))
+
+    def _record(self, outcome):
+        if self.prev_action is not None and outcome is not None:
+            self.table.update(self.prev_action, outcome)
+
+    def step(self, obs, reward=0.0, outcome=None, boundary=False, actions=("wait",)):
+        obs = {str(k): str(v) for k, v in obs.items()}
+        actions = tuple(actions)
+        if boundary:
+            self.history.clear()
+            self.motor = None
+            self.prev_feats, self.prev_action = None, None
+        self._record(outcome)
+        feats = self._features(obs)
+        if self.prev_feats is not None:
+            self.learner.update(self.prev_feats, self.prev_action,
+                                self.learner.bootstrap(reward, feats, actions))
+        action = self.learner.choose(feats, actions, random.Random(f"{self.seed}|{self.t}|policy"))
+        self.prev_feats, self.prev_action = feats, action
+        self.history.append((obs, action))
+        if action in ("push", "pull"):
+            self.motor = action
+        self.t += 1
+        return Decision(action, self.table.forecast(action), ())
+
+    def end_episode(self, reward=0.0, outcome=None):
+        if self.prev_feats is not None:
+            self.learner.update(self.prev_feats, self.prev_action, reward)
+        self._record(outcome)
+        self.learner.episodes += 1
+        self.prev_feats, self.prev_action = None, None
+
+
 @dataclass(frozen=True)
 class Rival:
     name: str
@@ -234,5 +341,15 @@ RIVALS: Dict[str, Rival] = {r.name: r for r in (
           ("workspace",), config="organism capacity=inf"),
     Rival("bayes", "privileged-model Bayes reference (E001 v0.4 DP in workshop)",
           ("memory", "goals", "self_model", "workspace"), reference=True,
+          worlds=("vigil", "outage", "workshop"),
           factory=lambda w, v, s: ORACLES[w](v)),
+    Rival("filter", "poltergeist polarity filter: privileged parameters, running prediction of the act's sensation",
+          ("efference",), reference=True, worlds=("poltergeist",),
+          factory=lambda w, v, s: _PolarityBayes(v, trace=True)),
+    Rival("moment", "poltergeist moment judge: same privileged model and current act, no running prediction",
+          (), worlds=("poltergeist",),
+          factory=lambda w, v, s: _PolarityBayes(v, trace=False)),
+    Rival("estimator", "generic Q-learner on the same public observations and own acts as the efference organ",
+          ("efference",), worlds=("poltergeist",),
+          factory=lambda w, v, s: Estimator(s)),
 )}
