@@ -1,0 +1,103 @@
+{
+ "by": "researcher-bot",
+ "code": "db4b2fa5bc8fc13b",
+ "environment": {
+  "host": "46a4eebd",
+  "implementation": "CPython",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+ },
+ "environment_id": "0c6d1c75c017",
+ "evaluations": {
+  "C025": {
+   "claim": "C025",
+   "error": null,
+   "estimate": {
+    "action_change": 0.75,
+    "action_hi": 0.8591089451179962,
+    "action_lo": 0.640625,
+    "agree_drop": 0.59375,
+    "agree_hi": 0.71875,
+    "agree_lo": 0.46875,
+    "explored": 0.03125,
+    "n": 64,
+    "sham_agree": 0.78125,
+    "summary": "action change 0.750 [+0.641, +0.859] (claim > 0.25); report-agreement drop +0.594 [+0.469, +0.719] (claim > 0.25); sham agreement 0.781; explored 2/64"
+   },
+   "prediction_hash": "c314dc7f4c2ec953",
+   "rivals": {},
+   "robust": true,
+   "seconds": 15.785,
+   "seeds": "heldout:db863afddd56fdce53274ff5d997014d904bc500",
+   "verdict": "HOLDS"
+  },
+  "C026": {
+   "claim": "C026",
+   "error": null,
+   "estimate": {
+    "change": {
+     "goals": 0.03125,
+     "goals+memory": 0.546875,
+     "goals+self_model": 0.09375,
+     "memory": 0.421875,
+     "memory+self_model": 0.375,
+     "self_model": 0.046875,
+     "sham": 0.0,
+     "triple": 0.578125
+    },
+    "contrasts": {
+     "goals": {
+      "diff": 0.546875,
+      "hi": 0.6723082768624198,
+      "lo": 0.42144172313758027,
+      "verdict": "HOLDS"
+     },
+     "goals+memory": {
+      "diff": 0.03125,
+      "hi": 0.140625,
+      "lo": -0.078125,
+      "verdict": "INCONCLUSIVE"
+     },
+     "memory": {
+      "diff": 0.15625,
+      "hi": 0.296875,
+      "lo": 0.021005145624979016,
+      "verdict": "INCONCLUSIVE"
+     }
+    },
+    "n": 64,
+    "summary": "triple minus partial, claim > 0.1: goals +0.547 [+0.421, +0.672], memory +0.156 [+0.021, +0.297], goals+memory +0.031 [-0.078, +0.141]; map sham 0.000, goals 0.031, memory 0.422, self_model 0.047, goals+memory 0.547, goals+self_model 0.094, memory+self_model 0.375, triple 0.578"
+   },
+   "prediction_hash": "8ea4a52c5c8c606b",
+   "rivals": {},
+   "robust": false,
+   "seconds": 15.533,
+   "seeds": "heldout:db863afddd56fdce53274ff5d997014d904bc500",
+   "verdict": "INCONCLUSIVE"
+  },
+  "K11": {
+   "claim": "K11",
+   "error": null,
+   "estimate": {
+    "broadcasts_identical": 16,
+    "exposed": 16,
+    "n": 16,
+    "sham_identical": 16,
+    "summary": "16/16 sham forks action-identical at the same t; 16/16 cut forks kept the sham broadcast; 16/16 ticks exposed an intention"
+   },
+   "prediction_hash": "e219f4f64025ba1f",
+   "rivals": {},
+   "robust": true,
+   "seconds": 4.208,
+   "seeds": "heldout:db863afddd56fdce53274ff5d997014d904bc500",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "db863afddd56fdce53274ff5d997014d904bc500"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-11T15:36:11Z",
+ "schema": 2
+}
