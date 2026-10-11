@@ -26,7 +26,7 @@ def projection(feature: str, channel: int) -> float:
 class Recurrent(Organ):
     name = "recurrent"
     home = ("continuity", "control")
-    defaults = {"width": 4, "decay": 0.85, "threshold": 0.10, "salience": 0.55}
+    defaults = {"width": 4, "decay": 0.94, "threshold": 0.02, "salience": 0.55}
 
     def __init__(self, params):
         super().__init__(params)
@@ -52,7 +52,7 @@ class Recurrent(Organ):
             if abs(value) >= self.p["threshold"]:
                 out.append(Content(
                     self.name, f"trace{i}", "pos" if value > 0 else "neg",
-                    float(self.p["salience"]) * abs(value)))
+                    float(self.p["salience"])))
         return out
 
     def learn(self, prev, now, view, ctx) -> None:
