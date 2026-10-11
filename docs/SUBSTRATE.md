@@ -32,6 +32,7 @@ Each tick, `Organism.step(obs, reward, outcome, boundary, actions)` does:
 | `goals` | pending intentions per episode | `pending=x` for each attended `request=x` until action `x` is taken | — |
 | `self_model` | per-action online logistic regression | `self:<action>=doubt/unsure/sure`, `surprise=<action>` | P(success \| action, broadcast context) from public outcomes |
 | `policy` | linear TD weights over the broadcast's features and their pairwise conjunctions | — (acts) | Q-learning; exploration halves every 400 decisions |
+| `efference` (optional, `+efference`) | running estimate of how the organism's own act moves the sensation | `res=<error>`, `gain=pos/neg/unk` on judge steps | unsupervised update from the public sensation and the motor command; resets each episode |
 
 **Organ contract** (`kernel.Organ`): state may change only inside the hooks (`reset_episode`, `propose`, `learn`,
 `learn_terminal`, `after_act`), as a deterministic function of their arguments and `ctx.rng(purpose)`. Never read
@@ -99,6 +100,7 @@ streams), or paired arms see different episodes (a test enforces this).
 | `vigil` | Day 0 persistence, Day 4 initiative: carry a request to an unannounced bell | dev, long*, crowded* |
 | `outage` | Day 1 routing, Day 3 self-model: a hidden Markov tool, sometimes announced | dev, silent*, volatile* |
 | `workshop` | E001: probe a hidden 3-node DAG, then keep commitments; exact optimum = legacy v0.4 DP | dev, skewed*, censored* |
+| `poltergeist` | self-caused motion aliased with an external impulse; judge whether an impulse was present | dev, gusty*, slippy* |
 
 Generic metrics for every world:
 * `reward`: per episode.
@@ -117,7 +119,10 @@ The runner reports each metric over the late half of a life (`m`), all of it (`m
 | `reactive`, `window4`, `window8` | the organism's own `QLearner`, on the last k raw observations (lag-tagged), with a per-action success table for confidence | memory, goals |
 | `window8lin` | as `window8`, without conjunctions | memory, goals |
 | `flat` | the organism with `capacity=inf` | workspace |
-| `bayes` | privileged-model reference: perfect queue (vigil), exact HMM filter (outage), legacy E001 v0.4 DP (workshop) | ceiling only |
+| `bayes` | privileged-model reference: perfect queue (vigil), exact HMM filter (outage), legacy E001 v0.4 DP (workshop). Not defined for poltergeist | ceiling only |
+| `filter` | poltergeist only: privileged polarity filter, a running prediction of the act's sensation | ceiling (`efference`) |
+| `moment` | poltergeist only: the same privileged model using the current act and sensation, no running prediction | instrument, not a mechanism rival |
+| `estimator` | poltergeist only: the organism's Q-learner on the same public observations and own acts, no forward model | `efference` |
 
 **Adding a rival.** Register a `Rival(name, doc, challenges, factory=... | config=...)`. From then on every claim
 about a mechanism it challenges is re-tested against it, which may demote that claim. Good rivals are the cheapest
