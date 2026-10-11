@@ -138,8 +138,8 @@ self-monitoring cognition** (v1's L2), and made measurable at three levels:
    with *shadows* ([SUBSTRATE.md](SUBSTRATE.md#shadows-fixed-behaviour-probes)). These re-run one consumer on the
    logged stream with an organ's contents removed or shammed, and replay exactly (K09). Measured that way, memory's
    and goals' contents do inform the self-model (C032). In silent outages one memory content serves two consumers:
-   the policy for control and the self-model for metacognition (C033). Integration also has costs: the self-model's
-   broadcast misleads the policy in vigil (C034).
+   the policy for control and the self-model for metacognition (C033). Integration also has costs: receiving the
+   self-model's broadcast costs the policy control in vigil (C034), mostly as a carry cost of extra features.
 
 These are descriptions of causal organisation, **not** consciousness scores. Phenomenal experience (L3) is not
 an admissible scope for any claim (the doctor rejects it). A system can satisfy every L2 description and
