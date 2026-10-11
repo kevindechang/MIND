@@ -81,7 +81,7 @@ class Poltergeist(World):
         self.position = before + actuation + shock
         self.shocks += int(shock != 0)
         self.total_abs_error += abs(self.position)
-        if before and actuation and abs(before + actuation) > abs(before):
+        if before and desired and abs(before + desired) > abs(before):
             self.wrong_corrections += 1
         # This reports only NET improvement. It can be misleading when an
         # external shock cancels or impersonates an action's expected effect.
