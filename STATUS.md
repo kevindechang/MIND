@@ -2,7 +2,7 @@
 
 > **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:17 UTC
+Result-code fingerprint `179f09d9f91ccd1a` · snapshot generated 2026-10-11 08:14 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -10,8 +10,9 @@ Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:1
 
 | state | claims |
 |---|---|
-| ✅ HOLDS | 24 (PREREGISTERED 17, ROBUST 7) |
+| ✅ HOLDS | 25 (PREREGISTERED 1, REPLICATED 24) |
 | ❔ INCONCLUSIVE | 3 |
+| ❌ REFUTED | 1 |
 | 🗄️ RETIRED | 6 |
 
 Evidence ladder (computed, never asserted): PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED (effects only) → PREREGISTERED (commit-sealed held-out seeds) → REPLICATED (second contributor and environment). See [docs/CLAIMS.md](docs/CLAIMS.md).
@@ -29,46 +30,48 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 7. **[question]** H010 — Do efference copies improve attribution of self-caused versus external change? No claim yet. Add a `poltergeist` world (external events confounded with the agent's own actions) and an `efference` organ predicting the sensory consequences of its own acts; rival = a generic state estimator with equal information.
 8. **[question]** H011 — Does impasse-triggered procedural learning transfer on the first try after a hard reset? No claim yet. Needs a family of worlds sharing latent failure structure but differing in surface symbols; the organism's tabular policy cannot transfer across symbols, so this question first needs a representation that can.
 9. **[question]** H012 — Does multi-timescale learning improve durable transfer without unacceptable forgetting? No claim yet. Use scheduled lesions (`@E:modifier`) and variant switches mid-life to measure acute deficit, recovery and retention of the earlier competence.
-10. **[question]** H013 — Do the organism's self-reports track the states that actually drive its actions? No claim yet. Add a report probe that states, from the organism's own broadcast (`pending=`, `self:`, `was:`), what it will do next, and score reports only by how well they predict the next action, never by how they read. The rival is a narrator with no access to internal state (v1 PR #11's zero-read narrator, strengthened to read the same transcript). Then use access lesions (`cut:X>policy`), which keep a content reportable but cut it from action, to test whether report validity falls exactly where the causal path is cut.
-11. **[question]** P001 — Can held-out seeds come from randomness the registrant does not control? No claim yet. Derive held-out seeds from a public randomness beacon round fixed after the claim is pushed (record the round in the record), or have seeds drawn at merge time by someone other than the registrant; then update `mind/claims.py` and the doctor.
-12. **[question]** H001 — Does causal autobiographical memory improve action beyond compact state? Build a `causal` organ that infers structure from recalled probe results WITHOUT being handed the E001 graph family (that would inject the oracle), then test it in workshop against rival:bayes, rival:window4 and the plain organism. The Day-2 lesion is then `-causal` with memory intact.
-13. **[question]** H002 — Does a predictive self-model improve calibration and adaptation after hidden capability change? First add v1 PR #15's event-aware rival (the success table, also updated by the public `alert=down`/`alert=up` announcements) as a second same-event scorer, and test whether it closes C017's margin in outage/dev; register the result either way. Then add a capability-shift world where an action's reliability changes abruptly and silently; test whether the self-model's surprise signal speeds re-adaptation (acute vs recovered deficit) against both table rivals.
-14. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Map the capacity curve (K = 1..8, inf) across all worlds and variants; find the distractor-load / retention-length boundary where the bottleneck flips from helping to hurting.
-15. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
-16. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
-17. **[replicate]** 24 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
+10. **[question]** P001 — Can held-out seeds come from randomness the registrant does not control? No claim yet. Derive held-out seeds from a public randomness beacon round fixed after the claim is pushed (record the round in the record), or have seeds drawn at merge time by someone other than the registrant; then update `mind/claims.py` and the doctor.
+11. **[question]** H001 — Does causal autobiographical memory improve action beyond compact state? Build a `causal` organ that infers structure from recalled probe results WITHOUT being handed the E001 graph family (that would inject the oracle), then test it in workshop against rival:bayes, rival:window4 and the plain organism. The Day-2 lesion is then `-causal` with memory intact.
+12. **[question]** H002 — Does a predictive self-model improve calibration and adaptation after hidden capability change? First add v1 PR #15's event-aware rival (the success table, also updated by the public `alert=down`/`alert=up` announcements) as a second same-event scorer, and test whether it closes C017's margin in outage/dev; register the result either way. Then add a capability-shift world where an action's reliability changes abruptly and silently; test whether the self-model's surprise signal speeds re-adaptation (acute vs recovered deficit) against both table rivals.
+13. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Map the capacity curve (K = 1..8, inf) across all worlds and variants; find the distractor-load / retention-length boundary where the bottleneck flips from helping to hurting.
+14. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
+15. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
+16. **[question]** H013 — Do the organism's self-reports track the states that actually drive its actions? C019 is REFUTED and C020 holds; do not edit either prediction. A successor could test whether `self:` doubt tags — a relay that still reaches the policy when only memory and goals are cut — themselves predict the next action better than the transcript narrator.
+17. **[replicate]** 1 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
 
 ## Claims
 
 | claim | statement | kind · scope | state | level | evidence (decisive run) | rivals not beaten | premises |
 |---|---|---|---|---|---|---|---|
-| [C001](knowledge/claims/C001_commitment_needs_memory_or_goals.py) | **Commitments across a gap need memory or goals** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.875 [+0.779, +0.964] (0.900 vs 0.025, n=16) · held-out | – | K03 |
-| [C002](knowledge/claims/C002_goals_dispensable_when_memory_compensates.py) | **Goals are dispensable on short gaps (memory compensates)** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.035 [-0.069, +0.000] (0.919 vs 0.954, n=16) · held-out | n/a | – |
-| [C003](knowledge/claims/C003_goals_essential_on_long_gaps.py) | **Goals are essential on long gaps** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.528 [+0.422, +0.635] (0.537 vs 0.009, n=16) · held-out | – | K03 |
-| [C004](knowledge/claims/C004_memory_goals_degeneracy.py) | **Memory and goals back each other up (degeneracy)** | effect · L2 | ✅ HOLDS | PREREGISTERED | interaction +0.800 [+0.746, +0.854] (claim: > 0.4) · held-out | – | – |
-| [C005](knowledge/claims/C005_bottleneck_helps_under_distractors.py) | **The workspace bottleneck helps under distractor load** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.136 [+0.084, +0.189] (0.869 vs 0.733, n=16) · held-out | – | – |
-| [C011](knowledge/claims/C011_no_causal_advantage_in_workshop.py) | **The organism gives no advantage over a reactive learner at causal probing** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.035 [-0.063, -0.008] (-1.691 vs -1.655, n=16) · held-out | n/a | K03 |
-| [C012](knowledge/claims/C012_organism_far_from_bayes_optimum.py) | **The organism remains far from the Bayes-optimal causal policy** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.506 [0.476, 0.537] >= 0.3 (n=16) · held-out | n/a | K04 |
-| [C016](knowledge/claims/C016_integration_holm_corrected.py) | **Integrated, not modular (Holm-corrected, distinct organs)** | effect · L2 | ✅ HOLDS | PREREGISTERED | Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33 · held-out | – | – |
-| [C017](knowledge/claims/C017_self_model_beats_table_same_events.py) | **Self-model beats a success table on the same events (announced outages)** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.021 [0.017, 0.026] >= 0.008 (n=16) · held-out | n/a | K08 |
-| [C018](knowledge/claims/C018_self_model_beats_table_when_silent.py) | **Self-model beats a success table on the same events, even when outages are silent** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.008 [0.005, 0.010] >= 0.004 (n=16) · held-out | n/a | K08 |
-| [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
-| [K02](knowledge/claims/K02_real_sigkill_exactly_once.py) | **Real SIGKILL after replies and before commit: a byte-identical life in a fresh process** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical · held-out | n/a | K01 |
-| [K03](knowledge/claims/K03_matched_learner_identity.py) | **Matched learner: the stripped organism is action-identical to rival:reactive** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 24/24 lives action-identical · held-out | n/a | – |
-| [K04](knowledge/claims/K04_workshop_matches_legacy_optimum.py) | **The workshop world realises the legacy E001 v0.4 optimum** | invariant · instrument | ✅ HOLDS | PREREGISTERED | Bayes-agent mean regret vs v0.4 optimum: dev -0.0035 [-0.0144,+0.0074]; skewed +0.0036 [-0.0076,+0.0148]; censored +0.0197 [+0.0032,+0.0363] · held-out | n/a | L06, L04 |
-| [K06](knowledge/claims/K06_cross_process_replay.py) | **Replay is deterministic across processes and hash seeds, under every lesion** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 108 lives × 3 hash seeds in fresh processes: all replays verified, heads identical · held-out | n/a | – |
-| [K07](knowledge/claims/K07_exactly_once_after_commit.py) | **Exactly-once: a committed act is never repeated after a crash** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical · held-out | n/a | – |
-| [K08](knowledge/claims/K08_same_stream_calibration_is_valid.py) | **The same-stream calibration metric is valid (zero for the table itself)** | invariant · instrument | ✅ HOLDS | PREREGISTERED | rival:reactive calib_gain is exactly 0 in every world, seed and window · held-out | n/a | – |
-| [L01](knowledge/claims/L01_legacy_instrument_suite.py) | **The v1 instrument suite still passes** | invariant · instrument | ✅ HOLDS | ROBUST | 75 v1 instrument tests all pass · dev | n/a | – |
-| [L02](knowledge/claims/L02_e100_day0_restart_circuit.py) | **Day 0: a committed task survives real process death (v1 circuit)** | fact · instrument | ✅ HOLDS | ROBUST | exit -9, restart→inspect_signal, wipe→NO_ACTION, alternate→record_measurement · dev | n/a | – |
-| [L03](knowledge/claims/L03_e100_day1_routing_lesion.py) | **Day 1: a routing cut flips a hand-written planner, and a compact reader ties (v1)** | fact · instrument | ✅ HOLDS | ROBUST | intact DEFER_SENSOR_SCAN, cut SCAN_WITH_SENSOR, compact rival ties: True · dev | n/a | – |
-| [L04](knowledge/claims/L04_e001_reachability_quotient.py) | **E001: eight three-node DAGs, seven reachability classes** | fact · instrument | ✅ HOLDS | ROBUST | 8 DAGs → 7 reachability classes; merged [[5, 7]] · dev | n/a | – |
-| [L05](knowledge/claims/L05_e001_informative_censoring.py) | **E001: informative censoring moves belief with no delivered effect** | fact · instrument | ✅ HOLDS | ROBUST | censor rates 1/4 vs 3/4: 1/2:1/2 → 1/4:3/4; equal rates leave 1/2:1/2 · dev | n/a | – |
-| [L06](knowledge/claims/L06_e001_adaptive_probe_gain.py) | **E001: the adaptive second probe is worth exactly 7/120** | fact · instrument | ✅ HOLDS | ROBUST | values: none -7/3, one probe -121/60, two -47/24; adaptive gain 7/120 · dev | n/a | – |
-| [L07](knowledge/claims/L07_e001_prior_flips_plan.py) | **E001: the prior alone flips the optimal plan** | fact · instrument | ✅ HOLDS | ROBUST | prior 9:1 → ((0, 2),), prior 1:9 → ((0,),), maximin → ((0,),) at -41/5 · dev | n/a | – |
+| [C001](knowledge/claims/C001_commitment_needs_memory_or_goals.py) | **Commitments across a gap need memory or goals** | effect · L2 | ✅ HOLDS | REPLICATED | Δ +0.875 [+0.779, +0.964] (0.900 vs 0.025, n=16) · held-out | – | K03 |
+| [C002](knowledge/claims/C002_goals_dispensable_when_memory_compensates.py) | **Goals are dispensable on short gaps (memory compensates)** | equivalence · L2 | ✅ HOLDS | REPLICATED | Δ -0.035 [-0.069, +0.000] (0.919 vs 0.954, n=16) · held-out | n/a | – |
+| [C003](knowledge/claims/C003_goals_essential_on_long_gaps.py) | **Goals are essential on long gaps** | effect · L2 | ✅ HOLDS | REPLICATED | Δ +0.528 [+0.422, +0.635] (0.537 vs 0.009, n=16) · held-out | – | K03 |
+| [C004](knowledge/claims/C004_memory_goals_degeneracy.py) | **Memory and goals back each other up (degeneracy)** | effect · L2 | ✅ HOLDS | REPLICATED | interaction +0.800 [+0.746, +0.854] (claim: > 0.4) · held-out | – | – |
+| [C005](knowledge/claims/C005_bottleneck_helps_under_distractors.py) | **The workspace bottleneck helps under distractor load** | effect · L2 | ✅ HOLDS | REPLICATED | Δ +0.136 [+0.084, +0.189] (0.869 vs 0.733, n=16) · held-out | – | – |
+| [C011](knowledge/claims/C011_no_causal_advantage_in_workshop.py) | **The organism gives no advantage over a reactive learner at causal probing** | equivalence · L2 | ✅ HOLDS | REPLICATED | Δ -0.035 [-0.063, -0.008] (-1.691 vs -1.655, n=16) · held-out | n/a | K03 |
+| [C012](knowledge/claims/C012_organism_far_from_bayes_optimum.py) | **The organism remains far from the Bayes-optimal causal policy** | threshold · L2 | ✅ HOLDS | REPLICATED | 0.506 [0.476, 0.537] >= 0.3 (n=16) · held-out | n/a | K04 |
+| [C016](knowledge/claims/C016_integration_holm_corrected.py) | **Integrated, not modular (Holm-corrected, distinct organs)** | effect · L2 | ✅ HOLDS | REPLICATED | Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33 · held-out | – | – |
+| [C017](knowledge/claims/C017_self_model_beats_table_same_events.py) | **Self-model beats a success table on the same events (announced outages)** | threshold · L2 | ✅ HOLDS | REPLICATED | 0.021 [0.017, 0.026] >= 0.008 (n=16) · held-out | n/a | K08 |
+| [C018](knowledge/claims/C018_self_model_beats_table_when_silent.py) | **Self-model beats a success table on the same events, even when outages are silent** | threshold · L2 | ✅ HOLDS | REPLICATED | 0.008 [0.005, 0.010] >= 0.004 (n=16) · held-out | n/a | K08 |
+| [C020](knowledge/claims/C020_report_validity_follows_the_cut.py) | **Report validity falls when the broadcast path to policy is cut; reportability stays** | effect · L2 | ✅ HOLDS | PREREGISTERED | accuracy 0.803 → 0.039 (+0.764 [+0.688, +0.840]; claim drop > 0.25); reportable 0.879 → 0.966 (loss -0.087 [-0.136, -0.038], claim loss < 0.15 and cut ≥ 0.5) · held-out | – | C004 |
+| [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte** | invariant · instrument | ✅ HOLDS | REPLICATED | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
+| [K02](knowledge/claims/K02_real_sigkill_exactly_once.py) | **Real SIGKILL after replies and before commit: a byte-identical life in a fresh process** | invariant · instrument | ✅ HOLDS | REPLICATED | 36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical · held-out | n/a | K01 |
+| [K03](knowledge/claims/K03_matched_learner_identity.py) | **Matched learner: the stripped organism is action-identical to rival:reactive** | invariant · instrument | ✅ HOLDS | REPLICATED | 24/24 lives action-identical · held-out | n/a | – |
+| [K04](knowledge/claims/K04_workshop_matches_legacy_optimum.py) | **The workshop world realises the legacy E001 v0.4 optimum** | invariant · instrument | ✅ HOLDS | REPLICATED | Bayes-agent mean regret vs v0.4 optimum: dev -0.0035 [-0.0144,+0.0074]; skewed +0.0036 [-0.0076,+0.0148]; censored +0.0197 [+0.0032,+0.0363] · held-out | n/a | L06, L04 |
+| [K06](knowledge/claims/K06_cross_process_replay.py) | **Replay is deterministic across processes and hash seeds, under every lesion** | invariant · instrument | ✅ HOLDS | REPLICATED | 108 lives × 3 hash seeds in fresh processes: all replays verified, heads identical · held-out | n/a | – |
+| [K07](knowledge/claims/K07_exactly_once_after_commit.py) | **Exactly-once: a committed act is never repeated after a crash** | invariant · instrument | ✅ HOLDS | REPLICATED | 36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical · held-out | n/a | – |
+| [K08](knowledge/claims/K08_same_stream_calibration_is_valid.py) | **The same-stream calibration metric is valid (zero for the table itself)** | invariant · instrument | ✅ HOLDS | REPLICATED | rival:reactive calib_gain is exactly 0 in every world, seed and window · held-out | n/a | – |
+| [L01](knowledge/claims/L01_legacy_instrument_suite.py) | **The v1 instrument suite still passes** | invariant · instrument | ✅ HOLDS | REPLICATED | 75 v1 instrument tests all pass · dev | n/a | – |
+| [L02](knowledge/claims/L02_e100_day0_restart_circuit.py) | **Day 0: a committed task survives real process death (v1 circuit)** | fact · instrument | ✅ HOLDS | REPLICATED | exit -9, restart→inspect_signal, wipe→NO_ACTION, alternate→record_measurement · dev | n/a | – |
+| [L03](knowledge/claims/L03_e100_day1_routing_lesion.py) | **Day 1: a routing cut flips a hand-written planner, and a compact reader ties (v1)** | fact · instrument | ✅ HOLDS | REPLICATED | intact DEFER_SENSOR_SCAN, cut SCAN_WITH_SENSOR, compact rival ties: True · dev | n/a | – |
+| [L04](knowledge/claims/L04_e001_reachability_quotient.py) | **E001: eight three-node DAGs, seven reachability classes** | fact · instrument | ✅ HOLDS | REPLICATED | 8 DAGs → 7 reachability classes; merged [[5, 7]] · dev | n/a | – |
+| [L05](knowledge/claims/L05_e001_informative_censoring.py) | **E001: informative censoring moves belief with no delivered effect** | fact · instrument | ✅ HOLDS | REPLICATED | censor rates 1/4 vs 3/4: 1/2:1/2 → 1/4:3/4; equal rates leave 1/2:1/2 · dev | n/a | – |
+| [L06](knowledge/claims/L06_e001_adaptive_probe_gain.py) | **E001: the adaptive second probe is worth exactly 7/120** | fact · instrument | ✅ HOLDS | REPLICATED | values: none -7/3, one probe -121/60, two -47/24; adaptive gain 7/120 · dev | n/a | – |
+| [L07](knowledge/claims/L07_e001_prior_flips_plan.py) | **E001: the prior alone flips the optimal plan** | fact · instrument | ✅ HOLDS | REPLICATED | prior 9:1 → ((0, 2),), prior 1:9 → ((0,),), maximin → ((0,),) at -41/5 · dev | n/a | – |
 | [C006](knowledge/claims/C006_bottleneck_neutral_without_distractors.py) | **Without distractors the bottleneck is neutral**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | equivalence · L2 | ❔ INCONCLUSIVE | – | Δ -0.031 [-0.184, +0.121] (0.802 vs 0.833, n=16) · held-out | n/a | – |
 | [C009](knowledge/claims/C009_memory_improves_control_off_home.py) | **Memory improves control of an unreliable tool (off-home effect)**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.658 [-0.297, +1.612] (13.862 vs 13.205, n=16) · held-out | window4 | K03 |
 | [C013](knowledge/claims/C013_self_model_aids_causal_control.py) | **Self-knowledge improves causal decisions (cross-function)**<br/>_mixed evidence: INCONCLUSIVE on dev, HOLDS on heldout:870e206; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.010 [-0.039, +0.059] (-1.657 vs -1.667, n=16) · dev | – | – |
+| [C019](knowledge/claims/C019_report_beats_narrator.py) | **A broadcast report predicts the next action better than a transcript narrator**<br/>_failed its first sealed confirmation (2026-10-11: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | bell-tick accuracy grounded 0.814 vs narrator 0.905: -0.090 [-0.131, -0.050] (claim: > 0.1) · held-out | – | – |
 | [C007](knowledge/claims/C007_self_model_beats_success_table.py) | **The self-model out-calibrates a success table when events are informative**<br/>_retired: v2 review (2026-10-10): the test compares Brier scores of two agents on their OWN action streams, which confounds calibration with behaviour (13-22% of the gap was action mix). Its conclusion survives on a common stream; superseded by C017, which compares both forecasters on the same events._ | effect · L2 | 🗄️ RETIRED | – | Δ -0.021 [-0.027, -0.016] (0.042 vs 0.063, n=16) · held-out | – | K03 |
 | [C008](knowledge/claims/C008_self_model_ties_table_when_silent.py) | **Without announcements, a success table is as calibrated as the self-model**<br/>_retired: v2 review (2026-10-10): the apparent tie was an action-mix artifact (the organism scans more). On the same events the self-model is BETTER than the table even without announcements; the claim's interpretation is reversed. Superseded by C018._ | equivalence · L2 | 🗄️ RETIRED | – | Δ +0.001 [-0.009, +0.012] (0.059 vs 0.059, n=16) · held-out | n/a | K03 |
 | [C010](knowledge/claims/C010_memory_degrades_calibration.py) | **Memory degrades the self-model's calibration (cross-function interference)**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; retired: v2 review (2026-10-10): memory changes the action mix; a context-free table on the same streams shifts as much (+0.011), so this measured behaviour, not 'noisier context'. Inconclusive anyway; no successor yet (open in H007).; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | 🗄️ RETIRED | – | Δ +0.008 [+0.002, +0.014] (0.056 vs 0.048, n=16) · held-out | – | – |
@@ -92,7 +95,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [H010](knowledge/questions/H010.md) Do efference copies improve attribution of self-caused versus external change? | open | — |
 | [H011](knowledge/questions/H011.md) Does impasse-triggered procedural learning transfer on the first try after a hard reset? | open | — |
 | [H012](knowledge/questions/H012.md) Does multi-timescale learning improve durable transfer without unacceptable forgetting? | open | — |
-| [H013](knowledge/questions/H013.md) Do the organism's self-reports track the states that actually drive its actions? | open | — |
+| [H013](knowledge/questions/H013.md) Do the organism's self-reports track the states that actually drive its actions? | open | C019 ❌, C020 ✅ |
 | [P001](knowledge/questions/P001.md) Can held-out seeds come from randomness the registrant does not control? | open | — |
 
 ## Knowledge graph
@@ -115,19 +118,19 @@ graph LR
   H012(["H012"])
   H013(["H013"])
   P001(["P001"])
-  C001["C001<br/>PREREGISTERED"]
+  C001["C001<br/>REPLICATED"]
   style C001 fill:#d4f4dd,stroke:#2e7d32
   C001 -.-> H008
-  C002["C002<br/>PREREGISTERED"]
+  C002["C002<br/>REPLICATED"]
   style C002 fill:#d4f4dd,stroke:#2e7d32
   C002 -.-> H007
-  C003["C003<br/>PREREGISTERED"]
+  C003["C003<br/>REPLICATED"]
   style C003 fill:#d4f4dd,stroke:#2e7d32
   C003 -.-> H007
-  C004["C004<br/>PREREGISTERED"]
+  C004["C004<br/>REPLICATED"]
   style C004 fill:#d4f4dd,stroke:#2e7d32
   C004 -.-> H007
-  C005["C005<br/>PREREGISTERED"]
+  C005["C005<br/>REPLICATED"]
   style C005 fill:#d4f4dd,stroke:#2e7d32
   C005 -.-> H003
   C006["C006<br/>INCONCLUSIVE"]
@@ -145,10 +148,10 @@ graph LR
   C010["C010<br/>RETIRED"]
   style C010 fill:#eeeeee,stroke:#757575
   C010 -.-> H007
-  C011["C011<br/>PREREGISTERED"]
+  C011["C011<br/>REPLICATED"]
   style C011 fill:#d4f4dd,stroke:#2e7d32
   C011 -.-> H001
-  C012["C012<br/>PREREGISTERED"]
+  C012["C012<br/>REPLICATED"]
   style C012 fill:#d4f4dd,stroke:#2e7d32
   C012 -.-> H001
   C013["C013<br/>INCONCLUSIVE"]
@@ -160,55 +163,61 @@ graph LR
   C015["C015<br/>RETIRED"]
   style C015 fill:#eeeeee,stroke:#757575
   C015 -.-> H008
-  C016["C016<br/>PREREGISTERED"]
+  C016["C016<br/>REPLICATED"]
   style C016 fill:#d4f4dd,stroke:#2e7d32
   C016 -.-> H007
-  C017["C017<br/>PREREGISTERED"]
+  C017["C017<br/>REPLICATED"]
   style C017 fill:#d4f4dd,stroke:#2e7d32
   C017 -.-> H002
-  C018["C018<br/>PREREGISTERED"]
+  C018["C018<br/>REPLICATED"]
   style C018 fill:#d4f4dd,stroke:#2e7d32
   C018 -.-> H002
-  K01["K01<br/>PREREGISTERED"]
+  C019["C019<br/>REFUTED"]
+  style C019 fill:#fde0dc,stroke:#c62828
+  C019 -.-> H013
+  C020["C020<br/>PREREGISTERED"]
+  style C020 fill:#d4f4dd,stroke:#2e7d32
+  C020 -.-> H013
+  K01["K01<br/>REPLICATED"]
   style K01 fill:#d4f4dd,stroke:#2e7d32
   K01 -.-> H008
-  K02["K02<br/>PREREGISTERED"]
+  K02["K02<br/>REPLICATED"]
   style K02 fill:#d4f4dd,stroke:#2e7d32
   K02 -.-> H008
-  K03["K03<br/>PREREGISTERED"]
+  K03["K03<br/>REPLICATED"]
   style K03 fill:#d4f4dd,stroke:#2e7d32
-  K04["K04<br/>PREREGISTERED"]
+  K04["K04<br/>REPLICATED"]
   style K04 fill:#d4f4dd,stroke:#2e7d32
   K04 -.-> H001
   K05["K05<br/>RETIRED"]
   style K05 fill:#eeeeee,stroke:#757575
   K05 -.-> H007
-  K06["K06<br/>PREREGISTERED"]
+  K06["K06<br/>REPLICATED"]
   style K06 fill:#d4f4dd,stroke:#2e7d32
   K06 -.-> H008
-  K07["K07<br/>PREREGISTERED"]
+  K07["K07<br/>REPLICATED"]
   style K07 fill:#d4f4dd,stroke:#2e7d32
   K07 -.-> H008
-  K08["K08<br/>PREREGISTERED"]
+  K08["K08<br/>REPLICATED"]
   style K08 fill:#d4f4dd,stroke:#2e7d32
-  L01["L01<br/>ROBUST"]
+  L01["L01<br/>REPLICATED"]
   style L01 fill:#d4f4dd,stroke:#2e7d32
-  L02["L02<br/>ROBUST"]
+  L02["L02<br/>REPLICATED"]
   style L02 fill:#d4f4dd,stroke:#2e7d32
   L02 -.-> H008
-  L03["L03<br/>ROBUST"]
+  L03["L03<br/>REPLICATED"]
   style L03 fill:#d4f4dd,stroke:#2e7d32
   L03 -.-> H003
-  L04["L04<br/>ROBUST"]
+  L04["L04<br/>REPLICATED"]
   style L04 fill:#d4f4dd,stroke:#2e7d32
   L04 -.-> H001
-  L05["L05<br/>ROBUST"]
+  L05["L05<br/>REPLICATED"]
   style L05 fill:#d4f4dd,stroke:#2e7d32
   L05 -.-> H001
-  L06["L06<br/>ROBUST"]
+  L06["L06<br/>REPLICATED"]
   style L06 fill:#d4f4dd,stroke:#2e7d32
   L06 -.-> H001
-  L07["L07<br/>ROBUST"]
+  L07["L07<br/>REPLICATED"]
   style L07 fill:#d4f4dd,stroke:#2e7d32
   L07 -.-> H001
   K03 --> C001
@@ -241,6 +250,10 @@ graph LR
   K08 --> C018
   C008 -.->|extends| C018
   C017 -.->|extends| C018
+  C001 -.->|extends| C019
+  C004 --> C020
+  C004 -.->|extends| C020
+  C019 -.->|extends| C020
   L02 -.->|extends| K01
   K01 --> K02
   L02 -.->|extends| K02
@@ -298,4 +311,5 @@ Degenerate pairs: `memory+goals→vigil.kept`, `memory+goals→vigil.calib_gain`
 | `rival:window8lin` | memory, goals | must be beaten | last 8 raw observations, linear (no conjunctions) |
 | `rival:flat` | workspace | must be beaten | the organism with an unlimited workspace (no bottleneck) |
 | `rival:bayes` | memory, goals, self_model, workspace | ceiling | privileged-model Bayes reference (E001 v0.4 DP in workshop) |
+| `rival:narrator` |  | must be beaten | full public transcript, no internal state (H013): last request, act at the bell |
 
