@@ -4,7 +4,7 @@ import unittest
 from mind.kernel import Config, Organism
 from mind.ledger import MemoryLedger
 from mind.organs.recurrent import Recurrent, projection
-from mind.rivals import RIVALS
+from mind.rivals import RIVALS, FeedbackTranscript
 
 
 class RecurrentTests(unittest.TestCase):
@@ -77,10 +77,36 @@ class RecurrentTests(unittest.TestCase):
                 Recurrent(params)
 
     def test_long_context_rivals_exist(self):
-        self.assertIn("window16", RIVALS)
-        self.assertIn("window32lin", RIVALS)
-        self.assertIn("recurrent", RIVALS["window16"].challenges)
-        self.assertIn("recurrent", RIVALS["window32lin"].challenges)
+        for name in ("window16", "window32lin", "window16fb", "window32fb_lin"):
+            with self.subTest(name=name):
+                self.assertIn(name, RIVALS)
+                self.assertIn("recurrent", RIVALS[name].challenges)
+
+    def test_feedback_rival_receives_previous_action_outcome_as_policy_feature(self):
+        rival = FeedbackTranscript(16, seed=31)
+        rival.step({"request": "a"}, boundary=True, actions=("wait", "a"))
+        first_action = rival.prev_action
+        rival.step({"bell": "1"}, outcome=1, actions=("wait", "a"))
+        self.assertEqual(rival.history[-1]["previous_action_outcome"], f"{first_action}:1")
+        self.assertIn(f"lag0:previous_action_outcome={first_action}:1", rival.prev_feats)
+
+    def test_feedback_rival_never_invents_outcomes_or_crosses_episode_boundary(self):
+        rival = FeedbackTranscript(16, seed=13)
+        rival.step({"request": "b"}, boundary=True, actions=("wait", "b"))
+        rival.step({}, outcome=None, actions=("wait", "b"))
+        self.assertNotIn("previous_action_outcome", rival.history[-1])
+        # A boundary is a new episode, so no old action/outcome enters features.
+        rival.step({"request": "a"}, outcome=1, boundary=True, actions=("wait", "a"))
+        self.assertNotIn("previous_action_outcome", rival.history[-1])
+        self.assertEqual(len(rival.history), 1)
+
+    def test_feedback_rival_is_stronger_information_control_not_oracle(self):
+        # A new rival gets previous public action/outcome as an input feature;
+        # it must not read private world labels, and shares the actual TD learner.
+        rival = RIVALS["window16fb"].factory("outage", "silent", 7)
+        self.assertIsInstance(rival, FeedbackTranscript)
+        self.assertTrue(rival.pairs)
+        self.assertEqual(rival.k, 16)
 
 
 if __name__ == "__main__":
