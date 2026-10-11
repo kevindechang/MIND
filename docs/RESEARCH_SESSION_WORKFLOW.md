@@ -1,6 +1,6 @@
 # MIND execution, review and recovery workflow
 
-This document supplements [GO.md](../GO.md), [AGENTS.md](../AGENTS.md), [PIPELINE.md](PIPELINE.md) and [CLAIMS.md](CLAIMS.md). The constitution and immutable-record rules take precedence. It guides scheduled contributors, not the organism or evaluator.
+This document supplements [GO.md](../GO.md), [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [PIPELINE.md](PIPELINE.md) and [CLAIMS.md](CLAIMS.md). All existing constitutional, replication, evidence, merge and immutable-record requirements take precedence. This document authorizes no new roles, permissions, schedules, standards of replication, or exceptions; it guides contributors, not the organism or evaluator.
 
 ## Purpose and roles
 
@@ -12,7 +12,7 @@ Where concurrent agents are available, divide ownership rather than assigning id
 2. **Causal discovery:** design one high-value unclaimed intervention, organ or world whose outcome would discriminate mechanisms.
 3. **Rival/falsification:** create a stronger same-information rival, counterexample, targeted negative control or reproducible refutation.
 4. **Post-run scientific review:** criticize completed, fixed-SHA evidence. A separate invocation of the same model is not independent replication.
-5. **Integrator:** repair bounded defects and merge verified work by merge commit, never by squash/rebase when sealed claims are involved.
+5. **Integration checks (not a new role):** any contributor preparing a merge may repair bounded defects and must verify the combined tree; use merge commits, never squash/rebase when sealed claims are involved. `CONTRIBUTING.md` remains authoritative about merging without a designated integrator.
 
 Scheduling does not reserve a frontier item. Every contributor must recheck live PRs and branches before claiming it.
 
@@ -73,7 +73,7 @@ A reviewer examines the full diff and the fixed claim/evidence SHAs, searching f
 
 Review verdicts: `ACCEPT`, `REVISE`, `REJECT`, `INCONCLUSIVE`. Every critique identifies its severity, an executable falsifier or counterexample, and a bounded next action. Do not claim external replication from an AI cross-invocation.
 
-The integrator may fix narrow test/documentation/conflict issues without modifying sealed predictions or records. It must **not merge** experimental `DESIGN_ONLY` / `[needs-run]` code as if it had passed execution gates. Recheck candidate SHA, full tests, doctor, code-fingerprint refresh, PR review and repository branch protections, then merge with a **merge commit** to preserve claim seals. A documentation-only clarification is a different class of PR; do not represent it as a verified scientific experiment.
+A contributor preparing integration may fix narrow test/documentation/conflict issues without modifying sealed predictions or records. No designated integrator role is created. The contributor must **not merge** experimental `DESIGN_ONLY` / `[needs-run]` code as if it had passed execution gates. Recheck candidate SHA, full tests, doctor, code-fingerprint refresh, PR review and repository branch protections, then merge with a **merge commit** to preserve claim seals. A documentation-only clarification is a different class of PR; do not represent it as a verified scientific experiment.
 
 ## Handoff: use two separate status dimensions
 
