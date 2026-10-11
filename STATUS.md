@@ -2,7 +2,7 @@
 
 > **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:17 UTC
+Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-11 00:28 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -10,7 +10,7 @@ Result-code fingerprint `ea099bc8a43b5614` · snapshot generated 2026-10-10 23:1
 
 | state | claims |
 |---|---|
-| ✅ HOLDS | 24 (PREREGISTERED 17, ROBUST 7) |
+| ✅ HOLDS | 25 (PREREGISTERED 18, ROBUST 7) |
 | ❔ INCONCLUSIVE | 3 |
 | 🗄️ RETIRED | 6 |
 
@@ -36,7 +36,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 14. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Map the capacity curve (K = 1..8, inf) across all worlds and variants; find the distractor-load / retention-length boundary where the bottleneck flips from helping to hurting.
 15. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Re-run the atlas whenever an organ or world is added; register a claim when a new cross-function effect or degenerate pair appears, and a counter-claim when one disappears.
 16. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
-17. **[replicate]** 24 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
+17. **[replicate]** 25 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
 
 ## Claims
 
@@ -52,6 +52,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [C016](knowledge/claims/C016_integration_holm_corrected.py) | **Integrated, not modular (Holm-corrected, distinct organs)** | effect · L2 | ✅ HOLDS | PREREGISTERED | Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33 · held-out | – | – |
 | [C017](knowledge/claims/C017_self_model_beats_table_same_events.py) | **Self-model beats a success table on the same events (announced outages)** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.021 [0.017, 0.026] >= 0.008 (n=16) · held-out | n/a | K08 |
 | [C018](knowledge/claims/C018_self_model_beats_table_when_silent.py) | **Self-model beats a success table on the same events, even when outages are silent** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.008 [0.005, 0.010] >= 0.004 (n=16) · held-out | n/a | K08 |
+| [C019](knowledge/claims/C019_low_load_bottleneck_equivalence_precision.py) | **Low-load workspace bottleneck is equivalent to unlimited access (high precision)** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.014 [-0.033, +0.006] (0.894 vs 0.907, n=128) · held-out | n/a | – |
 | [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
 | [K02](knowledge/claims/K02_real_sigkill_exactly_once.py) | **Real SIGKILL after replies and before commit: a byte-identical life in a fresh process** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical · held-out | n/a | K01 |
 | [K03](knowledge/claims/K03_matched_learner_identity.py) | **Matched learner: the stripped organism is action-identical to rival:reactive** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 24/24 lives action-identical · held-out | n/a | – |
@@ -82,7 +83,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 |---|---|---|
 | [H001](knowledge/questions/H001.md) Does causal autobiographical memory improve action beyond compact state? | open | C011 ✅, C012 ✅, K04 ✅, L04 ✅, L05 ✅, L06 ✅, L07 ✅ |
 | [H002](knowledge/questions/H002.md) Does a predictive self-model improve calibration and adaptation after hidden capability change? | open | C007 🗄️, C008 🗄️, C017 ✅, C018 ✅ |
-| [H003](knowledge/questions/H003.md) Does a capacity-limited global workspace help, and when does it hurt? | open | C005 ✅, C006 ❔, L03 ✅ |
+| [H003](knowledge/questions/H003.md) Does a capacity-limited global workspace help, and when does it hurt? | open | C005 ✅, C006 ❔, C019 ✅, L03 ✅ |
 | [H004](knowledge/questions/H004.md) Does recurrent processing integrate over time better than matched feed-forward access to more context? | open | — |
 | [H005](knowledge/questions/H005.md) Do homeostatic drives and active sampling stabilise goal management under changing resources? | open | — |
 | [H006](knowledge/questions/H006.md) No behavioural benchmark or theory-indicator suffices to establish phenomenal experience | standing-constraint | — |
@@ -169,6 +170,9 @@ graph LR
   C018["C018<br/>PREREGISTERED"]
   style C018 fill:#d4f4dd,stroke:#2e7d32
   C018 -.-> H002
+  C019["C019<br/>PREREGISTERED"]
+  style C019 fill:#d4f4dd,stroke:#2e7d32
+  C019 -.-> H003
   K01["K01<br/>PREREGISTERED"]
   style K01 fill:#d4f4dd,stroke:#2e7d32
   K01 -.-> H008
@@ -241,6 +245,8 @@ graph LR
   K08 --> C018
   C008 -.->|extends| C018
   C017 -.->|extends| C018
+  C006 -.->|extends| C019
+  C005 -.->|extends| C019
   L02 -.->|extends| K01
   K01 --> K02
   L02 -.->|extends| K02

@@ -1,0 +1,39 @@
+{
+ "by": "claude-code (session 01WMmox)",
+ "code": "ea099bc8a43b5614",
+ "environment": {
+  "host": "5bce98f7",
+  "implementation": "CPython",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+  "python": "3.13.16"
+ },
+ "environment_id": "dfe65890ecfd",
+ "evaluations": {
+  "C019": {
+   "claim": "C019",
+   "error": null,
+   "estimate": {
+    "a": 0.905625,
+    "b": 0.9241145833333333,
+    "diff": -0.01848958333333333,
+    "hi": 0.002029369862500751,
+    "lo": -0.039008536529167415,
+    "n": 128,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "46973da0d8c9d44d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.176,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "7d94419d44d1ecf8535a9427d985666da2c359b1"
+ },
+ "mode": "full",
+ "recorded_at": "2026-10-11T00:27:55Z",
+ "schema": 2
+}
