@@ -1,7 +1,7 @@
 """Memory's contents serve two consumers in silent outages: control and metacognition (H007).
 
-Global availability means that one broadcast content can be used by several functions at
-once. The access lesion cut:memory>policy measures the policy's use of memory's contents
+In this organism's workspace, one broadcast content can be delivered to, and used by,
+several consumers at once. The access lesion cut:memory>policy measures the policy's use of memory's contents
 (behaviour is allowed to change: that is what a controller's use of information is for).
 The fixed-behaviour shadow measures the self-model's use of the same contents without
 letting behaviour change. Both must be reliable: reward falls by more than 0.5 per episode
@@ -58,6 +58,7 @@ CLAIM = Claim(
     test=Check(dual_use, seeds=32),
     by="claude-code (session 01VdSAnY)",
     created="2026-10-11",
-    rationale="The global-workspace signature stated as a measurement: one broadcast content, two consumers, two "
-              "functions, each use isolated by its own intervention.",
+    rationale="One broadcast content, two consumers, two functions in this organism and world, each use isolated "
+              "by its own intervention (an access lesion for the policy, a fixed-behaviour readout for the "
+              "self-model). Not a test of global-workspace theory.",
 )

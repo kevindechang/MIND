@@ -2,7 +2,7 @@
 
 If a self-model that receives NOTHING from other organs still "gains calibration" from
 goals in the atlas's sense, then a reliable lesion effect on calib_gain cannot by itself
-show that the self-model integrates other organs' contents. Here the self-model is cut off
+show that the self-model uses other organs' contents. Here the self-model is cut off
 from perception, memory and goals (it sees only its own actions and their public
 outcomes), and its own contents reach no organ. Lesioning goals can then change only what
 the organism does, and so the events on which the self-model and the success table are
@@ -33,6 +33,7 @@ CLAIM = Claim(
                  metric="calib_gain", direction=">", margin=0.0, seeds=32),
     by="claude-code (session 01VdSAnY)",
     created="2026-10-11",
-    rationale="A measure of integration must come out negative for a system built to be modular. This is that "
-              "negative control, and the atlas's calibration column fails it.",
+    rationale="Any measure meant to show that one organ's contents reach another must read zero for a forecaster "
+              "built to receive none. This is that negative control in this organism; the atlas's calibration "
+              "column fails it.",
 )

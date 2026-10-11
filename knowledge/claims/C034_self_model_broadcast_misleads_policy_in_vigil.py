@@ -1,4 +1,4 @@
-"""Withholding the self-model's broadcast from the policy improves control in vigil (integration cost, H007).
+"""Withholding the self-model's broadcast from the policy improves control in vigil (a cost of broadcast access, H007).
 
 The self-model bids compact self-knowledge into the workspace (`self:<action>=doubt|unsure|sure`,
 `surprise=<action>`), and the policy learns from everything that is broadcast. C013
@@ -27,7 +27,7 @@ from mind.claims import Claim, Compare
 
 CLAIM = Claim(
     id="C034",
-    title="Withholding the self-model's broadcast from the policy improves vigil control (integration cost)",
+    title="Withholding the self-model's broadcast from the policy improves vigil control (a cost of broadcast access)",
     statement="In vigil/dev, withholding the self-model's broadcast contents from the policy (cut:self_model>policy; "
               "they still occupy workspace slots) raises reward per episode by more than 0.03.",
     kind="effect",
@@ -38,6 +38,6 @@ CLAIM = Claim(
                  direction=">", margin=0.03, seeds=32),
     by="claude-code (session 01VdSAnY)",
     created="2026-10-11",
-    rationale="Integration can cost as well as help. Global availability of self-knowledge is not free for a "
-              "consumer that cannot select its inputs.",
+    rationale="In this organism, broadcast access can cost as well as help: receiving the self-model's contents is "
+              "not free for a policy that cannot select its inputs.",
 )

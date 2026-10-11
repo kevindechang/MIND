@@ -18,6 +18,11 @@ the workshop +0.0002 (n.s.); goals are silent outside vigil. C032's flawed sham 
 goals>vigil at +0.0120; the load-matched sham gives about a third of that.
 Strongest alternative: the self-model takes everything it knows from perception, and other
 organs' contents add nothing at a matched load. Then no memory or goals cell survives.
+
+Scope: a fixed-behaviour readout effect in this organism and these worlds. It shows which
+contents the self-model's forecasts depend on, not integration in general. The sham can
+coincide with the real contents on some ticks (K10's docstring gives the rates), so the
+contrast is against an independent draw, not a guaranteed difference.
 """
 from mind.claims import Check, Claim
 

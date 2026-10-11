@@ -1,4 +1,4 @@
-"""Instrument: the shadow's sham changes content only (presence, count and feature load kept).
+"""Instrument: the shadow's sham keeps presence, count and feature load at every tick.
 
 PR #29 review (P1): a sham that replaced an organ's contents with its broadcast from a
 random earlier tick injected the organ where it was absent and removed it where it was
@@ -9,9 +9,21 @@ then mixed content with presence and feature load (C032 retired; successor C036)
 The corrected sham (mind/shadow.py) permutes content at a fixed load. This claim checks
 it in every world and variant, for memory and goals, at every tick: the organ is present
 in the sham view exactly when it is in the real view, with the same number of distinct
-features, and the self-model's total feature count is unchanged; the content does
-change on some tick wherever the organ appears; and the sham never has to fall back on
-real contents in the scored (late) half of a life. K09 checks unfiltered replay only.
+features, and the self-model's total feature count is unchanged; in every life where the
+organ appears, the content changes on at least one tick; and the sham never has to fall
+back on real contents in the scored (late) half of a life. K09 checks unfiltered replay
+only.
+
+The sham does NOT change the content on every tick (second PR #29 review). It draws from
+the organ's own earlier broadcasts, independently of the present, so the draw sometimes
+coincides with the real content. That happens more often when the organ's contents are
+few and persistent. Measured after sealing (4 dev seeds per variant), the shammed
+contents equalled the real ones on 12-20% of the ticks where memory appeared in outage,
+20-28% for memory in vigil, 34-36% for goals in vigil, and 54-59% for memory in the
+workshop. On those ticks real minus sham (C036) has nothing to contrast, so C036 compares
+the real contents with an independent draw, not with a guaranteed difference. Forcing a
+difference on every tick would make the sham depend on the present. The summary's
+"change content" means at least one changed tick per life.
 """
 from mind.claims import Check, Claim
 
@@ -48,11 +60,12 @@ def content_only(ctx):
 
 CLAIM = Claim(
     id="K10",
-    title="The shadow's sham changes content only: presence, count and feature load are kept at every tick",
+    title="The shadow's sham keeps presence, count and feature load at every tick",
     statement="In every world and variant, for memory and goals, the shadow's sham keeps the organ's presence, its "
               "number of distinct features and the self-model's total feature count identical to the real view at "
-              "every tick, changes the content wherever the organ appears, and never falls back on real contents "
-              "in the scored half of a life.",
+              "every tick; in every life where the organ appears it changes the content on at least one tick (not on "
+              "every tick: a draw from the organ's past can coincide with the present); and it never falls back on "
+              "real contents in the scored half of a life.",
     kind="invariant",
     scope="instrument",
     test=Check(content_only, seeds=4),

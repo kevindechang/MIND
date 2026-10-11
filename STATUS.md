@@ -2,7 +2,7 @@
 
 > **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Result-code fingerprint `db4b2fa5bc8fc13b` · snapshot generated 2026-10-11 08:10 UTC
+Result-code fingerprint `db4b2fa5bc8fc13b` · snapshot generated 2026-10-11 14:55 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -56,7 +56,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [C030](knowledge/claims/C030_calibration_cells_are_behaviour_mediated.py) | **Less than a quarter of each atlas calibration cell is the organ's contents reaching the self-model** | effect · L2 | ✅ HOLDS | PREREGISTERED | memory: TE +0.079 [+0.059,+0.099], DE -0.0060 [-0.0076,-0.0043] (share -8%); goals: TE +0.048 [+0.028,+0.067], DE +0.0035 [+0.0020,+0.0050] (share +7%) · claim: TE > 0 and DE < TE/4 · held-out | – | K08, K09 |
 | [C031](knowledge/claims/C031_modular_forecaster_shows_cross_function_cell.py) | **A modular self-model shows the atlas's cross-function calibration cell** | effect · instrument | ✅ HOLDS | PREREGISTERED | Δ +0.008 [+0.005, +0.011] (0.016 vs 0.008, n=32) · held-out | – | K08 |
 | [C033](knowledge/claims/C033_memory_contents_dual_use_in_silent_outages.py) | **Memory's contents serve two consumers in silent outages (control and metacognition)** | effect · L2 | ✅ HOLDS | PREREGISTERED | policy loses +1.02 [+0.62,+1.41] reward without memory's contents (claim > 0.5); self-model loses +0.0025 [+0.0020,+0.0030] Brier at fixed behaviour (claim > 0) · held-out | – | K09 |
-| [C034](knowledge/claims/C034_self_model_broadcast_misleads_policy_in_vigil.py) | **Withholding the self-model's broadcast from the policy improves vigil control (integration cost)** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.083 [+0.046, +0.126] (0.901 vs 0.817, n=32) · held-out | – | – |
+| [C034](knowledge/claims/C034_self_model_broadcast_misleads_policy_in_vigil.py) | **Withholding the self-model's broadcast from the policy improves vigil control (a cost of broadcast access)** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.083 [+0.046, +0.126] (0.901 vs 0.817, n=32) · held-out | – | – |
 | [C035](knowledge/claims/C035_self_model_irrelevant_to_causal_control.py) | **The self-model neither helps nor hurts causal control in the workshop (C013 successor)** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.005 [-0.018, +0.028] (-1.648 vs -1.653, n=32) · held-out | n/a | – |
 | [C036](knowledge/claims/C036_fixed_behaviour_integration_load_matched.py) | **At fixed behaviour and fixed feature load, memory's and goals' contents each inform the self-model** | effect · L2 | ✅ HOLDS | PREREGISTERED | Holm-corrected, load-matched sham, fixed behaviour: memory informs the self-model in ['outage', 'vigil'], goals in ['vigil'] (memory>vigil +0.0039*, goals>vigil +0.0028*, memory>outage +0.0035*, goals>outage +0.0000, memory>workshop -0.0001, goals>workshop +0.0000) · held-out | – | K09, K10 |
 | [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
@@ -67,7 +67,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [K07](knowledge/claims/K07_exactly_once_after_commit.py) | **Exactly-once: a committed act is never repeated after a crash** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical · held-out | n/a | – |
 | [K08](knowledge/claims/K08_same_stream_calibration_is_valid.py) | **The same-stream calibration metric is valid (zero for the table itself)** | invariant · instrument | ✅ HOLDS | PREREGISTERED | rival:reactive calib_gain is exactly 0 in every world, seed and window · held-out | n/a | – |
 | [K09](knowledge/claims/K09_shadow_replay_is_exact.py) | **Shadow replay: the self-model re-run from the ledger is the organism's own, bit for bit** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 288 lives, every world and variant: 288/288 shadows reproduce every logged confidence, the runner's Brier and table Brier, and the lab's life · held-out | n/a | – |
-| [K10](knowledge/claims/K10_sham_keeps_presence_and_load.py) | **The shadow's sham changes content only: presence, count and feature load are kept at every tick** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 72/72 sham audits (36 lives, every world and variant) keep presence, distinct-feature count and feature load at every tick, change content, and never fall back in the scored half (67 early fallback ticks in all) · held-out | n/a | K09 |
+| [K10](knowledge/claims/K10_sham_keeps_presence_and_load.py) | **The shadow's sham keeps presence, count and feature load at every tick** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 72/72 sham audits (36 lives, every world and variant) keep presence, distinct-feature count and feature load at every tick, change content, and never fall back in the scored half (67 early fallback ticks in all) · held-out | n/a | K09 |
 | [L01](knowledge/claims/L01_legacy_instrument_suite.py) | **The v1 instrument suite still passes** | invariant · instrument | ✅ HOLDS | ROBUST | 75 v1 instrument tests all pass · dev | n/a | – |
 | [L02](knowledge/claims/L02_e100_day0_restart_circuit.py) | **Day 0: a committed task survives real process death (v1 circuit)** | fact · instrument | ✅ HOLDS | ROBUST | exit -9, restart→inspect_signal, wipe→NO_ACTION, alternate→record_measurement · dev | n/a | – |
 | [L03](knowledge/claims/L03_e100_day1_routing_lesion.py) | **Day 1: a routing cut flips a hand-written planner, and a compact reader ties (v1)** | fact · instrument | ✅ HOLDS | ROBUST | intact DEFER_SENSOR_SCAN, cut SCAN_WITH_SENSOR, compact rival ties: True · dev | n/a | – |
@@ -317,7 +317,7 @@ graph LR
 
 ## Integration atlas
 
-Computed on 12 dev seeds at code `8026945a9c10d120`. **Causal density 0.33** (8/24 organ×metric pairs with a reliable effect; 5 help, 3 hurt). **Cross-function effects: 2**. **Degenerate (mutually redundant) organ pairs: 2.**
+Computed on 12 dev seeds at code `db4b2fa5bc8fc13b`. **Causal density 0.33** (8/24 organ×metric pairs with a reliable effect; 5 help, 3 hurt). **Cross-function effects: 2**. **Degenerate (mutually redundant) organ pairs: 2.**
 
 | organ | vigil.kept | vigil.false_starts | vigil.calib_gain | outage.reward | outage.calib_gain | workshop.utility | workshop.probes | workshop.calib_gain |
 |---|---|---|---|---|---|---|---|---|
@@ -325,7 +325,7 @@ Computed on 12 dev seeds at code `8026945a9c10d120`. **Causal density 0.33** (8/
 | goals | ·ᴴ -0.00 | 🔴 -0.39 | 🟢 +0.05 | · +0.00 | · +0.00 | · +0.00 | · +0.00 | · +0.00 |
 | self_model | 🔴 -0.05 | · +0.14 | 🟢ᴴ +0.17 | · +0.34 | 🟢ᴴ +0.20 | · -0.01 | · -0.01 | 🟢ᴴ +0.13 |
 
-🟢 organ reliably helps, 🔴 reliably hurts (Holm, family-wise alpha 0.05 across all cells; sign-normalised lesion effect), · no reliable effect; ᴴ = a home competency the organ was designed for. Off-home 🟢 cells are cross-function effects. Calibration is `calib_gain` (same-event comparison with a success table). Each arm is scored on its own events, so a lesion cell is a total effect, not information flow: C030 and C031 show the calibration cells are mostly not the organ's contents; C036 tests integration at fixed behaviour.
+🟢 organ reliably helps, 🔴 reliably hurts (Holm, family-wise alpha 0.05 across all cells; sign-normalised lesion effect), · no reliable effect; ᴴ = a home competency the organ was designed for. Off-home 🟢 cells are cross-function effects. Calibration is `calib_gain` (same-event comparison with a success table). Each arm is scored on its own events, so a lesion cell is a total effect, not information flow. Interpret content-mediated effects only using separately specified, same-behaviour, sham-controlled interventions; atlas cells alone cannot establish mediation.
 
 Cross-function: `memory→vigil.calib_gain`, `goals→vigil.calib_gain`
 

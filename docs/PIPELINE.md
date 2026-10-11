@@ -130,18 +130,22 @@ self-monitoring cognition** (v1's L2), and made measurable at three levels:
    multiplicity control.
 
    **A lesion effect is not information flow.** A lesion changes behaviour, and every arm is scored on its own
-   events. So an off-home cell can arise with no content reaching the consumer. C016's two calibration cells
-   (memory and goals → vigil.calib_gain) are like this. Less than a quarter of either is the organ's contents reaching
-   the self-model (C030; memory's contents even make it slightly *worse*), and a self-model cut off from every other
-   organ shows the same kind of cell (C031). What the rest of a cell is, the lesion does not say: it is a residual over
-   every other pathway the lesion changes. So "a modular system shows only on-diagonal effects" is false
-   for metrics scored on behaviour-dependent events. Integration is therefore also measured at **fixed behaviour**,
-   with *shadows* ([SUBSTRATE.md](SUBSTRATE.md#shadows-fixed-behaviour-probes)). These re-run one consumer on the
-   logged stream with an organ's contents removed or shammed, and replay exactly (K09). Measured that way, with a sham
-   that holds presence and feature load fixed (K10), memory's and goals' contents do inform the self-model (C036;
-   its predecessor C032 was retired because its sham did not hold them fixed). In silent outages one memory content
-   serves two consumers: the policy for control and the self-model for metacognition (C033). Integration also has
-   costs: receiving the self-model's broadcast costs the policy control in vigil (C034).
+   events, so an off-home cell can arise without any content reaching the consumer. In this organism, C016's two
+   calibration cells (memory and goals → vigil.calib_gain) are like this. Less than a quarter of either is the
+   organ's contents reaching the self-model (C030; at fixed behaviour memory's contents even make it slightly
+   *worse*), and a self-model cut off from every other organ shows the same kind of cell (C031). The rest of a cell
+   is a residual over every other pathway the lesion changes; the lesion does not say what it is. So "a modular
+   system shows only on-diagonal effects" is false for metrics scored on behaviour-dependent events.
+
+   **Fixed-behaviour readouts** ([shadows](SUBSTRATE.md#shadows-fixed-behaviour-probes)) measure something narrower
+   than integration: how one consumer's output depends on one organ's contents when everything else is held as
+   lived. They re-run the consumer on the logged stream with those contents removed or shammed, and replay exactly
+   (K09). For the self-model in these worlds, with a sham that holds presence and feature load fixed (K10), its
+   forecasts are better with memory's and goals' real contents (C036; its predecessor C032 was retired because its
+   sham did not hold them fixed). In silent outages the same memory contents are used by the policy for control and
+   by the self-model's forecasts (C033). Withholding the self-model's broadcast from the policy improves vigil
+   control (C034). These are readout and access effects in this organism and these worlds: evidence about which
+   contents its consumers depend on, not a general demonstration of integration.
 
 These are descriptions of causal organisation, **not** consciousness scores. Phenomenal experience (L3) is not
 an admissible scope for any claim (the doctor rejects it). A system can satisfy every L2 description and

@@ -32,7 +32,7 @@ goals -0.003, i.e. knowing a goal is pending helps more than the feature costs).
 claim's first two records (2026-10-11T06:51/06:53Z) computed that split with the earlier,
 flawed sham (presence and load not kept); later records use the corrected one. The verdict
 never used the sham. Strongest alternative: DE >= TE/4. A modular forecaster shows the same
-kind of cell (C031); the load-matched integration test is C036.
+kind of cell (C031); the load-matched readout test is C036.
 """
 from mind.claims import Check, Claim
 
