@@ -86,7 +86,7 @@ class Poltergeist(World):
         # This reports only NET improvement. It can be misleading when an
         # external shock cancels or impersonates an action's expected effect.
         outcome = int(abs(self.position) < abs(before)) if action != "wait" else None
-        reward = 1.0 - min(abs(self.position), 8) / 8.0
+        reward = 1.0 / (1.0 + abs(self.position))
         self.t += 1
         return Step(self._obs() if self.t < _LENGTH else {}, reward, outcome,
                     self.t >= _LENGTH,
