@@ -1,0 +1,175 @@
+{
+ "by": "claude-code (H001 session 2026-10-12)",
+ "code": "fadebc5c5c0f5412",
+ "environment": {
+  "host": "f376fbc5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.9.6"
+ },
+ "environment_id": "01e8a8783bbb",
+ "evaluations": {
+  "C070": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46219932369,
+     "after": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f",
+     "ref": "refs/heads/contrib/h001-causal-organ-20261012",
+     "time": "2026-10-12T10:46:57Z"
+    },
+    "randomness": "9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+    "round": 32999552,
+    "signature": "99d5c37b6135d45457c9da4bef2fbacace08923758420c42d0d17e3b5d86f53cb15bd178a07552573c1701be267a3cdb"
+   },
+   "claim": "C070",
+   "error": null,
+   "estimate": {
+    "a": -1.398125,
+    "b": -1.4229374999999997,
+    "diff": 0.024812499999999987,
+    "hi": 0.048851885168959525,
+    "lo": 0.0007731148310404536,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "51a0229ca24bf329",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.021,
+   "seeds": "heldout:42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f+drand:9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+   "verdict": "FAILS"
+  },
+  "C071": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46219932369,
+     "after": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f",
+     "ref": "refs/heads/contrib/h001-causal-organ-20261012",
+     "time": "2026-10-12T10:46:57Z"
+    },
+    "randomness": "9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+    "round": 32999552,
+    "signature": "99d5c37b6135d45457c9da4bef2fbacace08923758420c42d0d17e3b5d86f53cb15bd178a07552573c1701be267a3cdb"
+   },
+   "claim": "C071",
+   "error": null,
+   "estimate": {
+    "a": -1.6254791666666668,
+    "b": -1.6158124999999999,
+    "diff": -0.00966666666666667,
+    "hi": 0.021303853089956228,
+    "lo": -0.04063718642328957,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "a5118042a01e296e",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f+drand:9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+   "verdict": "FAILS"
+  },
+  "C072": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46219932369,
+     "after": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f",
+     "ref": "refs/heads/contrib/h001-causal-organ-20261012",
+     "time": "2026-10-12T10:46:57Z"
+    },
+    "randomness": "9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+    "round": 32999552,
+    "signature": "99d5c37b6135d45457c9da4bef2fbacace08923758420c42d0d17e3b5d86f53cb15bd178a07552573c1701be267a3cdb"
+   },
+   "claim": "C072",
+   "error": null,
+   "estimate": {
+    "a": -1.647625,
+    "b": -1.6817083333333334,
+    "diff": 0.0340833333333333,
+    "hi": 0.09139478794579131,
+    "lo": -0.023228121279124707,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "f45d9c1f13429eb5",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f+drand:9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+   "verdict": "FAILS"
+  },
+  "C073": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46219932369,
+     "after": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f",
+     "ref": "refs/heads/contrib/h001-causal-organ-20261012",
+     "time": "2026-10-12T10:46:57Z"
+    },
+    "randomness": "9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+    "round": 32999552,
+    "signature": "99d5c37b6135d45457c9da4bef2fbacace08923758420c42d0d17e3b5d86f53cb15bd178a07552573c1701be267a3cdb"
+   },
+   "claim": "C073",
+   "error": null,
+   "estimate": {
+    "a": -1.6481666666666663,
+    "b": -1.6526875,
+    "diff": 0.004520833333333349,
+    "hi": 0.04116679212510543,
+    "lo": -0.03212512545843873,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "ed849251dda43df3",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f+drand:9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+   "verdict": "FAILS"
+  },
+  "C074": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46219932369,
+     "after": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f",
+     "ref": "refs/heads/contrib/h001-causal-organ-20261012",
+     "time": "2026-10-12T10:46:57Z"
+    },
+    "randomness": "9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+    "round": 32999552,
+    "signature": "99d5c37b6135d45457c9da4bef2fbacace08923758420c42d0d17e3b5d86f53cb15bd178a07552573c1701be267a3cdb"
+   },
+   "claim": "C074",
+   "error": null,
+   "estimate": {
+    "a": -1.642020833333333,
+    "b": -1.6141875,
+    "diff": -0.02783333333333339,
+    "hi": -0.004488317219729105,
+    "lo": -0.05117834944693768,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "0c37577b85d3886f",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f+drand:9c0d8eb57197c002346c44f9c7a9d1fb2850304d779e991a83e274f3e8b47820",
+   "verdict": "FAILS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-12T10:48:21Z",
+ "schema": 2
+}
