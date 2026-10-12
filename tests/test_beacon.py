@@ -103,6 +103,18 @@ class Receipt(unittest.TestCase):
         self.assertEqual(rec["push"], push)
         self.assertEqual(beacon.verify_offline(rec), [])
 
+    def test_draw_waits_for_the_round_to_be_published(self):
+        push = {"time": "2023-08-23T15:59:00Z", "activity_id": 2, "ref": "refs/heads/x", "after": "c2"}
+        due = beacon.round_time(beacon.round_after(beacon.parse_time(push["time"])))
+        waits = []
+        beacon.draw(push, fetch=lambda r: {"randomness": RAND, "signature": SIG},
+                    clock=lambda: due - 10, pause=waits.append)
+        self.assertEqual(waits, [11])                         # until due + 1s
+        waits.clear()
+        beacon.draw(push, fetch=lambda r: {"randomness": RAND, "signature": SIG},
+                    clock=lambda: due + 60, pause=waits.append)
+        self.assertEqual(waits, [])                           # already published: no wait
+
     def test_offline_verification_catches_tampering(self):
         good = receipt(round_=beacon.round_after(beacon.parse_time("2023-08-23T15:59:00Z")))
         self.assertEqual(beacon.verify_offline(good), [])

@@ -16,6 +16,10 @@ Each tick, `Organism.step(obs, reward, outcome, boundary, actions)` does:
    `explore` (0.15) the last slot goes to a random loser (attentional exploration). `capacity=inf` is the flat rival.
 4. **Broadcast and learn.** Every organ receives the broadcast minus any contents cut to it, and learns from the
    transition `(prev, now)`.
+   **Late bids (optional).** An organ with `late = True` may then bid again through `late_propose(now, view)`. Its
+   bids join the earlier proposals in a second selection, so the decision sees what the organ learned from this
+   tick. Only organs with `late` take this path: an organism without one runs exactly the same code as before
+   (checked by byte-identical outputs on main). `+causal` uses it (H001).
 5. **Act.** The policy chooses from the legal actions using *only* its view of the broadcast. The self-model
    forecasts that action's success.
 6. **Commit.** Organs observe the act (for example, goals discharge an intention), and **one** `tick` event is appended
@@ -32,6 +36,7 @@ Each tick, `Organism.step(obs, reward, outcome, boundary, actions)` does:
 | `goals` | pending intentions per episode | `pending=x` for each attended `request=x` until action `x` is taken | — |
 | `self_model` | per-action online logistic regression | `self:<action>=doubt/unsure/sure`, `surprise=<action>` | P(success \| action, broadcast context) from public outcomes |
 | `policy` | linear TD weights over the broadcast's features and their pairwise conjunctions | — (acts) | Q-learning; exploration halves every 400 decisions |
+| `causal` (optional: `+causal`) | reach sets of probed nodes, from attended `fx<n>` probe results | `reach<n>=<labels>` facts and, with `causal.derive=1`, `best=<plan>`: the plan with the highest predicted utility under the learned reach sets. Composition (XOR) and penalty are built in, not learned | the reach set of each node it has seen probed, one tick after the probe is attended (H001) |
 
 **Organ contract** (`kernel.Organ`): state may change only inside the hooks (`reset_episode`, `propose`, `learn`,
 `learn_terminal`, `after_act`), as a deterministic function of their arguments and `ctx.rng(purpose)`. Never read
@@ -117,6 +122,7 @@ The runner reports each metric over the late half of a life (`m`), all of it (`m
 | `reactive`, `window4`, `window8` | the organism's own `QLearner`, on the last k raw observations (lag-tagged), with a per-action success table for confidence | memory, goals |
 | `window8lin` | as `window8`, without conjunctions | memory, goals |
 | `flat` | the organism with `capacity=inf` | workspace |
+| `compact` | `organism +causal causal.derive=0`: the causal organ's recalled facts without the derived plan (same information, timing, channel and workspace load) | causal (workshop only) |
 | `bayes` | privileged-model reference: perfect queue (vigil), exact HMM filter (outage), legacy E001 v0.4 DP (workshop) | ceiling only |
 
 **Adding a rival.** Register a `Rival(name, doc, challenges, factory=... | config=...)`. From then on every claim

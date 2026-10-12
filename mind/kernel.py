@@ -8,6 +8,9 @@ hypothesis rather than an assumption):
     transition -> policy acts -> self-model forecasts success -> organs observe
     the act -> ONE atomic tick event is appended to the ledger.
 
+An organ with `late = True` may bid once more after learning and before the decision (`late_propose`),
+so the decision sees what it learned from this very tick. Organisms without such an organ are unchanged.
+
 Continuity invariant: organ state is a deterministic fold over ledger events.
 `Organism.restore(ledger)` re-executes the identical code path on the logged
 inputs and *verifies* every logged decision, so any organ that keeps hidden or
@@ -90,12 +93,18 @@ class Decision:
 class Organ:
     """Base class. Subclasses override only the hooks they need.
 
+    `late = True` lets an organ bid again after this tick's learning and before the policy decides
+    (`late_propose`). Its late bids compete for the workspace together with the earlier ones, so the
+    decision sees what the organ learned from this very tick. Organs without `late` never reach that
+    code, so organisms without one behave exactly as before.
+
     Hard rule: all state must change only inside these hooks, as a deterministic
     function of their arguments and `ctx.rng(...)`. Never iterate a set of
     strings where order matters (hash randomisation differs between processes).
     """
 
     name = "organ"
+    late = False
     home: Tuple[str, ...] = ()        # competencies this organ was designed for (atlas)
     defaults: Dict[str, Any] = {}     # every parameter the organ reads, with its default
     choices: Dict[str, Tuple[str, ...]] = {}   # allowed values of string parameters
@@ -113,6 +122,9 @@ class Organ:
     def learn(self, prev: Optional[Moment], now: Moment, view: Tuple[Content, ...],
               ctx: "Organism") -> None:
         pass
+
+    def late_propose(self, now: Moment, view: Tuple[Content, ...], ctx: "Organism") -> List[Content]:
+        return []
 
     def learn_terminal(self, prev: Moment, reward: float, outcome: Optional[int],
                        ctx: "Organism") -> None:
@@ -415,6 +427,13 @@ class Organism:
         for name in self.order:
             if name not in frozen:
                 self.organs[name].learn(self.prev, now, self._view(name, broadcast), self)
+        late: List[Content] = []
+        for name in self.order:
+            if name not in frozen and self.organs[name].late:
+                late.extend(self.organs[name].late_propose(now, self._view(name, broadcast), self))
+        if late:
+            broadcast = self._select(proposals + late)
+            now.broadcast = broadcast
         policy = self.organs["policy"]
         action = policy.decide(self._view("policy", broadcast), actions, self.rng("policy"))  # type: ignore[attr-defined]
         self_model = self.organs.get("self_model")

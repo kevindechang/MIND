@@ -26,6 +26,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import re
+import time
 import urllib.request
 from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
 
@@ -124,8 +125,13 @@ def repo_slug(remote_url: str) -> Optional[str]:
 
 # ----------------------------------------------------------------------------- receipts
 
-def draw(push: Push, fetch: Callable[[int], Dict[str, Any]] = fetch_round) -> Receipt:
+def draw(push: Push, fetch: Callable[[int], Dict[str, Any]] = fetch_round,
+         clock: Callable[[], float] = time.time, pause: Callable[[float], None] = time.sleep) -> Receipt:
     r = round_after(parse_time(push["time"]))
+    # a round is published at its own time: wait for it rather than fail on an unpublished round
+    remaining = round_time(r) + 1 - clock()
+    if remaining > 0:
+        pause(remaining)
     b = fetch(r)
     return {"chain": QUICKNET["hash"], "round": r, "randomness": b["randomness"],
             "signature": b["signature"], "push": dict(push)}
