@@ -1,0 +1,33 @@
+{
+ "by": "researcher-bot",
+ "code": "db4b2fa5bc8fc13b",
+ "environment": {
+  "host": "46a4eebd",
+  "implementation": "CPython",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+ },
+ "environment_id": "0c6d1c75c017",
+ "evaluations": {
+  "C060": {
+   "claim": "C060",
+   "error": null,
+   "estimate": {
+    "summary": "org deficit +0.368 [+0.296, +0.440] (HOLDS); org recovery +0.300 [+0.227, +0.373] (HOLDS); frozen recovery +0.077 [+0.032, +0.121] (INCONCLUSIVE); org return-pre +0.123 [+0.053, +0.193] (HOLDS); org late-pre +0.157 [+0.093, +0.221] (HOLDS); frozen return-pre +0.075 [+0.031, +0.119] (HOLDS); org-window8 pre +0.661 [+0.583, +0.738] (HOLDS); window8 recovery -0.042 [-0.063, -0.022] (HOLDS); window8 deficit +0.056 [+0.030, +0.082] (HOLDS); window8 return-pre -0.049 [-0.086, -0.013] (HOLDS). Window8 deficit and immediate return are reported, not required."
+   },
+   "prediction_hash": "7b7274b18b625232",
+   "rivals": {},
+   "robust": false,
+   "seconds": 33.129,
+   "seeds": "heldout:8d832ddfc024d26b9be32e49946db647ee65d797",
+   "verdict": "INCONCLUSIVE"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "8d832ddfc024d26b9be32e49946db647ee65d797"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-12T01:12:38Z",
+ "schema": 2
+}
