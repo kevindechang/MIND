@@ -105,6 +105,26 @@ class StatesAndLadder(unittest.TestCase):
         same_person = recs[:1] + [record([ev(c, rivals=BEATEN)], by="alice", env="e2", at="2026-03-01T00:00:00Z")]
         self.assertEqual(assess({"C1": c}, same_person, code="c", seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
 
+    def test_replication_is_of_the_current_result_code(self):
+        c = make()
+        old = record([ev(c, rivals=BEATEN, seeds="heldout:abc")], by="alice", env="e1",
+                     at="2026-01-01T00:00:00Z", code="old")
+        now = record([ev(c, rivals=BEATEN, seeds="heldout:abc")], by="bob", env="e2",
+                     at="2026-02-01T00:00:00Z", code="c")
+        self.assertEqual(assess({"C1": c}, [old, now], code="c", seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
+        third = record([ev(c, rivals=BEATEN)], by="carol", env="e3", at="2026-03-01T00:00:00Z", code="c")
+        self.assertEqual(assess({"C1": c}, [old, now, third], code="c", seals={"C1": "abc"})["C1"].level,
+                         "REPLICATED")
+
+    def test_sessions_of_one_agent_family_are_one_contributor(self):
+        c = make()
+        recs = [record([ev(c, rivals=BEATEN, seeds="heldout:abc")], by="claude-code (session A)", env="e1")]
+        recs.append(record([ev(c, rivals=BEATEN)], by="claude-code (H001 session)", env="e2",
+                           at="2026-02-01T00:00:00Z"))
+        self.assertEqual(assess({"C1": c}, recs, code="c", seals={"C1": "abc"})["C1"].level, "PREREGISTERED")
+        recs.append(record([ev(c, rivals=BEATEN)], by="bob", env="e3", at="2026-03-01T00:00:00Z"))
+        self.assertEqual(assess({"C1": c}, recs, code="c", seals={"C1": "abc"})["C1"].level, "REPLICATED")
+
     def test_side_effect_claims_skip_the_rival_rung(self):
         c = make(about=())
         self.assertNotIn("RIVAL-TESTED", c.ladder)

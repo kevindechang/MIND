@@ -131,7 +131,10 @@ PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED → PREREGISTERED → REPLICAT
   * The original sealed confirmation stays historical fact. Re-running exposed held-out seeds never counts as a new
     preregistration.
 * **REPLICATED** needs robust passing records from at least two distinct contributors **and** two distinct
-  environments.
+  environments. A contributor is the party named before any parenthesis in the record's `by`: sessions of one agent
+  family (for example `claude-code (session A)` and `claude-code (session B)`) are one contributor, so a rerun in a
+  new session or on new hardware is self-review and does not replicate (AGENTS.md rule 3). Replication is of the current result code: records made under
+  older code do not count toward it.
 
 ## Premises vs lineage
 
