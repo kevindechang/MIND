@@ -1,0 +1,56 @@
+{
+  "status": "EXPLORATORY_RESOURCE_ACCOUNTING_NOT_CLAIM_EVIDENCE",
+  "date": "2026-10-12",
+  "code": "026d2e01a8f57715",
+  "world": "vigil/dev",
+  "seed": 0,
+  "episodes": 300,
+  "method": "Track real SelfModel instances during the existing shadow replay, without changing their updates. Count stored logistic weight coordinates, accumulated gradients and expert loss entries. One dev lifetime; no held-out data, FLOP estimate or latency claim.",
+  "rows": [
+    {
+      "step": "normalised",
+      "gate": "all",
+      "predictors": 1,
+      "weight_coordinates": 57,
+      "gradient_accumulators": 0,
+      "expert_loss_entries": 0,
+      "late_brier": 0.03789812176297143
+    },
+    {
+      "step": "sqrt",
+      "gate": "all",
+      "predictors": 1,
+      "weight_coordinates": 57,
+      "gradient_accumulators": 0,
+      "expert_loss_entries": 0,
+      "late_brier": 0.024676205208282145
+    },
+    {
+      "step": "adagrad",
+      "gate": "all",
+      "predictors": 1,
+      "weight_coordinates": 57,
+      "gradient_accumulators": 57,
+      "expert_loss_entries": 0,
+      "late_brier": 0.028084924763325
+    },
+    {
+      "step": "adagrad",
+      "gate": "learned",
+      "predictors": 5,
+      "weight_coordinates": 171,
+      "gradient_accumulators": 171,
+      "expert_loss_entries": 15,
+      "late_brier": 0.02882167650954643
+    },
+    {
+      "step": "adagrad",
+      "gate": "uniform",
+      "predictors": 5,
+      "weight_coordinates": 171,
+      "gradient_accumulators": 171,
+      "expert_loss_entries": 15,
+      "late_brier": 0.05407871825432857
+    }
+  ]
+}

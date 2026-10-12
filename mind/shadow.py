@@ -96,9 +96,13 @@ class _ShamPool:
 
 
 def replay_self_model(events: Sequence[Event], drop: Sequence[str] = (), sham: Sequence[str] = (),
-                      audit: Optional[List[Dict[str, Any]]] = None) -> List[Forecast]:
+                      audit: Optional[List[Dict[str, Any]]] = None,
+                      model_params: Optional[Dict[str, Any]] = None) -> List[Forecast]:
     """Re-run the life's self-model on its logged broadcasts, with `drop`/`sham` filters.
-    With `audit` (a list), every shammed tick appends what the sham changed (`sham_audit`)."""
+    With `audit` (a list), every shammed tick appends what the sham changed (`sham_audit`).
+    `model_params` overrides validated self-model parameters in this shadow only;
+    the logged actions/outcomes and other organs' broadcasts remain fixed. Such a
+    shadow is an alternative predictor, not a counterfactual live trajectory."""
     from .organs import ORGANS
     from .organs.self_model import SelfModel
     if not events or events[0].kind != "genesis":
@@ -117,7 +121,11 @@ def replay_self_model(events: Sequence[Event], drop: Sequence[str] = (), sham: S
     if set(drop) & set(sham):
         raise ValueError("an organ cannot be both dropped and shammed")
     blocked = {src for src, dst in cfg.cuts if dst in ("self_model", "*")}
-    model = SelfModel({k: v for organ, k, v in cfg.params if organ == "self_model"})
+    from .kernel import _check_param
+    params = {k: v for organ, k, v in cfg.params if organ == "self_model"}
+    for key, value in (model_params or {}).items():
+        params[key] = _check_param("self_model", key, value)
+    model = SelfModel(params)
     seed = genesis["seed"]
     pools = {name: _ShamPool() for name in sorted(set(sham))}
     out: List[Forecast] = []
@@ -207,7 +215,7 @@ def late_brier(forecasts: Sequence[Forecast], episodes: int, table: bool = False
 
 
 def fixed_behaviour(arm: str, world: str, seed: int, episodes: Optional[int] = None, variant: str = "dev",
-                    conditions: Optional[Dict[str, Dict[str, Sequence[str]]]] = None,
+                    conditions: Optional[Dict[str, Dict[str, Any]]] = None,
                     audit_shams: bool = False) -> Dict[str, Any]:
     """Live one lifetime, then score the self-model's shadows on its own events.
 
@@ -239,7 +247,7 @@ def _task(args) -> Dict[str, Any]:
 
 def fixed_behaviour_many(lab: Any, arm: str, world: str, variant: str, seeds: Sequence[int],
                          episodes: Optional[int],
-                         conditions: Optional[Dict[str, Dict[str, Sequence[str]]]] = None,
+                         conditions: Optional[Dict[str, Dict[str, Any]]] = None,
                          audit_shams: bool = False) -> List[Dict[str, Any]]:
     """`fixed_behaviour` for many seeds, in parallel with the lab's worker count."""
     tasks = [(arm, world, variant, s, episodes, conditions, audit_shams) for s in seeds]
