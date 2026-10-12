@@ -6,7 +6,7 @@ import unittest
 
 from mind.kernel import Content, Organism
 from mind.ledger import MemoryLedger
-from mind.organs.causal import Causal, label_of, mask_of, plan_nodes, predicted_utility
+from mind.organs.causal import DAG_REACH, Causal, label_of, mask_of, plan_nodes, predicted_utility
 from mind.runner import run
 from mind.worlds.workshop import GRAPHS, PENALTY, PLANS, V04
 
@@ -291,3 +291,39 @@ class LearnedStructurePrior(unittest.TestCase):
                     break
                 obs, reward, outcome, boundary = s.obs, s.reward, s.outcome, False
         self.assertGreater(sum(org.organs["causal"].pi[i] for i in forward), 0.5)
+
+
+class PosteriorPlanTests(unittest.TestCase):
+    """H018: choosing the plan by its posterior expected utility, with unknown nodes integrated out."""
+
+    def test_the_posterior_rule_agrees_with_the_known_plan_rule_when_every_reach_is_known(self):
+        reach = {n: V04.reach(GRAPHS[0], n) for n in range(3)}
+        known = Causal({})
+        known.reach, known.wants = dict(reach), dict(WANTS)
+        posterior = Causal({"posterior_plan": 1})
+        posterior.reach, posterior.wants = dict(reach), dict(WANTS)
+        self.assertEqual(posterior._best(LEGAL, StubContext()), known._best(LEGAL, StubContext()))
+
+    def test_the_posterior_rule_picks_the_plan_with_the_highest_expected_utility(self):
+        reach = {0: mask_of("0")}          # only node 0 is known: it reaches only itself
+        org = Causal({"posterior_plan": 1})
+        org.reach, org.wants = dict(reach), dict(WANTS)
+        commitments = sorted(WANTS)
+        consistent = [i for i, r in enumerate(DAG_REACH) if all(r[n] == m for n, m in reach.items())]
+        total = sum(org._dag_weight(i) for i in consistent)
+
+        def expected(action):
+            return sum(org._dag_weight(i) * predicted_utility(DAG_REACH[i], action, commitments, org.p["penalty"])
+                       for i in consistent) / total
+
+        plans = [a for a in LEGAL if plan_nodes(a) is not None]
+        chosen = org._best(LEGAL, StubContext())
+        self.assertIn(chosen, plans)
+        self.assertGreaterEqual(expected(chosen), max(expected(a) for a in plans) - 1e-9)
+
+    def test_the_known_plan_rule_drops_plans_through_unknown_nodes(self):
+        reach = {0: mask_of("0")}
+        org = Causal({})
+        org.reach, org.wants = dict(reach), dict(WANTS)
+        chosen = org._best(LEGAL, StubContext())
+        self.assertTrue(all(n in reach for n in plan_nodes(chosen)))
