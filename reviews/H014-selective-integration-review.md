@@ -33,3 +33,14 @@ candidates is disclosed and makes the rival stronger; no held-out outcomes infor
 No blocking findings remained after the protocol clarification. The follow-up
 review did not execute claims or inspect held-out outcomes. The main session's
 claim records and report provide execution evidence separately.
+
+## Report review after first confirmation
+
+The reviewer checked C050/C051's reported gains, intervals, diagnostics, 29.1%
+reduction and K14 counts against the immutable development and first held-out
+records. The two claims' held-out seed sets do not overlap; their means remain
+separate in the report. Two wording corrections were made: C051 has 32 seed-level
+observations across 64 baseline lifetimes, and the question's absence of receiver
+selection refers to the default organism. No blocking interpretation issue remained.
+This review checked records; it did not independently rerun the experiments or
+verify the main session's test commands.

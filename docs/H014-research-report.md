@@ -130,6 +130,13 @@ matched generic predictor and change-point-aware fixed-source selectors. Registe
 the generator, margins and strongest controls before evaluating new held-out data.
 The current result does not warrant expanding this five-expert mixture as a default.
 
+For that future world, include a fixed-share or variable-share expert tracker.
+[Herbster & Warmuth (1998)](https://mwarmuth.bitbucket.io/pubs/J39.pdf) describes
+sharing weight after a loss update so a previously poor expert can recover when
+the best source changes. Its abstract, introduction and §3/Figure 1 were inspected
+after C051's confirmation. This supplies a stronger prospective rival; it neither
+changes the present sealed experiment nor establishes why C051 failed.
+
 The recurrent-transfer proposal remains a separate larger research direction. It
 should inherit the stronger optimizer and fixed-state controls revealed here, and
 still test first-opportunity transfer after process restart against compact-state,
@@ -139,6 +146,8 @@ feed-forward-history and recurrent non-workspace rivals.
 
 - [Development record](../knowledge/records/2026-10-12T06-24-44Z-ae5cce04-full.json)
 - [First sealed held-out record](../knowledge/records/2026-10-12T06-27-05Z-ae5cce04-heldout.json)
+- [Full-suite development refresh](../knowledge/records/2026-10-12T06-38-09Z-ae5cce04-full.json)
+- [Full-suite held-out refresh](../knowledge/records/2026-10-12T06-51-40Z-ae5cce04-heldout.json)
 - [Exploratory rival-selection pilot](../runs/h014-selection-pilot.json)
 - [Fresh-context self-review](../reviews/H014-selective-integration-review.md)
 
@@ -155,6 +164,11 @@ pre-outcome loss accounting, read-only prediction hooks, exact restart replay,
 event preservation and prefix invariance. All **69** project tests passed after
 the session resumed; doctor passed. K14 additionally checks all 21 configurations
 in three worlds and fresh processes with Python hash seeds 1 and 99.
+
+The complete development and held-out evidence refreshes both exited 0, with no
+BROKEN or ERROR claims. Existing inconclusive results remain visible. The new
+selection claim remains REFUTED. Repeated evaluations of the same sealed seeds
+are evidence refreshes, not additional independent observations or confirmations.
 
 This is one research contribution and same-model self-review. Re-recording older
 claims from a differently identified environment may mechanically raise their
