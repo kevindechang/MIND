@@ -1,0 +1,2585 @@
+{
+ "by": "Codex (H014 session)",
+ "code": "026d2e01a8f57715",
+ "environment": {
+  "host": "17152f96",
+  "implementation": "CPython",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.12.14"
+ },
+ "environment_id": "ae5cce045b9a",
+ "evaluations": {
+  "C001": {
+   "claim": "C001",
+   "error": null,
+   "estimate": {
+    "a": 0.9145833333333333,
+    "b": 0.014166666666666668,
+    "diff": 0.9004166666666666,
+    "hi": 0.9597974283760968,
+    "lo": 0.8410359049572365,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "9a64e4118aca0932",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.08541666666666667,
+     "hi": -0.027125765912525246,
+     "lo": -0.14666666666666667,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 0.905,
+     "hi": 0.9656146486527497,
+     "lo": 0.8425,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.86375,
+     "hi": 0.9222245541421057,
+     "lo": 0.8052754458578943,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8": {
+     "advantage": 0.7629166666666667,
+     "hi": 0.8399801267588356,
+     "lo": 0.6858532065744978,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.8216666666666667,
+     "hi": 0.8980453938982624,
+     "lo": 0.7452879394350709,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.103,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C002": {
+   "claim": "C002",
+   "error": null,
+   "estimate": {
+    "a": 0.9145833333333333,
+    "b": 0.9137500000000001,
+    "diff": 0.0008333333333333109,
+    "hi": 0.06583142101709748,
+    "lo": -0.06416475435043086,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "bf74743a105dbcf9",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C003": {
+   "claim": "C003",
+   "error": null,
+   "estimate": {
+    "a": 0.5204166666666666,
+    "b": 0.002916666666666667,
+    "diff": 0.5175,
+    "hi": 0.6641333732147088,
+    "lo": 0.3708666267852912,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "861ff2976851a6b9",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.47958333333333336,
+     "hi": -0.33211733067481886,
+     "lo": -0.6270493359918479,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 0.5195833333333333,
+     "hi": 0.6667982029453933,
+     "lo": 0.3723684637212733,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.51625,
+     "hi": 0.6633076936754928,
+     "lo": 0.36919230632450717,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8": {
+     "advantage": 0.50875,
+     "hi": 0.6499064107063754,
+     "lo": 0.3675935892936246,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.5129166666666667,
+     "hi": 0.6589615498111083,
+     "lo": 0.36687178352222505,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.11,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C004": {
+   "claim": "C004",
+   "error": null,
+   "estimate": {
+    "hi": 0.8569881450676498,
+    "lo": 0.6338451882656837,
+    "summary": "interaction +0.745 [+0.634, +0.857] (claim: > 0.4)",
+    "synergy": 0.7454166666666667
+   },
+   "prediction_hash": "78021d0556c54106",
+   "rivals": {},
+   "robust": true,
+   "seconds": 1.064,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C005": {
+   "claim": "C005",
+   "error": null,
+   "estimate": {
+    "a": 0.8670833333333333,
+    "b": 0.6566666666666666,
+    "diff": 0.2104166666666667,
+    "hi": 0.30660472465670946,
+    "lo": 0.11422860867662392,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "48b47bbce4ed64c8",
+   "rivals": {
+    "bayes": {
+     "advantage": -0.13291666666666666,
+     "hi": -0.05998524339486022,
+     "lo": -0.2058480899384731,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "flat": {
+     "advantage": 0.2104166666666667,
+     "hi": 0.30660472465670946,
+     "lo": 0.11422860867662392,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.033,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C006": {
+   "claim": "C006",
+   "error": null,
+   "estimate": {
+    "a": 0.9145833333333333,
+    "b": 0.93,
+    "diff": -0.015416666666666676,
+    "hi": 0.04571216674480686,
+    "lo": -0.07875000000000001,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "89b0733446813d7a",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.016,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C009": {
+   "claim": "C009",
+   "error": null,
+   "estimate": {
+    "a": 14.565781249999999,
+    "b": 12.992343749999998,
+    "diff": 1.5734375000000003,
+    "hi": 2.269507666806361,
+    "lo": 0.8773673331936395,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "8f26be414e4c50cf",
+   "rivals": {
+    "bayes": {
+     "advantage": -1.0954166666666665,
+     "hi": -0.6631533347530647,
+     "lo": -1.5276799985802683,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 1.5140104166666672,
+     "hi": 2.336073589731331,
+     "lo": 0.6919472436020034,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.2583854166666666,
+     "hi": 0.8052565874953254,
+     "lo": -0.2884857541619922,
+     "reference": false,
+     "result": "NOT_BEATEN"
+    },
+    "window8": {
+     "advantage": 3.4573958333333352,
+     "hi": 4.858980704630742,
+     "lo": 2.055810962035928,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 1.3558854166666676,
+     "hi": 2.419197631149036,
+     "lo": 0.29257320218429905,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.095,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C011": {
+   "claim": "C011",
+   "error": null,
+   "estimate": {
+    "a": -1.6567291666666666,
+    "b": -1.6686041666666667,
+    "diff": 0.011874999999999983,
+    "hi": 0.06295680287541405,
+    "lo": -0.039206802875414094,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "73249070b56880ed",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.016,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C012": {
+   "claim": "C012",
+   "error": null,
+   "estimate": {
+    "hi": 0.5653698038327623,
+    "lo": 0.4915260295005711,
+    "mean": 0.5284479166666667,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "9a98682a21c03f58",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.016,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C013": {
+   "claim": "C013",
+   "error": null,
+   "estimate": {
+    "a": -1.6567291666666666,
+    "b": -1.6669791666666667,
+    "diff": 0.010250000000000009,
+    "hi": 0.05908864534781574,
+    "lo": -0.03858864534781572,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "056d06a28e0bb2ce",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.016,
+   "seeds": "dev",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C016": {
+   "claim": "C016",
+   "error": null,
+   "estimate": {
+    "causal_density": 0.3333333333333333,
+    "cross_function_cells": [
+     "memory\u2192vigil.calib_gain",
+     "goals\u2192vigil.calib_gain"
+    ],
+    "cross_function_organs": [
+     "goals",
+     "memory"
+    ],
+    "degenerate": [
+     "memory+goals\u2192vigil.kept",
+     "memory+goals\u2192vigil.calib_gain"
+    ],
+    "summary": "Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33"
+   },
+   "prediction_hash": "6fb6e0cd8a7cb832",
+   "rivals": {},
+   "robust": true,
+   "seconds": 17.454,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C017": {
+   "claim": "C017",
+   "error": null,
+   "estimate": {
+    "hi": 0.023761365976734755,
+    "lo": 0.01505160739506052,
+    "mean": 0.019406486685897638,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "842d1f99c128fc75",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.016,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C018": {
+   "claim": "C018",
+   "error": null,
+   "estimate": {
+    "hi": 0.012730482623526777,
+    "lo": 0.00825453310831489,
+    "mean": 0.010492507865920833,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "c67cc2c2b5301fad",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.019,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C019": {
+   "claim": "C019",
+   "error": null,
+   "estimate": {
+    "a": 0.905625,
+    "b": 0.9241145833333333,
+    "diff": -0.01848958333333333,
+    "hi": 0.002029369862500751,
+    "lo": -0.039008536529167415,
+    "n": 128,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "46973da0d8c9d44d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.139,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C020": {
+   "claim": "C020",
+   "error": null,
+   "estimate": {
+    "a": 14.272210286458332,
+    "b": 13.101197916666665,
+    "diff": 1.171012369791667,
+    "hi": 1.319602427686336,
+    "lo": 1.0204736328125004,
+    "n": 512,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "f0da0baaf04ef190",
+   "rivals": {
+    "bayes": {
+     "advantage": -1.3523225911458334,
+     "hi": -1.2669091796875,
+     "lo": -1.4363064405842216,
+     "reference": true,
+     "result": "NOT_BEATEN"
+    },
+    "reactive": {
+     "advantage": 1.1300569661458335,
+     "hi": 1.2906673177083334,
+     "lo": 0.9694612095593764,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window4": {
+     "advantage": 0.17680175781250007,
+     "hi": 0.3051253255208335,
+     "lo": 0.048839097775055546,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8": {
+     "advantage": 2.432936197916668,
+     "hi": 2.6533760535405566,
+     "lo": 2.2124963422927797,
+     "reference": false,
+     "result": "BEATEN"
+    },
+    "window8lin": {
+     "advantage": 0.5552750651041674,
+     "hi": 0.710848646563047,
+     "lo": 0.3997014836452877,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 3.184,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C030": {
+   "claim": "C030",
+   "error": null,
+   "estimate": {
+    "goals": {
+     "carry": {
+      "hi": -0.0013663444735088404,
+      "lo": -0.004444054031871902,
+      "mean": -0.002905199252690371
+     },
+     "content": {
+      "hi": 0.004038147476134376,
+      "lo": 0.0018843763657506402,
+      "mean": 0.002950987285271597
+     },
+     "contrast": {
+      "hi": 0.051959755848518474,
+      "lo": 0.01459562979626992,
+      "mean": 0.0332776928223942
+     },
+     "de": {
+      "hi": 0.007577375911246389,
+      "lo": 0.004134997164677546,
+      "mean": 0.005856186537961968
+     },
+     "share": 0.10327927059049838,
+     "te": {
+      "hi": 0.07473358560811917,
+      "lo": 0.03867129234036497,
+      "mean": 0.05670243897424207
+     },
+     "te_self": {
+      "hi": 0.008571066775018553,
+      "lo": -0.00385338466179619,
+      "mean": 0.002358841056611182
+     },
+     "te_table": {
+      "hi": 0.0706681312768408,
+      "lo": 0.03801906455842098,
+      "mean": 0.05434359791763089
+     }
+    },
+    "memory": {
+     "carry": {
+      "hi": 0.010800235608540442,
+      "lo": 0.008955655356706987,
+      "mean": 0.009877945482623714
+     },
+     "content": {
+      "hi": 0.00414312405288895,
+      "lo": 0.002383522295482632,
+      "mean": 0.003260612748870811
+     },
+     "contrast": {
+      "hi": 0.1330084059317813,
+      "lo": 0.0951893673755958,
+      "mean": 0.11409888665368854
+     },
+     "de": {
+      "hi": -0.005181384977239496,
+      "lo": -0.008029410639868586,
+      "mean": -0.006617332733752904
+     },
+     "share": -0.07551484974997447,
+     "te": {
+      "hi": 0.10343387666566171,
+      "lo": 0.07182523477169216,
+      "mean": 0.08762955571867694
+     },
+     "te_self": {
+      "hi": 0.051819169801975075,
+      "lo": 0.030057628190666614,
+      "mean": 0.04102759972690624
+     },
+     "te_table": {
+      "hi": 0.061252968744198416,
+      "lo": 0.03195094323934297,
+      "mean": 0.046601955991770694
+     }
+    },
+    "summary": "memory: TE +0.088 [+0.072,+0.103], DE -0.0066 [-0.0080,-0.0052] (share -8%); goals: TE +0.057 [+0.039,+0.075], DE +0.0059 [+0.0041,+0.0076] (share +10%) \u00b7 claim: TE > 0 and DE < TE/4"
+   },
+   "prediction_hash": "45476e429d8abce5",
+   "rivals": {},
+   "robust": true,
+   "seconds": 7.12,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C031": {
+   "claim": "C031",
+   "error": null,
+   "estimate": {
+    "a": 0.01713506459998176,
+    "b": 0.008990113061731263,
+    "diff": 0.008144951538250497,
+    "hi": 0.01086117439115962,
+    "lo": 0.005428728685341375,
+    "n": 32,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "8cc967af5b355725",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.031,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C033": {
+   "claim": "C033",
+   "error": null,
+   "estimate": {
+    "control": {
+     "hi": 1.9985327609641614,
+     "lo": 0.9831859890358396,
+     "mean": 1.4908593750000005
+    },
+    "metacognition": {
+     "hi": 0.002703913637186124,
+     "lo": 0.001547656900614207,
+     "mean": 0.0021257852689001654
+    },
+    "summary": "policy loses +1.49 [+0.98,+2.00] reward without memory's contents (claim > 0.5); self-model loses +0.0021 [+0.0015,+0.0027] Brier at fixed behaviour (claim > 0)"
+   },
+   "prediction_hash": "bbacf9fa2ea43ce9",
+   "rivals": {},
+   "robust": true,
+   "seconds": 9.41,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C034": {
+   "claim": "C034",
+   "error": null,
+   "estimate": {
+    "a": 0.8972083333333334,
+    "b": 0.78325,
+    "diff": 0.11395833333333333,
+    "hi": 0.16345242516127312,
+    "lo": 0.06446424150539354,
+    "n": 32,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "9fe53c717a27e619",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.035,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C035": {
+   "claim": "C035",
+   "error": null,
+   "estimate": {
+    "a": -1.6639583333333334,
+    "b": -1.66528125,
+    "diff": 0.0013229166666666667,
+    "hi": 0.030750031208259934,
+    "lo": -0.0281041978749266,
+    "n": 32,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "4a66a7adc9d8df63",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.035,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C036": {
+   "claim": "C036",
+   "error": null,
+   "estimate": {
+    "cells": {
+     "goals>outage": {
+      "hi": 0.0,
+      "info": 0.0,
+      "lo": 0.0,
+      "organ": "goals",
+      "p": 1.0,
+      "reliable": false,
+      "world": "outage"
+     },
+     "goals>vigil": {
+      "hi": 0.005984758166378591,
+      "info": 0.004167258568118863,
+      "lo": 0.0023497589698591344,
+      "organ": "goals",
+      "p": 0.0,
+      "reliable": true,
+      "world": "vigil"
+     },
+     "goals>workshop": {
+      "hi": 0.0,
+      "info": 0.0,
+      "lo": 0.0,
+      "organ": "goals",
+      "p": 1.0,
+      "reliable": false,
+      "world": "workshop"
+     },
+     "memory>outage": {
+      "hi": 0.005853074020787543,
+      "info": 0.004185712658750482,
+      "lo": 0.0025183512967134215,
+      "organ": "memory",
+      "p": 0.0,
+      "reliable": true,
+      "world": "outage"
+     },
+     "memory>vigil": {
+      "hi": 0.005255423905419659,
+      "info": 0.0037441615931931662,
+      "lo": 0.0022450428315532126,
+      "organ": "memory",
+      "p": 0.0,
+      "reliable": true,
+      "world": "vigil"
+     },
+     "memory>workshop": {
+      "hi": 0.0005231105300898161,
+      "info": 0.00019121748634150096,
+      "lo": -0.00014067555740681422,
+      "organ": "memory",
+      "p": 0.2178,
+      "reliable": false,
+      "world": "workshop"
+     }
+    },
+    "informs": {
+     "goals": [
+      "vigil"
+     ],
+     "memory": [
+      "outage",
+      "vigil"
+     ]
+    },
+    "summary": "Holm-corrected, load-matched sham, fixed behaviour: memory informs the self-model in ['outage', 'vigil'], goals in ['vigil'] (memory>vigil +0.0037*, goals>vigil +0.0042*, memory>outage +0.0042*, goals>outage +0.0000, memory>workshop +0.0002, goals>workshop +0.0000)"
+   },
+   "prediction_hash": "bfe0b30fc9d6c11e",
+   "rivals": {},
+   "robust": true,
+   "seconds": 12.065,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C050": {
+   "claim": "C050",
+   "error": null,
+   "estimate": {
+    "diagnostic": {
+     "bias_rule_gain": {
+      "descriptive": true,
+      "hi": 0.003934380698329006,
+      "lo": -0.00709821603055454,
+      "mean": -0.001581917666112767
+     },
+     "context_gain_adagrad": {
+      "descriptive": true,
+      "hi": 0.20270332639065117,
+      "lo": 0.17789803166648568,
+      "mean": 0.19030067902856843
+     },
+     "memory_carry_adagrad": {
+      "descriptive": true,
+      "hi": 0.002470344671871503,
+      "lo": -0.0005212531377071648,
+      "mean": 0.0009745457670821691
+     },
+     "memory_content_adagrad": {
+      "descriptive": true,
+      "hi": 0.010257267372138711,
+      "lo": 0.0061048157226082,
+      "mean": 0.008181041547373456
+     },
+     "memory_net_adagrad": {
+      "descriptive": true,
+      "hi": 0.009122007016509233,
+      "lo": 0.005290984544073341,
+      "mean": 0.007206495780291287
+     },
+     "sqrt_gain": {
+      "descriptive": true,
+      "hi": 0.018698147381508223,
+      "lo": 0.016322343220202127,
+      "mean": 0.017510245300855175
+     }
+    },
+    "per_seed": [
+     {
+      "adagrad": 0.028084924763325,
+      "bias_adagrad": 0.24319625959980717,
+      "bias_normalised": 0.263117679866425,
+      "brier": 0.03789812176297143,
+      "drop_memory": 0.02988403294640714,
+      "seed": 0,
+      "sham_memory": 0.03177238889113571,
+      "sqrt": 0.024676205208282145
+     },
+     {
+      "adagrad": 0.016861405829130253,
+      "bias_adagrad": 0.24250336703205463,
+      "bias_normalised": 0.23817947661365127,
+      "brier": 0.029122799576957983,
+      "drop_memory": 0.02171100252777731,
+      "seed": 1,
+      "sham_memory": 0.020599785647966388,
+      "sqrt": 0.015672735792869746
+     },
+     {
+      "adagrad": 0.04437397124559843,
+      "bias_adagrad": 0.22830758150165353,
+      "bias_normalised": 0.20995538560000787,
+      "brier": 0.05831054906316535,
+      "drop_memory": 0.05199490093705905,
+      "seed": 2,
+      "sham_memory": 0.0487262361724252,
+      "sqrt": 0.039492738220539364
+     },
+     {
+      "adagrad": 0.01841903889946975,
+      "bias_adagrad": 0.2215254525963701,
+      "bias_normalised": 0.22787784304588612,
+      "brier": 0.033870967985772236,
+      "drop_memory": 0.022722332609373664,
+      "seed": 3,
+      "sham_memory": 0.024128399780996443,
+      "sqrt": 0.017469646542199287
+     },
+     {
+      "adagrad": 0.04155432161417869,
+      "bias_adagrad": 0.2270963105046976,
+      "bias_normalised": 0.2340281937959244,
+      "brier": 0.05279845259561512,
+      "drop_memory": 0.04842951863219931,
+      "seed": 4,
+      "sham_memory": 0.05335126848112371,
+      "sqrt": 0.034756921523467356
+     },
+     {
+      "adagrad": 0.016252571411606423,
+      "bias_adagrad": 0.23472467383026105,
+      "bias_normalised": 0.2381593175271566,
+      "brier": 0.034801940282208836,
+      "drop_memory": 0.02208762978778313,
+      "seed": 5,
+      "sham_memory": 0.020926556401859437,
+      "sqrt": 0.01796118109856225
+     },
+     {
+      "adagrad": 0.010890806858427509,
+      "bias_adagrad": 0.24427928344047953,
+      "bias_normalised": 0.25416028143062824,
+      "brier": 0.021418544596405204,
+      "drop_memory": 0.013709514168605948,
+      "seed": 6,
+      "sham_memory": 0.012492395933899628,
+      "sqrt": 0.008117778306810408
+     },
+     {
+      "adagrad": 0.04434801288969277,
+      "bias_adagrad": 0.20757313082135845,
+      "bias_normalised": 0.21485377479818973,
+      "brier": 0.058139324823575304,
+      "drop_memory": 0.05624299276216265,
+      "seed": 7,
+      "sham_memory": 0.052389031554822295,
+      "sqrt": 0.041438796958930726
+     },
+     {
+      "adagrad": 0.04450776106438909,
+      "bias_adagrad": 0.19614502256885818,
+      "bias_normalised": 0.1787837032388109,
+      "brier": 0.062010554930694545,
+      "drop_memory": 0.05594978474921818,
+      "seed": 8,
+      "sham_memory": 0.05690994637478909,
+      "sqrt": 0.04503764914964
+     },
+     {
+      "adagrad": 0.042528991491209304,
+      "bias_adagrad": 0.2448425736553754,
+      "bias_normalised": 0.2432923075015515,
+      "brier": 0.06035316329700997,
+      "drop_memory": 0.05289173970345515,
+      "seed": 9,
+      "sham_memory": 0.05138690719834219,
+      "sqrt": 0.043386308377345514
+     },
+     {
+      "adagrad": 0.04888573999337037,
+      "bias_adagrad": 0.1999959058097531,
+      "bias_normalised": 0.16216759662085803,
+      "brier": 0.08251840308296296,
+      "drop_memory": 0.07584124360415431,
+      "seed": 10,
+      "sham_memory": 0.07798215374507408,
+      "sqrt": 0.06519628387953705
+     },
+     {
+      "adagrad": 0.04075400510703739,
+      "bias_adagrad": 0.22782160401143925,
+      "bias_normalised": 0.20001621314708878,
+      "brier": 0.056981140391471966,
+      "drop_memory": 0.04531169407592524,
+      "seed": 11,
+      "sham_memory": 0.050067198685887854,
+      "sqrt": 0.040112840167093454
+     },
+     {
+      "adagrad": 0.0291970362737551,
+      "bias_adagrad": 0.24723114033083674,
+      "bias_normalised": 0.23988424296890612,
+      "brier": 0.051303045498106124,
+      "drop_memory": 0.03635615078683265,
+      "seed": 12,
+      "sham_memory": 0.038818272825281636,
+      "sqrt": 0.026815104392444895
+     },
+     {
+      "adagrad": 0.09077278009553522,
+      "bias_adagrad": 0.23701494192761036,
+      "bias_normalised": 0.20805625495997182,
+      "brier": 0.11620182837919249,
+      "drop_memory": 0.0920227658291784,
+      "seed": 13,
+      "sham_memory": 0.10042016759321128,
+      "sqrt": 0.09176743624317842
+     },
+     {
+      "adagrad": 0.028721726990254545,
+      "bias_adagrad": 0.24455945552650546,
+      "bias_normalised": 0.2390950549446691,
+      "brier": 0.041264828840305454,
+      "drop_memory": 0.039064079468639996,
+      "seed": 14,
+      "sham_memory": 0.040644532266840006,
+      "sqrt": 0.0233953070162
+     },
+     {
+      "adagrad": 0.05883616389751738,
+      "bias_adagrad": 0.22129116922645947,
+      "bias_normalised": 0.21047809270794982,
+      "brier": 0.07318316065098456,
+      "drop_memory": 0.06921331409940541,
+      "seed": 15,
+      "sham_memory": 0.07966804813090733,
+      "sqrt": 0.05115848951303861
+     },
+     {
+      "adagrad": 0.032546102028122186,
+      "bias_adagrad": 0.2506172775482669,
+      "bias_normalised": 0.2652943403150675,
+      "brier": 0.04397124126488746,
+      "drop_memory": 0.04021835368717685,
+      "seed": 16,
+      "sham_memory": 0.03953759407578135,
+      "sqrt": 0.025098551112244374
+     },
+     {
+      "adagrad": 0.04391515408680682,
+      "bias_adagrad": 0.23060592674319697,
+      "bias_normalised": 0.24271497338748485,
+      "brier": 0.058859230864030304,
+      "drop_memory": 0.04480461794578788,
+      "seed": 17,
+      "sham_memory": 0.04621989542414015,
+      "sqrt": 0.04086172270142424
+     },
+     {
+      "adagrad": 0.03279079207297818,
+      "bias_adagrad": 0.2672489360527818,
+      "bias_normalised": 0.2737071013856073,
+      "brier": 0.04643531246285818,
+      "drop_memory": 0.045481227237265456,
+      "seed": 18,
+      "sham_memory": 0.03976224525965091,
+      "sqrt": 0.02974623223532
+     },
+     {
+      "adagrad": 0.04249926318637255,
+      "bias_adagrad": 0.2615534181214346,
+      "bias_normalised": 0.27926946915465684,
+      "brier": 0.04841933684487255,
+      "drop_memory": 0.039612662306526145,
+      "seed": 19,
+      "sham_memory": 0.04396238431939542,
+      "sqrt": 0.03099789564189869
+     },
+     {
+      "adagrad": 0.05867505567687188,
+      "bias_adagrad": 0.2522890320018968,
+      "bias_normalised": 0.24561488282837365,
+      "brier": 0.07167679569700355,
+      "drop_memory": 0.06926901315064769,
+      "seed": 20,
+      "sham_memory": 0.07166280898845195,
+      "sqrt": 0.052290786864209966
+     },
+     {
+      "adagrad": 0.06024230823343751,
+      "bias_adagrad": 0.22964595024256249,
+      "bias_normalised": 0.2258429416012206,
+      "brier": 0.079671933954,
+      "drop_memory": 0.07172269870733823,
+      "seed": 21,
+      "sham_memory": 0.07210014276037868,
+      "sqrt": 0.058239849406694855
+     },
+     {
+      "adagrad": 0.062035049937224813,
+      "bias_adagrad": 0.22644516785673643,
+      "bias_normalised": 0.2132685256959341,
+      "brier": 0.09051892874648837,
+      "drop_memory": 0.0703319344991124,
+      "seed": 22,
+      "sham_memory": 0.06953109400047675,
+      "sqrt": 0.07353825377955425
+     },
+     {
+      "adagrad": 0.04841121866674095,
+      "bias_adagrad": 0.2048998192373148,
+      "bias_normalised": 0.20211878428250696,
+      "brier": 0.06153360947766295,
+      "drop_memory": 0.05670613861060725,
+      "seed": 23,
+      "sham_memory": 0.0519806179212117,
+      "sqrt": 0.04166227541881058
+     },
+     {
+      "adagrad": 0.026373253409559472,
+      "bias_adagrad": 0.22602306830702645,
+      "bias_normalised": 0.2229179003945066,
+      "brier": 0.04157211384277092,
+      "drop_memory": 0.03403294241334802,
+      "seed": 24,
+      "sham_memory": 0.03122947395401762,
+      "sqrt": 0.02820736288628194
+     },
+     {
+      "adagrad": 0.016062253843654166,
+      "bias_adagrad": 0.23570180515377084,
+      "bias_normalised": 0.24009320206051665,
+      "brier": 0.029015416483825,
+      "drop_memory": 0.020614990887920834,
+      "seed": 25,
+      "sham_memory": 0.020933309570091665,
+      "sqrt": 0.01656907954595
+     },
+     {
+      "adagrad": 0.05258843957039285,
+      "bias_adagrad": 0.1487927007870982,
+      "bias_normalised": 0.15568523158708034,
+      "brier": 0.09920458446096428,
+      "drop_memory": 0.0545900347210625,
+      "seed": 26,
+      "sham_memory": 0.06715604210769643,
+      "sqrt": 0.07548141787372321
+     },
+     {
+      "adagrad": 0.03107823162510452,
+      "bias_adagrad": 0.24888447207194916,
+      "bias_normalised": 0.2707422274429576,
+      "brier": 0.04746037355724858,
+      "drop_memory": 0.03736727575924576,
+      "seed": 27,
+      "sham_memory": 0.03808958729518079,
+      "sqrt": 0.0271060444594322
+     },
+     {
+      "adagrad": 0.07024359124412059,
+      "bias_adagrad": 0.2130843893020235,
+      "bias_normalised": 0.20927284684452352,
+      "brier": 0.08158826408909119,
+      "drop_memory": 0.08153235457611177,
+      "seed": 28,
+      "sham_memory": 0.07582000885681177,
+      "sqrt": 0.06510316941551471
+     },
+     {
+      "adagrad": 0.01700549039233908,
+      "bias_adagrad": 0.1699620884807931,
+      "bias_normalised": 0.1428199746889138,
+      "brier": 0.035505952851672413,
+      "drop_memory": 0.024986282205155173,
+      "seed": 29,
+      "sham_memory": 0.025885346819229885,
+      "sqrt": 0.02284766796052299
+     },
+     {
+      "adagrad": 0.020398973927486113,
+      "bias_adagrad": 0.22580718039181594,
+      "bias_normalised": 0.241098577004809,
+      "brier": 0.039046131556010416,
+      "drop_memory": 0.021032458483947917,
+      "seed": 30,
+      "sham_memory": 0.022274156672857637,
+      "sqrt": 0.02414323451290972
+     },
+     {
+      "adagrad": 0.013593929022768708,
+      "bias_adagrad": 0.2634009895804796,
+      "bias_normalised": 0.2798823315052245,
+      "brier": 0.026673445392914965,
+      "drop_memory": 0.01832054843836735,
+      "seed": 31,
+      "sham_memory": 0.018813697154493197,
+      "sqrt": 0.012652681471704081
+     }
+    ],
+    "primary": {
+     "a": 0.055354046790740644,
+     "b": 0.038545261417139924,
+     "diff": 0.01680878537360072,
+     "hi": 0.0196884751949586,
+     "lo": 0.014011008552582888,
+     "n": 32,
+     "verdict": "HOLDS"
+    },
+    "scores": {
+     "adagrad": 0.038545261417139924,
+     "bias_adagrad": 0.22884594044570836,
+     "bias_normalised": 0.2272640227795956,
+     "brier": 0.055354046790740644,
+     "drop_memory": 0.045751757197431214,
+     "sham_memory": 0.04672630296451338,
+     "sqrt": 0.03784380148988547
+    },
+    "summary": "fixed-behaviour vigil Brier gain +0.0168 [+0.0140,+0.0197] > 0.008; normalised 0.0554, AdaGrad 0.0385"
+   },
+   "prediction_hash": "58a8cda21d9be859",
+   "rivals": {},
+   "robust": true,
+   "seconds": 6.213,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C051": {
+   "claim": "C051",
+   "error": null,
+   "estimate": {
+    "by_world": {
+     "outage/silent": {
+      "fixed_rival": "adagrad/all",
+      "means": {
+       "adagrad/all": 0.05523825442864448,
+       "adagrad/bias": 0.08099784300019133,
+       "adagrad/learned": 0.05531823006011061,
+       "adagrad/no_goals": 0.05523825442864448,
+       "adagrad/no_memory": 0.057697570379294336,
+       "adagrad/no_memory_goals": 0.057697570379294336,
+       "adagrad/uniform": 0.05705758819933622,
+       "normalised/all": 0.05579674590441512,
+       "normalised/bias": 0.07554390222061234,
+       "normalised/learned": 0.05588049554779449,
+       "normalised/no_goals": 0.05579674590441512,
+       "normalised/no_memory": 0.057922531173315285,
+       "normalised/no_memory_goals": 0.057922531173315285,
+       "normalised/uniform": 0.057517033331366374,
+       "sqrt/all": 0.05709788639825266
+      },
+      "per_seed": [
+       {
+        "adagrad/all": 0.06067376064357249,
+        "adagrad/bias": 0.08447476031699061,
+        "adagrad/learned": 0.06069985583321007,
+        "adagrad/no_goals": 0.06067376064357249,
+        "adagrad/no_memory": 0.0614589345897349,
+        "adagrad/no_memory_goals": 0.0614589345897349,
+        "adagrad/uniform": 0.0618362504045906,
+        "normalised/all": 0.06187132036364698,
+        "normalised/bias": 0.08182431247612551,
+        "normalised/learned": 0.06208955122311946,
+        "normalised/no_goals": 0.06187132036364698,
+        "normalised/no_memory": 0.06309354089436577,
+        "normalised/no_memory_goals": 0.06309354089436577,
+        "normalised/uniform": 0.06340091881207383,
+        "seed": 0,
+        "sqrt/all": 0.06367236128036376
+       },
+       {
+        "adagrad/all": 0.059838265108292384,
+        "adagrad/bias": 0.08944897036624228,
+        "adagrad/learned": 0.05983919314400274,
+        "adagrad/no_goals": 0.059838265108292384,
+        "adagrad/no_memory": 0.06286444721294783,
+        "adagrad/no_memory_goals": 0.06286444721294783,
+        "adagrad/uniform": 0.06222913753565408,
+        "normalised/all": 0.06103265725861839,
+        "normalised/bias": 0.08342197200235416,
+        "normalised/learned": 0.06102438197946397,
+        "normalised/no_goals": 0.06103265725861839,
+        "normalised/no_memory": 0.06233116748010776,
+        "normalised/no_memory_goals": 0.06233116748010776,
+        "normalised/uniform": 0.06279764073643719,
+        "seed": 1,
+        "sqrt/all": 0.06283069451184557
+       },
+       {
+        "adagrad/all": 0.060517381921821906,
+        "adagrad/bias": 0.08356825984930284,
+        "adagrad/learned": 0.060527383301219685,
+        "adagrad/no_goals": 0.060517381921821906,
+        "adagrad/no_memory": 0.06473624607387664,
+        "adagrad/no_memory_goals": 0.06473624607387664,
+        "adagrad/uniform": 0.06225340981023978,
+        "normalised/all": 0.060217396180783096,
+        "normalised/bias": 0.07781161305676923,
+        "normalised/learned": 0.060301904504564796,
+        "normalised/no_goals": 0.060217396180783096,
+        "normalised/no_memory": 0.06307245739660915,
+        "normalised/no_memory_goals": 0.06307245739660915,
+        "normalised/uniform": 0.061751358221260565,
+        "seed": 2,
+        "sqrt/all": 0.061474858580444214
+       },
+       {
+        "adagrad/all": 0.06995462964399016,
+        "adagrad/bias": 0.10589244847667838,
+        "adagrad/learned": 0.07003093064761376,
+        "adagrad/no_goals": 0.06995462964399016,
+        "adagrad/no_memory": 0.07231989735248595,
+        "adagrad/no_memory_goals": 0.07231989735248595,
+        "adagrad/uniform": 0.07175766038063414,
+        "normalised/all": 0.07023804989071278,
+        "normalised/bias": 0.09561600564882092,
+        "normalised/learned": 0.07031947050176546,
+        "normalised/no_goals": 0.07023804989071278,
+        "normalised/no_memory": 0.07058005091638764,
+        "normalised/no_memory_goals": 0.07058005091638764,
+        "normalised/uniform": 0.07118298588671769,
+        "seed": 3,
+        "sqrt/all": 0.07169894118363694
+       },
+       {
+        "adagrad/all": 0.043281390880100065,
+        "adagrad/bias": 0.06469076104888724,
+        "adagrad/learned": 0.0437840077258661,
+        "adagrad/no_goals": 0.043281390880100065,
+        "adagrad/no_memory": 0.044179068910978156,
+        "adagrad/no_memory_goals": 0.044179068910978156,
+        "adagrad/uniform": 0.04410512406786469,
+        "normalised/all": 0.04377584775889711,
+        "normalised/bias": 0.058829558314427766,
+        "normalised/learned": 0.04403975391062016,
+        "normalised/no_goals": 0.04377584775889711,
+        "normalised/no_memory": 0.045465628499894294,
+        "normalised/no_memory_goals": 0.045465628499894294,
+        "normalised/uniform": 0.04484622987331571,
+        "seed": 4,
+        "sqrt/all": 0.04461921480405779
+       },
+       {
+        "adagrad/all": 0.05165618325024073,
+        "adagrad/bias": 0.08118623652721915,
+        "adagrad/learned": 0.05170495502330343,
+        "adagrad/no_goals": 0.05165618325024073,
+        "adagrad/no_memory": 0.053118552592879294,
+        "adagrad/no_memory_goals": 0.053118552592879294,
+        "adagrad/uniform": 0.05397423362238773,
+        "normalised/all": 0.05227596190488806,
+        "normalised/bias": 0.07511410890760957,
+        "normalised/learned": 0.05231203680879771,
+        "normalised/no_goals": 0.05227596190488806,
+        "normalised/no_memory": 0.05361095100172691,
+        "normalised/no_memory_goals": 0.05361095100172691,
+        "normalised/uniform": 0.05436447345605934,
+        "seed": 5,
+        "sqrt/all": 0.053550208395677
+       },
+       {
+        "adagrad/all": 0.0602392668839115,
+        "adagrad/bias": 0.09459856098112594,
+        "adagrad/learned": 0.06010612546425051,
+        "adagrad/no_goals": 0.0602392668839115,
+        "adagrad/no_memory": 0.060857421812374406,
+        "adagrad/no_memory_goals": 0.060857421812374406,
+        "adagrad/uniform": 0.061768866206262756,
+        "normalised/all": 0.060496031396682776,
+        "normalised/bias": 0.0872506588535303,
+        "normalised/learned": 0.060420027135095984,
+        "normalised/no_goals": 0.060496031396682776,
+        "normalised/no_memory": 0.06106460818152485,
+        "normalised/no_memory_goals": 0.06106460818152485,
+        "normalised/uniform": 0.06214625870218721,
+        "seed": 6,
+        "sqrt/all": 0.06159904690180327
+       },
+       {
+        "adagrad/all": 0.05602325497301589,
+        "adagrad/bias": 0.08095849650110153,
+        "adagrad/learned": 0.05675535843039986,
+        "adagrad/no_goals": 0.05602325497301589,
+        "adagrad/no_memory": 0.060403255610020724,
+        "adagrad/no_memory_goals": 0.060403255610020724,
+        "adagrad/uniform": 0.05869691495512293,
+        "normalised/all": 0.05771095570869544,
+        "normalised/bias": 0.07558212223260152,
+        "normalised/learned": 0.058142160657787295,
+        "normalised/no_goals": 0.05771095570869544,
+        "normalised/no_memory": 0.060484965587703735,
+        "normalised/no_memory_goals": 0.060484965587703735,
+        "normalised/uniform": 0.05971435485204213,
+        "seed": 7,
+        "sqrt/all": 0.05844282788349654
+       },
+       {
+        "adagrad/all": 0.04915546353358165,
+        "adagrad/bias": 0.07385255808490553,
+        "adagrad/learned": 0.04937383951789406,
+        "adagrad/no_goals": 0.04915546353358165,
+        "adagrad/no_memory": 0.05101349795689069,
+        "adagrad/no_memory_goals": 0.05101349795689069,
+        "adagrad/uniform": 0.05111492221109784,
+        "normalised/all": 0.0503962884809757,
+        "normalised/bias": 0.0712688335577112,
+        "normalised/learned": 0.05042137051959041,
+        "normalised/no_goals": 0.0503962884809757,
+        "normalised/no_memory": 0.05251708916013698,
+        "normalised/no_memory_goals": 0.05251708916013698,
+        "normalised/uniform": 0.05234822551333738,
+        "seed": 8,
+        "sqrt/all": 0.052483841127704454
+       },
+       {
+        "adagrad/all": 0.04221742584750104,
+        "adagrad/bias": 0.05755997308097581,
+        "adagrad/learned": 0.04221942885970283,
+        "adagrad/no_goals": 0.04221742584750104,
+        "adagrad/no_memory": 0.046111668660780925,
+        "adagrad/no_memory_goals": 0.046111668660780925,
+        "adagrad/uniform": 0.044117678641130614,
+        "normalised/all": 0.04296381797981479,
+        "normalised/bias": 0.05493493529430132,
+        "normalised/learned": 0.042958653147288875,
+        "normalised/no_goals": 0.04296381797981479,
+        "normalised/no_memory": 0.04682417400862819,
+        "normalised/no_memory_goals": 0.04682417400862819,
+        "normalised/uniform": 0.04498664868832135,
+        "seed": 9,
+        "sqrt/all": 0.04392561247489357
+       },
+       {
+        "adagrad/all": 0.04194434382267411,
+        "adagrad/bias": 0.0678142830173224,
+        "adagrad/learned": 0.041945685709157014,
+        "adagrad/no_goals": 0.04194434382267411,
+        "adagrad/no_memory": 0.04411987660233496,
+        "adagrad/no_memory_goals": 0.04411987660233496,
+        "adagrad/uniform": 0.04392793866011375,
+        "normalised/all": 0.04352790712402512,
+        "normalised/bias": 0.06393187309321632,
+        "normalised/learned": 0.04352932051387788,
+        "normalised/no_goals": 0.04352790712402512,
+        "normalised/no_memory": 0.045511987019482905,
+        "normalised/no_memory_goals": 0.045511987019482905,
+        "normalised/uniform": 0.04568929599933566,
+        "seed": 10,
+        "sqrt/all": 0.0449862022240998
+       },
+       {
+        "adagrad/all": 0.046344709894051477,
+        "adagrad/bias": 0.061708625861042546,
+        "adagrad/learned": 0.0463447311353768,
+        "adagrad/no_goals": 0.046344709894051477,
+        "adagrad/no_memory": 0.05504348453639602,
+        "adagrad/no_memory_goals": 0.05504348453639602,
+        "adagrad/uniform": 0.04940496817595539,
+        "normalised/all": 0.04716647004676871,
+        "normalised/bias": 0.05962153220182087,
+        "normalised/learned": 0.04713814274857172,
+        "normalised/no_goals": 0.04716647004676871,
+        "normalised/no_memory": 0.05441449105943446,
+        "normalised/no_memory_goals": 0.05441449105943446,
+        "normalised/uniform": 0.05025388391196569,
+        "seed": 11,
+        "sqrt/all": 0.04841425212945298
+       },
+       {
+        "adagrad/all": 0.047732508405964526,
+        "adagrad/bias": 0.06808589270958032,
+        "adagrad/learned": 0.04780228828114257,
+        "adagrad/no_goals": 0.047732508405964526,
+        "adagrad/no_memory": 0.05148654369717269,
+        "adagrad/no_memory_goals": 0.05148654369717269,
+        "adagrad/uniform": 0.04997664165213254,
+        "normalised/all": 0.04907156678980656,
+        "normalised/bias": 0.0653751612563822,
+        "normalised/learned": 0.04926982364023227,
+        "normalised/no_goals": 0.04907156678980656,
+        "normalised/no_memory": 0.05251026331163186,
+        "normalised/no_memory_goals": 0.05251026331163186,
+        "normalised/uniform": 0.0512740013721834,
+        "seed": 12,
+        "sqrt/all": 0.050769343447771086
+       },
+       {
+        "adagrad/all": 0.06334851388694174,
+        "adagrad/bias": 0.07454736156989582,
+        "adagrad/learned": 0.06333646946082591,
+        "adagrad/no_goals": 0.06334851388694174,
+        "adagrad/no_memory": 0.06540524831483208,
+        "adagrad/no_memory_goals": 0.06540524831483208,
+        "adagrad/uniform": 0.06364445545360246,
+        "normalised/all": 0.063244480940512,
+        "normalised/bias": 0.07055770642117204,
+        "normalised/learned": 0.06322421116569636,
+        "normalised/no_goals": 0.063244480940512,
+        "normalised/no_memory": 0.06608748269894517,
+        "normalised/no_memory_goals": 0.06608748269894517,
+        "normalised/uniform": 0.06341280347281768,
+        "seed": 13,
+        "sqrt/all": 0.06397397813400892
+       },
+       {
+        "adagrad/all": 0.03927670951256389,
+        "adagrad/bias": 0.060911475767685415,
+        "adagrad/learned": 0.03927672196154514,
+        "adagrad/no_goals": 0.03927670951256389,
+        "adagrad/no_memory": 0.04088816973656389,
+        "adagrad/no_memory_goals": 0.04088816973656389,
+        "adagrad/uniform": 0.04130529634478264,
+        "normalised/all": 0.04012908555506667,
+        "normalised/bias": 0.05786441371681597,
+        "normalised/learned": 0.04011504327485764,
+        "normalised/no_goals": 0.04012908555506667,
+        "normalised/no_memory": 0.041846433568099306,
+        "normalised/no_memory_goals": 0.041846433568099306,
+        "normalised/uniform": 0.041689530844868754,
+        "seed": 14,
+        "sqrt/all": 0.04186638849926736
+       },
+       {
+        "adagrad/all": 0.0738839797423178,
+        "adagrad/bias": 0.09656521185897747,
+        "adagrad/learned": 0.07397701465706912,
+        "adagrad/no_goals": 0.0738839797423178,
+        "adagrad/no_memory": 0.07548471552470172,
+        "adagrad/no_memory_goals": 0.07548471552470172,
+        "adagrad/uniform": 0.07584062850315927,
+        "normalised/all": 0.07322062589258077,
+        "normalised/bias": 0.08866735023673854,
+        "normalised/learned": 0.07297211003467392,
+        "normalised/no_goals": 0.07322062589258077,
+        "normalised/no_memory": 0.07339986937413824,
+        "normalised/no_memory_goals": 0.07339986937413824,
+        "normalised/uniform": 0.07368052073342901,
+        "seed": 15,
+        "sqrt/all": 0.07267705970751315
+       },
+       {
+        "adagrad/all": 0.06557787846911647,
+        "adagrad/bias": 0.10123414887698962,
+        "adagrad/learned": 0.06547896285911425,
+        "adagrad/no_goals": 0.06557787846911647,
+        "adagrad/no_memory": 0.06430992687336201,
+        "adagrad/no_memory_goals": 0.06430992687336201,
+        "adagrad/uniform": 0.06653695601953487,
+        "normalised/all": 0.0651028501303724,
+        "normalised/bias": 0.09553236704826706,
+        "normalised/learned": 0.06510760709241098,
+        "normalised/no_goals": 0.0651028501303724,
+        "normalised/no_memory": 0.06597431562927522,
+        "normalised/no_memory_goals": 0.06597431562927522,
+        "normalised/uniform": 0.06767394687253338,
+        "seed": 16,
+        "sqrt/all": 0.06727455063605119
+       },
+       {
+        "adagrad/all": 0.06476482494367215,
+        "adagrad/bias": 0.1020975804254314,
+        "adagrad/learned": 0.06510783385092524,
+        "adagrad/no_goals": 0.06476482494367215,
+        "adagrad/no_memory": 0.07075746382796297,
+        "adagrad/no_memory_goals": 0.07075746382796297,
+        "adagrad/uniform": 0.06819794288972154,
+        "normalised/all": 0.06523349917807202,
+        "normalised/bias": 0.09242058365813786,
+        "normalised/learned": 0.06529392698827434,
+        "normalised/no_goals": 0.06523349917807202,
+        "normalised/no_memory": 0.06973620072397325,
+        "normalised/no_memory_goals": 0.06973620072397325,
+        "normalised/uniform": 0.06825596410019136,
+        "seed": 17,
+        "sqrt/all": 0.06659352477281208
+       },
+       {
+        "adagrad/all": 0.05123971595719287,
+        "adagrad/bias": 0.06894229194777568,
+        "adagrad/learned": 0.05109622591531936,
+        "adagrad/no_goals": 0.05123971595719287,
+        "adagrad/no_memory": 0.05231128894266527,
+        "adagrad/no_memory_goals": 0.05231128894266527,
+        "adagrad/uniform": 0.05159931485194689,
+        "normalised/all": 0.049902599808865127,
+        "normalised/bias": 0.06273414380259748,
+        "normalised/learned": 0.049812157077474495,
+        "normalised/no_goals": 0.049902599808865127,
+        "normalised/no_memory": 0.0513797576277058,
+        "normalised/no_memory_goals": 0.0513797576277058,
+        "normalised/uniform": 0.05042232119197344,
+        "seed": 18,
+        "sqrt/all": 0.05035587162875053
+       },
+       {
+        "adagrad/all": 0.04806197042447311,
+        "adagrad/bias": 0.06576540417443363,
+        "adagrad/learned": 0.048162838545381885,
+        "adagrad/no_goals": 0.04806197042447311,
+        "adagrad/no_memory": 0.05176789340927366,
+        "adagrad/no_memory_goals": 0.05176789340927366,
+        "adagrad/uniform": 0.04960697106497141,
+        "normalised/all": 0.04842157047534173,
+        "normalised/bias": 0.06174610396553369,
+        "normalised/learned": 0.049059467879347854,
+        "normalised/no_goals": 0.04842157047534173,
+        "normalised/no_memory": 0.05098548426595371,
+        "normalised/no_memory_goals": 0.05098548426595371,
+        "normalised/uniform": 0.04981403425106262,
+        "seed": 19,
+        "sqrt/all": 0.04984862368374404
+       },
+       {
+        "adagrad/all": 0.062277236628635435,
+        "adagrad/bias": 0.08896711141926676,
+        "adagrad/learned": 0.06266386622761218,
+        "adagrad/no_goals": 0.062277236628635435,
+        "adagrad/no_memory": 0.06440232889982353,
+        "adagrad/no_memory_goals": 0.06440232889982353,
+        "adagrad/uniform": 0.06321589521085703,
+        "normalised/all": 0.06398816705041928,
+        "normalised/bias": 0.08692073246254377,
+        "normalised/learned": 0.06453721228837073,
+        "normalised/no_goals": 0.06398816705041928,
+        "normalised/no_memory": 0.06684136325406773,
+        "normalised/no_memory_goals": 0.06684136325406773,
+        "normalised/uniform": 0.06634187766995897,
+        "seed": 20,
+        "sqrt/all": 0.06649363805790083
+       },
+       {
+        "adagrad/all": 0.04798836846352009,
+        "adagrad/bias": 0.08209584456537326,
+        "adagrad/learned": 0.04804231277337743,
+        "adagrad/no_goals": 0.04798836846352009,
+        "adagrad/no_memory": 0.05165335487834419,
+        "adagrad/no_memory_goals": 0.05165335487834419,
+        "adagrad/uniform": 0.050901529391957065,
+        "normalised/all": 0.048824569386424516,
+        "normalised/bias": 0.07287514447520707,
+        "normalised/learned": 0.04885411362522784,
+        "normalised/no_goals": 0.048824569386424516,
+        "normalised/no_memory": 0.051129632376128116,
+        "normalised/no_memory_goals": 0.051129632376128116,
+        "normalised/uniform": 0.05103002718140582,
+        "seed": 21,
+        "sqrt/all": 0.04980409262367728
+       },
+       {
+        "adagrad/all": 0.05025750178421301,
+        "adagrad/bias": 0.08551557541704315,
+        "adagrad/learned": 0.05024725503312945,
+        "adagrad/no_goals": 0.05025750178421301,
+        "adagrad/no_memory": 0.05084746188215685,
+        "adagrad/no_memory_goals": 0.05084746188215685,
+        "adagrad/uniform": 0.05208829086089178,
+        "normalised/all": 0.05081572150047192,
+        "normalised/bias": 0.07872887981934862,
+        "normalised/learned": 0.050859354278345204,
+        "normalised/no_goals": 0.05081572150047192,
+        "normalised/no_memory": 0.051540993839855484,
+        "normalised/no_memory_goals": 0.051540993839855484,
+        "normalised/uniform": 0.05265808786714247,
+        "seed": 22,
+        "sqrt/all": 0.05147372182540754
+       },
+       {
+        "adagrad/all": 0.053158861511214725,
+        "adagrad/bias": 0.08205385605374053,
+        "adagrad/learned": 0.05340383016509223,
+        "adagrad/no_goals": 0.053158861511214725,
+        "adagrad/no_memory": 0.053629113524094975,
+        "adagrad/no_memory_goals": 0.053629113524094975,
+        "adagrad/uniform": 0.05410652002954164,
+        "normalised/all": 0.05481242831891742,
+        "normalised/bias": 0.07863046332526773,
+        "normalised/learned": 0.05494010495728355,
+        "normalised/no_goals": 0.05481242831891742,
+        "normalised/no_memory": 0.055265864867830014,
+        "normalised/no_memory_goals": 0.055265864867830014,
+        "normalised/uniform": 0.056099717388178254,
+        "seed": 23,
+        "sqrt/all": 0.05629612715603992
+       },
+       {
+        "adagrad/all": 0.056049249329496335,
+        "adagrad/bias": 0.08891464291753079,
+        "adagrad/learned": 0.056050234437840914,
+        "adagrad/no_goals": 0.056049249329496335,
+        "adagrad/no_memory": 0.05721655540984311,
+        "adagrad/no_memory_goals": 0.05721655540984311,
+        "adagrad/uniform": 0.057960768706118035,
+        "normalised/all": 0.056500579829704536,
+        "normalised/bias": 0.08236780665933578,
+        "normalised/learned": 0.05666922611081965,
+        "normalised/no_goals": 0.056500579829704536,
+        "normalised/no_memory": 0.05747052816236731,
+        "normalised/no_memory_goals": 0.05747052816236731,
+        "normalised/uniform": 0.05835661428427785,
+        "seed": 24,
+        "sqrt/all": 0.058478179991478
+       },
+       {
+        "adagrad/all": 0.06151412629788164,
+        "adagrad/bias": 0.09146518979187314,
+        "adagrad/learned": 0.06151519275078101,
+        "adagrad/no_goals": 0.06151412629788164,
+        "adagrad/no_memory": 0.06255023350006236,
+        "adagrad/no_memory_goals": 0.06255023350006236,
+        "adagrad/uniform": 0.06307255519409426,
+        "normalised/all": 0.06136773169760807,
+        "normalised/bias": 0.08032199991850532,
+        "normalised/learned": 0.06136668738327357,
+        "normalised/no_goals": 0.06136773169760807,
+        "normalised/no_memory": 0.06256129823559108,
+        "normalised/no_memory_goals": 0.06256129823559108,
+        "normalised/uniform": 0.0625355731541545,
+        "seed": 25,
+        "sqrt/all": 0.061486333134571226
+       },
+       {
+        "adagrad/all": 0.06325857640451316,
+        "adagrad/bias": 0.09657253889733033,
+        "adagrad/learned": 0.0632053818242126,
+        "adagrad/no_goals": 0.06325857640451316,
+        "adagrad/no_memory": 0.06424361135110526,
+        "adagrad/no_memory_goals": 0.06424361135110526,
+        "adagrad/uniform": 0.06476830683722024,
+        "normalised/all": 0.06417459314373615,
+        "normalised/bias": 0.08846411560515444,
+        "normalised/learned": 0.0641227312800748,
+        "normalised/no_goals": 0.06417459314373615,
+        "normalised/no_memory": 0.0651078579126579,
+        "normalised/no_memory_goals": 0.0651078579126579,
+        "normalised/uniform": 0.0654722745268234,
+        "seed": 26,
+        "sqrt/all": 0.06576125609328394
+       },
+       {
+        "adagrad/all": 0.0454534611836526,
+        "adagrad/bias": 0.05780576392950173,
+        "adagrad/learned": 0.04545385815063184,
+        "adagrad/no_goals": 0.0454534611836526,
+        "adagrad/no_memory": 0.05003682714157785,
+        "adagrad/no_memory_goals": 0.05003682714157785,
+        "adagrad/uniform": 0.047507481778088584,
+        "normalised/all": 0.0453923489144526,
+        "normalised/bias": 0.0545722066240256,
+        "normalised/learned": 0.04537931220741938,
+        "normalised/no_goals": 0.0453923489144526,
+        "normalised/no_memory": 0.04916762324657578,
+        "normalised/no_memory_goals": 0.04916762324657578,
+        "normalised/uniform": 0.04726341170076193,
+        "seed": 27,
+        "sqrt/all": 0.04718386472102353
+       },
+       {
+        "adagrad/all": 0.05083296681167806,
+        "adagrad/bias": 0.0795136060376596,
+        "adagrad/learned": 0.05097650899481544,
+        "adagrad/no_goals": 0.05083296681167806,
+        "adagrad/no_memory": 0.05142231257204921,
+        "adagrad/no_memory_goals": 0.05142231257204921,
+        "adagrad/uniform": 0.05218664499997949,
+        "normalised/all": 0.051421239196415586,
+        "normalised/bias": 0.07482882073128161,
+        "normalised/learned": 0.05143663146201572,
+        "normalised/no_goals": 0.051421239196415586,
+        "normalised/no_memory": 0.052056586530369105,
+        "normalised/no_memory_goals": 0.052056586530369105,
+        "normalised/uniform": 0.05296757393269582,
+        "seed": 28,
+        "sqrt/all": 0.05284806479698975
+       },
+       {
+        "adagrad/all": 0.06836086285891643,
+        "adagrad/bias": 0.10137898852774149,
+        "adagrad/learned": 0.06826748817531586,
+        "adagrad/no_goals": 0.06836086285891643,
+        "adagrad/no_memory": 0.07103890061760623,
+        "adagrad/no_memory_goals": 0.07103890061760623,
+        "adagrad/uniform": 0.07087936928375921,
+        "normalised/all": 0.06934675366871529,
+        "normalised/bias": 0.09440844433095467,
+        "normalised/learned": 0.06936798160152478,
+        "normalised/no_goals": 0.06934675366871529,
+        "normalised/no_memory": 0.0709713452802408,
+        "normalised/no_memory_goals": 0.0709713452802408,
+        "normalised/uniform": 0.0712792966842146,
+        "seed": 29,
+        "sqrt/all": 0.07160854753082507
+       },
+       {
+        "adagrad/all": 0.05735874906382446,
+        "adagrad/bias": 0.0763494006654554,
+        "adagrad/learned": 0.05743970529969568,
+        "adagrad/no_goals": 0.05735874906382446,
+        "adagrad/no_memory": 0.06465933294689208,
+        "adagrad/no_memory_goals": 0.06465933294689208,
+        "adagrad/uniform": 0.060976731721733096,
+        "normalised/all": 0.05695390023756978,
+        "normalised/bias": 0.07013300613762663,
+        "normalised/learned": 0.05710908814926331,
+        "normalised/no_goals": 0.05695390023756978,
+        "normalised/no_memory": 0.06270707208981943,
+        "normalised/no_memory_goals": 0.06270707208981943,
+        "normalised/uniform": 0.059223840875435974,
+        "seed": 30,
+        "sqrt/all": 0.056818356298319425
+       },
+       {
+        "adagrad/all": 0.05538200363408149,
+        "adagrad/bias": 0.07739515634104309,
+        "adagrad/learned": 0.05534787776771448,
+        "adagrad/no_goals": 0.05538200363408149,
+        "adagrad/no_memory": 0.055984617175628276,
+        "adagrad/no_memory_goals": 0.055984617175628276,
+        "adagrad/uniform": 0.05628341691361279,
+        "normalised/all": 0.055898853131722555,
+        "normalised/bias": 0.0750478952254101,
+        "normalised/learned": 0.0559822933822936,
+        "normalised/no_goals": 0.055898853131722555,
+        "normalised/no_memory": 0.057809913344861276,
+        "normalised/no_memory_goals": 0.057809913344861276,
+        "normalised/uniform": 0.05761137384656095,
+        "seed": 31,
+        "sqrt/all": 0.057822780507174404
+       }
+      ]
+     },
+     "vigil/dev": {
+      "fixed_rival": "sqrt/all",
+      "means": {
+       "adagrad/all": 0.038545261417139924,
+       "adagrad/bias": 0.22884594044570836,
+       "adagrad/learned": 0.041506826526901706,
+       "adagrad/no_goals": 0.05288847462935069,
+       "adagrad/no_memory": 0.045751757197431214,
+       "adagrad/no_memory_goals": 0.06069721556189043,
+       "adagrad/uniform": 0.06538461497896099,
+       "normalised/all": 0.055354046790740644,
+       "normalised/bias": 0.2272640227795956,
+       "normalised/learned": 0.051053327833361736,
+       "normalised/no_goals": 0.061210233328702617,
+       "normalised/no_memory": 0.04873671405698774,
+       "normalised/no_memory_goals": 0.05201415266638515,
+       "normalised/uniform": 0.07279785079700271,
+       "sqrt/all": 0.03784380148988547
+      },
+      "per_seed": [
+       {
+        "adagrad/all": 0.028084924763325,
+        "adagrad/bias": 0.24319625959980717,
+        "adagrad/learned": 0.02882167650954643,
+        "adagrad/no_goals": 0.04348820358345,
+        "adagrad/no_memory": 0.02988403294640714,
+        "adagrad/no_memory_goals": 0.046351495116225,
+        "adagrad/uniform": 0.05407871825432857,
+        "normalised/all": 0.03789812176297143,
+        "normalised/bias": 0.263117679866425,
+        "normalised/learned": 0.03175983983616429,
+        "normalised/no_goals": 0.045656416089389286,
+        "normalised/no_memory": 0.03021152233323571,
+        "normalised/no_memory_goals": 0.03392355627621786,
+        "normalised/uniform": 0.059137297732128564,
+        "seed": 0,
+        "sqrt/all": 0.024676205208282145
+       },
+       {
+        "adagrad/all": 0.016861405829130253,
+        "adagrad/bias": 0.24250336703205463,
+        "adagrad/learned": 0.018956758386941178,
+        "adagrad/no_goals": 0.029215353254378153,
+        "adagrad/no_memory": 0.02171100252777731,
+        "adagrad/no_memory_goals": 0.034868370449109246,
+        "adagrad/uniform": 0.04449361506061765,
+        "normalised/all": 0.029122799576957983,
+        "normalised/bias": 0.23817947661365127,
+        "normalised/learned": 0.025439737425478993,
+        "normalised/no_goals": 0.03709955069402101,
+        "normalised/no_memory": 0.02381581478165966,
+        "normalised/no_memory_goals": 0.026894504932155464,
+        "normalised/uniform": 0.050148013978084036,
+        "seed": 1,
+        "sqrt/all": 0.015672735792869746
+       },
+       {
+        "adagrad/all": 0.04437397124559843,
+        "adagrad/bias": 0.22830758150165353,
+        "adagrad/learned": 0.04810031529785433,
+        "adagrad/no_goals": 0.051842955107842516,
+        "adagrad/no_memory": 0.05199490093705905,
+        "adagrad/no_memory_goals": 0.06686534503479921,
+        "adagrad/uniform": 0.07011883305291733,
+        "normalised/all": 0.05831054906316535,
+        "normalised/bias": 0.20995538560000787,
+        "normalised/learned": 0.055103893409200785,
+        "normalised/no_goals": 0.05960160767193307,
+        "normalised/no_memory": 0.052639370113948813,
+        "normalised/no_memory_goals": 0.055776529126775595,
+        "normalised/uniform": 0.0740255582841063,
+        "seed": 2,
+        "sqrt/all": 0.039492738220539364
+       },
+       {
+        "adagrad/all": 0.01841903889946975,
+        "adagrad/bias": 0.2215254525963701,
+        "adagrad/learned": 0.019205170263120994,
+        "adagrad/no_goals": 0.02415616771095018,
+        "adagrad/no_memory": 0.022722332609373664,
+        "adagrad/no_memory_goals": 0.028236992278661922,
+        "adagrad/uniform": 0.0415502538157758,
+        "normalised/all": 0.033870967985772236,
+        "normalised/bias": 0.22787784304588612,
+        "normalised/learned": 0.024612833740185053,
+        "normalised/no_goals": 0.034122025615160145,
+        "normalised/no_memory": 0.024404829547985767,
+        "normalised/no_memory_goals": 0.022057934667124555,
+        "normalised/uniform": 0.04974318611086121,
+        "seed": 3,
+        "sqrt/all": 0.017469646542199287
+       },
+       {
+        "adagrad/all": 0.04155432161417869,
+        "adagrad/bias": 0.2270963105046976,
+        "adagrad/learned": 0.042222783013024054,
+        "adagrad/no_goals": 0.04621575434928179,
+        "adagrad/no_memory": 0.04842951863219931,
+        "adagrad/no_memory_goals": 0.05896805588403781,
+        "adagrad/uniform": 0.06577566992749485,
+        "normalised/all": 0.05279845259561512,
+        "normalised/bias": 0.2340281937959244,
+        "normalised/learned": 0.0484455995083299,
+        "normalised/no_goals": 0.052767701269257734,
+        "normalised/no_memory": 0.047920763655900346,
+        "normalised/no_memory_goals": 0.04671913695213402,
+        "normalised/uniform": 0.07034492938678007,
+        "seed": 4,
+        "sqrt/all": 0.034756921523467356
+       },
+       {
+        "adagrad/all": 0.016252571411606423,
+        "adagrad/bias": 0.23472467383026105,
+        "adagrad/learned": 0.018692491748718877,
+        "adagrad/no_goals": 0.02593399622812048,
+        "adagrad/no_memory": 0.02208762978778313,
+        "adagrad/no_memory_goals": 0.032004482791779115,
+        "adagrad/uniform": 0.04303858704995583,
+        "normalised/all": 0.034801940282208836,
+        "normalised/bias": 0.2381593175271566,
+        "normalised/learned": 0.030813387458698795,
+        "normalised/no_goals": 0.04228809522725702,
+        "normalised/no_memory": 0.030252733088072293,
+        "normalised/no_memory_goals": 0.03253316162327711,
+        "normalised/uniform": 0.05694513810297992,
+        "seed": 5,
+        "sqrt/all": 0.01796118109856225
+       },
+       {
+        "adagrad/all": 0.010890806858427509,
+        "adagrad/bias": 0.24427928344047953,
+        "adagrad/learned": 0.011843055333535316,
+        "adagrad/no_goals": 0.03212195571793309,
+        "adagrad/no_memory": 0.013709514168605948,
+        "adagrad/no_memory_goals": 0.035153294282237915,
+        "adagrad/uniform": 0.04227599465496283,
+        "normalised/all": 0.021418544596405204,
+        "normalised/bias": 0.25416028143062824,
+        "normalised/learned": 0.016259878016955387,
+        "normalised/no_goals": 0.03377829248179926,
+        "normalised/no_memory": 0.013893472439847584,
+        "normalised/no_memory_goals": 0.018555544840776952,
+        "normalised/uniform": 0.04499727673635316,
+        "seed": 6,
+        "sqrt/all": 0.008117778306810408
+       },
+       {
+        "adagrad/all": 0.04434801288969277,
+        "adagrad/bias": 0.20757313082135845,
+        "adagrad/learned": 0.048716098743521084,
+        "adagrad/no_goals": 0.06628653752221385,
+        "adagrad/no_memory": 0.05624299276216265,
+        "adagrad/no_memory_goals": 0.07716901138619277,
+        "adagrad/uniform": 0.07322555038395483,
+        "normalised/all": 0.058139324823575304,
+        "normalised/bias": 0.21485377479818973,
+        "normalised/learned": 0.056526800240394574,
+        "normalised/no_goals": 0.06754898224936445,
+        "normalised/no_memory": 0.052790857006542166,
+        "normalised/no_memory_goals": 0.06006617083896687,
+        "normalised/uniform": 0.07703319536440362,
+        "seed": 7,
+        "sqrt/all": 0.041438796958930726
+       },
+       {
+        "adagrad/all": 0.04450776106438909,
+        "adagrad/bias": 0.19614502256885818,
+        "adagrad/learned": 0.04812634662393454,
+        "adagrad/no_goals": 0.05818700948310181,
+        "adagrad/no_memory": 0.05594978474921818,
+        "adagrad/no_memory_goals": 0.07105174066620364,
+        "adagrad/uniform": 0.06918441127404727,
+        "normalised/all": 0.062010554930694545,
+        "normalised/bias": 0.1787837032388109,
+        "normalised/learned": 0.06023656437578909,
+        "normalised/no_goals": 0.06686459244740364,
+        "normalised/no_memory": 0.056557458624345455,
+        "normalised/no_memory_goals": 0.060760975007239995,
+        "normalised/uniform": 0.07518154574156727,
+        "seed": 8,
+        "sqrt/all": 0.04503764914964
+       },
+       {
+        "adagrad/all": 0.042528991491209304,
+        "adagrad/bias": 0.2448425736553754,
+        "adagrad/learned": 0.046131969203701,
+        "adagrad/no_goals": 0.06034138323408638,
+        "adagrad/no_memory": 0.05289173970345515,
+        "adagrad/no_memory_goals": 0.06843782529408306,
+        "adagrad/uniform": 0.07414338097767774,
+        "normalised/all": 0.06035316329700997,
+        "normalised/bias": 0.2432923075015515,
+        "normalised/learned": 0.05823989691976745,
+        "normalised/no_goals": 0.06907716146538538,
+        "normalised/no_memory": 0.05360137852438871,
+        "normalised/no_memory_goals": 0.058187391323511625,
+        "normalised/uniform": 0.07927938057161794,
+        "seed": 9,
+        "sqrt/all": 0.043386308377345514
+       },
+       {
+        "adagrad/all": 0.04888573999337037,
+        "adagrad/bias": 0.1999959058097531,
+        "adagrad/learned": 0.05290327936734568,
+        "adagrad/no_goals": 0.06330633412322839,
+        "adagrad/no_memory": 0.07584124360415431,
+        "adagrad/no_memory_goals": 0.09805331591461729,
+        "adagrad/uniform": 0.07936811194760493,
+        "normalised/all": 0.08251840308296296,
+        "normalised/bias": 0.16216759662085803,
+        "normalised/learned": 0.08701054979064198,
+        "normalised/no_goals": 0.08924084251355556,
+        "normalised/no_memory": 0.09141296043317285,
+        "normalised/no_memory_goals": 0.10025652942207408,
+        "normalised/uniform": 0.0990173025835432,
+        "seed": 10,
+        "sqrt/all": 0.06519628387953705
+       },
+       {
+        "adagrad/all": 0.04075400510703739,
+        "adagrad/bias": 0.22782160401143925,
+        "adagrad/learned": 0.04300458780655607,
+        "adagrad/no_goals": 0.047009742529607476,
+        "adagrad/no_memory": 0.04531169407592524,
+        "adagrad/no_memory_goals": 0.056594508668205604,
+        "adagrad/uniform": 0.06360693275215888,
+        "normalised/all": 0.056981140391471966,
+        "normalised/bias": 0.20001621314708878,
+        "normalised/learned": 0.04984723500566356,
+        "normalised/no_goals": 0.056438044081682244,
+        "normalised/no_memory": 0.04930903665251869,
+        "normalised/no_memory_goals": 0.048516248929014016,
+        "normalised/uniform": 0.06923884584947664,
+        "seed": 11,
+        "sqrt/all": 0.040112840167093454
+       },
+       {
+        "adagrad/all": 0.0291970362737551,
+        "adagrad/bias": 0.24723114033083674,
+        "adagrad/learned": 0.03316665712138367,
+        "adagrad/no_goals": 0.04353372820905306,
+        "adagrad/no_memory": 0.03635615078683265,
+        "adagrad/no_memory_goals": 0.045536530432408164,
+        "adagrad/uniform": 0.05920882680310204,
+        "normalised/all": 0.051303045498106124,
+        "normalised/bias": 0.23988424296890612,
+        "normalised/learned": 0.04316904547135102,
+        "normalised/no_goals": 0.06033556777648163,
+        "normalised/no_memory": 0.0398535979082653,
+        "normalised/no_memory_goals": 0.0418164918067347,
+        "normalised/uniform": 0.0705350481355347,
+        "seed": 12,
+        "sqrt/all": 0.026815104392444895
+       },
+       {
+        "adagrad/all": 0.09077278009553522,
+        "adagrad/bias": 0.23701494192761036,
+        "adagrad/learned": 0.09841537120153522,
+        "adagrad/no_goals": 0.12682995803519248,
+        "adagrad/no_memory": 0.0920227658291784,
+        "adagrad/no_memory_goals": 0.13269399449003286,
+        "adagrad/uniform": 0.12211104975893897,
+        "normalised/all": 0.11620182837919249,
+        "normalised/bias": 0.20805625495997182,
+        "normalised/learned": 0.12030833467400469,
+        "normalised/no_goals": 0.13270283182789672,
+        "normalised/no_memory": 0.10796669594812676,
+        "normalised/no_memory_goals": 0.12581565994375588,
+        "normalised/uniform": 0.13223648397440377,
+        "seed": 13,
+        "sqrt/all": 0.09176743624317842
+       },
+       {
+        "adagrad/all": 0.028721726990254545,
+        "adagrad/bias": 0.24455945552650546,
+        "adagrad/learned": 0.02983553612090545,
+        "adagrad/no_goals": 0.044230367224938186,
+        "adagrad/no_memory": 0.039064079468639996,
+        "adagrad/no_memory_goals": 0.04951498265932727,
+        "adagrad/uniform": 0.05971882446790909,
+        "normalised/all": 0.041264828840305454,
+        "normalised/bias": 0.2390950549446691,
+        "normalised/learned": 0.03255607386241455,
+        "normalised/no_goals": 0.045083664621563636,
+        "normalised/no_memory": 0.03236808171685091,
+        "normalised/no_memory_goals": 0.030738082218047275,
+        "normalised/uniform": 0.05890565907844363,
+        "seed": 14,
+        "sqrt/all": 0.0233953070162
+       },
+       {
+        "adagrad/all": 0.05883616389751738,
+        "adagrad/bias": 0.22129116922645947,
+        "adagrad/learned": 0.06332807640661003,
+        "adagrad/no_goals": 0.0746500929941969,
+        "adagrad/no_memory": 0.06921331409940541,
+        "adagrad/no_memory_goals": 0.08452605019378379,
+        "adagrad/uniform": 0.0864664733795251,
+        "normalised/all": 0.07318316065098456,
+        "normalised/bias": 0.21047809270794982,
+        "normalised/learned": 0.07039791740545173,
+        "normalised/no_goals": 0.0802655537001081,
+        "normalised/no_memory": 0.06527759544955213,
+        "normalised/no_memory_goals": 0.06874915398470656,
+        "normalised/uniform": 0.08869924082431274,
+        "seed": 15,
+        "sqrt/all": 0.05115848951303861
+       },
+       {
+        "adagrad/all": 0.032546102028122186,
+        "adagrad/bias": 0.2506172775482669,
+        "adagrad/learned": 0.035597646405858524,
+        "adagrad/no_goals": 0.04284449167232476,
+        "adagrad/no_memory": 0.04021835368717685,
+        "adagrad/no_memory_goals": 0.051431132121659166,
+        "adagrad/uniform": 0.06096817702855948,
+        "normalised/all": 0.04397124126488746,
+        "normalised/bias": 0.2652943403150675,
+        "normalised/learned": 0.03619529145241479,
+        "normalised/no_goals": 0.04897673604398392,
+        "normalised/no_memory": 0.035728250952707395,
+        "normalised/no_memory_goals": 0.0358162206108746,
+        "normalised/uniform": 0.06415832519474599,
+        "seed": 16,
+        "sqrt/all": 0.025098551112244374
+       },
+       {
+        "adagrad/all": 0.04391515408680682,
+        "adagrad/bias": 0.23060592674319697,
+        "adagrad/learned": 0.04692074334690909,
+        "adagrad/no_goals": 0.06153637616530303,
+        "adagrad/no_memory": 0.04480461794578788,
+        "adagrad/no_memory_goals": 0.05819352637798485,
+        "adagrad/uniform": 0.06865681800672349,
+        "normalised/all": 0.058859230864030304,
+        "normalised/bias": 0.24271497338748485,
+        "normalised/learned": 0.05010377550178409,
+        "normalised/no_goals": 0.06567965954460227,
+        "normalised/no_memory": 0.04733422314102651,
+        "normalised/no_memory_goals": 0.04801667708817803,
+        "normalised/uniform": 0.07497245165460227,
+        "seed": 17,
+        "sqrt/all": 0.04086172270142424
+       },
+       {
+        "adagrad/all": 0.03279079207297818,
+        "adagrad/bias": 0.2672489360527818,
+        "adagrad/learned": 0.03507507732649091,
+        "adagrad/no_goals": 0.05236841480509455,
+        "adagrad/no_memory": 0.045481227237265456,
+        "adagrad/no_memory_goals": 0.06097469912809819,
+        "adagrad/uniform": 0.06794329274910181,
+        "normalised/all": 0.04643531246285818,
+        "normalised/bias": 0.2737071013856073,
+        "normalised/learned": 0.042450867972861815,
+        "normalised/no_goals": 0.05193155712965455,
+        "normalised/no_memory": 0.04214209253077091,
+        "normalised/no_memory_goals": 0.04255117328927272,
+        "normalised/uniform": 0.06893890866771636,
+        "seed": 18,
+        "sqrt/all": 0.02974623223532
+       },
+       {
+        "adagrad/all": 0.04249926318637255,
+        "adagrad/bias": 0.2615534181214346,
+        "adagrad/learned": 0.041455051057542484,
+        "adagrad/no_goals": 0.056249256621820266,
+        "adagrad/no_memory": 0.039612662306526145,
+        "adagrad/no_memory_goals": 0.05357458407330065,
+        "adagrad/uniform": 0.06703471612757189,
+        "normalised/all": 0.04841933684487255,
+        "normalised/bias": 0.27926946915465684,
+        "normalised/learned": 0.04317485263696405,
+        "normalised/no_goals": 0.052721614798692806,
+        "normalised/no_memory": 0.04157297237518628,
+        "normalised/no_memory_goals": 0.042299903016869284,
+        "normalised/uniform": 0.06994610288956862,
+        "seed": 19,
+        "sqrt/all": 0.03099789564189869
+       },
+       {
+        "adagrad/all": 0.05867505567687188,
+        "adagrad/bias": 0.2522890320018968,
+        "adagrad/learned": 0.06236466915291103,
+        "adagrad/no_goals": 0.06953315113201423,
+        "adagrad/no_memory": 0.06926901315064769,
+        "adagrad/no_memory_goals": 0.07995381511995017,
+        "adagrad/uniform": 0.08738285124696797,
+        "normalised/all": 0.07167679569700355,
+        "normalised/bias": 0.24561488282837365,
+        "normalised/learned": 0.0685740035009573,
+        "normalised/no_goals": 0.07524575082366547,
+        "normalised/no_memory": 0.06674158858005694,
+        "normalised/no_memory_goals": 0.06958076527401069,
+        "normalised/uniform": 0.09039116747273665,
+        "seed": 20,
+        "sqrt/all": 0.052290786864209966
+       },
+       {
+        "adagrad/all": 0.06024230823343751,
+        "adagrad/bias": 0.22964595024256249,
+        "adagrad/learned": 0.06433047170315809,
+        "adagrad/no_goals": 0.06738629246805883,
+        "adagrad/no_memory": 0.07172269870733823,
+        "adagrad/no_memory_goals": 0.07857796308656251,
+        "adagrad/uniform": 0.08471393521954779,
+        "normalised/all": 0.079671933954,
+        "normalised/bias": 0.2258429416012206,
+        "normalised/learned": 0.07699584965861396,
+        "normalised/no_goals": 0.07947651243058823,
+        "normalised/no_memory": 0.07529332988795588,
+        "normalised/no_memory_goals": 0.07488622067610662,
+        "normalised/uniform": 0.09488956071257354,
+        "seed": 21,
+        "sqrt/all": 0.058239849406694855
+       },
+       {
+        "adagrad/all": 0.062035049937224813,
+        "adagrad/bias": 0.22644516785673643,
+        "adagrad/learned": 0.06518285631991086,
+        "adagrad/no_goals": 0.09901871905612016,
+        "adagrad/no_memory": 0.0703319344991124,
+        "adagrad/no_memory_goals": 0.10176301030446899,
+        "adagrad/uniform": 0.09085264227963177,
+        "normalised/all": 0.09051892874648837,
+        "normalised/bias": 0.2132685256959341,
+        "normalised/learned": 0.08924715446443411,
+        "normalised/no_goals": 0.10827564035963179,
+        "normalised/no_memory": 0.08319408047403876,
+        "normalised/no_memory_goals": 0.10108245975401937,
+        "normalised/uniform": 0.10749079009752713,
+        "seed": 22,
+        "sqrt/all": 0.07353825377955425
+       },
+       {
+        "adagrad/all": 0.04841121866674095,
+        "adagrad/bias": 0.2048998192373148,
+        "adagrad/learned": 0.051130404933465184,
+        "adagrad/no_goals": 0.05831475356411142,
+        "adagrad/no_memory": 0.05670613861060725,
+        "adagrad/no_memory_goals": 0.06727169514297493,
+        "adagrad/uniform": 0.07118025840460446,
+        "normalised/all": 0.06153360947766295,
+        "normalised/bias": 0.20211878428250696,
+        "normalised/learned": 0.057837909681256267,
+        "normalised/no_goals": 0.06546125365579109,
+        "normalised/no_memory": 0.05560255320211977,
+        "normalised/no_memory_goals": 0.05809085226996379,
+        "normalised/uniform": 0.07698232414053481,
+        "seed": 23,
+        "sqrt/all": 0.04166227541881058
+       },
+       {
+        "adagrad/all": 0.026373253409559472,
+        "adagrad/bias": 0.22602306830702645,
+        "adagrad/learned": 0.028637310802405287,
+        "adagrad/no_goals": 0.0325618563856696,
+        "adagrad/no_memory": 0.03403294241334802,
+        "adagrad/no_memory_goals": 0.04353847356694713,
+        "adagrad/uniform": 0.04948203846547137,
+        "normalised/all": 0.04157211384277092,
+        "normalised/bias": 0.2229179003945066,
+        "normalised/learned": 0.03814856864776652,
+        "normalised/no_goals": 0.0424521820617533,
+        "normalised/no_memory": 0.03951078976785903,
+        "normalised/no_memory_goals": 0.038101150736933924,
+        "normalised/uniform": 0.0587372356938326,
+        "seed": 24,
+        "sqrt/all": 0.02820736288628194
+       },
+       {
+        "adagrad/all": 0.016062253843654166,
+        "adagrad/bias": 0.23570180515377084,
+        "adagrad/learned": 0.017284329343679166,
+        "adagrad/no_goals": 0.019818544608283337,
+        "adagrad/no_memory": 0.020614990887920834,
+        "adagrad/no_memory_goals": 0.026091632034795833,
+        "adagrad/uniform": 0.03864904080366667,
+        "normalised/all": 0.029015416483825,
+        "normalised/bias": 0.24009320206051665,
+        "normalised/learned": 0.020215491737858336,
+        "normalised/no_goals": 0.028733543179125003,
+        "normalised/no_memory": 0.02022115771621667,
+        "normalised/no_memory_goals": 0.018652877031983334,
+        "normalised/uniform": 0.044717725212612504,
+        "seed": 25,
+        "sqrt/all": 0.01656907954595
+       },
+       {
+        "adagrad/all": 0.05258843957039285,
+        "adagrad/bias": 0.1487927007870982,
+        "adagrad/learned": 0.05963810963255357,
+        "adagrad/no_goals": 0.07934242875311606,
+        "adagrad/no_memory": 0.0545900347210625,
+        "adagrad/no_memory_goals": 0.0857603803651875,
+        "adagrad/uniform": 0.07677418443801785,
+        "normalised/all": 0.09920458446096428,
+        "normalised/bias": 0.15568523158708034,
+        "normalised/learned": 0.09525453191858928,
+        "normalised/no_goals": 0.10886985851461607,
+        "normalised/no_memory": 0.08493000160616963,
+        "normalised/no_memory_goals": 0.09487738288116963,
+        "normalised/uniform": 0.10530331496777678,
+        "seed": 26,
+        "sqrt/all": 0.07548141787372321
+       },
+       {
+        "adagrad/all": 0.03107823162510452,
+        "adagrad/bias": 0.24888447207194916,
+        "adagrad/learned": 0.03460504654216949,
+        "adagrad/no_goals": 0.048924856352714687,
+        "adagrad/no_memory": 0.03736727575924576,
+        "adagrad/no_memory_goals": 0.05177093098073446,
+        "adagrad/uniform": 0.06245547859298588,
+        "normalised/all": 0.04746037355724858,
+        "normalised/bias": 0.2707422274429576,
+        "normalised/learned": 0.04088645088947175,
+        "normalised/no_goals": 0.05867037858408758,
+        "normalised/no_memory": 0.036585614720700564,
+        "normalised/no_memory_goals": 0.04134581007840678,
+        "normalised/uniform": 0.07032202451796893,
+        "seed": 27,
+        "sqrt/all": 0.0271060444594322
+       },
+       {
+        "adagrad/all": 0.07024359124412059,
+        "adagrad/bias": 0.2130843893020235,
+        "adagrad/learned": 0.07693237308877647,
+        "adagrad/no_goals": 0.09150791084546177,
+        "adagrad/no_memory": 0.08153235457611177,
+        "adagrad/no_memory_goals": 0.10194311771696177,
+        "adagrad/uniform": 0.09738026016308236,
+        "normalised/all": 0.08158826408909119,
+        "normalised/bias": 0.20927284684452352,
+        "normalised/learned": 0.08218571312273823,
+        "normalised/no_goals": 0.08801772917361471,
+        "normalised/no_memory": 0.07643384008522647,
+        "normalised/no_memory_goals": 0.08306666019898823,
+        "normalised/uniform": 0.09574946485160293,
+        "seed": 28,
+        "sqrt/all": 0.06510316941551471
+       },
+       {
+        "adagrad/all": 0.01700549039233908,
+        "adagrad/bias": 0.1699620884807931,
+        "adagrad/learned": 0.01894178804841954,
+        "adagrad/no_goals": 0.019327351231545976,
+        "adagrad/no_memory": 0.024986282205155173,
+        "adagrad/no_memory_goals": 0.03413056673639655,
+        "adagrad/uniform": 0.03545366290183908,
+        "normalised/all": 0.035505952851672413,
+        "normalised/bias": 0.1428199746889138,
+        "normalised/learned": 0.030814096819316093,
+        "normalised/no_goals": 0.032838843140678156,
+        "normalised/no_memory": 0.03366457921055172,
+        "normalised/no_memory_goals": 0.03237069509943678,
+        "normalised/uniform": 0.04544476231766092,
+        "seed": 29,
+        "sqrt/all": 0.02284766796052299
+       },
+       {
+        "adagrad/all": 0.020398973927486113,
+        "adagrad/bias": 0.22580718039181594,
+        "adagrad/learned": 0.022252085573506945,
+        "adagrad/no_goals": 0.030025931744420135,
+        "adagrad/no_memory": 0.021032458483947917,
+        "adagrad/no_memory_goals": 0.03152410402905556,
+        "adagrad/uniform": 0.04212306900672222,
+        "normalised/all": 0.039046131556010416,
+        "normalised/bias": 0.241098577004809,
+        "normalised/learned": 0.0319622222024618,
+        "normalised/no_goals": 0.04453403536475,
+        "normalised/no_memory": 0.03018577902129514,
+        "normalised/no_memory_goals": 0.03283234981665278,
+        "normalised/uniform": 0.057179247123625,
+        "seed": 30,
+        "sqrt/all": 0.02414323451290972
+       },
+       {
+        "adagrad/all": 0.013593929022768708,
+        "adagrad/bias": 0.2634009895804796,
+        "adagrad/learned": 0.016400312434863947,
+        "adagrad/no_goals": 0.026321313425588435,
+        "adagrad/no_memory": 0.01832054843836735,
+        "adagrad/no_memory_goals": 0.029785271653710883,
+        "adagrad/uniform": 0.04289202033128572,
+        "normalised/all": 0.026673445392914965,
+        "normalised/bias": 0.2798823315052245,
+        "normalised/learned": 0.018932123319595238,
+        "normalised/no_goals": 0.033971241980989796,
+        "normalised/no_memory": 0.018157828327312928,
+        "normalised/no_memory_goals": 0.01951461560894558,
+        "normalised/uniform": 0.04883971753440476,
+        "seed": 31,
+        "sqrt/all": 0.012652681471704081
+       }
+      ]
+     }
+    },
+    "contrasts": {
+     "all": {
+      "a": -0.0015207703706139526,
+      "b": 0.0,
+      "diff": -0.0015207703706139526,
+      "hi": -0.0011792920241584961,
+      "lo": -0.001862248717069409,
+      "n": 32,
+      "verdict": "FAILS"
+     },
+     "fixed": {
+      "a": -0.0018715003342411802,
+      "b": 0.0,
+      "diff": -0.0018715003342411802,
+      "hi": -0.0006854320994243281,
+      "lo": -0.0030575685690580326,
+      "n": 32,
+      "verdict": "FAILS"
+     },
+     "uniform": {
+      "a": 0.012808573295642448,
+      "b": 0.0,
+      "diff": 0.012808573295642448,
+      "hi": 0.013448801943901781,
+      "lo": 0.012168344647383115,
+      "n": 32,
+      "verdict": "HOLDS"
+     }
+    },
+    "summary": "learned AdaGrad selection, mean fixed-behaviour Brier gain vs all: -0.0015 [-0.0019,-0.0012]; vs uniform: +0.0128 [+0.0122,+0.0134]; vs fixed: -0.0019 [-0.0031,-0.0007]; ALL > 0.002"
+   },
+   "prediction_hash": "1f7829b64d14d253",
+   "rivals": {},
+   "robust": false,
+   "seconds": 36.749,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  },
+  "K01": {
+   "claim": "K01",
+   "error": null,
+   "estimate": {
+    "deaths": 576,
+    "failures": [],
+    "lives": 144,
+    "summary": "144 lives, 576 deaths: 144/144 ledgers byte-identical"
+   },
+   "prediction_hash": "0142477e88cd5c19",
+   "rivals": {},
+   "robust": true,
+   "seconds": 5.14,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K02": {
+   "claim": "K02",
+   "error": null,
+   "estimate": {
+    "distinct_pids": 45,
+    "failures": [],
+    "sigkills": 36,
+    "summary": "36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical"
+   },
+   "prediction_hash": "d073f4224b18935a",
+   "rivals": {},
+   "robust": true,
+   "seconds": 3.093,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K03": {
+   "claim": "K03",
+   "error": null,
+   "estimate": {
+    "summary": "24/24 lives action-identical"
+   },
+   "prediction_hash": "923baec591ef3154",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.596,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K04": {
+   "claim": "K04",
+   "error": null,
+   "estimate": {
+    "summary": "Bayes-agent mean regret vs v0.4 optimum: dev -0.0131 [-0.0263,+0.0001]; skewed -0.0037 [-0.0147,+0.0073]; censored -0.0066 [-0.0287,+0.0155]"
+   },
+   "prediction_hash": "9063dd3d61bd38f2",
+   "rivals": {},
+   "robust": true,
+   "seconds": 2.883,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K06": {
+   "claim": "K06",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "lives": 108,
+    "summary": "108 lives \u00d7 3 hash seeds in fresh processes: all replays verified, heads identical"
+   },
+   "prediction_hash": "ab490a51fa73205c",
+   "rivals": {},
+   "robust": true,
+   "seconds": 3.58,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K07": {
+   "claim": "K07",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "replays": {
+     "end": 18,
+     "step": 18
+    },
+    "sigkills": 36,
+    "summary": "36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical"
+   },
+   "prediction_hash": "647f88b2c62f6430",
+   "rivals": {},
+   "robust": true,
+   "seconds": 3.01,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K08": {
+   "claim": "K08",
+   "error": null,
+   "estimate": {
+    "summary": "rival:reactive calib_gain is exactly 0 in every world, seed and window",
+    "violations": []
+   },
+   "prediction_hash": "cdd2214843c9cec5",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.175,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K09": {
+   "claim": "K09",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "lives": 288,
+    "summary": "288 lives, every world and variant: 288/288 shadows reproduce every logged confidence, the runner's Brier and table Brier, and the lab's life"
+   },
+   "prediction_hash": "30f1b0b5c2bddd2d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 34.911,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K10": {
+   "claim": "K10",
+   "error": null,
+   "estimate": {
+    "audits": 72,
+    "early_fallback_ticks": 70,
+    "failures": [],
+    "lives": 36,
+    "summary": "72/72 sham audits (36 lives, every world and variant) keep presence, distinct-feature count and feature load at every tick, change content, and never fall back in the scored half (70 early fallback ticks in all)"
+   },
+   "prediction_hash": "5c47a7b47e989680",
+   "rivals": {},
+   "robust": true,
+   "seconds": 15.078,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "K14": {
+   "claim": "K14",
+   "error": null,
+   "estimate": {
+    "failures": [],
+    "lives": 126,
+    "summary": "126 lives, 21 options: shadow + restart + 2 fresh-process hash seeds; 0 failures"
+   },
+   "prediction_hash": "1ad2aa01cf044fa2",
+   "rivals": {},
+   "robust": true,
+   "seconds": 14.291,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L01": {
+   "claim": "L01",
+   "error": null,
+   "estimate": {
+    "summary": "75 v1 instrument tests all pass",
+    "tests": 75
+   },
+   "prediction_hash": "f660a950977935f2",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.739,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L02": {
+   "claim": "L02",
+   "error": null,
+   "estimate": {
+    "summary": "exit -9, restart\u2192inspect_signal, wipe\u2192NO_ACTION, alternate\u2192record_measurement"
+   },
+   "prediction_hash": "449bdf758cf3677d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.227,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L03": {
+   "claim": "L03",
+   "error": null,
+   "estimate": {
+    "summary": "intact DEFER_SENSOR_SCAN, cut SCAN_WITH_SENSOR, compact rival ties: True"
+   },
+   "prediction_hash": "0615a4c134a26e2f",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.35,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L04": {
+   "claim": "L04",
+   "error": null,
+   "estimate": {
+    "summary": "8 DAGs \u2192 7 reachability classes; merged [[5, 7]]"
+   },
+   "prediction_hash": "3fa18eebb1895a22",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.0,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L05": {
+   "claim": "L05",
+   "error": null,
+   "estimate": {
+    "summary": "censor rates 1/4 vs 3/4: 1/2:1/2 \u2192 1/4:3/4; equal rates leave 1/2:1/2"
+   },
+   "prediction_hash": "7e6bfe42592b45bb",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.003,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L06": {
+   "claim": "L06",
+   "error": null,
+   "estimate": {
+    "summary": "values: none -7/3, one probe -121/60, two -47/24; adaptive gain 7/120"
+   },
+   "prediction_hash": "81096744cb726baf",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.01,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "L07": {
+   "claim": "L07",
+   "error": null,
+   "estimate": {
+    "summary": "prior 9:1 \u2192 ((0, 2),), prior 1:9 \u2192 ((0,),), maximin \u2192 ((0,),) at -41/5"
+   },
+   "prediction_hash": "85888c91a8cdd59c",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.001,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "1b01a0ab84d1f3fa4dbb2a4000934ef25729396d"
+ },
+ "mode": "full",
+ "recorded_at": "2026-10-12T06:38:09Z",
+ "schema": 2
+}
