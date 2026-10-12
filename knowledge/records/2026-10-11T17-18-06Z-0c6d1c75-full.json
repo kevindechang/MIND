@@ -1,0 +1,56 @@
+{
+ "by": "researcher-bot",
+ "code": "db4b2fa5bc8fc13b",
+ "environment": {
+  "host": "46a4eebd",
+  "implementation": "CPython",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+ },
+ "environment_id": "0c6d1c75c017",
+ "evaluations": {
+  "C039": {
+   "claim": "C039",
+   "error": null,
+   "estimate": {
+    "crowded": 0.19666666666666668,
+    "dev": -0.021041666666666667,
+    "hi": 0.2731448874288249,
+    "lo": 0.16227177923784175,
+    "shift": 0.21770833333333334,
+    "summary": "crowded-dev +0.218 [+0.162, +0.273] (crowded +0.197, dev -0.021; claim: > 0.08)"
+   },
+   "prediction_hash": "921207b3603fc66d",
+   "rivals": {},
+   "robust": true,
+   "seconds": 7.871,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C040": {
+   "claim": "C040",
+   "error": null,
+   "estimate": {
+    "dev": 0.01854166666666668,
+    "hi": -0.24625179847920775,
+    "lo": -0.3852065348541256,
+    "long": -0.2971875,
+    "shift": -0.31572916666666667,
+    "summary": "long-dev -0.316 [-0.385, -0.246] (long -0.297, dev +0.019; claim: < -0.08)"
+   },
+   "prediction_hash": "ba9b1cd05f97b531",
+   "rivals": {},
+   "robust": true,
+   "seconds": 5.979,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "0dc74c5e622225990ac43292c9ecce8d954b9e32"
+ },
+ "mode": "full",
+ "recorded_at": "2026-10-11T17:18:06Z",
+ "schema": 2
+}
