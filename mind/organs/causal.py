@@ -1,4 +1,4 @@
-"""Causal organ: intervention effects identified from probe results (H001, H015).
+"""Causal organ: intervention effects identified from probe results (H001, H015, H016).
 
 A workshop probe toggles one node and reports the nodes the toggle reaches, as
 `fx<node>=<labels>`, visible for ONE tick. The organ keeps the reach set of each probed
@@ -13,18 +13,25 @@ observation of its own probes, outside the workspace, as an efference-style reco
 workspace filter biases what is learned (H015): a learned world model should not depend
 on which results happened to win a slot.
 
-Learning across episodes (`voi=1`). The organ keeps counts of the reach sets it has
-learned, across episodes, singly and in pairs. Each episode draws a new hidden graph, but
-the family of graphs is fixed, so these counts are a prior over reach sets. With `voi=1`
-the organ estimates, for each probe still available, the expected improvement in its best
-plan from learning that probe's result, net of the probe cost, and proposes the most
-valuable probe as `probe=<action>` when the net value is positive.
+Value of information (`voi=1`). For each probe still available, the organ estimates the
+expected improvement in its best plan from learning that probe's result, net of the probe
+cost, and proposes the most valuable probe as `probe=<action>` when the net value is
+positive. The estimate uses one of two hypothesis spaces (`hypotheses`):
+- `counts` (H015): a prior over reach sets, learned across episodes from the organ's own
+  counts (singly and in pairs). Each episode draws a new hidden graph, but the family of
+  graphs is fixed, so the counts are a prior.
+- `dag` (H016): the exact posterior over all 25 labelled directed acyclic graphs on the
+  three nodes. This hypothesis space is generic. It contains the workshop's graphs, but the
+  organ is not given them, and the prior is uniform.
+`aware=1` discounts a probe's value by the censor rate the organ has learned from its own
+probe results. `value_carry=1` carries the net value of the probe in the proposal's
+salience (`VALUE_SALIENCE` times the net value), so the workspace ranks valuable probes higher
+and the policy can scale its routing to the value (see policy.py `value_bonus`).
 
 Causal model: fixed in advance, not learned. Plans compose by XOR of their nodes' reach
 sets. A plan costs one per node, and each broken commitment costs `penalty`. Those are
 the workshop's scoring rule and probe cost, so this is a supplied payoff model, not causal
-discovery. The organ never sees the E001 graph family. Its prior comes from its own
-experience across episodes.
+discovery. The organ never sees the E001 graph family.
 
 Controls with the same channel and load: `derive=0` proposes a constant `pad` where
 `best` would be, so the facts and the load are unchanged. `sham=1` proposes `best` with
@@ -33,12 +40,14 @@ a random legal plan instead, at the same ticks.
 from __future__ import annotations
 
 from collections import Counter
+from itertools import combinations
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from ..kernel import Content, Organ
 
 PROBE_KEYS = ("fx0", "fx1", "fx2")
 MASKS_WITH = {n: tuple(m for m in range(1, 8) if m & (1 << n)) for n in range(3)}
+VALUE_SALIENCE = 4.0   # salience per unit of expected net value, when value_carry=1
 
 
 def mask_of(label: str) -> int:
@@ -70,6 +79,43 @@ def predicted_utility(reach: Dict[int, int], action: str, commitments: Sequence[
     return -(len(nodes) + penalty * broken)
 
 
+def labelled_dag_reach() -> Tuple[Dict[int, int], ...]:
+    """Reach masks of every labelled directed acyclic graph on the three nodes (25 of them)."""
+    edges = [(i, j) for i in range(3) for j in range(3) if i != j]
+    out = []
+    for k in range(len(edges) + 1):
+        for chosen in combinations(edges, k):
+            succ = {n: {j for i, j in chosen if i == n} for n in range(3)}
+            if any(_reaches_itself(succ, n) for n in range(3)):
+                continue
+            reach = {}
+            for n in range(3):
+                seen, stack = {n}, [n]
+                while stack:
+                    for j in succ[stack.pop()]:
+                        if j not in seen:
+                            seen.add(j)
+                            stack.append(j)
+                reach[n] = sum(1 << v for v in seen)
+            out.append(reach)
+    return tuple(out)
+
+
+def _reaches_itself(succ: Dict[int, set], start: int) -> bool:
+    seen, stack = set(), list(succ[start])
+    while stack:
+        u = stack.pop()
+        if u == start:
+            return True
+        if u not in seen:
+            seen.add(u)
+            stack.extend(succ[u])
+    return False
+
+
+DAG_REACH = labelled_dag_reach()
+
+
 class Causal(Organ):
     name = "causal"
     home = ("causal-control",)
@@ -80,8 +126,9 @@ class Causal(Organ):
     # goals 2: the workshop has two commitments; the organ waits until it has seen both
     # cost 0.25: the workshop's probe cost (used only when voi=1)
     defaults = {"salience": 2.0, "penalty": 3, "derive": 1, "sham": 0, "goals": 2,
-                "source": "broadcast", "voi": 0, "cost": 0.25, "smooth": 1.0}
-    choices = {"source": ("broadcast", "efference")}
+                "source": "broadcast", "voi": 0, "cost": 0.25, "smooth": 1.0,
+                "hypotheses": "counts", "aware": 0, "value_carry": 0}
+    choices = {"source": ("broadcast", "efference"), "hypotheses": ("counts", "dag")}
 
     def __init__(self, params):
         super().__init__(params)
@@ -90,6 +137,9 @@ class Causal(Organ):
         # across episodes (never reset): counts of learned reach masks, singly and in pairs
         self.single: Dict[int, Counter] = {n: Counter() for n in range(3)}
         self.pair: Counter = Counter()    # (a, mask_a, b, mask_b) with a < b
+        # across episodes: probe results seen, and how many came back censored
+        self.seen = 0
+        self.censored = 0
 
     def reset_episode(self) -> None:
         self.reach = {}                   # every episode draws a new hidden graph
@@ -104,6 +154,9 @@ class Causal(Organ):
         for c in view:                    # learned from what the chosen source delivers this tick
             if c.source != "perception":
                 continue
+            if c.key in PROBE_KEYS:
+                self.seen += 1
+                self.censored += c.value == "censored"
             if c.key in PROBE_KEYS and c.value != "censored":
                 self.reach[int(c.key[2:])] = mask_of(c.value)
             elif c.key.startswith("want"):
@@ -121,9 +174,11 @@ class Causal(Organ):
             else:
                 out.append(Content(self.name, "best", best, salience))
         if self.p["voi"] and len(self.wants) >= self.p["goals"]:
-            probe = self._probe_recommendation(now.actions)
-            if probe is not None:
-                out.append(Content(self.name, "probe", probe, salience))
+            choice = self._probe_recommendation(now.actions)
+            if choice is not None:
+                probe, net = choice
+                carried = VALUE_SALIENCE * net if self.p["value_carry"] else salience
+                out.append(Content(self.name, "probe", probe, carried))
         return out
 
     def _count_new_facts(self, before: set) -> None:
@@ -147,6 +202,12 @@ class Causal(Organ):
     def _sham_plan(self, actions: Sequence[str], ctx) -> str:
         plans = sorted(a for a in actions if plan_nodes(a) is not None)
         return plans[ctx.rng("causal-sham").randrange(len(plans))]
+
+    def _censor_rate(self) -> float:
+        """Probability that a probe comes back censored, learned from the organ's own probe results."""
+        if not self.p["aware"]:
+            return 0.0
+        return (self.censored + 1.0) / (self.seen + 2.0)
 
     # ---- value of information (voi=1) -----------------------------------------------------
 
@@ -194,21 +255,64 @@ class Causal(Organ):
                 best = eu
         return 0.0 if best is None else best
 
-    def _probe_recommendation(self, actions: Sequence[str]) -> Optional[str]:
+    def _probe_recommendation(self, actions: Sequence[str]) -> Optional[Tuple[str, float]]:
+        """The probe with the largest positive expected net value, and that value, or None."""
+        if self.p["hypotheses"] == "dag":
+            return self._dag_probe_recommendation(actions)
         candidates = [a for a in sorted(actions) if a.startswith("probe") and int(a[-1]) not in self.reach]
         if not candidates:
             return None
         commitments = sorted(self.wants.items())
         base = self._expected_best(actions, self.reach, commitments)
+        c = self._censor_rate()
         best_net, best_action = None, None
         for action in candidates:
             n = int(action[-1])
             informed = sum(pm * self._expected_best(actions, {**self.reach, n: m}, commitments)
                            for m, pm in sorted(self._prior(n, self.reach).items()))
-            net = informed - base - self.p["cost"]
+            value = (1 - c) * informed + c * base
+            net = value - base - self.p["cost"]
             if net > 0 and (best_net is None or net > best_net):
                 best_net, best_action = net, action
-        return best_action
+        return None if best_action is None else (best_action, best_net)
+
+    # ---- the generic DAG posterior (voi=1, hypotheses=dag) -------------------------------
+
+    def _dag_best(self, actions: Sequence[str], hypotheses, commitments) -> float:
+        """Best plan's expected utility under the uniform posterior over the given DAG hypotheses."""
+        best = None
+        for action in actions:
+            if plan_nodes(action) is None:
+                continue
+            eu = sum(predicted_utility(r, action, commitments, self.p["penalty"]) for r in hypotheses)
+            eu /= len(hypotheses)
+            if best is None or eu > best:
+                best = eu
+        return 0.0 if best is None else best
+
+    def _dag_probe_recommendation(self, actions: Sequence[str]) -> Optional[Tuple[str, float]]:
+        consistent = [r for r in DAG_REACH if all(r[n] == m for n, m in self.reach.items())]
+        if not consistent:
+            return None
+        candidates = [a for a in sorted(actions) if a.startswith("probe") and int(a[-1]) not in self.reach]
+        if not candidates:
+            return None
+        commitments = sorted(self.wants.items())
+        base = self._dag_best(actions, consistent, commitments)
+        c = self._censor_rate()
+        best_net, best_action = None, None
+        for action in candidates:
+            n = int(action[-1])
+            groups: Dict[int, list] = {}
+            for r in consistent:
+                groups.setdefault(r[n], []).append(r)
+            informed = sum(len(g) / len(consistent) * self._dag_best(actions, g, commitments)
+                           for _, g in sorted(groups.items()))
+            value = (1 - c) * informed + c * base
+            net = value - base - self.p["cost"]
+            if net > 0 and (best_net is None or net > best_net):
+                best_net, best_action = net, action
+        return None if best_action is None else (best_action, best_net)
 
     def introspect(self):
         return {"reach": {node: label_of(mask) for node, mask in sorted(self.reach.items())},
