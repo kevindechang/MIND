@@ -1,0 +1,156 @@
+{
+ "by": "claude-code (H015 session 2026-10-13)",
+ "code": "f0cbc613df457b81",
+ "environment": {
+  "host": "f376fbc5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.9.6"
+ },
+ "environment_id": "01e8a8783bbb",
+ "evaluations": {
+  "C079": {
+   "claim": "C079",
+   "error": null,
+   "estimate": {
+    "a": -1.4523125000000001,
+    "b": -1.6567291666666666,
+    "diff": 0.2044166666666666,
+    "hi": 0.24186912779399417,
+    "lo": 0.16696420553933905,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "39db2f0944e0a849",
+   "rivals": {
+    "compact": {
+     "advantage": 0.2286875,
+     "hi": 0.25372842659502115,
+     "lo": 0.2036465734049788,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.035,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C080": {
+   "claim": "C080",
+   "error": null,
+   "estimate": {
+    "a": -1.4523125000000001,
+    "b": -1.8071666666666668,
+    "diff": 0.3548541666666667,
+    "hi": 0.43673783893866414,
+    "lo": 0.27297049439466925,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "6cdba4143a8a9c1e",
+   "rivals": {
+    "compact": {
+     "advantage": 0.2286875,
+     "hi": 0.25372842659502115,
+     "lo": 0.2036465734049788,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.036,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C081": {
+   "claim": "C081",
+   "error": null,
+   "estimate": {
+    "a": -1.4523125000000001,
+    "b": -1.6696874999999998,
+    "diff": 0.21737499999999998,
+    "hi": 0.27326213776169184,
+    "lo": 0.16148786223830813,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "92998ffaf520c77e",
+   "rivals": {
+    "compact": {
+     "advantage": 0.2286875,
+     "hi": 0.25372842659502115,
+     "lo": 0.2036465734049788,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.035,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C082": {
+   "claim": "C082",
+   "error": null,
+   "estimate": {
+    "hi": 0.34476216076760474,
+    "lo": 0.30330033923239524,
+    "mean": 0.32403125,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "39ed3bd13dbbd801",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "HOLDS"
+  },
+  "C083": {
+   "claim": "C083",
+   "error": null,
+   "estimate": {
+    "a": -1.75675,
+    "b": -1.6689791666666665,
+    "diff": -0.08777083333333333,
+    "hi": -0.04419168945628,
+    "lo": -0.13134997721038666,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "a521a743c919ceea",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  },
+  "C084": {
+   "claim": "C084",
+   "error": null,
+   "estimate": {
+    "a": -1.425166666666667,
+    "b": -1.4510416666666666,
+    "diff": 0.025874999999999995,
+    "hi": 0.0622016158345961,
+    "lo": -0.010451615834596112,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "d3c441e66d2be104",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "82f080de3e1ff92eb234c20e5bc4be67b7f28916"
+ },
+ "mode": "full",
+ "recorded_at": "2026-10-12T16:09:18Z",
+ "schema": 2
+}
