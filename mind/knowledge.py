@@ -45,7 +45,9 @@ def contributor(explicit: Optional[str] = None) -> str:
     return name or "anonymous"
 
 
-def write_record(evaluations: Sequence[Evaluation], mode: str, by: str, code: str) -> Path:
+def write_record(evaluations: Sequence[Evaluation], mode: str, by: str, code: str,
+                 beacons: Optional[Dict[str, Dict[str, Any]]] = None) -> Path:
+    """`beacons`: P001 receipts by claim id, stored beside the evaluation they seeded."""
     if mode not in ("full", "heldout"):
         raise ValueError("only full or held-out evaluations are recorded (quick runs are drafts)")
     RECORDS_DIR.mkdir(parents=True, exist_ok=True)
@@ -58,7 +60,9 @@ def write_record(evaluations: Sequence[Evaluation], mode: str, by: str, code: st
     payload = {"schema": SCHEME, "recorded_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "by": by,
                "environment": env, "environment_id": env_id,
                "git": {"head": head, "dirty_sources": dirty}, "code": code, "mode": mode,
-               "evaluations": {e.claim: e.to_dict() for e in evaluations}}
+               "evaluations": {e.claim: {**e.to_dict(), **({"beacon": beacons[e.claim]}
+                                                         if beacons and e.claim in beacons else {})}
+                               for e in evaluations}}
     stem = f"{now.strftime('%Y-%m-%dT%H-%M-%SZ')}-{env_id[:8]}-{mode}"
     path = RECORDS_DIR / f"{stem}.json"
     i = 1
@@ -262,7 +266,8 @@ def _first_heldout(evidence: List[Dict[str, Any]], seal: Optional[str]) -> Optio
     change, say) proves nothing about prediction (v2 review, finding 3)."""
     if not seal:
         return None
-    sealed = [e for e in evidence if e["_record"] and e["seeds"] == f"heldout:{seal}"]
+    # commit-sealed and beacon-drawn (P001) seeds share the seal: whichever was recorded first decides
+    sealed = [e for e in evidence if e["_record"] and e["seeds"].split("+", 1)[0] == f"heldout:{seal}"]
     return min(sealed, key=lambda e: (e["_at"], e["_record"])) if sealed else None
 
 

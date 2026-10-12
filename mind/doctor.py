@@ -15,6 +15,7 @@ from pathlib import Path
 import re
 from typing import Dict, List, Set, Tuple
 
+from . import beacon
 from .claims import CLAIMS_DIR, GENERIC_METRICS, KINDS, ROOT, SCOPES, Check, Compare, Threshold, git, load_claims
 from .knowledge import load_questions, load_records
 
@@ -74,7 +75,32 @@ def _check_arm(arm: str) -> None:
         Config.parse(arm)
 
 
-def doctor() -> Tuple[List[str], List[str]]:
+_ONLINE: Dict[str, object] = {}
+
+
+def _beacon_problems(cid: str, path: str, e: Dict, online: bool) -> List[str]:
+    """P001 receipts: the drawn round must follow from the recorded push, and (online) the push
+    and the round must match what GitHub and drand say."""
+    seal, randomness = beacon.parse_label(str(e["seeds"]))
+    rec = e.get("beacon")
+    if randomness is None:
+        return [f"{cid}: {path} carries a beacon receipt but a commit-sealed label"] if rec else []
+    if not rec or rec.get("randomness") != randomness:
+        return [f"{cid}: {path} has drand-drawn seeds without a matching receipt"]
+    problems = [f"{cid}: {path}: {p}" for p in beacon.verify_offline(rec)]
+    if online and not problems:
+        try:
+            if "repo" not in _ONLINE:
+                slug, contains = beacon.locate(git)
+                _ONLINE.update(repo=slug, contains=contains, activity=beacon.list_activity(slug))
+            problems += [f"{cid}: {path}: {p}" for p in
+                         beacon.verify_online(rec, seal, _ONLINE["activity"], _ONLINE["contains"])]
+        except Exception as exc:
+            problems.append(f"{cid}: {path}: online beacon verification failed: {exc}")
+    return problems
+
+
+def doctor(online: bool = False) -> Tuple[List[str], List[str]]:
     from .organs import ORGANS
     from .rivals import RIVALS
     from .worlds import WORLDS
@@ -177,8 +203,10 @@ def doctor() -> Tuple[List[str], List[str]]:
             if heldout and e["prediction_hash"] != claims[cid].prediction_hash(schema):
                 problems.append(f"{cid}: prediction changed after a held-out evaluation ({rec['_path']}); "
                                 f"restore it and register a successor claim instead")
+            if heldout:
+                problems += _beacon_problems(cid, rec["_path"], e, online)
             if heldout and head_ok:
-                seal = e["seeds"].split(":", 1)[1]
+                seal, _ = beacon.parse_label(e["seeds"])
                 if git("merge-base", "--is-ancestor", seal, "HEAD") is None:
                     problems.append(f"{cid}: held-out seal {seal[:12]} in {rec['_path']} is not in this history "
                                     f"(squash/rebase merge?); merge with merge commits so seals survive")
