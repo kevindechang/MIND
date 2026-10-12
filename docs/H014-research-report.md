@@ -67,6 +67,13 @@ sqrt rival strengthened the comparison. Full dev results overlap the rival-selec
 data; the held-out confirmation is the independent seed set. The rival and treatment
 share public information, but a single model uses less compute than five experts.
 
+A [dev-only resource probe](../runs/h014-resource-probe.json) on one vigil lifetime
+counted 57 stored logistic weight coordinates for AdaGrad/all and 171 for the
+learned mixture, with matching numbers of accumulated-gradient coordinates. The
+mixture also stored 15 expert-loss entries and ran five predictors instead of one.
+The uniform control had the same counts as learned selection. These counts describe
+that lifetime, not universal parameter budgets; no FLOP or latency claim is made.
+
 ## Descriptive findings and limits
 
 On C050's held-out streams, removing memory from the AdaGrad predictor increased
