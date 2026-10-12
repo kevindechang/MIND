@@ -1,0 +1,191 @@
+{
+ "by": "claude-code (H016 session 2026-10-13)",
+ "code": "f21af308a059e626",
+ "environment": {
+  "host": "f376fbc5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.9.6"
+ },
+ "environment_id": "01e8a8783bbb",
+ "evaluations": {
+  "C085": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46253644513,
+     "after": "9d0767d203fc9cf31b9b4f41c6a187526dfa833d",
+     "ref": "refs/heads/contrib/h016-dag-posterior-routing-20261013",
+     "time": "2026-10-12T17:00:54Z"
+    },
+    "randomness": "5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+    "round": 33007031,
+    "signature": "b2fbbc2ee55001e63862b2c7b2c4ddb2c281e858bea03311e1f17c28f481d4af8ac72e7fd0f936feffccdb39fc9be812"
+   },
+   "claim": "C085",
+   "error": null,
+   "estimate": {
+    "a": -1.3979791666666668,
+    "b": -1.6723541666666666,
+    "diff": 0.27437500000000004,
+    "hi": 0.3031604403355572,
+    "lo": 0.24558955966444287,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "6ed25970a29243fb",
+   "rivals": {
+    "compact": {
+     "advantage": 0.2925833333333333,
+     "hi": 0.34824039780832705,
+     "lo": 0.23692626885833956,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.036,
+   "seeds": "heldout:9d0767d203fc9cf31b9b4f41c6a187526dfa833d+drand:5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+   "verdict": "HOLDS"
+  },
+  "C086": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46253644513,
+     "after": "9d0767d203fc9cf31b9b4f41c6a187526dfa833d",
+     "ref": "refs/heads/contrib/h016-dag-posterior-routing-20261013",
+     "time": "2026-10-12T17:00:54Z"
+    },
+    "randomness": "5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+    "round": 33007031,
+    "signature": "b2fbbc2ee55001e63862b2c7b2c4ddb2c281e858bea03311e1f17c28f481d4af8ac72e7fd0f936feffccdb39fc9be812"
+   },
+   "claim": "C086",
+   "error": null,
+   "estimate": {
+    "a": -1.7081875000000004,
+    "b": -1.6580833333333334,
+    "diff": -0.05010416666666667,
+    "hi": -0.018653714211014347,
+    "lo": -0.081554619122319,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "034624311d2efd6a",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:9d0767d203fc9cf31b9b4f41c6a187526dfa833d+drand:5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C087": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46253644513,
+     "after": "9d0767d203fc9cf31b9b4f41c6a187526dfa833d",
+     "ref": "refs/heads/contrib/h016-dag-posterior-routing-20261013",
+     "time": "2026-10-12T17:00:54Z"
+    },
+    "randomness": "5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+    "round": 33007031,
+    "signature": "b2fbbc2ee55001e63862b2c7b2c4ddb2c281e858bea03311e1f17c28f481d4af8ac72e7fd0f936feffccdb39fc9be812"
+   },
+   "claim": "C087",
+   "error": null,
+   "estimate": {
+    "a": -1.4512708333333335,
+    "b": -1.4394999999999998,
+    "diff": -0.011770833333333355,
+    "hi": 0.024272180360652887,
+    "lo": -0.0478138470273196,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "b0c54a991be84d20",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.019,
+   "seeds": "heldout:9d0767d203fc9cf31b9b4f41c6a187526dfa833d+drand:5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+   "verdict": "HOLDS"
+  },
+  "C088": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46253644513,
+     "after": "9d0767d203fc9cf31b9b4f41c6a187526dfa833d",
+     "ref": "refs/heads/contrib/h016-dag-posterior-routing-20261013",
+     "time": "2026-10-12T17:00:54Z"
+    },
+    "randomness": "5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+    "round": 33007031,
+    "signature": "b2fbbc2ee55001e63862b2c7b2c4ddb2c281e858bea03311e1f17c28f481d4af8ac72e7fd0f936feffccdb39fc9be812"
+   },
+   "claim": "C088",
+   "error": null,
+   "estimate": {
+    "a": -1.6851666666666667,
+    "b": -1.7295624999999997,
+    "diff": 0.0443958333333333,
+    "hi": 0.066411126804808,
+    "lo": 0.022380539861858607,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "600a3cf3822d58f9",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.019,
+   "seeds": "heldout:9d0767d203fc9cf31b9b4f41c6a187526dfa833d+drand:5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C089": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46253644513,
+     "after": "9d0767d203fc9cf31b9b4f41c6a187526dfa833d",
+     "ref": "refs/heads/contrib/h016-dag-posterior-routing-20261013",
+     "time": "2026-10-12T17:00:54Z"
+    },
+    "randomness": "5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+    "round": 33007031,
+    "signature": "b2fbbc2ee55001e63862b2c7b2c4ddb2c281e858bea03311e1f17c28f481d4af8ac72e7fd0f936feffccdb39fc9be812"
+   },
+   "claim": "C089",
+   "error": null,
+   "estimate": {
+    "a": -1.4070624999999999,
+    "b": -1.5216875,
+    "diff": 0.11462499999999998,
+    "hi": 0.1323351873797748,
+    "lo": 0.09691481262022515,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "0e4660e37d8a212e",
+   "rivals": {
+    "compact": {
+     "advantage": 0.24660416666666665,
+     "hi": 0.27472282768888423,
+     "lo": 0.21848550564444907,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.036,
+   "seeds": "heldout:9d0767d203fc9cf31b9b4f41c6a187526dfa833d+drand:5964b3aca1b94ad333f2c0013767e5423fd8144634360a30a2e683e5890a8753",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "9d0767d203fc9cf31b9b4f41c6a187526dfa833d"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-12T17:03:22Z",
+ "schema": 2
+}
