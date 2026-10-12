@@ -1,8 +1,10 @@
 # MIND
 
 **Anjo's research program toward functional consciousness**, operationalised as causally integrated, persistent,
-self-monitoring cognition. **Status: not achieved.** The only status page is [STATUS.md](STATUS.md), which is
-generated from executable evidence.
+self-monitoring cognition. **Status: not achieved.** The program also studies testable cognitive, affective,
+moral and social functions without equating them with subjective experience. The scope and ethical limits are in
+[RESEARCH_SCOPE.md](docs/RESEARCH_SCOPE.md). The only results status page is [STATUS.md](STATUS.md), generated
+from executable evidence.
 
 ## How it works
 
