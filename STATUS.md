@@ -2,7 +2,7 @@
 
 > **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Result-code fingerprint `6a8ab2a9476e2e43` · snapshot generated 2026-10-12 17:18 UTC
+Result-code fingerprint `c8312acd79a74969` · snapshot generated 2026-10-12 17:59 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -10,12 +10,10 @@ Result-code fingerprint `6a8ab2a9476e2e43` · snapshot generated 2026-10-12 17:1
 
 | state | claims |
 |---|---|
-| ✅ HOLDS | 48 (PREREGISTERED 3, ROBUST 45) |
-| ❔ INCONCLUSIVE | 6 |
+| ✅ HOLDS | 53 (PREREGISTERED 43, ROBUST 10) |
+| ❔ INCONCLUSIVE | 7 |
 | ❌ REFUTED | 7 |
 | 🗄️ RETIRED | 7 |
-
-**CURRENT_CODE_UNVERIFIED:** 35 claim(s) (C001, C002, C003, C004, C005, C011, C012, C016, C017, C018, C019, C030, C031, C033, C034, C035, C036, C039, C040, C079, C080, C081, C082, C085, C087, C089, K01, K02, K03, K04, K06, K07, K08, K09, K10) rest on evidence recorded under other result code. Their RIVAL-TESTED-or-higher standing is suspended until it is re-recorded (see the frontier).
 
 Evidence ladder (computed, never asserted): PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED (effects only) → PREREGISTERED (commit-sealed held-out seeds) → REPLICATED (second contributor and environment). See [docs/CLAIMS.md](docs/CLAIMS.md).
 
@@ -23,16 +21,16 @@ Evidence ladder (computed, never asserted): PROPOSED → OBSERVED → ROBUST →
 
 Derived from the knowledge itself (broken first, then stale, then promotions and open questions). Pick one, check open PRs for overlap, contribute. See [GO.md](GO.md).
 
-1. **[refresh]** CURRENT_CODE_UNVERIFIED: evidence for C001, C002, C003, C004, C005, C011, C012, C016, C017, C018, C019, C020, C030, C031, C033, C034, C035, C036, C039, C040, C079, C080, C081, C082, C085, C087, C089, K01, K02, K03, K04, K06, K07, K08, K09, K10, L01, L02, L03, L04, L05, L06, L07 predates the current result code, so the RIVAL-TESTED-or-higher standing of C001, C002, C003, C004, C005, C011, C012, C016, C017, C018, C019, C030, C031, C033, C034, C035, C036, C039, C040, C079, C080, C081, C082, C085, C087, C089, K01, K02, K03, K04, K06, K07, K08, K09, K10 is suspended; re-run `python -m mind check --record`, and `--heldout --record` for claims with sealed seeds
-2. **[sharpen]** C006 (Without distractors the bottleneck is neutral) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C006's prediction to fit
-3. **[sharpen]** C009 (Memory improves control of an unreliable tool (off-home effect)) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C009's prediction to fit
-4. **[sharpen]** C013 (Self-knowledge improves causal decisions (cross-function)) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C013's prediction to fit
-5. **[sharpen]** C020 (Silent-outage memory effect at higher paired precision) holds now but failed its first sealed confirmation, so its held-out seeds are spent: register a successor claim (new id, fresh seeds) to confirm it prospectively
-6. **[sharpen]** C086 (The generic DAG posterior does no harm under censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C086's prediction to fit
-7. **[sharpen]** C088 (A calibrated, exact-posterior route beats the fixed route on censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C088's prediction to fit
-8. **[sharpen]** C093 (The learned structure prior earns more than the uniform prior under censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C093's prediction to fit
-9. **[sharpen]** C094 (The learned-prior organism does no harm under censored probes) holds now but failed its first sealed confirmation, so its held-out seeds are spent: register a successor claim (new id, fresh seeds) to confirm it prospectively
-10. **[sharpen]** C095 (The learned-prior organism does no harm under the skewed prior) holds now but failed its first sealed confirmation, so its held-out seeds are spent: register a successor claim (new id, fresh seeds) to confirm it prospectively
+1. **[sharpen]** C006 (Without distractors the bottleneck is neutral) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C006's prediction to fit
+2. **[sharpen]** C009 (Memory improves control of an unreliable tool (off-home effect)) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C009's prediction to fit
+3. **[sharpen]** C013 (Self-knowledge improves causal decisions (cross-function)) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C013's prediction to fit
+4. **[sharpen]** C020 (Silent-outage memory effect at higher paired precision) holds now but failed its first sealed confirmation, so its held-out seeds are spent: register a successor claim (new id, fresh seeds) to confirm it prospectively
+5. **[sharpen]** C086 (The generic DAG posterior does no harm under censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C086's prediction to fit
+6. **[sharpen]** C088 (A calibrated, exact-posterior route beats the fixed route on censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C088's prediction to fit
+7. **[sharpen]** C093 (The learned structure prior earns more than the uniform prior under censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C093's prediction to fit
+8. **[sharpen]** C094 (The learned-prior organism does no harm under censored probes) holds now but failed its first sealed confirmation, so its held-out seeds are spent: register a successor claim (new id, fresh seeds) to confirm it prospectively
+9. **[sharpen]** C095 (The learned-prior organism does no harm under the skewed prior) holds now but failed its first sealed confirmation, so its held-out seeds are spent: register a successor claim (new id, fresh seeds) to confirm it prospectively
+10. **[sharpen]** C097 (The posterior plan rule beats the known-plan rule under censored probes) is inconclusive: the interval straddles its margin. Register a sharper successor claim (more seeds, a cleaner world) — never edit C097's prediction to fit
 11. **[rival]** C020: rival(s) window4 match the mechanism. Beat them with a better organ, or register that the simpler rival suffices
 12. **[rival]** C094: rival(s) compact match the mechanism. Beat them with a better organ, or register that the simpler rival suffices
 13. **[rival]** C095: rival(s) compact match the mechanism. Beat them with a better organ, or register that the simpler rival suffices
@@ -50,47 +48,52 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 
 | claim | statement | kind · scope | state | level | evidence (decisive run) | rivals not beaten | premises |
 |---|---|---|---|---|---|---|---|
-| [C001](knowledge/claims/C001_commitment_needs_memory_or_goals.py) | **Commitments across a gap need memory or goals**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.875 [+0.779, +0.964] (0.900 vs 0.025, n=16) · held-out | – | K03 |
-| [C002](knowledge/claims/C002_goals_dispensable_when_memory_compensates.py) | **Goals are dispensable on short gaps (memory compensates)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | equivalence · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ -0.035 [-0.069, +0.000] (0.919 vs 0.954, n=16) · held-out | n/a | – |
-| [C003](knowledge/claims/C003_goals_essential_on_long_gaps.py) | **Goals are essential on long gaps**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.528 [+0.422, +0.635] (0.537 vs 0.009, n=16) · held-out | – | K03 |
-| [C004](knowledge/claims/C004_memory_goals_degeneracy.py) | **Memory and goals back each other up (degeneracy)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | interaction +0.800 [+0.746, +0.854] (claim: > 0.4) · held-out | – | – |
-| [C005](knowledge/claims/C005_bottleneck_helps_under_distractors.py) | **The workspace bottleneck helps under distractor load**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.136 [+0.084, +0.189] (0.869 vs 0.733, n=16) · held-out | – | – |
-| [C011](knowledge/claims/C011_no_causal_advantage_in_workshop.py) | **The organism gives no advantage over a reactive learner at causal probing**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | equivalence · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ -0.035 [-0.063, -0.008] (-1.691 vs -1.655, n=16) · held-out | n/a | K03 |
-| [C012](knowledge/claims/C012_organism_far_from_bayes_optimum.py) | **The organism remains far from the Bayes-optimal causal policy**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | threshold · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 0.506 [0.476, 0.537] >= 0.3 (n=16) · held-out | n/a | K04 |
-| [C016](knowledge/claims/C016_integration_holm_corrected.py) | **Integrated, not modular (Holm-corrected, distinct organs)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33 · held-out | – | – |
-| [C017](knowledge/claims/C017_self_model_beats_table_same_events.py) | **Self-model beats a success table on the same events (announced outages)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | threshold · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 0.021 [0.017, 0.026] >= 0.008 (n=16) · held-out | n/a | K08 |
-| [C018](knowledge/claims/C018_self_model_beats_table_when_silent.py) | **Self-model beats a success table on the same events, even when outages are silent**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | threshold · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 0.008 [0.005, 0.010] >= 0.004 (n=16) · held-out | n/a | K08 |
-| [C019](knowledge/claims/C019_low_load_bottleneck_equivalence_precision.py) | **Low-load workspace bottleneck is equivalent to unlimited access (high precision)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | equivalence · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ -0.014 [-0.033, +0.006] (0.894 vs 0.907, n=128) · held-out | n/a | – |
+| [C001](knowledge/claims/C001_commitment_needs_memory_or_goals.py) | **Commitments across a gap need memory or goals** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.875 [+0.779, +0.964] (0.900 vs 0.025, n=16) · held-out | – | K03 |
+| [C002](knowledge/claims/C002_goals_dispensable_when_memory_compensates.py) | **Goals are dispensable on short gaps (memory compensates)** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.035 [-0.069, +0.000] (0.919 vs 0.954, n=16) · held-out | n/a | – |
+| [C003](knowledge/claims/C003_goals_essential_on_long_gaps.py) | **Goals are essential on long gaps** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.528 [+0.422, +0.635] (0.537 vs 0.009, n=16) · held-out | – | K03 |
+| [C004](knowledge/claims/C004_memory_goals_degeneracy.py) | **Memory and goals back each other up (degeneracy)** | effect · L2 | ✅ HOLDS | PREREGISTERED | interaction +0.800 [+0.746, +0.854] (claim: > 0.4) · held-out | – | – |
+| [C005](knowledge/claims/C005_bottleneck_helps_under_distractors.py) | **The workspace bottleneck helps under distractor load** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.136 [+0.084, +0.189] (0.869 vs 0.733, n=16) · held-out | – | – |
+| [C011](knowledge/claims/C011_no_causal_advantage_in_workshop.py) | **The organism gives no advantage over a reactive learner at causal probing** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.035 [-0.063, -0.008] (-1.691 vs -1.655, n=16) · held-out | n/a | K03 |
+| [C012](knowledge/claims/C012_organism_far_from_bayes_optimum.py) | **The organism remains far from the Bayes-optimal causal policy** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.506 [0.476, 0.537] >= 0.3 (n=16) · held-out | n/a | K04 |
+| [C016](knowledge/claims/C016_integration_holm_corrected.py) | **Integrated, not modular (Holm-corrected, distinct organs)** | effect · L2 | ✅ HOLDS | PREREGISTERED | Holm-corrected: 2 organ(s) with off-home help ['goals', 'memory']; 2 degenerate pair(s); causal density 0.33 · held-out | – | – |
+| [C017](knowledge/claims/C017_self_model_beats_table_same_events.py) | **Self-model beats a success table on the same events (announced outages)** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.021 [0.017, 0.026] >= 0.008 (n=16) · held-out | n/a | K08 |
+| [C018](knowledge/claims/C018_self_model_beats_table_when_silent.py) | **Self-model beats a success table on the same events, even when outages are silent** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.008 [0.005, 0.010] >= 0.004 (n=16) · held-out | n/a | K08 |
+| [C019](knowledge/claims/C019_low_load_bottleneck_equivalence_precision.py) | **Low-load workspace bottleneck is equivalent to unlimited access (high precision)** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.014 [-0.033, +0.006] (0.894 vs 0.907, n=128) · held-out | n/a | – |
 | [C020](knowledge/claims/C020_memory_outage_silent_precision.py) | **Silent-outage memory effect at higher paired precision**<br/>_failed its first sealed confirmation (2026-10-11: HOLDS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ✅ HOLDS | ROBUST | Δ +1.030 [+0.877, +1.184] (14.082 vs 13.052, n=512) · held-out | window4 | K03 |
-| [C030](knowledge/claims/C030_calibration_cells_are_behaviour_mediated.py) | **Less than a quarter of each atlas calibration cell is the organ's contents reaching the self-model**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | memory: TE +0.079 [+0.059,+0.099], DE -0.0060 [-0.0076,-0.0043] (share -8%); goals: TE +0.048 [+0.028,+0.067], DE +0.0035 [+0.0020,+0.0050] (share +7%) · claim: TE > 0 and DE < TE/4 · held-out | – | K08, K09 |
-| [C031](knowledge/claims/C031_modular_forecaster_shows_cross_function_cell.py) | **A modular self-model shows the atlas's cross-function calibration cell**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.008 [+0.005, +0.011] (0.016 vs 0.008, n=32) · held-out | – | K08 |
-| [C033](knowledge/claims/C033_memory_contents_dual_use_in_silent_outages.py) | **Memory's contents serve two consumers in silent outages (control and metacognition)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | policy loses +1.02 [+0.62,+1.41] reward without memory's contents (claim > 0.5); self-model loses +0.0025 [+0.0020,+0.0030] Brier at fixed behaviour (claim > 0) · held-out | – | K09 |
-| [C034](knowledge/claims/C034_self_model_broadcast_misleads_policy_in_vigil.py) | **Withholding the self-model's broadcast from the policy improves vigil control (a cost of broadcast access)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.083 [+0.046, +0.126] (0.901 vs 0.817, n=32) · held-out | – | – |
-| [C035](knowledge/claims/C035_self_model_irrelevant_to_causal_control.py) | **The self-model neither helps nor hurts causal control in the workshop (C013 successor)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | equivalence · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.005 [-0.018, +0.028] (-1.648 vs -1.653, n=32) · held-out | n/a | – |
-| [C036](knowledge/claims/C036_fixed_behaviour_integration_load_matched.py) | **At fixed behaviour and fixed feature load, memory's and goals' contents each inform the self-model**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Holm-corrected, load-matched sham, fixed behaviour: memory informs the self-model in ['outage', 'vigil'], goals in ['vigil'] (memory>vigil +0.0039*, goals>vigil +0.0028*, memory>outage +0.0035*, goals>outage +0.0000, memory>workshop -0.0001, goals>workshop +0.0000) · held-out | – | K09, K10 |
-| [C039](knowledge/claims/C039_load_shifts_four_slot_advantage.py) | **Distractor load increases the four-slot workspace's advantage**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | crowded-dev +0.180 [+0.139, +0.222] (crowded +0.153, dev -0.027; claim: > 0.08) · held-out | – | – |
-| [C040](knowledge/claims/C040_long_gap_widens_seven_slot_cost.py) | **Long retention increases the seven-slot workspace's cost**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | long-dev -0.361 [-0.431, -0.291] (long -0.347, dev +0.014; claim: < -0.08) · held-out | – | – |
-| [C079](knowledge/claims/C079_routed_efference_causal_memory_beats_plain_on_dev.py) | **A routed, efference-fed causal memory raises utility over the plain organism**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.205 [+0.168, +0.242] (-1.457 vs -1.662, n=16) · held-out | – | – |
-| [C080](knowledge/claims/C080_efference_record_beats_attention_fed_record_when_routed.py) | **Learning from an efference record beats learning from attended results, when routed**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.389 [+0.327, +0.451] (-1.446 vs -1.835, n=16) · held-out | – | C079 |
-| [C081](knowledge/claims/C081_routing_to_action_is_necessary_for_information_seeking.py) | **Routing a probe recommendation to action is necessary for information seeking**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.294 [+0.224, +0.363] (-1.427 vs -1.721, n=16) · held-out | – | C079 |
-| [C082](knowledge/claims/C082_routed_package_closes_a_quarter_of_the_gap_to_bayes.py) | **The routed efference organism closes a quarter of the gap to the Bayes optimum**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | threshold · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 0.334 [0.311, 0.357] <= 0.42 (n=16) · held-out | n/a | C079 |
-| [C085](knowledge/claims/C085_dag_posterior_routing_beats_plain_on_dev.py) | **Exact inference over generic graphs, routed to action, raises utility over the plain organism**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.274 [+0.246, +0.303] (-1.398 vs -1.672, n=16) · held-out | – | – |
-| [C087](knowledge/claims/C087_dag_posterior_routing_no_harm_on_skewed.py) | **The generic DAG posterior does no harm under the skewed prior**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | equivalence · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ -0.012 [-0.048, +0.024] (-1.451 vs -1.439, n=16) · held-out | n/a | C085 |
-| [C089](knowledge/claims/C089_dag_posterior_beats_count_prior_on_dev.py) | **Exact inference over generic graphs beats the approximate count prior on the dev prior**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | effect · L2 | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Δ +0.115 [+0.097, +0.132] (-1.407 vs -1.522, n=16) · held-out | – | C085 |
+| [C030](knowledge/claims/C030_calibration_cells_are_behaviour_mediated.py) | **Less than a quarter of each atlas calibration cell is the organ's contents reaching the self-model** | effect · L2 | ✅ HOLDS | PREREGISTERED | memory: TE +0.079 [+0.059,+0.099], DE -0.0060 [-0.0076,-0.0043] (share -8%); goals: TE +0.048 [+0.028,+0.067], DE +0.0035 [+0.0020,+0.0050] (share +7%) · claim: TE > 0 and DE < TE/4 · held-out | – | K08, K09 |
+| [C031](knowledge/claims/C031_modular_forecaster_shows_cross_function_cell.py) | **A modular self-model shows the atlas's cross-function calibration cell** | effect · instrument | ✅ HOLDS | PREREGISTERED | Δ +0.008 [+0.005, +0.011] (0.016 vs 0.008, n=32) · held-out | – | K08 |
+| [C033](knowledge/claims/C033_memory_contents_dual_use_in_silent_outages.py) | **Memory's contents serve two consumers in silent outages (control and metacognition)** | effect · L2 | ✅ HOLDS | PREREGISTERED | policy loses +1.02 [+0.62,+1.41] reward without memory's contents (claim > 0.5); self-model loses +0.0025 [+0.0020,+0.0030] Brier at fixed behaviour (claim > 0) · held-out | – | K09 |
+| [C034](knowledge/claims/C034_self_model_broadcast_misleads_policy_in_vigil.py) | **Withholding the self-model's broadcast from the policy improves vigil control (a cost of broadcast access)** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.083 [+0.046, +0.126] (0.901 vs 0.817, n=32) · held-out | – | – |
+| [C035](knowledge/claims/C035_self_model_irrelevant_to_causal_control.py) | **The self-model neither helps nor hurts causal control in the workshop (C013 successor)** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.005 [-0.018, +0.028] (-1.648 vs -1.653, n=32) · held-out | n/a | – |
+| [C036](knowledge/claims/C036_fixed_behaviour_integration_load_matched.py) | **At fixed behaviour and fixed feature load, memory's and goals' contents each inform the self-model** | effect · L2 | ✅ HOLDS | PREREGISTERED | Holm-corrected, load-matched sham, fixed behaviour: memory informs the self-model in ['outage', 'vigil'], goals in ['vigil'] (memory>vigil +0.0039*, goals>vigil +0.0028*, memory>outage +0.0035*, goals>outage +0.0000, memory>workshop -0.0001, goals>workshop +0.0000) · held-out | – | K09, K10 |
+| [C039](knowledge/claims/C039_load_shifts_four_slot_advantage.py) | **Distractor load increases the four-slot workspace's advantage** | effect · L2 | ✅ HOLDS | PREREGISTERED | crowded-dev +0.180 [+0.139, +0.222] (crowded +0.153, dev -0.027; claim: > 0.08) · held-out | – | – |
+| [C040](knowledge/claims/C040_long_gap_widens_seven_slot_cost.py) | **Long retention increases the seven-slot workspace's cost** | effect · L2 | ✅ HOLDS | PREREGISTERED | long-dev -0.361 [-0.431, -0.291] (long -0.347, dev +0.014; claim: < -0.08) · held-out | – | – |
+| [C079](knowledge/claims/C079_routed_efference_causal_memory_beats_plain_on_dev.py) | **A routed, efference-fed causal memory raises utility over the plain organism** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.205 [+0.168, +0.242] (-1.457 vs -1.662, n=16) · held-out | – | – |
+| [C080](knowledge/claims/C080_efference_record_beats_attention_fed_record_when_routed.py) | **Learning from an efference record beats learning from attended results, when routed** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.389 [+0.327, +0.451] (-1.446 vs -1.835, n=16) · held-out | – | C079 |
+| [C081](knowledge/claims/C081_routing_to_action_is_necessary_for_information_seeking.py) | **Routing a probe recommendation to action is necessary for information seeking** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.294 [+0.224, +0.363] (-1.427 vs -1.721, n=16) · held-out | – | C079 |
+| [C082](knowledge/claims/C082_routed_package_closes_a_quarter_of_the_gap_to_bayes.py) | **The routed efference organism closes a quarter of the gap to the Bayes optimum** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.334 [0.311, 0.357] <= 0.42 (n=16) · held-out | n/a | C079 |
+| [C085](knowledge/claims/C085_dag_posterior_routing_beats_plain_on_dev.py) | **Exact inference over generic graphs, routed to action, raises utility over the plain organism** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.274 [+0.246, +0.303] (-1.398 vs -1.672, n=16) · held-out | – | – |
+| [C087](knowledge/claims/C087_dag_posterior_routing_no_harm_on_skewed.py) | **The generic DAG posterior does no harm under the skewed prior** | equivalence · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.012 [-0.048, +0.024] (-1.451 vs -1.439, n=16) · held-out | n/a | C085 |
+| [C089](knowledge/claims/C089_dag_posterior_beats_count_prior_on_dev.py) | **Exact inference over generic graphs beats the approximate count prior on the dev prior** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.115 [+0.097, +0.132] (-1.407 vs -1.522, n=16) · held-out | – | C085 |
 | [C090](knowledge/claims/C090_learned_prior_recovers_the_forward_family.py) | **The learned structure prior concentrates on the forward-only family of graphs** | threshold · L2 | ✅ HOLDS | PREREGISTERED | forward-family prior mass 0.830 [0.816, 0.845] over 16 lifetimes · held-out | n/a | – |
 | [C091](knowledge/claims/C091_learned_prior_needs_fewer_probes.py) | **The learned structure prior reduces probes per episode** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.265 [-0.291, -0.238] (0.622 vs 0.887, n=16) · held-out | – | C090 |
 | [C092](knowledge/claims/C092_learned_prior_is_not_worse_on_dev.py) | **The learned structure prior does not lower utility on the dev prior** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ -0.002 [-0.031, +0.026] (-1.393 vs -1.391, n=16) · held-out | – | C090 |
 | [C094](knowledge/claims/C094_learned_prior_does_no_harm_under_censoring.py) | **The learned-prior organism does no harm under censored probes**<br/>_failed its first sealed confirmation (2026-10-12: HOLDS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ✅ HOLDS | ROBUST | Δ +0.071 [+0.029, +0.113] (-1.647 vs -1.717, n=16) · held-out | compact | C090 |
 | [C095](knowledge/claims/C095_learned_prior_does_no_harm_under_skew.py) | **The learned-prior organism does no harm under the skewed prior**<br/>_failed its first sealed confirmation (2026-10-12: HOLDS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ✅ HOLDS | ROBUST | Δ +0.019 [-0.026, +0.064] (-1.423 vs -1.442, n=16) · held-out | compact | C090 |
-| [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
-| [K02](knowledge/claims/K02_real_sigkill_exactly_once.py) | **Real SIGKILL after replies and before commit: a byte-identical life in a fresh process**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical · held-out | n/a | K01 |
-| [K03](knowledge/claims/K03_matched_learner_identity.py) | **Matched learner: the stripped organism is action-identical to rival:reactive**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 24/24 lives action-identical · held-out | n/a | – |
-| [K04](knowledge/claims/K04_workshop_matches_legacy_optimum.py) | **The workshop world realises the legacy E001 v0.4 optimum**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | Bayes-agent mean regret vs v0.4 optimum: dev -0.0035 [-0.0144,+0.0074]; skewed +0.0036 [-0.0076,+0.0148]; censored +0.0197 [+0.0032,+0.0363] · held-out | n/a | L06, L04 |
-| [K06](knowledge/claims/K06_cross_process_replay.py) | **Replay is deterministic across processes and hash seeds, under every lesion**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 108 lives × 3 hash seeds in fresh processes: all replays verified, heads identical · held-out | n/a | – |
-| [K07](knowledge/claims/K07_exactly_once_after_commit.py) | **Exactly-once: a committed act is never repeated after a crash**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical · held-out | n/a | – |
-| [K08](knowledge/claims/K08_same_stream_calibration_is_valid.py) | **The same-stream calibration metric is valid (zero for the table itself)**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | rival:reactive calib_gain is exactly 0 in every world, seed and window · held-out | n/a | – |
-| [K09](knowledge/claims/K09_shadow_replay_is_exact.py) | **Shadow replay: the self-model re-run from the ledger is the organism's own, bit for bit**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 288 lives, every world and variant: 288/288 shadows reproduce every logged confidence, the runner's Brier and table Brier, and the lab's life · held-out | n/a | – |
-| [K10](knowledge/claims/K10_sham_keeps_presence_and_load.py) | **The shadow's sham keeps presence, count and feature load at every tick**<br/>_CURRENT_CODE_UNVERIFIED: its PREREGISTERED standing rests on evidence recorded under other result code, so it is suspended at ROBUST until `python -m mind check --record` and `--heldout --record` re-record it on the current code_ | invariant · instrument | ✅ HOLDS | ROBUST (PREREGISTERED suspended) | 72/72 sham audits (36 lives, every world and variant) keep presence, distinct-feature count and feature load at every tick, change content, and never fall back in the scored half (67 early fallback ticks in all) · held-out | n/a | K09 |
+| [C096](knowledge/claims/C096_posterior_plan_beats_the_fixed_plan_rule_on_dev.py) | **Choosing the plan by its posterior expected utility beats choosing among known plans on the dev prior** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.198 [+0.181, +0.215] (-1.189 vs -1.387, n=16) · held-out | – | – |
+| [C098](knowledge/claims/C098_posterior_plan_beats_the_fixed_plan_rule_under_skew.py) | **The posterior plan rule beats the known-plan rule under the skewed prior** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.230 [+0.186, +0.275] (-1.229 vs -1.459, n=16) · held-out | – | – |
+| [C099](knowledge/claims/C099_posterior_plan_package_stays_near_the_bayes_benchmark_on_dev.py) | **The posterior-plan organism stays within 0.15 of the Bayes-optimal benchmark on the dev prior** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.083 [0.065, 0.100] <= 0.15 (n=16) · held-out | n/a | – |
+| [C100](knowledge/claims/C100_posterior_plan_package_beats_plain_under_censoring.py) | **The posterior-plan organism beats the plain organism under censored probes** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.159 [+0.120, +0.198] (-1.517 vs -1.676, n=16) · held-out | – | – |
+| [C101](knowledge/claims/C101_posterior_plan_package_beats_plain_under_skew.py) | **The posterior-plan organism beats the plain organism under the skewed prior** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.238 [+0.207, +0.269] (-1.175 vs -1.413, n=16) · held-out | – | – |
+| [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
+| [K02](knowledge/claims/K02_real_sigkill_exactly_once.py) | **Real SIGKILL after replies and before commit: a byte-identical life in a fresh process** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical · held-out | n/a | K01 |
+| [K03](knowledge/claims/K03_matched_learner_identity.py) | **Matched learner: the stripped organism is action-identical to rival:reactive** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 24/24 lives action-identical · held-out | n/a | – |
+| [K04](knowledge/claims/K04_workshop_matches_legacy_optimum.py) | **The workshop world realises the legacy E001 v0.4 optimum** | invariant · instrument | ✅ HOLDS | PREREGISTERED | Bayes-agent mean regret vs v0.4 optimum: dev -0.0035 [-0.0144,+0.0074]; skewed +0.0036 [-0.0076,+0.0148]; censored +0.0197 [+0.0032,+0.0363] · held-out | n/a | L06, L04 |
+| [K06](knowledge/claims/K06_cross_process_replay.py) | **Replay is deterministic across processes and hash seeds, under every lesion** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 108 lives × 3 hash seeds in fresh processes: all replays verified, heads identical · held-out | n/a | – |
+| [K07](knowledge/claims/K07_exactly_once_after_commit.py) | **Exactly-once: a committed act is never repeated after a crash** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs after durable commit; 18 step and 18 end resends answered from the ledger; all lives byte-identical · held-out | n/a | – |
+| [K08](knowledge/claims/K08_same_stream_calibration_is_valid.py) | **The same-stream calibration metric is valid (zero for the table itself)** | invariant · instrument | ✅ HOLDS | PREREGISTERED | rival:reactive calib_gain is exactly 0 in every world, seed and window · held-out | n/a | – |
+| [K09](knowledge/claims/K09_shadow_replay_is_exact.py) | **Shadow replay: the self-model re-run from the ledger is the organism's own, bit for bit** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 288 lives, every world and variant: 288/288 shadows reproduce every logged confidence, the runner's Brier and table Brier, and the lab's life · held-out | n/a | – |
+| [K10](knowledge/claims/K10_sham_keeps_presence_and_load.py) | **The shadow's sham keeps presence, count and feature load at every tick** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 72/72 sham audits (36 lives, every world and variant) keep presence, distinct-feature count and feature load at every tick, change content, and never fall back in the scored half (67 early fallback ticks in all) · held-out | n/a | K09 |
 | [L01](knowledge/claims/L01_legacy_instrument_suite.py) | **The v1 instrument suite still passes** | invariant · instrument | ✅ HOLDS | ROBUST | 75 v1 instrument tests all pass · dev | n/a | – |
 | [L02](knowledge/claims/L02_e100_day0_restart_circuit.py) | **Day 0: a committed task survives real process death (v1 circuit)** | fact · instrument | ✅ HOLDS | ROBUST | exit -9, restart→inspect_signal, wipe→NO_ACTION, alternate→record_measurement · dev | n/a | – |
 | [L03](knowledge/claims/L03_e100_day1_routing_lesion.py) | **Day 1: a routing cut flips a hand-written planner, and a compact reader ties (v1)** | fact · instrument | ✅ HOLDS | ROBUST | intact DEFER_SENSOR_SCAN, cut SCAN_WITH_SENSOR, compact rival ties: True · dev | n/a | – |
@@ -104,6 +107,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [C086](knowledge/claims/C086_dag_posterior_routing_no_harm_on_censored.py) | **The generic DAG posterior does no harm under censored probes**<br/>_failed its first sealed confirmation (2026-10-12: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | equivalence · L2 | ❔ INCONCLUSIVE | – | Δ -0.050 [-0.082, -0.019] (-1.708 vs -1.658, n=16) · held-out | n/a | C085 |
 | [C088](knowledge/claims/C088_dag_posterior_beats_fixed_routing_on_censored.py) | **A calibrated, exact-posterior route beats the fixed route on censored probes**<br/>_failed its first sealed confirmation (2026-10-12: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.044 [+0.022, +0.066] (-1.685 vs -1.730, n=16) · held-out | – | C079 |
 | [C093](knowledge/claims/C093_learned_prior_helps_under_censoring.py) | **The learned structure prior earns more than the uniform prior under censored probes**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:b4d4e10; failed its first sealed confirmation (2026-10-12: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.031 [-0.011, +0.073] (-1.675 vs -1.705, n=16) · held-out | – | C090 |
+| [C097](knowledge/claims/C097_posterior_plan_beats_the_fixed_plan_rule_under_censoring.py) | **The posterior plan rule beats the known-plan rule under censored probes**<br/>_failed its first sealed confirmation (2026-10-12: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❔ INCONCLUSIVE | – | Δ +0.136 [+0.097, +0.174] (-1.538 vs -1.673, n=16) · held-out | – | – |
 | [C070](knowledge/claims/C070_causal_organ_beats_plain_on_skewed_prior.py) | **The causal organ raises utility over the plain organism under a skewed prior**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ +0.025 [+0.001, +0.049] (-1.398 vs -1.423, n=16) · held-out | – | – |
 | [C071](knowledge/claims/C071_derived_plan_beats_same_facts_with_matched_load.py) | **The derived plan recommendation beats the same recalled facts with matched load**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ -0.010 [-0.041, +0.021] (-1.625 vs -1.616, n=16) · held-out | – | – |
 | [C072](knowledge/claims/C072_policy_depends_on_causal_contents.py) | **Withholding the causal organ's contents from the policy costs utility**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ +0.034 [-0.023, +0.091] (-1.648 vs -1.682, n=16) · held-out | – | – |
@@ -140,6 +144,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [H015](knowledge/questions/H015.md) Does a workspace bias what an organism learns about its world, and does routing learned information to action let it seek the information it needs? | confirmed on held-out seeds for the uniform, uncensored workshop (C079-C082 PREREGISTERED); boundaries C083 and C084 not confirmed | C079 ✅, C080 ✅, C081 ✅, C082 ✅, C083 ❌, C084 ❌ |
 | [H016](knowledge/questions/H016.md) Does exact structure learning over generic causal graphs make routed information seeking calibrated across observation models and priors? | partly confirmed (C085, C087, C089 PREREGISTERED on beacon seeds; C086 and C088 not confirmed) | C085 ✅, C086 ❔, C087 ✅, C088 ❔, C089 ✅ |
 | [H017](knowledge/questions/H017.md) Can an organism learn the structure prior of its own world from its experience, and does a learned prior make routed information seeking more economical and more robust? | partly confirmed (C090, C091, C092 PREREGISTERED on beacon seeds; C093 not confirmed; C094, C095 hold on their primary comparison but are not PREREGISTERED because their `about` field imposed the compact rival, which was not beaten) | C090 ✅, C091 ✅, C092 ✅, C093 ❔, C094 ✅, C095 ✅ |
+| [H018](knowledge/questions/H018.md) Is the missing piece the rule that chooses the plan? Choosing the plan by its posterior expected utility, with unknown nodes integrated out, rather than among fully known plans. | pre-registered (C096-C101 on the claim commit; C096-C098 primary, C099-C101 secondary; results pending) | C096 ✅, C097 ❔, C098 ✅, C099 ✅, C100 ✅, C101 ✅ |
 | [P001](knowledge/questions/P001.md) Can held-out seeds come from randomness the registrant does not control? | open | — |
 
 ## Knowledge graph
@@ -165,20 +170,21 @@ graph LR
   H015(["H015"])
   H016(["H016"])
   H017(["H017"])
+  H018(["H018"])
   P001(["P001"])
-  C001["C001<br/>ROBUST"]
+  C001["C001<br/>PREREGISTERED"]
   style C001 fill:#d4f4dd,stroke:#2e7d32
   C001 -.-> H008
-  C002["C002<br/>ROBUST"]
+  C002["C002<br/>PREREGISTERED"]
   style C002 fill:#d4f4dd,stroke:#2e7d32
   C002 -.-> H007
-  C003["C003<br/>ROBUST"]
+  C003["C003<br/>PREREGISTERED"]
   style C003 fill:#d4f4dd,stroke:#2e7d32
   C003 -.-> H007
-  C004["C004<br/>ROBUST"]
+  C004["C004<br/>PREREGISTERED"]
   style C004 fill:#d4f4dd,stroke:#2e7d32
   C004 -.-> H007
-  C005["C005<br/>ROBUST"]
+  C005["C005<br/>PREREGISTERED"]
   style C005 fill:#d4f4dd,stroke:#2e7d32
   C005 -.-> H003
   C006["C006<br/>INCONCLUSIVE"]
@@ -196,10 +202,10 @@ graph LR
   C010["C010<br/>RETIRED"]
   style C010 fill:#eeeeee,stroke:#757575
   C010 -.-> H007
-  C011["C011<br/>ROBUST"]
+  C011["C011<br/>PREREGISTERED"]
   style C011 fill:#d4f4dd,stroke:#2e7d32
   C011 -.-> H001
-  C012["C012<br/>ROBUST"]
+  C012["C012<br/>PREREGISTERED"]
   style C012 fill:#d4f4dd,stroke:#2e7d32
   C012 -.-> H001
   C013["C013<br/>INCONCLUSIVE"]
@@ -211,46 +217,46 @@ graph LR
   C015["C015<br/>RETIRED"]
   style C015 fill:#eeeeee,stroke:#757575
   C015 -.-> H008
-  C016["C016<br/>ROBUST"]
+  C016["C016<br/>PREREGISTERED"]
   style C016 fill:#d4f4dd,stroke:#2e7d32
   C016 -.-> H007
-  C017["C017<br/>ROBUST"]
+  C017["C017<br/>PREREGISTERED"]
   style C017 fill:#d4f4dd,stroke:#2e7d32
   C017 -.-> H002
-  C018["C018<br/>ROBUST"]
+  C018["C018<br/>PREREGISTERED"]
   style C018 fill:#d4f4dd,stroke:#2e7d32
   C018 -.-> H002
-  C019["C019<br/>ROBUST"]
+  C019["C019<br/>PREREGISTERED"]
   style C019 fill:#d4f4dd,stroke:#2e7d32
   C019 -.-> H003
   C020["C020<br/>ROBUST"]
   style C020 fill:#d4f4dd,stroke:#2e7d32
   C020 -.-> H007
-  C030["C030<br/>ROBUST"]
+  C030["C030<br/>PREREGISTERED"]
   style C030 fill:#d4f4dd,stroke:#2e7d32
   C030 -.-> H007
-  C031["C031<br/>ROBUST"]
+  C031["C031<br/>PREREGISTERED"]
   style C031 fill:#d4f4dd,stroke:#2e7d32
   C031 -.-> H007
   C032["C032<br/>RETIRED"]
   style C032 fill:#eeeeee,stroke:#757575
   C032 -.-> H007
-  C033["C033<br/>ROBUST"]
+  C033["C033<br/>PREREGISTERED"]
   style C033 fill:#d4f4dd,stroke:#2e7d32
   C033 -.-> H007
-  C034["C034<br/>ROBUST"]
+  C034["C034<br/>PREREGISTERED"]
   style C034 fill:#d4f4dd,stroke:#2e7d32
   C034 -.-> H007
-  C035["C035<br/>ROBUST"]
+  C035["C035<br/>PREREGISTERED"]
   style C035 fill:#d4f4dd,stroke:#2e7d32
   C035 -.-> H007
-  C036["C036<br/>ROBUST"]
+  C036["C036<br/>PREREGISTERED"]
   style C036 fill:#d4f4dd,stroke:#2e7d32
   C036 -.-> H007
-  C039["C039<br/>ROBUST"]
+  C039["C039<br/>PREREGISTERED"]
   style C039 fill:#d4f4dd,stroke:#2e7d32
   C039 -.-> H003
-  C040["C040<br/>ROBUST"]
+  C040["C040<br/>PREREGISTERED"]
   style C040 fill:#d4f4dd,stroke:#2e7d32
   C040 -.-> H003
   C070["C070<br/>REFUTED"]
@@ -268,16 +274,16 @@ graph LR
   C074["C074<br/>REFUTED"]
   style C074 fill:#fde0dc,stroke:#c62828
   C074 -.-> H001
-  C079["C079<br/>ROBUST"]
+  C079["C079<br/>PREREGISTERED"]
   style C079 fill:#d4f4dd,stroke:#2e7d32
   C079 -.-> H015
-  C080["C080<br/>ROBUST"]
+  C080["C080<br/>PREREGISTERED"]
   style C080 fill:#d4f4dd,stroke:#2e7d32
   C080 -.-> H015
-  C081["C081<br/>ROBUST"]
+  C081["C081<br/>PREREGISTERED"]
   style C081 fill:#d4f4dd,stroke:#2e7d32
   C081 -.-> H015
-  C082["C082<br/>ROBUST"]
+  C082["C082<br/>PREREGISTERED"]
   style C082 fill:#d4f4dd,stroke:#2e7d32
   C082 -.-> H015
   C083["C083<br/>REFUTED"]
@@ -286,19 +292,19 @@ graph LR
   C084["C084<br/>REFUTED"]
   style C084 fill:#fde0dc,stroke:#c62828
   C084 -.-> H015
-  C085["C085<br/>ROBUST"]
+  C085["C085<br/>PREREGISTERED"]
   style C085 fill:#d4f4dd,stroke:#2e7d32
   C085 -.-> H016
   C086["C086<br/>INCONCLUSIVE"]
   style C086 fill:#e8eaf6,stroke:#3949ab
   C086 -.-> H016
-  C087["C087<br/>ROBUST"]
+  C087["C087<br/>PREREGISTERED"]
   style C087 fill:#d4f4dd,stroke:#2e7d32
   C087 -.-> H016
   C088["C088<br/>INCONCLUSIVE"]
   style C088 fill:#e8eaf6,stroke:#3949ab
   C088 -.-> H016
-  C089["C089<br/>ROBUST"]
+  C089["C089<br/>PREREGISTERED"]
   style C089 fill:#d4f4dd,stroke:#2e7d32
   C089 -.-> H016
   C090["C090<br/>PREREGISTERED"]
@@ -319,32 +325,50 @@ graph LR
   C095["C095<br/>ROBUST"]
   style C095 fill:#d4f4dd,stroke:#2e7d32
   C095 -.-> H017
-  K01["K01<br/>ROBUST"]
+  C096["C096<br/>PREREGISTERED"]
+  style C096 fill:#d4f4dd,stroke:#2e7d32
+  C096 -.-> H018
+  C097["C097<br/>INCONCLUSIVE"]
+  style C097 fill:#e8eaf6,stroke:#3949ab
+  C097 -.-> H018
+  C098["C098<br/>PREREGISTERED"]
+  style C098 fill:#d4f4dd,stroke:#2e7d32
+  C098 -.-> H018
+  C099["C099<br/>PREREGISTERED"]
+  style C099 fill:#d4f4dd,stroke:#2e7d32
+  C099 -.-> H018
+  C100["C100<br/>PREREGISTERED"]
+  style C100 fill:#d4f4dd,stroke:#2e7d32
+  C100 -.-> H018
+  C101["C101<br/>PREREGISTERED"]
+  style C101 fill:#d4f4dd,stroke:#2e7d32
+  C101 -.-> H018
+  K01["K01<br/>PREREGISTERED"]
   style K01 fill:#d4f4dd,stroke:#2e7d32
   K01 -.-> H008
-  K02["K02<br/>ROBUST"]
+  K02["K02<br/>PREREGISTERED"]
   style K02 fill:#d4f4dd,stroke:#2e7d32
   K02 -.-> H008
-  K03["K03<br/>ROBUST"]
+  K03["K03<br/>PREREGISTERED"]
   style K03 fill:#d4f4dd,stroke:#2e7d32
-  K04["K04<br/>ROBUST"]
+  K04["K04<br/>PREREGISTERED"]
   style K04 fill:#d4f4dd,stroke:#2e7d32
   K04 -.-> H001
   K05["K05<br/>RETIRED"]
   style K05 fill:#eeeeee,stroke:#757575
   K05 -.-> H007
-  K06["K06<br/>ROBUST"]
+  K06["K06<br/>PREREGISTERED"]
   style K06 fill:#d4f4dd,stroke:#2e7d32
   K06 -.-> H008
-  K07["K07<br/>ROBUST"]
+  K07["K07<br/>PREREGISTERED"]
   style K07 fill:#d4f4dd,stroke:#2e7d32
   K07 -.-> H008
-  K08["K08<br/>ROBUST"]
+  K08["K08<br/>PREREGISTERED"]
   style K08 fill:#d4f4dd,stroke:#2e7d32
-  K09["K09<br/>ROBUST"]
+  K09["K09<br/>PREREGISTERED"]
   style K09 fill:#d4f4dd,stroke:#2e7d32
   K09 -.-> H007
-  K10["K10<br/>ROBUST"]
+  K10["K10<br/>PREREGISTERED"]
   style K10 fill:#d4f4dd,stroke:#2e7d32
   K10 -.-> H007
   L01["L01<br/>ROBUST"]
@@ -458,6 +482,19 @@ graph LR
   C086 -.->|extends| C094
   C090 --> C095
   C087 -.->|extends| C095
+  C085 -.->|extends| C096
+  C089 -.->|extends| C096
+  C092 -.->|extends| C096
+  C083 -.->|extends| C097
+  C093 -.->|extends| C097
+  C084 -.->|extends| C098
+  C095 -.->|extends| C098
+  C082 -.->|extends| C099
+  C083 -.->|extends| C100
+  C086 -.->|extends| C100
+  C093 -.->|extends| C100
+  C084 -.->|extends| C101
+  C095 -.->|extends| C101
   L02 -.->|extends| K01
   K01 --> K02
   L02 -.->|extends| K02
