@@ -100,10 +100,11 @@ current prediction (searched by claim id, so renames do not move it). The rules 
   records whose seal has vanished from history.
 
 What this does *not* stop is deliberate seed **grinding** (v2 review, finding 2a). A contributor who controls the
-registering commit can compute candidate commit hashes offline and commit only one whose seeds favour them. The
-pipeline cannot see that. It is forbidden in [AGENTS.md](../AGENTS.md), and preventing it needs randomness from
-outside the contributor's control (a public beacon, or seeds drawn at merge by someone else). That is an open item
-on the frontier.
+registering commit can compute candidate commit hashes offline and commit only one whose seeds favour them. Commit
+sealing cannot see that. It is forbidden in [AGENTS.md](../AGENTS.md). `mind check --beacon` (P001) prevents it by
+also drawing seeds from the first public drand round after GitHub logged the seal's first push; see
+[CLAIMS.md](CLAIMS.md#the-prediction-lock-and-the-seal). Beacon draws are opt-in until the program decides to require
+them for PREREGISTERED.
 
 States: HOLDS · REFUTED (failed, never held: knowledge) · BROKEN (held, now fails on identical seeds: a
 regression) · INCONCLUSIVE (the interval straddles the margin; *not* a negative result) · STALE (a premise

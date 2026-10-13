@@ -61,7 +61,14 @@ from a hash of `seal | id | prediction_hash`. They are fixed by the registering 
 * **Merge with merge commits.** Squash or rebase merges rewrite sealing commits, and the doctor rejects held-out
   records whose seal has left history.
 * **Do not grind.** You *can* compute a commit's hash before creating it, and so preview its seeds. Choosing a
-  commit for its seeds is fraud that the tool cannot detect (see [AGENTS.md](../AGENTS.md)).
+  commit for its seeds is fraud that commit sealing alone cannot detect (see [AGENTS.md](../AGENTS.md)).
+* **Prefer a beacon draw (P001).** `python -m mind check C016 --beacon` (implies `--heldout`, needs the seal pushed to
+  GitHub) also mixes in the randomness of the first [drand](https://drand.love) quicknet round published after GitHub
+  first logged a push containing the seal. Nobody knows that randomness at push time, so previewing seeds offline is
+  useless. The record's seed label becomes `heldout:<seal>+drand:<round>` and it carries a receipt (push, round,
+  randomness, signature). The doctor checks receipts offline; `python -m mind doctor --online` re-fetches the push
+  from GitHub and the round from drand. Whichever held-out run is recorded first, commit-sealed or beacon-drawn,
+  decides PREREGISTERED. Every push is public, so pushing several registrations to keep the luckiest stays visible.
 
 ## Running
 

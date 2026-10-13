@@ -1,7 +1,7 @@
 """Command line: python -m mind <command>.
 
   status   [--write] [--frontier]         computed state of all knowledge
-  check    [IDS] [--quick|--heldout] [--record] [--by NAME] [-j N]
+  check    [IDS] [--quick|--heldout|--beacon] [--record] [--by NAME] [-j N]
                                           evaluate claims; exit 1 on BROKEN/ERROR
   run      ARM WORLD [--variant V] [--seeds N] [--episodes E] [--metrics a,b]
                                           ad-hoc experiment (exploration, not evidence)
@@ -13,13 +13,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import sys
 import time
 from typing import Dict, List, Optional
 
-from . import stats
+from . import beacon, stats
 from .claims import (CLAIMS_DIR, KINDS, KNOWLEDGE, ROOT, SCOPES, Check, Compare, Threshold, dev_seeds,
                      evaluate, git, heldout_seeds, load_claims, rival_panel, seal_commit, QUICK_SEEDS)
 from .knowledge import (assess, contributor, frontier, load_questions, load_records, write_record)
@@ -33,13 +34,28 @@ def _seals(claims) -> Dict[str, Optional[str]]:
     return {cid: seal_commit(c) for cid, c in claims.items()}
 
 
-def _tasks(claim, mode: str, seal: Optional[str]) -> List[tuple]:
+def _draws(claims, seals) -> Dict[str, dict]:
+    """P001: one beacon draw per claim, bound to the first GitHub push of its seal."""
+    token = os.environ.get("GITHUB_TOKEN")
+    slug, contains = beacon.locate(git, token)
+    activity = beacon.list_activity(slug, token)
+    draws = {}
+    for cid, c in claims.items():
+        push = beacon.first_push(seals[cid], activity, contains)
+        if push is None:
+            raise RuntimeError(f"{cid}: seal {seals[cid][:12]} has not been pushed to {slug}; push it first")
+        draws[cid] = beacon.draw(push)
+        print(f"  {cid}: seal {seals[cid][:12]} first pushed {push['time']} -> drand round {draws[cid]['round']}")
+    return draws
+
+
+def _tasks(claim, mode: str, seal: Optional[str], draw: Optional[dict] = None) -> List[tuple]:
     test = claim.test
     if isinstance(test, Check):
         return []
     n = test.seeds
     if mode == "heldout":
-        seeds = heldout_seeds(claim, seal, n)
+        seeds = heldout_seeds(claim, beacon.extended_seal(seal, draw), n)
     else:
         seeds = dev_seeds(min(n, QUICK_SEEDS) if mode == "quick" else n)
     eps = WORLDS[test.world].default_episodes if test.episodes is None else test.episodes
@@ -56,6 +72,8 @@ def cmd_check(args) -> int:
     if missing:
         print(f"unknown claim id(s): {', '.join(sorted(missing))}", file=sys.stderr)
         return 2
+    if args.beacon:
+        args.heldout = True
     mode = "heldout" if args.heldout else "quick" if args.quick else "full"
     if mode == "heldout" and not args.record:
         # an unrecorded held-out run burns the sealed seeds without leaving evidence
@@ -77,16 +95,22 @@ def cmd_check(args) -> int:
                 print(f"  {cid}: skipped (unsealed: commit the claim file first)")
                 continue
         runnable[cid] = c
+    try:
+        draws = _draws(runnable, seals) if args.beacon else {}
+    except Exception as exc:
+        print(f"beacon draw failed: {exc}", file=sys.stderr)
+        return 2
     lab = Lab(jobs=args.jobs, cache=not args.no_cache)
     start = time.time()
-    tasks = [t for c in runnable.values() for t in _tasks(c, mode, seals.get(c.id))]
+    tasks = [t for c in runnable.values() for t in _tasks(c, mode, seals.get(c.id), draws.get(c.id))]
     if tasks:
         print(f"running {len(set(tasks))} lifetimes ({lab.jobs} workers, cache {'off' if args.no_cache else 'on'})...",
               flush=True)
         lab.runs(tasks)
     evaluations = {}
     for cid, c in sorted(runnable.items()):
-        ev = evaluate(c, lab, mode, seals.get(cid))
+        seal = beacon.extended_seal(seals[cid], draws[cid]) if cid in draws else seals.get(cid)
+        ev = evaluate(c, lab, mode, seal)
         evaluations[cid] = ev
         rivals = " ".join(f"{n}:{'✓' if r['result'] == 'BEATEN' else '✗'}{'(ref)' if r['reference'] else ''}"
                           for n, r in ev.rivals.items())
@@ -98,7 +122,7 @@ def cmd_check(args) -> int:
     print(f"done in {time.time() - start:.1f}s; {lab.executed} new lifetimes simulated")
     code = code_fingerprint()
     if args.record and evaluations:
-        path = write_record(list(evaluations.values()), mode, contributor(args.by), code)
+        path = write_record(list(evaluations.values()), mode, contributor(args.by), code, beacons=draws)
         print(f"recorded {path.relative_to(ROOT)}")
     states = assess(claims, load_records(), evaluations if not args.record else {}, code, _seals(claims),
                     live_mode=mode)
@@ -165,7 +189,7 @@ def cmd_atlas(args) -> int:
 
 def cmd_doctor(args) -> int:
     from .doctor import doctor
-    problems, warnings = doctor()
+    problems, warnings = doctor(online=args.online)
     for w in warnings:
         print(f"warning: {w}")
     for p in problems:
@@ -232,6 +256,8 @@ def main(argv=None) -> int:
     g = c.add_mutually_exclusive_group()
     g.add_argument("--quick", action="store_true", help=f"{QUICK_SEEDS} dev seeds; a draft, never recorded")
     g.add_argument("--heldout", action="store_true", help="commit-sealed held-out seeds (preregistration; always recorded)")
+    g.add_argument("--beacon", action="store_true",
+                   help="held-out seeds that also draw on a public drand round after the seal's first push (P001)")
     c.add_argument("--record", action="store_true", help="write a record under knowledge/records/")
     c.add_argument("--by", default=None, help="contributor label for the record (default: git user.name)")
     c.set_defaults(fn=cmd_check)
@@ -251,6 +277,8 @@ def main(argv=None) -> int:
     a.set_defaults(fn=cmd_atlas)
 
     d = sub.add_parser("doctor", help="repository integrity checks")
+    d.add_argument("--online", action="store_true",
+                   help="also re-fetch beacon rounds from drand and seal pushes from GitHub (P001)")
     d.set_defaults(fn=cmd_doctor)
 
     n = sub.add_parser("new", help="scaffold a claim")
