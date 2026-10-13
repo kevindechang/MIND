@@ -127,7 +127,8 @@ class Causal(Organ):
     # cost 0.25: the workshop's probe cost (used only when voi=1)
     defaults = {"salience": 2.0, "penalty": 3, "derive": 1, "sham": 0, "goals": 2,
                 "source": "broadcast", "voi": 0, "cost": 0.25, "smooth": 1.0,
-                "hypotheses": "counts", "aware": 0, "value_carry": 0, "em": 0, "alpha": 0.1}
+                "hypotheses": "counts", "aware": 0, "value_carry": 0, "em": 0, "alpha": 0.1,
+                "posterior_plan": 0}
     choices = {"source": ("broadcast", "efference"), "hypotheses": ("counts", "dag")}
 
     def __init__(self, params):
@@ -194,6 +195,8 @@ class Causal(Organ):
                 self.pair[(a, self.reach[a], b, self.reach[b])] += 1
 
     def _best(self, actions: Sequence[str], ctx) -> Optional[str]:
+        if self.p["posterior_plan"]:
+            return self._posterior_best(actions)
         if not self.reach or len(self.wants) < self.p["goals"]:
             return None
         commitments = sorted(self.wants.items())
@@ -202,6 +205,25 @@ class Causal(Organ):
             utility = predicted_utility(self.reach, action, commitments, self.p["penalty"])
             if utility is not None:
                 scored.append((-utility, action))
+        return min(scored)[1] if scored else None
+
+    def _posterior_best(self, actions: Sequence[str]) -> Optional[str]:
+        """The plan with the highest expected utility under the DAG posterior (H018): unknown nodes are integrated out,
+        so a plan whose reach is still uncertain is weighed by what the organism believes it does, not dropped."""
+        if not self.reach or len(self.wants) < self.p["goals"]:
+            return None
+        idxs = [i for i, r in enumerate(DAG_REACH) if all(r[n] == m for n, m in self.reach.items())]
+        if not idxs:
+            return None
+        commitments = sorted(self.wants.items())
+        total = sum(self._dag_weight(i) for i in idxs)
+        scored = []
+        for action in actions:
+            if plan_nodes(action) is None:
+                continue
+            eu = sum(self._dag_weight(i) * predicted_utility(DAG_REACH[i], action, commitments, self.p["penalty"])
+                     for i in idxs) / total
+            scored.append((-eu, action))
         return min(scored)[1] if scored else None
 
     def _sham_plan(self, actions: Sequence[str], ctx) -> str:

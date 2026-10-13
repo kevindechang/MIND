@@ -1,0 +1,236 @@
+{
+ "by": "claude-code (H018 session 2026-10-13)",
+ "code": "c8312acd79a74969",
+ "environment": {
+  "host": "f376fbc5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.9.6"
+ },
+ "environment_id": "01e8a8783bbb",
+ "evaluations": {
+  "C096": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46256575460,
+     "after": "6391ff55e01889f0b9ea82995868fa77f1061329",
+     "ref": "refs/heads/contrib/h018-posterior-plan-choice-20261013",
+     "time": "2026-10-12T17:35:09Z"
+    },
+    "randomness": "5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+    "round": 33007716,
+    "signature": "865976d03aabff42d4c2c2fe4ae9bb5ffeb44300e47b1237aacb0b1edfc103ddb109d5140e1dc2f3b21c2cdf8d37cb36"
+   },
+   "claim": "C096",
+   "error": null,
+   "estimate": {
+    "a": -1.188875,
+    "b": -1.3871458333333335,
+    "diff": 0.1982708333333333,
+    "hi": 0.21533377569444118,
+    "lo": 0.18120789097222545,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "39dff9676de68fb7",
+   "rivals": {
+    "compact": {
+     "advantage": 0.45425,
+     "hi": 0.4805549215058369,
+     "lo": 0.4279450784941631,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.037,
+   "seeds": "heldout:6391ff55e01889f0b9ea82995868fa77f1061329+drand:5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+   "verdict": "HOLDS"
+  },
+  "C097": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46256575460,
+     "after": "6391ff55e01889f0b9ea82995868fa77f1061329",
+     "ref": "refs/heads/contrib/h018-posterior-plan-choice-20261013",
+     "time": "2026-10-12T17:35:09Z"
+    },
+    "randomness": "5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+    "round": 33007716,
+    "signature": "865976d03aabff42d4c2c2fe4ae9bb5ffeb44300e47b1237aacb0b1edfc103ddb109d5140e1dc2f3b21c2cdf8d37cb36"
+   },
+   "claim": "C097",
+   "error": null,
+   "estimate": {
+    "a": -1.5375625000000002,
+    "b": -1.6733541666666665,
+    "diff": 0.1357916666666667,
+    "hi": 0.1744849451366829,
+    "lo": 0.09709838819665052,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "01087561b471d758",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.019,
+   "seeds": "heldout:6391ff55e01889f0b9ea82995868fa77f1061329+drand:5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+   "verdict": "INCONCLUSIVE"
+  },
+  "C098": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46256575460,
+     "after": "6391ff55e01889f0b9ea82995868fa77f1061329",
+     "ref": "refs/heads/contrib/h018-posterior-plan-choice-20261013",
+     "time": "2026-10-12T17:35:09Z"
+    },
+    "randomness": "5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+    "round": 33007716,
+    "signature": "865976d03aabff42d4c2c2fe4ae9bb5ffeb44300e47b1237aacb0b1edfc103ddb109d5140e1dc2f3b21c2cdf8d37cb36"
+   },
+   "claim": "C098",
+   "error": null,
+   "estimate": {
+    "a": -1.2288958333333333,
+    "b": -1.459083333333333,
+    "diff": 0.2301875,
+    "hi": 0.27465478125042464,
+    "lo": 0.18572021874957534,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "aea2f72b1799ad00",
+   "rivals": {
+    "compact": {
+     "advantage": 0.22366666666666668,
+     "hi": 0.2594462490366751,
+     "lo": 0.18788708429665824,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.037,
+   "seeds": "heldout:6391ff55e01889f0b9ea82995868fa77f1061329+drand:5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+   "verdict": "HOLDS"
+  },
+  "C099": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46256575460,
+     "after": "6391ff55e01889f0b9ea82995868fa77f1061329",
+     "ref": "refs/heads/contrib/h018-posterior-plan-choice-20261013",
+     "time": "2026-10-12T17:35:09Z"
+    },
+    "randomness": "5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+    "round": 33007716,
+    "signature": "865976d03aabff42d4c2c2fe4ae9bb5ffeb44300e47b1237aacb0b1edfc103ddb109d5140e1dc2f3b21c2cdf8d37cb36"
+   },
+   "claim": "C099",
+   "error": null,
+   "estimate": {
+    "hi": 0.1003829220931941,
+    "lo": 0.06495041124013923,
+    "mean": 0.08266666666666667,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "8647fe5e8c0d1537",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.018,
+   "seeds": "heldout:6391ff55e01889f0b9ea82995868fa77f1061329+drand:5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+   "verdict": "HOLDS"
+  },
+  "C100": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46256575460,
+     "after": "6391ff55e01889f0b9ea82995868fa77f1061329",
+     "ref": "refs/heads/contrib/h018-posterior-plan-choice-20261013",
+     "time": "2026-10-12T17:35:09Z"
+    },
+    "randomness": "5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+    "round": 33007716,
+    "signature": "865976d03aabff42d4c2c2fe4ae9bb5ffeb44300e47b1237aacb0b1edfc103ddb109d5140e1dc2f3b21c2cdf8d37cb36"
+   },
+   "claim": "C100",
+   "error": null,
+   "estimate": {
+    "a": -1.5173125000000003,
+    "b": -1.6762708333333334,
+    "diff": 0.1589583333333333,
+    "hi": 0.19756468724547707,
+    "lo": 0.12035197942118955,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "837f6987da582754",
+   "rivals": {
+    "compact": {
+     "advantage": 0.1321875,
+     "hi": 0.1786034021375968,
+     "lo": 0.08577159786240324,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.036,
+   "seeds": "heldout:6391ff55e01889f0b9ea82995868fa77f1061329+drand:5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+   "verdict": "HOLDS"
+  },
+  "C101": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46256575460,
+     "after": "6391ff55e01889f0b9ea82995868fa77f1061329",
+     "ref": "refs/heads/contrib/h018-posterior-plan-choice-20261013",
+     "time": "2026-10-12T17:35:09Z"
+    },
+    "randomness": "5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+    "round": 33007716,
+    "signature": "865976d03aabff42d4c2c2fe4ae9bb5ffeb44300e47b1237aacb0b1edfc103ddb109d5140e1dc2f3b21c2cdf8d37cb36"
+   },
+   "claim": "C101",
+   "error": null,
+   "estimate": {
+    "a": -1.1750416666666668,
+    "b": -1.4129166666666664,
+    "diff": 0.237875,
+    "hi": 0.2691435793095685,
+    "lo": 0.2066064206904315,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "4181f06e86ceedcb",
+   "rivals": {
+    "compact": {
+     "advantage": 0.24777083333333338,
+     "hi": 0.27468946138518535,
+     "lo": 0.2208522052814814,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.036,
+   "seeds": "heldout:6391ff55e01889f0b9ea82995868fa77f1061329+drand:5ce0d4e68ee18cfba944f20366139cea9adaa288572c58e073574bf0b88a077b",
+   "verdict": "HOLDS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "6391ff55e01889f0b9ea82995868fa77f1061329"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-12T17:37:27Z",
+ "schema": 2
+}
