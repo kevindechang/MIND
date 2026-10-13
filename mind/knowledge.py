@@ -227,7 +227,7 @@ def assess(claims: Dict[str, Claim], records: List[Dict[str, Any]],
         if claim.retired:
             st.state = "RETIRED"
             st.notes.append(f"retired: {claim.retired}")
-        st.rung = _rung(claim, evidence, seal, heads) if st.state == "HOLDS" else 0
+        st.rung = _rung(claim, evidence, seal, heads, code) if st.state == "HOLDS" else 0
         robust = ladder(claim).index("ROBUST")
         if st.rung > robust and not st.current_code:
             # Evidence from other result code says nothing certain about this code: RIVAL-TESTED and
@@ -285,8 +285,15 @@ def _amendments(claim: Claim, records: List[Dict[str, Any]]) -> int:
     return n
 
 
+def contributor_key(by: str) -> str:
+    """Who ran a record. Sessions of one agent family are one party: 'claude-code (session A)' and
+    'claude-code (H001 session)' are the same party, so a rerun by a new session is self-review, not
+    replication (AGENTS.md rule 3). The label before any parenthesis names the party."""
+    return by.split(" (", 1)[0].strip().lower()
+
+
 def _rung(claim: Claim, evidence: List[Dict[str, Any]], seal: Optional[str],
-          heads: Sequence[Dict[str, Any]] = ()) -> int:
+          heads: Sequence[Dict[str, Any]] = (), code: Optional[str] = None) -> int:
     holds = [e for e in evidence if e["verdict"] == "HOLDS"]
     robust = [e for e in holds if e["robust"]]
     met = {"PROPOSED": True, "OBSERVED": bool(holds), "ROBUST": bool(robust)}
@@ -301,8 +308,9 @@ def _rung(claim: Claim, evidence: List[Dict[str, Any]], seal: Optional[str],
         met["RIVAL-TESTED"] = bool(robust)
     first = _first_heldout(evidence, seal)
     met["PREREGISTERED"] = first is not None and _confirmed(claim, first)
-    recorded = [e for e in robust if e["_record"]]
-    met["REPLICATED"] = (len({e["_by"] for e in recorded}) >= 2
+    # replication is of the CURRENT result code: records from older code say nothing about this code
+    recorded = [e for e in robust if e["_record"] and (code is None or e["_code"] == code)]
+    met["REPLICATED"] = (len({contributor_key(e["_by"]) for e in recorded}) >= 2
                          and len({e["_env"] for e in recorded}) >= 2)
     rung = 0
     for i, name in enumerate(ladder(claim)):

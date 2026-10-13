@@ -1,0 +1,115 @@
+{
+ "by": "claude-code (H001 session 2026-10-12)",
+ "code": "fadebc5c5c0f5412",
+ "environment": {
+  "host": "f376fbc5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.9.6"
+ },
+ "environment_id": "01e8a8783bbb",
+ "evaluations": {
+  "C070": {
+   "claim": "C070",
+   "error": null,
+   "estimate": {
+    "a": -1.4527916666666665,
+    "b": -1.4510416666666666,
+    "diff": -0.0017499999999999738,
+    "hi": 0.0346102037622064,
+    "lo": -0.03811020376220635,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "51a0229ca24bf329",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  },
+  "C071": {
+   "claim": "C071",
+   "error": null,
+   "estimate": {
+    "a": -1.6550416666666667,
+    "b": -1.6809999999999998,
+    "diff": 0.025958333333333333,
+    "hi": 0.06279985658060847,
+    "lo": -0.010883189913941806,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "a5118042a01e296e",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  },
+  "C072": {
+   "claim": "C072",
+   "error": null,
+   "estimate": {
+    "a": -1.6550416666666667,
+    "b": -1.651875,
+    "diff": -0.003166666666666651,
+    "hi": 0.038868024812581226,
+    "lo": -0.04520135814591453,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "f45d9c1f13429eb5",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  },
+  "C073": {
+   "claim": "C073",
+   "error": null,
+   "estimate": {
+    "a": -1.6550416666666667,
+    "b": -1.6562500000000002,
+    "diff": 0.001208333333333353,
+    "hi": 0.04055020314165203,
+    "lo": -0.038133536474985325,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "ed849251dda43df3",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  },
+  "C074": {
+   "claim": "C074",
+   "error": null,
+   "estimate": {
+    "a": -1.6605833333333333,
+    "b": -1.6575833333333332,
+    "diff": -0.0030000000000000027,
+    "hi": 0.0301565410017111,
+    "lo": -0.036156541001711104,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "0c37577b85d3886f",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "dev",
+   "verdict": "FAILS"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "42f70ae6b33ef0a1f3fb1bf4c02c515ebe18a84f"
+ },
+ "mode": "full",
+ "recorded_at": "2026-10-12T10:47:12Z",
+ "schema": 2
+}
