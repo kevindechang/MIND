@@ -200,3 +200,53 @@ class ReplayWithTheNewRoutes(unittest.TestCase):
         restored = Organism.restore(ledger)   # raises ReplayDivergence if any logged decision differs
         self.assertEqual(restored.organs["causal"].p["source"], "efference")
         self.assertEqual(restored.organs["policy"].p["bonus"], 1.0)
+
+
+class GenericDagPosteriorAndCarriedValue(unittest.TestCase):
+    def test_there_are_twenty_five_labelled_dags_on_three_nodes(self):
+        from mind.organs.causal import DAG_REACH
+        self.assertEqual(len(DAG_REACH), 25)
+        self.assertIn({0: 1, 1: 2, 2: 4}, DAG_REACH)          # the empty graph: every node reaches only itself
+        self.assertIn({0: 7, 1: 6, 2: 4}, DAG_REACH)          # 0 -> 1 -> 2 and 0 -> 2
+
+    def test_dag_posterior_recommends_a_probe_only_while_a_node_is_unknown(self):
+        org = Causal({"voi": 1, "hypotheses": "dag"})
+        out = tick(org, facts=(perceived("fx2", "2"),), wants=((0, 1), (1, 0)),
+                   actions=("do:none", "do:0", "do:1", "probe0", "probe1"))
+        probes = [c.value for c in out if c.key == "probe"]
+        self.assertTrue(probes and probes[0] in ("probe0", "probe1"), probes)
+        org2 = Causal({"voi": 1, "hypotheses": "dag"})
+        tick(org2, facts=(perceived("fx0", "0"), perceived("fx1", "1"), perceived("fx2", "2")))
+        self.assertIsNone(org2._dag_probe_recommendation(("do:none", "probe0", "probe1", "probe2")))
+
+    def test_value_carry_puts_the_net_value_in_the_probe_salience(self):
+        from mind.organs.causal import VALUE_SALIENCE
+        org = Causal({"voi": 1, "hypotheses": "dag", "value_carry": 1})
+        actions = ("do:none", "do:0", "do:1", "probe0", "probe1")
+        tick(org, facts=(), wants=((0, 1), (1, 0)), actions=actions)       # no facts yet, wants known
+        action, net = org._dag_probe_recommendation(actions)
+        out = tick(org, facts=(), wants=((0, 1), (1, 0)), actions=actions)
+        probe = [c for c in out if c.key == "probe"][0]
+        self.assertEqual(probe.value, action)
+        self.assertAlmostEqual(probe.salience, VALUE_SALIENCE * net, places=9)
+
+    def test_value_bonus_scales_a_named_probe_by_its_salience(self):
+        from mind.organs.policy import Policy
+        acts = ("wait", "probe1")
+        strong = (Content("causal", "probe", "probe1", 4.0),)
+        weak = (Content("causal", "probe", "probe1", 0.0),)
+        self.assertEqual(Policy({"value_bonus": 4.0}).decide(strong, acts, RoutingFromBroadcastToAction.FixedRandom()),
+                         "probe1")
+        self.assertEqual(Policy({"value_bonus": 4.0}).decide(weak, acts, RoutingFromBroadcastToAction.FixedRandom()),
+                         "wait")
+
+
+class ReplayWithTheDagRoute(unittest.TestCase):
+    def test_a_dag_routed_life_replays_from_its_ledger(self):
+        ledger = MemoryLedger()
+        run("organism +causal causal.voi=1 causal.source=efference causal.hypotheses=dag causal.aware=1 "
+            "causal.value_carry=1 policy.bonus=1.0 policy.value_bonus=4.0", "workshop", seed=6, episodes=60,
+            ledger=ledger)
+        restored = Organism.restore(ledger)   # raises ReplayDivergence if any logged decision differs
+        self.assertEqual(restored.organs["causal"].p["hypotheses"], "dag")
+        self.assertEqual(restored.organs["policy"].p["value_bonus"], 4.0)

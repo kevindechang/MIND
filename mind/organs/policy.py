@@ -15,6 +15,7 @@ from __future__ import annotations
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from ..kernel import Organ
+from .causal import VALUE_SALIENCE
 
 
 def expand(singles: Sequence[str], pairs: bool = True) -> List[str]:
@@ -100,9 +101,23 @@ class Policy(Organ):
     home = ("control",)
     # bonus: a direct route from broadcast proposals to action (H015). Every causal proposal that names an action
     # (`probe=...`, `best=...`) adds `bonus` to that action's value. 0 keeps the learned values alone.
+    # value_bonus (H016): when > 0, a probe proposal adds value_bonus * (its salience / VALUE_SALIENCE) instead,
+    # so the route is scaled by the probe's expected net value, which the organ carries as salience.
     defaults = {"alpha": 0.3, "gamma": 0.9, "eps": 0.3, "eps_min": 0.01, "half_life": 400, "pairs": 1,
-                "bonus": 0.0}
+                "bonus": 0.0, "value_bonus": 0.0}
     NAMING_KEYS = ("probe", "best")
+
+    def _route(self, view) -> Dict[str, float]:
+        """Action -> bonus from the causal proposals that name an action in this view."""
+        bonus: Dict[str, float] = {}
+        for c in view:
+            if c.source != "causal" or c.key not in self.NAMING_KEYS:
+                continue
+            if c.key == "probe" and self.p["value_bonus"] > 0:
+                bonus[c.value] = float(self.p["value_bonus"]) * c.salience / VALUE_SALIENCE
+            else:
+                bonus[c.value] = float(self.p["bonus"])
+        return bonus
 
     def __init__(self, params):
         super().__init__(params)
@@ -116,11 +131,9 @@ class Policy(Organ):
 
     def decide(self, view, actions, rng) -> str:
         self._feats = self.features(view)
-        if not self.p["bonus"]:
+        if not (self.p["bonus"] or self.p["value_bonus"]):
             return self.learner.choose(self._feats, actions, rng)
-        named = {c.value: float(self.p["bonus"]) for c in view
-                 if c.source == "causal" and c.key in self.NAMING_KEYS}
-        return self.learner.choose(self._feats, actions, rng, bonus=named)
+        return self.learner.choose(self._feats, actions, rng, bonus=self._route(view))
 
     def learn(self, prev, now, view, ctx) -> None:
         if prev is None or prev.action is None or self._prev_feats is None:
