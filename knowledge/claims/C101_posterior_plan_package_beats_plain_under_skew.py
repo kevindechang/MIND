@@ -4,9 +4,9 @@ H015 found no gain under the skewed prior against plain (C084 refuted), and C095
 harm there. This claim asks whether the whole package with the plan rule beats plain under skew. It is an
 end-to-end comparison; C096-C098 compare the plan rule itself. Secondary: no multiplicity correction.
 
-The two configurations differ only in the plan rule. The comparison measures the total effect of that change,
-including any learning and probing feedback; it does not measure mediation by the rule. With no known reach fact
-the posterior rule falls back to the policy, as the known-plan rule does.
+This compares the complete posterior-plan package against the plain organism, not an isolated plan-rule
+intervention. The observed difference includes possible effects of learning, probing and routing; it cannot
+establish mediation by the posterior plan rule. C096-C098 isolate the plan-rule configuration change.
 about=("causal",) puts the facts-only rival (compact) in the panel. PREREGISTERED then also needs this organism
 to beat compact with a bootstrap lower bound above zero. That gate is separate from the primary comparison: if the
 comparison holds but compact is not beaten, the claim is reported as blocked by the rival, not refuted.
