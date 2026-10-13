@@ -1,6 +1,6 @@
 """H018 secondary (the skewed boundary against plain).
 
-H015 found no gain under the skewed prior against plain (C084 refuted), and C095 showed the learned prior does no
+H015 did not establish a gain under the skewed prior against plain (C084 inconclusive), and C095 showed the learned prior does no
 harm there. This claim asks whether the whole package with the plan rule beats plain under skew. It is an
 end-to-end comparison; C096-C098 compare the plan rule itself. Secondary: no multiplicity correction.
 
