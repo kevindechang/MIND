@@ -127,7 +127,7 @@ class Causal(Organ):
     # cost 0.25: the workshop's probe cost (used only when voi=1)
     defaults = {"salience": 2.0, "penalty": 3, "derive": 1, "sham": 0, "goals": 2,
                 "source": "broadcast", "voi": 0, "cost": 0.25, "smooth": 1.0,
-                "hypotheses": "counts", "aware": 0, "value_carry": 0}
+                "hypotheses": "counts", "aware": 0, "value_carry": 0, "em": 0, "alpha": 0.1}
     choices = {"source": ("broadcast", "efference"), "hypotheses": ("counts", "dag")}
 
     def __init__(self, params):
@@ -140,8 +140,13 @@ class Causal(Organ):
         # across episodes: probe results seen, and how many came back censored
         self.seen = 0
         self.censored = 0
+        # across episodes (em=1, H017): the learned prior over the DAG hypotheses, by online EM
+        self.S = [0.0] * len(DAG_REACH)                  # accumulated responsibilities
+        self.pi = [1.0 / len(DAG_REACH)] * len(DAG_REACH)  # the prior used for the next episode
 
     def reset_episode(self) -> None:
+        if self.p["em"]:
+            self._learn_structure_prior()  # this episode's facts, before they are cleared
         self.reach = {}                   # every episode draws a new hidden graph
         self.wants = {}
 
@@ -278,41 +283,61 @@ class Causal(Organ):
 
     # ---- the generic DAG posterior (voi=1, hypotheses=dag) -------------------------------
 
-    def _dag_best(self, actions: Sequence[str], hypotheses, commitments) -> float:
-        """Best plan's expected utility under the uniform posterior over the given DAG hypotheses."""
+    def _dag_weight(self, i: int) -> float:
+        """Prior weight of DAG hypothesis i: uniform, or learned across episodes when em=1 (H017)."""
+        return self.pi[i] if self.p["em"] else 1.0
+
+    def _dag_best(self, actions: Sequence[str], idxs: Sequence[int], commitments) -> float:
+        """Best plan's expected utility under the weighted posterior over the given DAG hypotheses."""
+        total = sum(self._dag_weight(i) for i in idxs)
         best = None
         for action in actions:
             if plan_nodes(action) is None:
                 continue
-            eu = sum(predicted_utility(r, action, commitments, self.p["penalty"]) for r in hypotheses)
-            eu /= len(hypotheses)
+            eu = sum(self._dag_weight(i) * predicted_utility(DAG_REACH[i], action, commitments, self.p["penalty"])
+                     for i in idxs) / total
             if best is None or eu > best:
                 best = eu
         return 0.0 if best is None else best
 
     def _dag_probe_recommendation(self, actions: Sequence[str]) -> Optional[Tuple[str, float]]:
-        consistent = [r for r in DAG_REACH if all(r[n] == m for n, m in self.reach.items())]
-        if not consistent:
+        idxs = [i for i, r in enumerate(DAG_REACH) if all(r[n] == m for n, m in self.reach.items())]
+        if not idxs:
             return None
         candidates = [a for a in sorted(actions) if a.startswith("probe") and int(a[-1]) not in self.reach]
         if not candidates:
             return None
         commitments = sorted(self.wants.items())
-        base = self._dag_best(actions, consistent, commitments)
+        base = self._dag_best(actions, idxs, commitments)
         c = self._censor_rate()
+        total = sum(self._dag_weight(i) for i in idxs)
         best_net, best_action = None, None
         for action in candidates:
             n = int(action[-1])
-            groups: Dict[int, list] = {}
-            for r in consistent:
-                groups.setdefault(r[n], []).append(r)
-            informed = sum(len(g) / len(consistent) * self._dag_best(actions, g, commitments)
+            groups: Dict[int, List[int]] = {}
+            for i in idxs:
+                groups.setdefault(DAG_REACH[i][n], []).append(i)
+            informed = sum(sum(self._dag_weight(i) for i in g) / total * self._dag_best(actions, g, commitments)
                            for _, g in sorted(groups.items()))
             value = (1 - c) * informed + c * base
             net = value - base - self.p["cost"]
             if net > 0 and (best_net is None or net > best_net):
                 best_net, best_action = net, action
         return None if best_action is None else (best_action, best_net)
+
+    def _learn_structure_prior(self) -> None:
+        """Online EM over the DAG hypotheses (H017). The responsibilities of the hypotheses that explain this episode's
+        probe results, accumulated across episodes, give the prior used for the next episode. No family is supplied:
+        the prior starts uniform over all DAGs and moves toward whatever the organism's own experience supports."""
+        idxs = [i for i, r in enumerate(DAG_REACH) if all(r[n] == m for n, m in self.reach.items())]
+        if not idxs:
+            return
+        norm = sum(self.pi[i] for i in idxs)
+        for i in idxs:
+            self.S[i] += self.pi[i] / norm
+        total = sum(self.S)
+        alpha = self.p["alpha"]
+        self.pi = [(self.S[i] + alpha) / (total + alpha * len(DAG_REACH)) for i in range(len(DAG_REACH))]
 
     def introspect(self):
         return {"reach": {node: label_of(mask) for node, mask in sorted(self.reach.items())},

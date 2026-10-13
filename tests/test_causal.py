@@ -250,3 +250,44 @@ class ReplayWithTheDagRoute(unittest.TestCase):
         restored = Organism.restore(ledger)   # raises ReplayDivergence if any logged decision differs
         self.assertEqual(restored.organs["causal"].p["hypotheses"], "dag")
         self.assertEqual(restored.organs["policy"].p["value_bonus"], 4.0)
+
+
+class LearnedStructurePrior(unittest.TestCase):
+    def test_the_prior_stays_uniform_when_em_is_off(self):
+        org = Causal({"em": 0})
+        tick(org, facts=(perceived("fx0", "1"),))
+        org.reset_episode()
+        self.assertEqual(len(set(round(p, 12) for p in org.pi)), 1)
+
+    def test_the_prior_moves_toward_the_hypotheses_the_episode_supports_and_stays_normalised(self):
+        org = Causal({"em": 1})
+        tick(org, facts=(perceived("fx0", "0"), perceived("fx1", "1")))   # node 0 reaches only itself, node 1 only itself
+        before = list(org.pi)
+        org.reset_episode()
+        self.assertAlmostEqual(sum(org.pi), 1.0, places=9)
+        self.assertNotEqual(before, org.pi)
+        from mind.organs.causal import DAG_REACH
+        supported = [i for i, r in enumerate(DAG_REACH) if r[0] == 1 and r[1] == 2]   # node 0 and node 1 reach only themselves
+        self.assertGreater(sum(org.pi[i] for i in supported), sum(before[i] for i in supported))
+
+    def test_a_short_life_moves_mass_onto_the_forward_only_family(self):
+        from mind.organs.causal import DAG_REACH
+        from mind.kernel import Organism
+        from mind.worlds import make_world
+        forward = [i for i, r in enumerate(DAG_REACH) if all((r[n] & ((1 << n) - 1)) == 0 for n in range(3))]
+        self.assertEqual(len(forward), 8)
+        cfg = ("organism +causal causal.voi=1 causal.source=efference causal.hypotheses=dag causal.aware=1 "
+               "causal.value_carry=1 policy.bonus=1.0 policy.value_bonus=4.0 causal.em=1")
+        org = Organism(cfg, seed=2)
+        env = make_world("workshop", 2, "dev")
+        for _ in range(120):
+            obs = env.reset()
+            reward, outcome, boundary = 0.0, None, True
+            while True:
+                d = org.step(obs, reward, outcome, boundary, env.legal())
+                s = env.step(d.action)
+                if s.done:
+                    org.end_episode(s.reward, s.outcome)
+                    break
+                obs, reward, outcome, boundary = s.obs, s.reward, s.outcome, False
+        self.assertGreater(sum(org.organs["causal"].pi[i] for i in forward), 0.5)
