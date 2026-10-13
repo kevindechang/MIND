@@ -51,7 +51,17 @@ class QLearner:
                 best, best_q = a, v
         return best
 
-    def choose(self, feats: Sequence[str], actions: Sequence[str], rng) -> str:
+    def greedy_with(self, feats: Sequence[str], actions: Sequence[str], bonus: Dict[str, float]) -> str:
+        """Greedy choice with a direct bonus added to the value of named actions (broadcast proposals)."""
+        best, best_q = actions[0], self.q(feats, actions[0]) + bonus.get(actions[0], 0.0)
+        for a in actions[1:]:
+            v = self.q(feats, a) + bonus.get(a, 0.0)
+            if v > best_q + 1e-12:
+                best, best_q = a, v
+        return best
+
+    def choose(self, feats: Sequence[str], actions: Sequence[str], rng,
+               bonus: Optional[Dict[str, float]] = None) -> str:
         for a in actions:
             if a not in self.known:
                 self.known.append(a)
@@ -60,6 +70,8 @@ class QLearner:
         self.decisions += 1
         if rng.random() < eps:
             return actions[rng.randrange(len(actions))]
+        if bonus:
+            return self.greedy_with(feats, actions, bonus)
         return self.greedy(feats, actions)
 
     def update(self, feats: Sequence[str], action: str, target: float) -> None:
@@ -86,7 +98,11 @@ class QLearner:
 class Policy(Organ):
     name = "policy"
     home = ("control",)
-    defaults = {"alpha": 0.3, "gamma": 0.9, "eps": 0.3, "eps_min": 0.01, "half_life": 400, "pairs": 1}
+    # bonus: a direct route from broadcast proposals to action (H015). Every causal proposal that names an action
+    # (`probe=...`, `best=...`) adds `bonus` to that action's value. 0 keeps the learned values alone.
+    defaults = {"alpha": 0.3, "gamma": 0.9, "eps": 0.3, "eps_min": 0.01, "half_life": 400, "pairs": 1,
+                "bonus": 0.0}
+    NAMING_KEYS = ("probe", "best")
 
     def __init__(self, params):
         super().__init__(params)
@@ -100,7 +116,11 @@ class Policy(Organ):
 
     def decide(self, view, actions, rng) -> str:
         self._feats = self.features(view)
-        return self.learner.choose(self._feats, actions, rng)
+        if not self.p["bonus"]:
+            return self.learner.choose(self._feats, actions, rng)
+        named = {c.value: float(self.p["bonus"]) for c in view
+                 if c.source == "causal" and c.key in self.NAMING_KEYS}
+        return self.learner.choose(self._feats, actions, rng, bonus=named)
 
     def learn(self, prev, now, view, ctx) -> None:
         if prev is None or prev.action is None or self._prev_feats is None:

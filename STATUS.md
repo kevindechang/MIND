@@ -2,7 +2,7 @@
 
 > **Generated snapshot** by `python -m mind status --write` from `knowledge/claims/`, `knowledge/records/` and git history. It reflects the last generation, not current Git HEAD. Do not edit it by hand; regenerate after changes or merge conflicts.
 
-Result-code fingerprint `fadebc5c5c0f5412` · snapshot generated 2026-10-12 15:40 UTC
+Result-code fingerprint `f0cbc613df457b81` · snapshot generated 2026-10-12 16:22 UTC
 
 **Target: functional consciousness — NOT achieved.** Every claim below concerns a small learning organism in toy worlds, at instrument, behavioural (L1) or causal-organisation (L2) scope. Phenomenal experience (L3) is not an admissible empirical scope here.
 
@@ -10,9 +10,9 @@ Result-code fingerprint `fadebc5c5c0f5412` · snapshot generated 2026-10-12 15:4
 
 | state | claims |
 |---|---|
-| ✅ HOLDS | 36 (PREREGISTERED 28, ROBUST 8) |
+| ✅ HOLDS | 40 (PREREGISTERED 32, ROBUST 8) |
 | ❔ INCONCLUSIVE | 3 |
-| ❌ REFUTED | 5 |
+| ❌ REFUTED | 7 |
 | 🗄️ RETIRED | 7 |
 
 Evidence ladder (computed, never asserted): PROPOSED → OBSERVED → ROBUST → RIVAL-TESTED (effects only) → PREREGISTERED (commit-sealed held-out seeds) → REPLICATED (second contributor and environment). See [docs/CLAIMS.md](docs/CLAIMS.md).
@@ -39,7 +39,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 16. **[question]** H003 — Does a capacity-limited global workspace help, and when does it hurt? Read C039 (distractor load, four slots) and C040 (retention length, seven slots). Still open — a registered variant between 2 and 5 distractors, and long gaps with many distractors, for whether the default four-slot bottleneck itself crosses the 0.08 kept-rate bar.
 17. **[question]** H007 — Is the organism's causal organisation integrated rather than modular? Extend shadows (mind/shadow.py) beyond the self-model. Give the policy a fixed-behaviour estimand (off-policy replay of its TD learner on the logged stream with one source's contents dropped or shammed, scored by agreement with the logged greedy actions or by TD error), then make the atlas report each cell twice: the total effect (lesion) and the informational effect (shadow). Re-run whenever an organ or world is added; register a claim when an informational cross-function effect appears or disappears.
 18. **[question]** H008 — Does genuinely maintained internal state produce useful prospective action without prompting? Add idle ticks with a compute budget and a `maintenance` organ; compare against a learned external scheduler with the same inputs (v1 issue #3's rival), measuring prospective action quality per unit compute.
-19. **[replicate]** 35 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
+19. **[replicate]** 39 claims await independent replication: on a fresh clone, as a different contributor, run `python -m mind check --record --by <you>` and `--heldout --record --by <you>`
 
 ## Claims
 
@@ -65,6 +65,10 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [C036](knowledge/claims/C036_fixed_behaviour_integration_load_matched.py) | **At fixed behaviour and fixed feature load, memory's and goals' contents each inform the self-model** | effect · L2 | ✅ HOLDS | PREREGISTERED | Holm-corrected, load-matched sham, fixed behaviour: memory informs the self-model in ['outage', 'vigil'], goals in ['vigil'] (memory>vigil +0.0039*, goals>vigil +0.0028*, memory>outage +0.0035*, goals>outage +0.0000, memory>workshop -0.0001, goals>workshop +0.0000) · held-out | – | K09, K10 |
 | [C039](knowledge/claims/C039_load_shifts_four_slot_advantage.py) | **Distractor load increases the four-slot workspace's advantage** | effect · L2 | ✅ HOLDS | PREREGISTERED | crowded-dev +0.180 [+0.139, +0.222] (crowded +0.153, dev -0.027; claim: > 0.08) · held-out | – | – |
 | [C040](knowledge/claims/C040_long_gap_widens_seven_slot_cost.py) | **Long retention increases the seven-slot workspace's cost** | effect · L2 | ✅ HOLDS | PREREGISTERED | long-dev -0.361 [-0.431, -0.291] (long -0.347, dev +0.014; claim: < -0.08) · held-out | – | – |
+| [C079](knowledge/claims/C079_routed_efference_causal_memory_beats_plain_on_dev.py) | **A routed, efference-fed causal memory raises utility over the plain organism** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.205 [+0.168, +0.242] (-1.457 vs -1.662, n=16) · held-out | – | – |
+| [C080](knowledge/claims/C080_efference_record_beats_attention_fed_record_when_routed.py) | **Learning from an efference record beats learning from attended results, when routed** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.389 [+0.327, +0.451] (-1.446 vs -1.835, n=16) · held-out | – | C079 |
+| [C081](knowledge/claims/C081_routing_to_action_is_necessary_for_information_seeking.py) | **Routing a probe recommendation to action is necessary for information seeking** | effect · L2 | ✅ HOLDS | PREREGISTERED | Δ +0.294 [+0.224, +0.363] (-1.427 vs -1.721, n=16) · held-out | – | C079 |
+| [C082](knowledge/claims/C082_routed_package_closes_a_quarter_of_the_gap_to_bayes.py) | **The routed efference organism closes a quarter of the gap to the Bayes optimum** | threshold · L2 | ✅ HOLDS | PREREGISTERED | 0.334 [0.311, 0.357] <= 0.42 (n=16) · held-out | n/a | C079 |
 | [K01](knowledge/claims/K01_continuity_replay.py) | **Continuity: any death, any lesion, any world — the same life, byte for byte** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 144 lives, 576 deaths: 144/144 ledgers byte-identical · held-out | n/a | – |
 | [K02](knowledge/claims/K02_real_sigkill_exactly_once.py) | **Real SIGKILL after replies and before commit: a byte-identical life in a fresh process** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 36 SIGKILLs (exit -9, half mid-request), 45 PIDs: all lives byte-identical · held-out | n/a | K01 |
 | [K03](knowledge/claims/K03_matched_learner_identity.py) | **Matched learner: the stripped organism is action-identical to rival:reactive** | invariant · instrument | ✅ HOLDS | PREREGISTERED | 24/24 lives action-identical · held-out | n/a | – |
@@ -89,6 +93,8 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [C072](knowledge/claims/C072_policy_depends_on_causal_contents.py) | **Withholding the causal organ's contents from the policy costs utility**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ +0.034 [-0.023, +0.091] (-1.648 vs -1.682, n=16) · held-out | – | – |
 | [C073](knowledge/claims/C073_recommendation_content_matters_against_matched_sham.py) | **The recommended plan's content matters beyond a matched random plan**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ +0.005 [-0.032, +0.041] (-1.648 vs -1.653, n=16) · held-out | – | – |
 | [C074](knowledge/claims/C074_causal_organ_helps_with_unlimited_workspace.py) | **With an unlimited workspace the causal organ raises utility over the flat organism**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ -0.028 [-0.051, -0.004] (-1.642 vs -1.614, n=16) · held-out | – | – |
+| [C083](knowledge/claims/C083_routed_package_transfers_to_censored_probes.py) | **The routed efference organism beats the plain organism on censored probes**<br/>_failed its first sealed confirmation (2026-10-12: FAILS); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ -0.092 [-0.148, -0.036] (-1.776 vs -1.685, n=16) · held-out | – | C079 |
+| [C084](knowledge/claims/C084_routed_package_transfers_to_skewed_prior.py) | **The routed efference organism beats the plain organism under the skewed prior**<br/>_mixed evidence: FAILS on dev, INCONCLUSIVE on heldout:82f080d; failed its first sealed confirmation (2026-10-12: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | ❌ REFUTED | – | Δ +0.026 [-0.010, +0.062] (-1.425 vs -1.451, n=16) · dev | – | C079 |
 | [C007](knowledge/claims/C007_self_model_beats_success_table.py) | **The self-model out-calibrates a success table when events are informative**<br/>_retired: v2 review (2026-10-10): the test compares Brier scores of two agents on their OWN action streams, which confounds calibration with behaviour (13-22% of the gap was action mix). Its conclusion survives on a common stream; superseded by C017, which compares both forecasters on the same events._ | effect · L2 | 🗄️ RETIRED | – | Δ -0.021 [-0.027, -0.016] (0.042 vs 0.063, n=16) · held-out | – | K03 |
 | [C008](knowledge/claims/C008_self_model_ties_table_when_silent.py) | **Without announcements, a success table is as calibrated as the self-model**<br/>_retired: v2 review (2026-10-10): the apparent tie was an action-mix artifact (the organism scans more). On the same events the self-model is BETTER than the table even without announcements; the claim's interpretation is reversed. Superseded by C018._ | equivalence · L2 | 🗄️ RETIRED | – | Δ +0.001 [-0.009, +0.012] (0.059 vs 0.059, n=16) · held-out | n/a | K03 |
 | [C010](knowledge/claims/C010_memory_degrades_calibration.py) | **Memory degrades the self-model's calibration (cross-function interference)**<br/>_mixed evidence: HOLDS on dev, INCONCLUSIVE on heldout:870e206; retired: v2 review (2026-10-10): memory changes the action mix; a context-free table on the same streams shifts as much (+0.011), so this measured behaviour, not 'noisier context'. Inconclusive anyway; no successor yet (open in H007).; failed its first sealed confirmation (2026-10-10: INCONCLUSIVE); later re-runs cannot earn PREREGISTERED_ | effect · L2 | 🗄️ RETIRED | – | Δ +0.008 [+0.002, +0.014] (0.056 vs 0.048, n=16) · held-out | – | – |
@@ -115,6 +121,7 @@ Derived from the knowledge itself (broken first, then stale, then promotions and
 | [H012](knowledge/questions/H012.md) Does multi-timescale learning improve durable transfer without unacceptable forgetting? | open | — |
 | [H013](knowledge/questions/H013.md) Do the organism's self-reports track the states that actually drive its actions? | open | — |
 | [H014](knowledge/questions/H014.md) Can a broadcast consumer learn which contents to integrate? | open | — |
+| [H015](knowledge/questions/H015.md) Does a workspace bias what an organism learns about its world, and does routing learned information to action let it seek the information it needs? | confirmed on held-out seeds for the uniform, uncensored workshop (C079-C082 PREREGISTERED); boundaries C083 and C084 not confirmed | C079 ✅, C080 ✅, C081 ✅, C082 ✅, C083 ❌, C084 ❌ |
 | [P001](knowledge/questions/P001.md) Can held-out seeds come from randomness the registrant does not control? | open | — |
 
 ## Knowledge graph
@@ -137,6 +144,7 @@ graph LR
   H012(["H012"])
   H013(["H013"])
   H014(["H014"])
+  H015(["H015"])
   P001(["P001"])
   C001["C001<br/>PREREGISTERED"]
   style C001 fill:#d4f4dd,stroke:#2e7d32
@@ -240,6 +248,24 @@ graph LR
   C074["C074<br/>REFUTED"]
   style C074 fill:#fde0dc,stroke:#c62828
   C074 -.-> H001
+  C079["C079<br/>PREREGISTERED"]
+  style C079 fill:#d4f4dd,stroke:#2e7d32
+  C079 -.-> H015
+  C080["C080<br/>PREREGISTERED"]
+  style C080 fill:#d4f4dd,stroke:#2e7d32
+  C080 -.-> H015
+  C081["C081<br/>PREREGISTERED"]
+  style C081 fill:#d4f4dd,stroke:#2e7d32
+  C081 -.-> H015
+  C082["C082<br/>PREREGISTERED"]
+  style C082 fill:#d4f4dd,stroke:#2e7d32
+  C082 -.-> H015
+  C083["C083<br/>REFUTED"]
+  style C083 fill:#fde0dc,stroke:#c62828
+  C083 -.-> H015
+  C084["C084<br/>REFUTED"]
+  style C084 fill:#fde0dc,stroke:#c62828
+  C084 -.-> H015
   K01["K01<br/>PREREGISTERED"]
   style K01 fill:#d4f4dd,stroke:#2e7d32
   K01 -.-> H008
@@ -350,6 +376,15 @@ graph LR
   C006 -.->|extends| C040
   C011 -.->|extends| C070
   C012 -.->|extends| C070
+  C011 -.->|extends| C079
+  C012 -.->|extends| C079
+  C070 -.->|extends| C079
+  C079 --> C080
+  C079 --> C081
+  C079 --> C082
+  C012 -.->|extends| C082
+  C079 --> C083
+  C079 --> C084
   L02 -.->|extends| K01
   K01 --> K02
   L02 -.->|extends| K02
@@ -392,7 +427,7 @@ Degenerate pairs: `memory+goals→vigil.kept`, `memory+goals→vigil.calib_gain`
 | `goals` | continuity, initiative | Goals: persistent intentions that keep bidding until they are fulfilled. |
 | `self_model` | metacognition | Self-model: a learned, calibrated forecast of the organism's OWN success. |
 | `policy` | control | Policy: the organism's action learner. It sees ONLY the broadcast. |
-| `causal` | causal-control | Causal organ: intervention effects identified from attended probe results (H001). |
+| `causal` | causal-control | Causal organ: intervention effects identified from probe results (H001, H015). |
 
 ### Worlds
 

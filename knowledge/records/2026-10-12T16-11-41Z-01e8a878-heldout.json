@@ -1,0 +1,228 @@
+{
+ "by": "claude-code (H015 session 2026-10-13)",
+ "code": "f0cbc613df457b81",
+ "environment": {
+  "host": "f376fbc5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.9.6"
+ },
+ "environment_id": "01e8a8783bbb",
+ "evaluations": {
+  "C079": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46249001822,
+     "after": "82f080de3e1ff92eb234c20e5bc4be67b7f28916",
+     "ref": "refs/heads/contrib/h015-routed-efference-voi-20261013",
+     "time": "2026-10-12T16:08:23Z"
+    },
+    "randomness": "5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+    "round": 33005980,
+    "signature": "946b9ca2da5d057736785397085f04aea26c181912999424d588b1dad094ba790ebd19debce119e0b4ec1135c35168da"
+   },
+   "claim": "C079",
+   "error": null,
+   "estimate": {
+    "a": -1.4570416666666668,
+    "b": -1.6621666666666666,
+    "diff": 0.20512499999999997,
+    "hi": 0.24249627929385265,
+    "lo": 0.1677537207061473,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "39db2f0944e0a849",
+   "rivals": {
+    "compact": {
+     "advantage": 0.21768749999999998,
+     "hi": 0.2496521361987399,
+     "lo": 0.18572286380126005,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.035,
+   "seeds": "heldout:82f080de3e1ff92eb234c20e5bc4be67b7f28916+drand:5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+   "verdict": "HOLDS"
+  },
+  "C080": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46249001822,
+     "after": "82f080de3e1ff92eb234c20e5bc4be67b7f28916",
+     "ref": "refs/heads/contrib/h015-routed-efference-voi-20261013",
+     "time": "2026-10-12T16:08:23Z"
+    },
+    "randomness": "5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+    "round": 33005980,
+    "signature": "946b9ca2da5d057736785397085f04aea26c181912999424d588b1dad094ba790ebd19debce119e0b4ec1135c35168da"
+   },
+   "claim": "C080",
+   "error": null,
+   "estimate": {
+    "a": -1.4462083333333335,
+    "b": -1.8354583333333334,
+    "diff": 0.38925,
+    "hi": 0.4512540882297475,
+    "lo": 0.3272459117702525,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "6cdba4143a8a9c1e",
+   "rivals": {
+    "compact": {
+     "advantage": 0.22185416666666663,
+     "hi": 0.26621527331620776,
+     "lo": 0.17749306001712553,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.035,
+   "seeds": "heldout:82f080de3e1ff92eb234c20e5bc4be67b7f28916+drand:5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+   "verdict": "HOLDS"
+  },
+  "C081": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46249001822,
+     "after": "82f080de3e1ff92eb234c20e5bc4be67b7f28916",
+     "ref": "refs/heads/contrib/h015-routed-efference-voi-20261013",
+     "time": "2026-10-12T16:08:23Z"
+    },
+    "randomness": "5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+    "round": 33005980,
+    "signature": "946b9ca2da5d057736785397085f04aea26c181912999424d588b1dad094ba790ebd19debce119e0b4ec1135c35168da"
+   },
+   "claim": "C081",
+   "error": null,
+   "estimate": {
+    "a": -1.4272083333333334,
+    "b": -1.7211041666666662,
+    "diff": 0.29389583333333336,
+    "hi": 0.36333579795510995,
+    "lo": 0.2244558687115568,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "92998ffaf520c77e",
+   "rivals": {
+    "compact": {
+     "advantage": 0.2360625,
+     "hi": 0.2811329596234542,
+     "lo": 0.19099204037654582,
+     "reference": false,
+     "result": "BEATEN"
+    }
+   },
+   "robust": true,
+   "seconds": 0.036,
+   "seeds": "heldout:82f080de3e1ff92eb234c20e5bc4be67b7f28916+drand:5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+   "verdict": "HOLDS"
+  },
+  "C082": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46249001822,
+     "after": "82f080de3e1ff92eb234c20e5bc4be67b7f28916",
+     "ref": "refs/heads/contrib/h015-routed-efference-voi-20261013",
+     "time": "2026-10-12T16:08:23Z"
+    },
+    "randomness": "5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+    "round": 33005980,
+    "signature": "946b9ca2da5d057736785397085f04aea26c181912999424d588b1dad094ba790ebd19debce119e0b4ec1135c35168da"
+   },
+   "claim": "C082",
+   "error": null,
+   "estimate": {
+    "hi": 0.35734361565956957,
+    "lo": 0.31132305100709706,
+    "mean": 0.3343333333333333,
+    "n": 16,
+    "verdict": "HOLDS"
+   },
+   "prediction_hash": "39ed3bd13dbbd801",
+   "rivals": {},
+   "robust": true,
+   "seconds": 0.018,
+   "seeds": "heldout:82f080de3e1ff92eb234c20e5bc4be67b7f28916+drand:5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+   "verdict": "HOLDS"
+  },
+  "C083": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46249001822,
+     "after": "82f080de3e1ff92eb234c20e5bc4be67b7f28916",
+     "ref": "refs/heads/contrib/h015-routed-efference-voi-20261013",
+     "time": "2026-10-12T16:08:23Z"
+    },
+    "randomness": "5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+    "round": 33005980,
+    "signature": "946b9ca2da5d057736785397085f04aea26c181912999424d588b1dad094ba790ebd19debce119e0b4ec1135c35168da"
+   },
+   "claim": "C083",
+   "error": null,
+   "estimate": {
+    "a": -1.7761875,
+    "b": -1.6845208333333335,
+    "diff": -0.0916666666666667,
+    "hi": -0.03569866534641826,
+    "lo": -0.14763466798691516,
+    "n": 16,
+    "verdict": "FAILS"
+   },
+   "prediction_hash": "a521a743c919ceea",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:82f080de3e1ff92eb234c20e5bc4be67b7f28916+drand:5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+   "verdict": "FAILS"
+  },
+  "C084": {
+   "beacon": {
+    "chain": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+    "push": {
+     "activity_id": 46249001822,
+     "after": "82f080de3e1ff92eb234c20e5bc4be67b7f28916",
+     "ref": "refs/heads/contrib/h015-routed-efference-voi-20261013",
+     "time": "2026-10-12T16:08:23Z"
+    },
+    "randomness": "5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+    "round": 33005980,
+    "signature": "946b9ca2da5d057736785397085f04aea26c181912999424d588b1dad094ba790ebd19debce119e0b4ec1135c35168da"
+   },
+   "claim": "C084",
+   "error": null,
+   "estimate": {
+    "a": -1.3906041666666664,
+    "b": -1.4424791666666665,
+    "diff": 0.051875000000000004,
+    "hi": 0.10023308070614768,
+    "lo": 0.0035169192938523247,
+    "n": 16,
+    "verdict": "INCONCLUSIVE"
+   },
+   "prediction_hash": "d3c441e66d2be104",
+   "rivals": {},
+   "robust": false,
+   "seconds": 0.018,
+   "seeds": "heldout:82f080de3e1ff92eb234c20e5bc4be67b7f28916+drand:5a6266c1c6d2f9b686c37464521dfaf1625af5929abde28a7673bf1e7b0ed17f",
+   "verdict": "INCONCLUSIVE"
+  }
+ },
+ "git": {
+  "dirty_sources": false,
+  "head": "82f080de3e1ff92eb234c20e5bc4be67b7f28916"
+ },
+ "mode": "heldout",
+ "recorded_at": "2026-10-12T16:11:41Z",
+ "schema": 2
+}

@@ -1,18 +1,30 @@
-"""Causal organ: intervention effects identified from attended probe results (H001).
+"""Causal organ: intervention effects identified from probe results (H001, H015).
 
 A workshop probe toggles one node and reports the nodes the toggle reaches, as
-`fx<node>=<labels>`, visible for ONE tick. The organ learns from what won a workspace
-slot on the tick it was shown, and only from that: probe results (`fx`) and goal
-commitments (`want`). It keeps the reach set of each probed node for the episode and
-proposes those facts as `reach<node>=<labels>`. With `derive=1` it also composes the
-facts into the predicted outcome of each plan the world allows, and proposes the best
-predicted plan as `best=<plan>`. The proposal is late (see `Organ.late`): the decision
-at the tick the probe result is shown can already use it.
+`fx<node>=<labels>`, visible for ONE tick. The organ keeps the reach set of each probed
+node for the episode and proposes those facts as `reach<node>=<labels>`. With `derive=1`
+it also composes the facts into the predicted outcome of each plan the world allows, and
+proposes the best predicted plan as `best=<plan>`. Both proposals are late (see
+`Organ.late`): the decision at the tick the probe result is shown can already use them.
+
+Where the facts come from (`source`). `broadcast` (the H001 default) learns only from
+what won a workspace slot on the tick it was shown. `efference` learns from the raw
+observation of its own probes, outside the workspace, as an efference-style record. The
+workspace filter biases what is learned (H015): a learned world model should not depend
+on which results happened to win a slot.
+
+Learning across episodes (`voi=1`). The organ keeps counts of the reach sets it has
+learned, across episodes, singly and in pairs. Each episode draws a new hidden graph, but
+the family of graphs is fixed, so these counts are a prior over reach sets. With `voi=1`
+the organ estimates, for each probe still available, the expected improvement in its best
+plan from learning that probe's result, net of the probe cost, and proposes the most
+valuable probe as `probe=<action>` when the net value is positive.
 
 Causal model: fixed in advance, not learned. Plans compose by XOR of their nodes' reach
 sets. A plan costs one per node, and each broken commitment costs `penalty`. Those are
-the workshop's scoring rule, so this is a supplied payoff model, not causal discovery.
-The organ never sees the E001 graph family and knows the reach of only probed nodes.
+the workshop's scoring rule and probe cost, so this is a supplied payoff model, not causal
+discovery. The organ never sees the E001 graph family. Its prior comes from its own
+experience across episodes.
 
 Controls with the same channel and load: `derive=0` proposes a constant `pad` where
 `best` would be, so the facts and the load are unchanged. `sham=1` proposes `best` with
@@ -20,11 +32,13 @@ a random legal plan instead, at the same ticks.
 """
 from __future__ import annotations
 
+from collections import Counter
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from ..kernel import Content, Organ
 
 PROBE_KEYS = ("fx0", "fx1", "fx2")
+MASKS_WITH = {n: tuple(m for m in range(1, 8) if m & (1 << n)) for n in range(3)}
 
 
 def mask_of(label: str) -> int:
@@ -64,25 +78,37 @@ class Causal(Organ):
     # policy has not yet credited never beats relevance-boosted ones at 1.0 (dev exploration:
     # 8 recommendations reached the workspace at 1.0, 37/37 at 2.0 and at 4.0)
     # goals 2: the workshop has two commitments; the organ waits until it has seen both
-    defaults = {"salience": 2.0, "penalty": 3, "derive": 1, "sham": 0, "goals": 2}
+    # cost 0.25: the workshop's probe cost (used only when voi=1)
+    defaults = {"salience": 2.0, "penalty": 3, "derive": 1, "sham": 0, "goals": 2,
+                "source": "broadcast", "voi": 0, "cost": 0.25, "smooth": 1.0}
+    choices = {"source": ("broadcast", "efference")}
 
     def __init__(self, params):
         super().__init__(params)
         self.reach: Dict[int, int] = {}   # node -> bitmask of the nodes its toggle reaches
-        self.wants: Dict[int, int] = {}   # goal -> desired value, as attended this episode
+        self.wants: Dict[int, int] = {}   # goal -> desired value, as learned this episode
+        # across episodes (never reset): counts of learned reach masks, singly and in pairs
+        self.single: Dict[int, Counter] = {n: Counter() for n in range(3)}
+        self.pair: Counter = Counter()    # (a, mask_a, b, mask_b) with a < b
 
     def reset_episode(self) -> None:
         self.reach = {}                   # every episode draws a new hidden graph
         self.wants = {}
 
     def late_propose(self, now, view, ctx) -> List[Content]:
-        for c in view:                    # only contents that won a slot on this tick
+        before = set(self.reach)
+        if self.p["source"] == "efference":
+            # the organ's own record of its probes and goals: raw observations, not the workspace
+            view = tuple(Content("perception", k, v, 0.0) for k, v in sorted(now.obs.items())
+                         if k in PROBE_KEYS or k.startswith("want"))
+        for c in view:                    # learned from what the chosen source delivers this tick
             if c.source != "perception":
                 continue
             if c.key in PROBE_KEYS and c.value != "censored":
                 self.reach[int(c.key[2:])] = mask_of(c.value)
             elif c.key.startswith("want"):
                 self.wants[int(c.key[4:])] = int(c.value)
+        self._count_new_facts(before)
         salience = self.p["salience"]
         out = [Content(self.name, f"reach{node}", label_of(mask), salience)
                for node, mask in sorted(self.reach.items())]
@@ -94,7 +120,18 @@ class Causal(Organ):
                 out.append(Content(self.name, "best", self._sham_plan(now.actions, ctx), salience))
             else:
                 out.append(Content(self.name, "best", best, salience))
+        if self.p["voi"] and len(self.wants) >= self.p["goals"]:
+            probe = self._probe_recommendation(now.actions)
+            if probe is not None:
+                out.append(Content(self.name, "probe", probe, salience))
         return out
+
+    def _count_new_facts(self, before: set) -> None:
+        for n in sorted(set(self.reach) - before):
+            self.single[n][self.reach[n]] += 1
+            for k in sorted(before):
+                a, b = min(k, n), max(k, n)
+                self.pair[(a, self.reach[a], b, self.reach[b])] += 1
 
     def _best(self, actions: Sequence[str], ctx) -> Optional[str]:
         if not self.reach or len(self.wants) < self.p["goals"]:
@@ -110,6 +147,68 @@ class Causal(Organ):
     def _sham_plan(self, actions: Sequence[str], ctx) -> str:
         plans = sorted(a for a in actions if plan_nodes(a) is not None)
         return plans[ctx.rng("causal-sham").randrange(len(plans))]
+
+    # ---- value of information (voi=1) -----------------------------------------------------
+
+    def _prior(self, n: int, evidence: Dict[int, int]) -> Dict[int, float]:
+        """P(reach mask of node n | evidence) from the counts across episodes. One known node conditions
+        the pair counts when they exist; otherwise the marginal counts are used. Laplace-smoothed."""
+        masks = MASKS_WITH[n]
+        s = self.p["smooth"]
+        if evidence:
+            k = min(evidence)
+            a, b = min(k, n), max(k, n)
+
+            def key(m: int):
+                return (a, evidence[k], b, m) if k < n else (a, m, b, evidence[k])
+            weights = {m: self.pair[key(m)] for m in masks}
+            if sum(weights.values()) > 0:
+                total = sum(weights.values()) + s * len(masks)
+                return {m: (weights[m] + s) / total for m in masks}
+        counts = self.single[n]
+        total = sum(counts[m] for m in masks) + s * len(masks)
+        return {m: (counts[m] + s) / total for m in masks}
+
+    def _expected_best(self, actions: Sequence[str], fixed: Dict[int, int],
+                       commitments: Sequence[Tuple[int, int]]) -> float:
+        """Best plan's expected utility, with the unknown nodes drawn from their priors (chained)."""
+        unknown = [n for n in range(3) if n not in fixed]
+        joint: List[Tuple[Dict[int, int], float]] = []
+
+        def expand(i: int, reach: Dict[int, int], prob: float) -> None:
+            if i == len(unknown):
+                joint.append((reach, prob))
+                return
+            n = unknown[i]
+            for m, pm in self._prior(n, reach).items():
+                expand(i + 1, {**reach, n: m}, prob * pm)
+
+        expand(0, dict(fixed), 1.0)
+        best = None
+        for action in actions:
+            if plan_nodes(action) is None:
+                continue
+            eu = sum(prob * predicted_utility(reach, action, commitments, self.p["penalty"])
+                     for reach, prob in joint)
+            if best is None or eu > best:
+                best = eu
+        return 0.0 if best is None else best
+
+    def _probe_recommendation(self, actions: Sequence[str]) -> Optional[str]:
+        candidates = [a for a in sorted(actions) if a.startswith("probe") and int(a[-1]) not in self.reach]
+        if not candidates:
+            return None
+        commitments = sorted(self.wants.items())
+        base = self._expected_best(actions, self.reach, commitments)
+        best_net, best_action = None, None
+        for action in candidates:
+            n = int(action[-1])
+            informed = sum(pm * self._expected_best(actions, {**self.reach, n: m}, commitments)
+                           for m, pm in sorted(self._prior(n, self.reach).items()))
+            net = informed - base - self.p["cost"]
+            if net > 0 and (best_net is None or net > best_net):
+                best_net, best_action = net, action
+        return best_action
 
     def introspect(self):
         return {"reach": {node: label_of(mask) for node, mask in sorted(self.reach.items())},

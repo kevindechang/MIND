@@ -134,3 +134,69 @@ class ReplayAndSameTick(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EfferenceAndValueOfInformation(unittest.TestCase):
+    def test_efference_source_learns_from_the_observation_not_the_workspace(self):
+        org = Causal({"source": "efference"})
+        now = type("Now", (), {"actions": LEGAL, "obs": {"want0": "1", "want1": "0", "fx0": "01", "t": "1"}})()
+        org.late_propose(now, (), StubContext())             # nothing was attended
+        self.assertEqual(org.reach, {0: mask_of("01")})
+        self.assertEqual(org.wants, {0: 1, 1: 0})
+
+    def test_broadcast_source_still_learns_only_from_attended_results(self):
+        org = Causal({})
+        now = type("Now", (), {"actions": LEGAL, "obs": {"want0": "1", "want1": "0", "fx0": "01", "t": "1"}})()
+        org.late_propose(now, (), StubContext())
+        self.assertEqual(org.reach, {})
+
+    def test_counts_persist_across_episodes_and_form_the_prior(self):
+        org = Causal({"voi": 1})
+        for _ in range(30):                                  # node 2 is a sink in every graph of the family
+            org.reset_episode()
+            tick(org, facts=(perceived("fx2", "2"),))
+        org.reset_episode()
+        self.assertEqual(org.reach, {})
+        self.assertGreater(org._prior(2, {})[mask_of("2")], 0.9)
+
+    def test_value_of_information_recommends_the_informative_probe_not_the_sink(self):
+        org = Causal({"voi": 1})
+        for _ in range(20):                                  # node 0 reaches 0 or {0,1,2}: informative
+            org.reset_episode()
+            tick(org, facts=(perceived("fx0", "0"),))
+            org.reset_episode()
+            tick(org, facts=(perceived("fx0", "012"),))
+        for _ in range(30):                                  # node 2 always reaches {2}: uninformative
+            org.reset_episode()
+            tick(org, facts=(perceived("fx2", "2"),))
+        org.reset_episode()
+        out = tick(org, wants=((0, 1), (1, 0)), actions=("do:none", "do:0", "do:1", "probe0", "probe2"))
+        probes = [c.value for c in out if c.key == "probe"]
+        self.assertEqual(probes, ["probe0"])
+
+
+class RoutingFromBroadcastToAction(unittest.TestCase):
+    class FixedRandom:
+        """Never explores, so the choice is the greedy one."""
+        def random(self):
+            return 0.999
+
+        def randrange(self, n):
+            return 0
+
+    def test_a_named_proposal_is_chosen_when_the_bonus_is_on(self):
+        from mind.organs.policy import Policy
+        view = (Content("perception", "t", "1", 0.5), Content("causal", "probe", "probe1", 2.0))
+        acts = ("wait", "probe0", "probe1")
+        self.assertEqual(Policy({"bonus": 5.0}).decide(view, acts, self.FixedRandom()), "probe1")
+        self.assertEqual(Policy({}).decide(view, acts, self.FixedRandom()), "wait")
+
+
+class ReplayWithTheNewRoutes(unittest.TestCase):
+    def test_a_routed_efference_life_replays_from_its_ledger(self):
+        ledger = MemoryLedger()
+        run("organism +causal causal.voi=1 causal.source=efference policy.bonus=1.0", "workshop", seed=5,
+            episodes=60, ledger=ledger)
+        restored = Organism.restore(ledger)   # raises ReplayDivergence if any logged decision differs
+        self.assertEqual(restored.organs["causal"].p["source"], "efference")
+        self.assertEqual(restored.organs["policy"].p["bonus"], 1.0)
