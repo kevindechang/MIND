@@ -115,6 +115,13 @@ class PortableStateTests(unittest.TestCase):
         with self.assertRaisesRegex(PortableEventError, "revoked"):
             project(Ledger(items + [tick(event("belief", "b3", key="genre", value="rock", source_id="revoked-1"))]), "person-A")
 
+    def test_forget_rejects_reuse_of_prior_epoch_source(self):
+        items = [tick(event("belief", "b1", key="k", value="v", source_id="old-source")),
+                 tick(event("forget", "f1", epoch=1)),
+                 tick(event("belief", "b2", epoch=1, key="k", value="v", source_id="old-source"))]
+        with self.assertRaisesRegex(PortableEventError, "revoked"):
+            project(Ledger(items), "person-A")
+
     def test_projection_does_not_mutate_log(self):
         entries = [tick(event("belief", "b", key="k", value="v", source_id="s"))]
         log = Ledger(entries)
