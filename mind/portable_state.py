@@ -140,6 +140,7 @@ def project(ledger: Iterable[Any], subject: str, *, verify: bool = True) -> Port
     current: Dict[str, str] = {}
     tasks: Dict[str, Commitment] = {}
     revoked_sources: set[str] = set()
+    used_sources: set[str] = set()
     for item in ledger:
         if item.kind != "tick":
             continue
@@ -162,13 +163,15 @@ def project(ledger: Iterable[Any], subject: str, *, verify: bool = True) -> Port
             beliefs_by_id.clear()
             current.clear()
             tasks.clear()
-            revoked_sources.clear()
+            revoked_sources.update(used_sources)  # prior epoch sources must never resurface
         else:
             if e["epoch"] != epoch:
                 raise PortableEventError("out-of-epoch evidence may not be resurrected")
             kind = e["kind"]
-            if kind in ("belief", "correct", "commit") and e["source_id"] in revoked_sources:
-                raise PortableEventError("cannot reuse revoked source")
+            if kind in ("belief", "correct", "commit"):
+                if e["source_id"] in revoked_sources:
+                    raise PortableEventError("cannot reuse revoked source")
+                used_sources.add(e["source_id"])
             if kind == "belief":
                 if e["key"] in current:
                     raise PortableEventError("existing belief requires explicit correction")
